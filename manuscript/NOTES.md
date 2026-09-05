@@ -8,6 +8,8 @@
   authority.
 - Six `[PENDING: ceiling r4]` placeholders await the ceiling study's fourth
   independent review.
-- `AUTHOR_INPUT_NEEDED`: package versions for studies 1, 2, 7 (manifests carry
-  Python/OS/numpy only); now-mirrored `records/prose/study5` supplies the
+- `AUTHOR_INPUT_NEEDED` resolved: retrospective package inventories are at
+  `records/code/{study1,study2,explore}/package_versions.retrospective.txt`
+  (labelled retrospective; study 1's executor is named in its manifest, the
+  other two assume the same interpreter); `records/prose/study5` supplies the
   generation-inclusive floor's record path.
