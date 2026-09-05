@@ -278,8 +278,11 @@ four replicates over 20 byte-fixed drafts give pooled recalls of 23.5, 19.4,
 [1.26, 7.75]), range 6.12 points**, which bounds audit-stage variation on fixed
 drafts and nothing else. Where generation changes, the governing floor is the
 generation-inclusive replicate: three draws giving draft F1 of 9.72, 10.42 and
-6.94, **SD 1.84 F1 at n = 8**. Neither detection floor bounds the ceiling loop's
-estimand; the loop's own replicate arm does.
+6.94, **SD 1.84 F1 at n = 8**. `AUTHOR_INPUT_NEEDED: a committed record path
+for that generation-inclusive replicate; it is quoted in `CORRECTIONS.md`
+item 10, but no study-5 records are mirrored into this repository.` Neither
+detection floor bounds the ceiling loop's estimand; the loop's own replicate arm
+does.
 
 **Power.** For the ceiling loop, the two-sided exact McNemar test had power
 **0.32 against a true improvement of +5 percentage points, 0.60 against +7.5 and
