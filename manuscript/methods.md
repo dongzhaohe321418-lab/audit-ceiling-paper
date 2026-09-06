@@ -173,7 +173,7 @@ read-only scratch directory, using the shipped auditor prompt byte for byte
 (checked against study 2's committed `prompt_sha256` values, 40 of 40 agreeing)
 but bypassing the provider broker, the metered ledger and the heterogeneity
 guard, so it is labelled a measurement of a model and not of the product path
-wherever it appears. Results: `[PENDING: ceiling r4]`.
+wherever it appears. Results: `cross` lifted union recall on the 110 stratum-P defects from 10.7% [5.1, 17.4] at one reading to 30.0% (33 of 110) [20.0, 40.7] at eight, and union false positives on the 150 stratum-C instances from 4.5% [2.4, 7.0] to 16.0% [10.1, 22.3]; its fitted asymptote, 31.5% [21.7, 45.6], is an extrapolation, the curve still gaining 1.93 points [1.14, 2.78] from K = 7 to K = 8 and failing the flattening bar. `self` flattened: 15.5% [7.1, 24.9] at one reading, 17.3% (19 of 110) [8.3, 27.3] at eight, asymptote 16.6% [8.1, 26.3], at 24.0% [17.2, 31.2] false positives. `astra` at four readings: 30.2% [19.3, 42.0] to 32.7% (36 of 110) [20.7, 45.0], asymptote 32.5% [20.5, 44.8], at 10.7% [5.9, 16.1] false positives. The preregistered primary outcome, A(self) − A(cross) on stratum P, is −14.9 points [−32.1, −2.3]; the model-free difference of union recalls at eight readings is −12.7 points [−25.0, −0.9]. Both exclude zero; because `cross` has not flattened, the raw eight-reading difference is the sturdier of the two. Intervals are 95% problem-cluster bootstraps (110 instances from 56 problems).
 
 **Ceiling 2, correcting.** One `frozen solution → run_audit → revise once if
 BLOCKED → hidden suite` cycle per instance, over a frozen paired sample of 112
@@ -196,7 +196,7 @@ lever in this programme's history measured to move recall by more than a few
 points. **Kill condition, registered:** if `self-loop`'s net change is at most
 zero, or its 95% interval contains zero, or its magnitude is inside the
 replicate spread, then on this evidence self-audit does not raise accuracy and
-the report's first sentence says so. Results: `[PENDING: ceiling r4]`.
+the report's first sentence says so. Results: `self-loop` changed the hidden-test pass rate by +0.89 percentage points (95% problem-cluster bootstrap [−3.54, +5.88]; Tango [−3.98, +6.06]; exact unconditional [−6.70, +8.48]; exact McNemar p = 1.0000; cluster sign-flip p = 1.0000), repairing 3 of 56 wrong solutions and breaking 2 of 56 correct ones; `self-loop-rep` returned identical final solutions, flags and outcomes on all 112 instances. The kill condition fired under every interval, and the report's first sentence says no improvement was established. `cross-loop`: +2.68 points (problem-cluster [0.00, 7.14]; Tango [−0.73, 7.58]; 3 repaired, 0 broken; McNemar p = 0.25). `referent-loop`: +8.04 points ([1.77, 15.26]; Tango [2.03, 15.27]; exact unconditional [−1.79, 17.41]; 11 repaired, 2 broken; McNemar p = 0.0225; sign-flip p = 0.0469). Between arms, `referent-loop` minus `cross-loop` after one round is +5.36 points [−0.89, 12.07], p = 0.146; `self-loop` minus `cross-loop` is −1.79 points [−7.83, 4.39], p = 0.73.
 
 **The residual** is every stratum-P instance flagged by no draw of any family,
 classified by hand from the hidden-test failure record, the visible tests, the
@@ -206,8 +206,7 @@ until that file was committed: `timeout`, `unexercised-edge`, `spec-misreading`,
 `wrong-algorithm`, `ambiguous-oracle`, `other`, each instance taking the first
 that applies. Two categories were never assigned, the ordering absorbing
 disputable-oracle cases into `unexercised-edge`; the rule was applied as written
-and the consequence stated at the table. Counts and shares:
-`[PENDING: ceiling r4]`.
+and the consequence stated at the table. Counts and shares: over the broker families (`cross`, `self`; 16 draws) 68 of 110 defects were never flagged, 61.8% [50.9, 72.7]; with `astra` added (20 draws), 57, 51.8% [40.0, 63.3]. Of the 68: `unexercised-edge` 55 (80.9% [67.6, 92.5]), `spec-misreading` 8 (11.8% [2.9, 23.0]), `timeout` 5 (quoted as a count). Of the 57: 46 (80.7% [66.1, 93.1]), 8 (14.0% [3.4, 26.9]), 3. `wrong-algorithm`, `ambiguous-oracle` and `other` were never assigned.
 
 ## Statistical analysis
 
@@ -288,7 +287,7 @@ does.
 **0.32 against a true improvement of +5 percentage points, 0.60 against +7.5 and
 0.81 against +10**, under a model stated because a power figure without its
 model is meaningless: 112 **independent** multinomial pairs, worsening
-probability fixed at its observed value (`[PENDING: ceiling r4]`) and
+probability fixed at its observed value (2 of 112) and
 improvement probability that value plus δ, so total discordance varies with δ.
 It is instance-independent, and is not a power calculation for the clustered
 procedure actually reported.
@@ -350,7 +349,7 @@ form, one named primary outcome, its named secondaries, its arms and what is
 held fixed, its intended n, its stopping rule, and where applicable a kill
 condition that can end the line of work; two have fired and are reported as the
 result rather than replaced by a second objective, the executable-check
-proposal's and the ceiling loop's (`[PENDING: ceiling r4]`). Full run
+proposal's and the ceiling loop's (+0.89 points, every interval containing zero). Full run
 directories, which carry corpus-derived material, are archived outside any
 repository at `~/Documents/Crossaudit/study-data/` with per-file and
 directory-level sha256 manifests whose digests are committed
