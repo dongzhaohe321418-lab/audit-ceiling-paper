@@ -374,7 +374,9 @@ comparator, and no hidden-test leakage was found in the code study through
 prompts, imports, fixtures, caches or filesystem behaviour, the population
 reproducing exactly. Three further reviews have read the ceiling study: the
 first two refused quotation approval and each found a defect in its interval
-method, the third approved subject to reporting corrections, and a fourth is in
-progress, which is why no ceiling result is quoted here. In each round the
+method, the third approved subject to reporting corrections, and the twenty-first
+approved the report whose numbers this section quotes (D162; filled 2026-09-06 —
+an earlier version of this paragraph, written while the fourth review was in
+progress, said no ceiling result was quoted here). In each round the
 author's own checks had not found the defect, and a reader who did not share the
 author's assumptions did.
