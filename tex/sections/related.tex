@@ -6,10 +6,33 @@ Two differences bear on what a ceiling means. Such work is evaluated largely on 
 which are specification-determined by construction, whereas our natural stratum is the residue of
 an ordinary generation run, where whether the specification determines the failure is the open
 question. And the reported quantity is a preference or a per-critique comparison rather than the
-union recall of repeated independent readings, so it does not say where reading saturates.
-Aggregating several review passes is known to help: multi-review aggregation on 1{,}000 verified
-pull requests raises F1 by up to 43.67\% \citep{zeng2025swrbench}. That is the same mechanical
-move as our union-of-$K$, used as a method rather than as an instrument for finding a limit.
+union recall of repeated independent readings against an executed oracle. We should be plain
+that this work already occupies two of our four axes: it reports a precision--recall trade-off for
+critics, and it separates tampered from natural bugs. What we add on this axis is narrow --- the
+union of repeated independent readings as an instrument for locating a limit, ground truth
+supplied by an interpreter rather than by preference, and the false-positive rate carried beside
+every recall figure. Aggregating several review passes is known to help: multi-review aggregation
+on 1{,}000 verified pull requests raises F1 by up to 43.67\% \citep{zeng2025swrbench}. That is
+the same mechanical move as our union-of-$K$, used as a method rather than as an instrument for
+finding a limit.
+
+\textbf{Repeated sampling and coverage.} That coverage --- the fraction of problems solved by at
+least one of $K$ samples --- rises steeply and then flattens is an established regularity of
+repeated sampling, reported over four orders of magnitude of $K$ and fitted by a power law
+\citep{brown2024monkeys}. Our union-of-$K$ is that quantity with a flag rule in place of a
+correctness check, so \S\ref{sec:repeat} re-measures a known shape rather than discovering one,
+and at $K \le 8$ our budget is small beside theirs. The contribution is not the shape. It is
+that the curve is read here as a measurement of a ceiling, reported beside the false-positive rate
+it costs, and tested against a registered flattening bar that it fails --- which is why we report
+diminishing returns rather than a limit.
+
+\textbf{Self-assessment.} That models are poor judges of their own output is established from two
+directions: self-correction without external feedback does not reliably improve reasoning and can
+degrade it \citep{huang2024selfcorrect}, and models prefer their own generations when used as
+judges \citep{chen2025selfpreference}. Our same-vendor and self-audit arms are the code-audit case
+of that literature, and we read our null there as consistent with it rather than as new. What our
+arms add is the false-positive rate beside the recall, and the observation that the direction
+reverses on a second substrate.
 
 \textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites and
 reported defects in the original reference solutions \citep{liu2023evalplus}; its code carries
