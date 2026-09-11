@@ -18,14 +18,14 @@ bespoke oracles for tasks where differential testing against the reference was n
 underspecified task and name twelve MBPP tasks they identified by hand; eleven fall inside our
 defect population and our raters, who labelled them before that paper was fetched, agree on nine.
 From the test-generation side, the dominant error in generated tests is a wrong expected value
-rather than an invalid input \citep{chen2023testing}, and generated oracles tend to capture a
+rather than an invalid input \citep{xiong2023testing}, and generated oracles tend to capture a
 program's actual rather than its intended behaviour \citep{konstantinou2024oracles}. Our claim is
 the auditing counterpart: where the prose does not fix the value, a recall number computed against
 that suite measures the benchmark as much as the auditor.
 
 \textbf{Consensus as a substitute for ground truth.} Several systems validate generated tests
-without a reference by agreement, through self-consistency, dual execution or multi-agent
-discussion \citep{convertest2026, hallucination2025consensus}. Neither reports how many wrong
+without a reference by agreement, through self-consistency, dual execution, or multi-agent discussion for {JUnit}
+suites \citep{taherkhani2026consistency, xu2025consensus}. Neither reports how many wrong
 assertions survive the filter, which is the quantity that decides whether the filter can be
 trusted. We measure it on a frozen set of canonical-failing tests and find that corroboration
 across independent generations does not reach our preregistered threshold, because wrong tests
@@ -33,11 +33,11 @@ recur by problem. This is the concrete case of a general result: self-consistent
 exactly the class that consistency-based detectors cannot see \citep{tan2025consistent}.
 
 \textbf{Who audits whom.} That an evaluator should not be the model under evaluation is supported
-by measurements of self-preference and family bias in LLM judges \citep{selfpref2025}. Our
+by measurements of self-preference and family bias in LLM judges \citep{chen2025selfpreference}. Our
 contribution is its size against model-free ground truth, and the finding that its direction is
 substrate-dependent.
 
 \textbf{Preregistration.} Preregistering an evaluation protocol is beginning to appear in machine
 learning, both as a proposal for agent experiments and as a defence against tuning a pipeline
-until it reports what the author wanted \citep{prereg2026agents}. We record our use of it as
+until it reports what the author wanted \citep{vaccaro2026prereg}. We record our use of it as
 method rather than contribution.
