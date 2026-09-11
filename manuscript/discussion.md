@@ -29,8 +29,10 @@ divides by the gain in false positives over one reading, is undefined rather tha
 
 The explanation is the operating point. On the second substrate that auditor flags 88% of
 defective and 77% of correct increments, so almost nothing sits near its decision boundary and
-resampling has nothing to flip; the same model splits its verdict on 9 of 260 instances on the
-first substrate, where it flags far less. The cross-vendor auditor, at 71% and 55%, splits on 103
+resampling has little left to flip. The cross-vendor auditor on the same substrate splits its
+verdict across draws on 103 of 250 instances and the same-vendor auditor on none; the flat arm is
+also the arm sampled at temperature 0, and the two explanations are not separable without a
+temperature-matched replication that was not run. The cross-vendor auditor, at 71% and 55%, splits on 103
 of 250.
 
 Best-of-K, union-of-K and panel aggregation over critics therefore buy coverage in proportion to

@@ -162,8 +162,11 @@ auditor beats the cross-vendor one on the second substrate by +17.0 points [2.0,
 32.7] of false positives, that is 1.29 points of false positive per point of recall. Its verdict
 is identical across all eight readings on every one of 250 instances (verified independently:
 costs vary on 100, wall times on all 250, so the readings are distinct), so its union curve is
-flat and the registered efficiency ratio is undefined rather than large. The same model splits on
-9 of 260 verdicts on substrate 1, so this is an operating-point effect, not determinism. Two
+flat and the registered efficiency ratio is undefined rather than large. The cross-vendor arm on the same substrate splits on 103 of 250 and the
+same-vendor arm on none; an operating-point explanation and a temperature-0 explanation are not
+separable without a temperature-matched replication, which was not run. (An earlier version of
+this entry cited "9 of 260 verdicts on substrate 1" as evidence against determinism. That figure
+traces to no record and has been removed.) Two
 consequences for the ledger: **C5's direction is substrate-dependent and must be stated as a
 measurement on substrate 1, not as a general property**, and the paper gains a claim it did not
 have — repeated reading buys coverage only in proportion to how much of the population sits near

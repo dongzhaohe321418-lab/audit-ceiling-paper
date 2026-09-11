@@ -46,11 +46,12 @@ Part of that is arithmetic and needs no experiment: a union over readings that d
 grow. Part of it is a design fact this paper had to correct for, which is that the same-vendor
 route is sent temperature $0$ while the cross-vendor route is sent no sampling parameter at all
 (\S\ref{sec:auditor}). What the data add beyond those two is the operating point. On the second
-substrate that auditor flags 88\% of defective and 77\% of correct increments, so almost nothing
-sits near its decision boundary and resampling has little to flip; the same model splits its
-verdict on 9 of 260 instances on the first substrate, where it flags far less, which is evidence
-that the flatness is not determinism alone. The cross-vendor auditor, at 71\% and 55\%, splits on
-103 of 250.
+substrate that auditor flags 88.0\% [78.0, 96.0] of defective and 77.3\% [69.3, 84.9] of correct
+increments, so almost nothing sits near its decision boundary and resampling has little left to
+flip. The cross-vendor auditor on the same substrate, at 71.0\% and 55.3\%, splits its verdict
+across draws on 103 of 250 instances; the same-vendor auditor splits on none. We cannot separate
+the two explanations with the runs we have, because the arm that is flat is also the arm sampled
+at temperature 0, and no temperature-matched replication was run.
 
 Best-of-K, union-of-K and panel aggregation over critics therefore buy coverage in proportion to
 how much of the population sits near the critic's boundary, and only to the extent that the route
