@@ -37,7 +37,8 @@ model is a worse auditor"**. Three qualifications travel with it and none may be
 * **The sign reverses under a weaker severity rule.** Under the any-finding rule (EXPLORATORY,
   not preregistered) the stronger model reaches **59.1%** [47.3, 70.6] on P at **34.0%**
   [26.5, 41.7] on C, against the shipped auditor's **34.5%** [23.6, 45.5] at **19.3%**
-  [12.8, 26.3]; recall per false-positive point is 1.74 against 1.79, indistinguishable. The
+  [12.8, 26.3]; the ratio of those rates is 1.74 against 1.79, a derived point ratio
+  carrying no interval and therefore supporting no claim that the families differ on it. The
   contrast is evidence about **severity calibration**, not auditing ability.
 * **The routes are not sampled alike.** The cross-vendor route sends no sampling parameter; the
   same-vendor routes send temperature 0 and are near-deterministic. Over K = 1 to 8 the first
