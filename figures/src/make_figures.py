@@ -68,17 +68,29 @@ def figure1(c1, s2):
             # rather than a band keeps four curves legible, and the bars are dodged in x so
             # two series with overlapping intervals stay separately readable.
             lo, hi = ci[-1]
-            ax.errorbar([8.28 + 0.16 * index], [curve[-1]],
-                        yerr=[[curve[-1] - lo], [hi - curve[-1]]],
-                        fmt="none", ecolor=colour, elinewidth=0.8, capsize=1.6,
-                        capthick=0.8, clip_on=False, alpha=0.95)
+            x_ci = 8.50 + 0.42 * index
+            ax.errorbar([x_ci], [curve[-1]], yerr=[[curve[-1] - lo], [hi - curve[-1]]],
+                        fmt="none", ecolor=colour, elinewidth=0.9, capsize=2.0, capthick=0.9)
+            ax.plot([x_ci], [curve[-1]], marker=marker, color=colour, markersize=2.6)
+        # the interval strip is fenced off so it cannot be read as data at K = 8.5
+        ax.axvline(8.25, color="0.75", linewidth=0.6)
+        # on the fence itself, rotated: no interval bar can reach this column
+        ax.text(8.38, 0.5, "95% CI at $K=8$", fontsize=5.8, color="0.35", ha="center",
+                va="center", rotation=90)
         ax.set_xlabel("Independent readings $K$")
-        ax.set_title(title, fontsize=7, pad=4)
-        ax.set_xlim(0.8, 9.0)
+        ax.set_title(title, fontsize=7.5, pad=4)
+        ax.set_xlim(0.8, 10.3)
         ax.set_ylim(0, 1.0)
         ax.set_xticks(list(ks))
+        ax.xaxis.set_minor_locator(mticker.NullLocator())
         pct(ax)
     axes[0].set_ylabel("Union rate")
+    for ax, tag in zip(axes, "ab"):
+        ax.text(-0.16, 1.02, f"({tag})", transform=ax.transAxes, fontsize=8, va="bottom")
+    # the flat series is flat because the verdict is identical, not because the curve is smooth
+    axes[0].annotate("identical verdict on all 250 instances", xy=(4.5, 0.88),
+                     xytext=(4.5, 0.775), fontsize=5.8, color=SELF, ha="center",
+                     arrowprops=dict(arrowstyle="-", color=SELF, linewidth=0.6, shrinkB=1))
     # One legend for both panels, placed outside so no curve is covered.
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=2, frameon=False,
@@ -90,13 +102,13 @@ def figure1(c1, s2):
 
 
 def figure2(c1, s2):
-    """The operating points: recall against false positives as readings accumulate.
+    """Recall against false positives as readings accumulate.
 
-    The point of the panel is that the two substrates' false-positive ranges do not overlap,
-    so the shaded spans are drawn first and labelled, and the same-vendor track on substrate 2
-    is annotated because all eight of its readings fall on one point.
+    The separation claim is made for the CROSS-VENDOR auditor only, because that is the
+    comparison the paper draws, and it is drawn with intervals rather than point estimates: the
+    two families pooled would overlap, and saying so is the point of the shaded pair.
     """
-    fig, ax = plt.subplots(figsize=(3.6, 3.0))
+    fig, ax = plt.subplots(figsize=(3.6, 3.2))
     tracks = [
         ("Substrate 1, cross-vendor", c1["cross"]["C"]["curve"], c1["cross"]["P"]["curve"],
          CROSS, "-", "o"),
@@ -107,15 +119,15 @@ def figure2(c1, s2):
         ("Substrate 2, same-vendor", s2["self_family_curve"]["C"]["curve"],
          s2["self_family_curve"]["P"]["curve"], SELF, "--", "v"),
     ]
-    # the two substrates' measured false-positive ranges, which do not meet
-    s1_fp = c1["cross"]["C"]["curve"] + c1["self"]["C"]["curve"]
-    s2_fp = s2["H23b_curve"]["C"]["curve"] + s2["self_family_curve"]["C"]["curve"]
-    ax.axvspan(min(s1_fp), max(s1_fp), color="0.88", zorder=0)
-    ax.axvspan(min(s2_fp), max(s2_fp), color="0.94", zorder=0)
-    ax.text((min(s1_fp) + max(s1_fp)) / 2, 0.955, "substrate 1", fontsize=5.4, color="0.35",
-            ha="center", va="top")
-    ax.text(min(s2_fp) + 0.055, 0.955, "substrate 2", fontsize=5.4, color="0.35",
-            ha="center", va="top")
+    # Cross-vendor only: substrate 1's interval at K = 8 against substrate 2's at K = 1.
+    s1_hi = c1["cross"]["C"]["union_at_kmax_block"]["cluster_ci95"][1]
+    s2_lo = s2["H23b_curve"]["C"]["curve_cluster_ci95"][0][0]
+    ax.axvspan(0, s1_hi, color="0.90", zorder=0)
+    ax.axvspan(s2_lo, 0.86, color="0.955", zorder=0)
+    ax.text(s1_hi / 2, 0.965, "substrate 1, cross-vendor\n(upper 95% bound at $K=8$)",
+            fontsize=5.9, color="0.3", ha="center", va="top", linespacing=1.25)
+    ax.text((s2_lo + 0.86) / 2, 0.965, "substrate 2, cross-vendor\n(lower 95% bound at $K=1$)",
+            fontsize=5.9, color="0.3", ha="center", va="top", linespacing=1.25)
 
     for label, fp, rec, colour, ls, marker in tracks:
         ax.plot(fp, rec, ls, color=colour, marker=marker, markersize=3, linewidth=1.0,
@@ -124,19 +136,20 @@ def figure2(c1, s2):
                 markeredgecolor="black", markeredgewidth=0.45, clip_on=False, zorder=4)
 
     ax.plot([0, 0.92], [0, 0.92], ":", color="0.55", linewidth=0.8, zorder=1)
-    ax.text(0.345, 0.345, "recall = false positives", fontsize=5.4, color="0.45",
-            rotation=41, rotation_mode="anchor", ha="center", va="bottom", zorder=2)
+    ax.text(0.30, 0.245, "recall = false positives", fontsize=6.0, color="0.4",
+            ha="center", va="top", zorder=2,
+            bbox=dict(facecolor="white", edgecolor="none", pad=0.8))
 
-    # all eight readings of the same-vendor auditor on substrate 2 land on one point
     fx, fy = s2["self_family_curve"]["C"]["curve"][-1], s2["self_family_curve"]["P"]["curve"][-1]
-    ax.annotate("all 8 readings identical", xy=(fx, fy), xytext=(-38, 13),
-                textcoords="offset points", fontsize=5.4, color=SELF, ha="center", va="bottom",
-                arrowprops=dict(arrowstyle="-", color=SELF, linewidth=0.6,
-                                shrinkA=0, shrinkB=4))
+    # below-left of the marker: the space above it carries the band caption
+    ax.annotate("all 8 readings identical", xy=(fx, fy), xytext=(-34, -17),
+                textcoords="offset points", fontsize=6.0, color=SELF, ha="center", va="top",
+                arrowprops=dict(arrowstyle="-", color=SELF, linewidth=0.7, shrinkA=0, shrinkB=4))
     ax.annotate("$K=1$", xy=(c1["cross"]["C"]["curve"][0], c1["cross"]["P"]["curve"][0]),
-                xytext=(7, -7), textcoords="offset points", fontsize=5.6, color=CROSS)
+                xytext=(9, -3), textcoords="offset points", fontsize=6.2, color=CROSS,
+                bbox=dict(facecolor="white", edgecolor="none", pad=0.6))
     ax.annotate("$K=8$", xy=(c1["cross"]["C"]["curve"][-1], c1["cross"]["P"]["curve"][-1]),
-                xytext=(6, 2), textcoords="offset points", fontsize=5.6, color=CROSS)
+                xytext=(6, 3), textcoords="offset points", fontsize=6.2, color=CROSS)
 
     ax.set_xlabel("Union false-positive rate on correct work")
     ax.set_ylabel("Union recall on defects")
@@ -144,8 +157,21 @@ def figure2(c1, s2):
     ax.set_ylim(0, 1.0)
     pct(ax)
     ax.xaxis.set_major_formatter(mticker.PercentFormatter(xmax=1.0, decimals=0))
-    ax.legend(loc="lower right", frameon=False, fontsize=5.6, handlelength=2.0,
-              borderaxespad=0.3, labelspacing=0.32)
+
+    from matplotlib.lines import Line2D
+    handles = []
+    for label, fp, _rec, colour, ls, marker in tracks:
+        # a series whose eight readings coincide gets a marker-only handle: a line would
+        # promise a trajectory the panel does not contain
+        single = max(fp) - min(fp) < 1e-9
+        handles.append(Line2D([], [], color=colour, marker=marker, markersize=3.4,
+                              linestyle="none" if single else ls, linewidth=1.0, label=label))
+    handles.append(Line2D([], [], color="0.35", marker="o", markersize=5.0, linestyle="none",
+                          markerfacecolor="none", markeredgewidth=0.6, label="outlined: $K=8$"))
+    leg = ax.legend(handles=handles, loc="lower right", frameon=True, fontsize=6.2,
+                    handlelength=2.6, borderaxespad=0.4, labelspacing=0.34,
+                    facecolor="white", edgecolor="none", framealpha=1.0)
+    leg.set_zorder(6)
     fig.tight_layout()
     fig.savefig(OUT / "fig2_operating_points.pdf", bbox_inches="tight")
     fig.savefig(OUT / "fig2_operating_points.png", dpi=400, bbox_inches="tight")
@@ -173,15 +199,16 @@ def figure3(c1, inj):
         ax.text(x, ci[1] + 0.03, f"{value:.0%}", ha="center", fontsize=6.5)
     ax.set_xticks(list(xs))
     ax.set_xticklabels([b[0] for b in bars], fontsize=6)
-    ax.set_ylabel("Union recall at $K=8$")
-    ax.set_ylim(0, 1.12)
+    ax.set_ylabel("Union flag rate at $K=8$")
+    ax.set_ylim(0, 1.08)
     pct(ax)
-    ax.set_title("Same auditor, same eight readings", fontsize=7, pad=4)
+    ax.set_title("Same auditor, same eight readings", fontsize=7.5, pad=4)
+    ax.xaxis.set_minor_locator(mticker.NullLocator())
 
     ax2.plot(range(1, len(inj["H22d_curve"]["curve"]) + 1), inj["H22d_curve"]["curve"], "-",
              color=INJ, marker="o", markersize=3, linewidth=1.0,
              label="Injected defects", clip_on=False)
-    ax2.plot(range(1, 9), c1["cross"]["P"]["curve"], "-", color=CROSS, marker="^",
+    ax2.plot(range(1, 9), c1["cross"]["P"]["curve"], "--", color=CROSS, marker="o",
              markersize=3, linewidth=1.0, label="Natural residual", clip_on=False)
     ax2.set_xlabel("Independent readings $K$")
     ax2.set_ylabel("Union recall")
@@ -189,8 +216,12 @@ def figure3(c1, inj):
     ax2.set_ylim(0, 1.05)
     ax2.set_xticks(list(range(1, 9)))
     pct(ax2)
-    ax2.legend(loc="center right", frameon=False, fontsize=6.2, handlelength=2.0)
-    ax2.set_title("One reading is almost all of it", fontsize=7, pad=4)
+    ax2.legend(loc="center right", frameon=False, fontsize=6.5, handlelength=2.4)
+    ax2.xaxis.set_minor_locator(mticker.NullLocator())
+    for a, tag in ((ax, "a"), (ax2, "b")):
+        a.text(-0.14, 1.02, f"({tag})", transform=a.transAxes, fontsize=8, va="bottom")
+    ax2.set_title("One reading is almost all of it \u2014 on injected defects",
+                  fontsize=7.5, pad=4)
     fig.tight_layout()
     fig.savefig(OUT / "fig3_specification_determined.pdf", bbox_inches="tight")
     fig.savefig(OUT / "fig3_specification_determined.png", dpi=400, bbox_inches="tight")

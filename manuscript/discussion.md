@@ -5,10 +5,15 @@
 The most portable thing this paper has to say is a warning about its own headline. We report that
 the shipped auditor's union recall over eight independent readings is 30.0% on one substrate and
 71.0% on another. Neither number travels. On the second substrate the same auditor flags 55.3% of
-correct work against 16.0% on the first; its recall per unit of false-positive cost is lower at
-every reading count; and a single reading there already produces more false positives than eight
-readings here. The two cannot be placed at a matched operating point anywhere in the range we
-measured.
+correct work against 16.0% on the first, and its recall per unit of false-positive cost is lower
+at every reading count. A single reading on the second substrate already produces more false
+positives than eight readings on the first: 31.8% [24.9, 39.0] against 16.0% [10.1, 22.3], and
+those intervals do not meet, so for this auditor no number of readings gives a matched
+false-positive rate across the two substrates. That statement holds for the cross-vendor auditor,
+which is the one the headline uses. It does not hold if the auditor families are pooled, because
+substrate 1's same-vendor auditor reaches 24.0% [17.2, 31.2] and overlaps substrate 2's range. An
+earlier draft of this section made the claim without that restriction, on point estimates alone;
+a review of the figures caught it.
 
 The consequence is not that one substrate is wrong. It is that an auditor's recall is a property
 of where it is standing on its own trade-off, and that the trade-off moves with the material.

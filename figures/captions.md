@@ -12,12 +12,17 @@ right of each panel give the 95% problem-cluster bootstrap interval of each seri
 dodged horizontally so overlapping intervals stay separable. The same-vendor auditor on substrate
 2 is flat because its verdict is identical on all 250 instances across all eight readings.
 
-**Figure 2. Recall and false positives move together, and the two substrates never meet.** Each
-track is one auditor family on one substrate, walked from K = 1 to K = 8; the outlined marker is
-K = 8. Shaded spans show each substrate's measured false-positive range: they do not overlap, so
-no number of readings places the two substrates at a matched false-positive rate. The dotted line
-marks equal recall and false-positive rates. All eight readings of the same-vendor auditor on
-substrate 2 fall on one point.
+**Figure 2. Recall and false positives move together, and for the cross-vendor auditor the two
+substrates never meet.** Each track is one auditor family on one substrate, walked from K = 1 to
+K = 8; the outlined marker is K = 8. The shaded spans are bounds, not point estimates: the left
+span ends at the upper 95% bound of the cross-vendor auditor's false-positive rate on substrate 1
+at K = 8 (22.3%), the right span begins at the lower 95% bound of its rate on substrate 2 at K = 1
+(24.9%). They do not meet, so for that auditor no number of readings gives a matched
+false-positive rate across the substrates. **The same is not true if the two auditor families are
+pooled**: substrate 1's same-vendor auditor reaches 24.0% [17.2, 31.2], which overlaps substrate
+2's range, so the claim is made for the cross-vendor auditor alone. The dotted line marks equal
+recall and false-positive rates. All eight readings of the same-vendor auditor on substrate 2 fall
+on one point, so its legend entry is a marker without a line.
 
 **Figure 3. On defects the specification determines, one reading is almost all of it.** Left:
 union recall at K = 8 of the shipped cross-vendor auditor on three populations — defects injected

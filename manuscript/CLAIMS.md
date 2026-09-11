@@ -94,10 +94,13 @@ two raters who agreed only at κ = 0.391 are combined.
 118 words against 41, median solution 41 lines against 6 — the same auditor reaches 71 of 100 at
 eight readings, against 30.0% on substrate 1. **This obliges a change to C1 whatever the review
 says about the details: 30.0% is not a general figure.** But the auditor is not better there. Its
-recall per false-positive point is lower at every K (1.55 down to 1.28, against 2.37 down to
-1.88), and its single-reading false-positive rate on substrate 2, 31.8%, already exceeds its
-eight-reading rate on substrate 1, 16.0% — so the two substrates cannot be compared at a matched
-false-positive rate anywhere in the measured range. The claim the paper can carry is that **the
+recall per false-positive point is lower at every K, and its single-reading false-positive rate on
+substrate 2, 31.8% [24.9, 39.0], already exceeds its eight-reading rate on substrate 1, 16.0%
+[10.1, 22.3], with the intervals not meeting — so **for the cross-vendor auditor** no reading
+count gives a matched false-positive rate across the substrates. Pooling the auditor families
+breaks that: substrate 1's same-vendor auditor reaches 24.0% [17.2, 31.2] and overlaps substrate
+2's range. The restriction was added after a figure review found the unrestricted version resting
+on point estimates. The claim the paper can carry is that **the
 measured ceiling is an operating point, not a constant, and a union-recall figure quoted without
 its false-positive rate is not portable.**
 
