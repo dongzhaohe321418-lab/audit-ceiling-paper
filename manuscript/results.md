@@ -29,17 +29,17 @@ Two interventions were compared against that baseline on the same frozen instanc
 Replacing the auditor with a stronger model of the generator's own vendor moved union recall at
 eight readings by −26.4 points, cluster [−37.3, −15.6]. Three instances were flagged only by the
 new family and thirty-two only by the shipped auditor, at an exact McNemar p of 4.2 × 10⁻⁷. This
-was a preregistered primary, and its direction is worth stating plainly: a stronger model is a
-worse auditor here.
+was a preregistered primary, and a stronger model is the worse auditor here.
 
 Adding a single rule to the auditor's constitution, telling it to find what the visible tests do
 not cover, moved flags on the defect population by +26.8 points, cluster [13.6, 40.4], at a
 McNemar p of 0.0003. This is the largest effect measured anywhere in the programme, and it is
-exploratory: the preregistration named outcome contrasts rather than this one, and the label
-travels with the number.
+exploratory: the preregistration named outcome contrasts rather than this one, and the number
+carries that label wherever it appears.
 
-A same-vendor auditor was worse than the cross-vendor one on these instances by 12.7 points
-[25.0, 0.9] of union recall at eight readings. A later study on a second substrate reverses that
+A same-vendor auditor was worse than the cross-vendor one on these instances by −12.7 points
+[−25.0, −0.9] of union recall at eight readings, signed so that a negative value favours the
+cross-vendor auditor. A later study on a second substrate reverses that
 sign, so this is reported as a measurement on this substrate rather than as a property of
 same-vendor auditing.
 
@@ -58,7 +58,7 @@ condition for withdrawing "the residual is mostly unexercised edge" fires on bot
 and the claim is withdrawn.
 
 A classification that reverses when the order of its questions changes is, by itself, weak
-evidence about the auditor, and we do not present it as more. Two things support the second
+evidence about the auditor. Two things support the second
 reading. It was fixed before any label was written, and its labels were committed before we looked
 for outside evidence. And where an outside party had independently recorded that one of these
 specifications is defective, in twelve MBPP tasks named in a paper written for another purpose,
@@ -69,8 +69,8 @@ rate.
 
 ## 4. What follows for a recall number
 
-Taken together, the results above say an audit recall figure is not a property of an auditor
-alone. It moves with which model reads, with what the rulebook tells it to look for, and with
+Taken together, the results above say an audit recall figure is a joint property of the auditor
+and its material. It moves with which model reads, with what the rulebook tells it to look for, and with
 whether the benchmark's hidden suite asks a question the specification answers. The studies now in
 review test the last of these prospectively, measure the ceiling on a second substrate, and
 adjudicate whether a flag is a naming; where they bear on the claims above, `CLAIMS.md` records
