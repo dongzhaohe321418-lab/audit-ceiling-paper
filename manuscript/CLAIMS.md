@@ -14,7 +14,7 @@ one; Wilson ignores the clustering that arises because most problems contribute 
 **C1 — Returns to repeated independent reading diminish well short of complete.** The shipped
 cross-vendor auditor's union recall on the defect population rises from 10.7% at one reading
 to **30.0%** [20.0, 40.7] at eight, at **16.0%** [10.1, 22.3] on correct code. The last-step
-gain is **1.93 points, cluster [1.13, 2.82], against the preregistered flattening bar of 1.0**,
+gain is **1.93 points, cluster [1.14, 2.78], against the preregistered flattening bar of 1.0**,
 so **the bar was not met**: the constrained fit's 31.5% asymptote is an extrapolation, the raw
 union at K = 8 is the number to quote, and **the word "saturates" may not be used of this
 curve**. What is licensed is diminishing returns at the budget reached. The bar is also a
