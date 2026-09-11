@@ -67,6 +67,40 @@ bought per false-positive point is 1.68. Evidence: ceiling 1.
   rates appear.
 * Any asymptote quoted without the word extrapolation where the flattening bar was not met.
 
+## Under review, and already changing the claims above
+
+These three have reported and are in independent review. None may enter the manuscript until a
+review ends quotable, but two of them bear directly on claims C1 and C4 and are recorded here so
+the ledger is not read as settled.
+
+**Study 22 (injection).** On defects constructed so the specification determines them, the same
+auditor at the same eight readings catches 90 of 92, against 33 of 110 on the natural residual;
+against each instance's own unmodified twin, 90 of 92 against 11 of 92. One reading catches
+94.4%. If this survives review, **C4 gains its prospective test** and the paper may say the
+measured ceiling is not a limit on detecting specification-determined defects. Its own limitation
+is that the injected defects are detectably artificial (a preregistered probe separates them from
+natural ones at 96.7%, chance excluded), so the gap cannot be attributed wholly to
+specification-determinedness.
+
+**Study 20 (the referent rule at K = 8, with texts).** The rule raises union recall from 33 of
+110 to 67 of 110 (+30.9 points [19.1, 43.1]) — it moves the ceiling, not just one reading — but
+false positives go from 16.0% to 36.7% and a single draw sits at 23.6% against the product's
+6.7% bar, so it is not shippable as it stands. Its adjudication bears on **C1**: the shipped
+auditor's flag rate is not a defect-naming rate. On one reading with texts kept it returned a
+finding on 9 of 110 defect instances and asserted the actual defect on 5 to 7, depending on how
+two raters who agreed only at κ = 0.391 are combined.
+
+**Study 23 (a second substrate).** On BigCodeBench's standard-library half — median specification
+118 words against 41, median solution 41 lines against 6 — the same auditor reaches 71 of 100 at
+eight readings, against 30.0% on substrate 1. **This obliges a change to C1 whatever the review
+says about the details: 30.0% is not a general figure.** But the auditor is not better there. Its
+recall per false-positive point is lower at every K (1.55 down to 1.28, against 2.37 down to
+1.88), and its single-reading false-positive rate on substrate 2, 31.8%, already exceeds its
+eight-reading rate on substrate 1, 16.0% — so the two substrates cannot be compared at a matched
+false-positive rate anywhere in the measured range. The claim the paper can carry is that **the
+measured ceiling is an operating point, not a constant, and a union-recall figure quoted without
+its false-positive rate is not portable.**
+
 ## Pending — reported here only when their reviews end quotable
 
 | study | claim it would license | state |
