@@ -1,11 +1,13 @@
 \section{Related work}
 
 \textbf{Critics that read code.} Trained critic models write natural-language critiques of
-model-written code and outperform unaided humans on inserted bugs \citep{mcaleese2024critics}.
-Two differences bear on what a ceiling means. Such work is evaluated largely on inserted defects,
-which are specification-determined by construction, whereas our natural stratum is the residue of
-an ordinary generation run, where whether the specification determines the failure is the open
-question. And the reported quantity is a preference or a per-critique comparison rather than the
+model-written code and outperform unaided humans at catching bugs \citep{mcaleese2024critics}.
+That work evaluates on both deliberately inserted bugs and naturally occurring ones: on code
+containing naturally occurring model errors its critiques are preferred to human critiques in
+63\% of cases, and it surfaces errors in training data previously rated flawless. It also reports
+that critics hallucinate bugs, and that a human--model team hallucinates less than the model
+alone. So the natural-defect setting and the precision cost of a louder critic are both already
+its territory, and we do not claim either as new. And the reported quantity is a preference or a per-critique comparison rather than the
 union recall of repeated independent readings against an executed oracle. We should be plain
 that this work already occupies two of our four axes: it reports a precision--recall trade-off for
 critics, and it separates tampered from natural bugs. What we add on this axis is narrow --- the

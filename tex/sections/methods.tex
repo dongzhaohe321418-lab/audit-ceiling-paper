@@ -15,8 +15,19 @@ whose reference solution fails its own suite there, are dropped before generatio
 
 Candidates are written by one generator shown the specification and the visible tests. A candidate
 that passes the visible suite and fails the hidden one is a \textbf{defective} instance; one that
-passes both is \textbf{correct}; one that fails the visible suite is discarded. Recall is measured
-on the defective stratum and false positives on a sample of the correct stratum.
+passes both we call \textbf{correct}; one that fails the visible suite is discarded. Recall is
+measured on the defective stratum and false positives on a sample of the correct stratum.
+
+Two things follow from those definitions and are meant literally throughout. \emph{Correct} means
+\emph{passes the hidden suite}: it is a benchmark label produced by an interpreter, not a
+guarantee that the program meets its specification, and a suite can be incomplete or wrong. Since
+this paper's own third result is that a specification often fails to determine what the hidden
+suite asks, we cannot also treat passing that suite as correctness in the ordinary sense, and a
+\emph{false positive} is likewise a flag on test-passing code rather than a demonstrated mistake
+by the auditor. And the defect population is not a sample of model-written code: it is the
+\textbf{residue that already survived the visible tests}, which is by construction the harder
+part. A recall figure here is the fraction of that residue an auditor catches, never the fraction
+of all defects a model writes.
 
 \subsection{The auditor and the estimand}
 
@@ -48,8 +59,12 @@ matters. A temperature-matched replication is the first item in \S\ref{sec:limit
 
 \subsection{Statistics}
 
-The independent unit is the instance and the resampling unit is the problem, because problems
-recur across generation batches. Every rate carries a 95\% percentile bootstrap over whole problem
+The unit of observation is the instance and the resampling unit is the problem, because problems
+recur across generation batches and instances sharing a problem are not independent. The $K$
+readings of an instance are repeated measurements of it, not $K$ further independent observations.
+The bootstrap over problems estimates uncertainty from which tasks the benchmark happens to
+contain; it does not estimate how much a fresh batch of model calls on these same tasks would
+move the numbers, which would need replicate runs we did not budget for at every arm. Every rate carries a 95\% percentile bootstrap over whole problem
 clusters (10{,}000 resamples, seeds fixed in each preregistration), with the Wilson interval
 printed beside it and marked as too narrow. Paired contrasts carry an exact McNemar test and a
 cluster-level sign-flip permutation test; where every discordant pair points one way the
