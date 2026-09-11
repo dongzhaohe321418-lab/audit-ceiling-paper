@@ -36,43 +36,53 @@
 \printAffiliationsAndNotice{}
 
 \begin{abstract}
-An automated auditor reads code it did not write and decides whether to block it. We ask how much
-such an auditor catches and what decides the limit, against ground truth no model supplies: hidden
-test suites executed by an interpreter. Holding the auditor, its instructions and its ground truth
-fixed, and varying one thing at a time, we find the limit is set jointly by which model reads,
-what its rulebook tells it to look for, and whether the benchmark's hidden suite asks a question
-the specification answers.
+An automated auditor reads code it did not write and decides whether to block it. We ask what sets
+the limit on how much it catches, against ground truth no model supplies: hidden test suites
+executed by an interpreter. Holding the auditor, its instructions and its ground truth fixed, and
+varying one thing at a time, we find the limit is set jointly by which model reads, what its
+rulebook tells it to look for, and whether the benchmark's hidden suite asks a question the
+specification answers.
 
-Repeated independent reading saturates far below complete. Eight readings of the shipped
-cross-vendor auditor reach $30.0\%$ union recall on defective increments $[20.0, 40.7]$, the
-eighth reading adding $1.9$ points; twenty readings pooled across three auditor families reach
-$48.2\%$ $[36.7, 60.0]$. Replacing the auditor with a stronger same-vendor model moves union
-recall by $-26.4$ points $[-37.3, -15.6]$, a preregistered primary, so a stronger model is a worse
-auditor here. Adding one sentence to the auditor's rulebook, telling it to look for what the
-visible tests do not cover, moves flags by $+26.8$ points $[13.6, 40.4]$, the largest effect we
-measure.
+Returns to repeated reading diminish well short of complete. Eight independent readings of the
+shipped cross-vendor auditor reach $30.0\%$ union recall on defective increments $[20.0, 40.7]$,
+at $16.0\%$ on correct ones $[10.1, 22.3]$; the eighth reading still adds $1.9$ points $[1.1,
+2.8]$, above the $1.0$-point flattening bar registered in advance. We therefore report diminishing
+returns at the budget we could afford and do not claim saturation. Twenty readings pooled over
+three auditor families reach $48.2\%$ $[36.7, 60.0]$.
 
-Much of what the auditor misses turns out to be failure the specification never determined. Under
-a rule that asks whether the prose settles the hidden suite's expected value, two raters agree
-that $44$ of the $57$ never-flagged defects are cases where it does not, reversing the same
-instances' earlier classification and withdrawing a claim this work previously made. Where an
-outside party had independently flagged one of these specifications as defective, our raters agree
-on $9$ of the $11$ tasks that overlap.
+Which model reads moves the limit further than how often it reads, though not in a way that
+survives its own controls. A stronger same-vendor model scores $-26.4$ points of union recall
+$[-37.3, -15.6]$, a preregistered primary, while flagging correct code at $3.3\%$ against
+$16.0\%$. Under a weaker severity rule the sign reverses, and the two routes are not sampled
+alike: one sends temperature $0$ and the other sends no sampling parameter at all, so their unions
+are not equally free to grow. We read the contrast as evidence about severity calibration and
+sampling rather than about auditing ability, and we report a third model that beats both on recall
+and on false positives at half the readings. Adding one sentence to the rulebook, telling the
+auditor to look for what the visible tests do not cover, moves flags by $+26.8$ points $[13.6,
+40.4]$ on an exploratory $56$-instance arm, at $12.5$ points more flags on correct code; on the
+contrast that isolates the sentence, hidden-suite pass rate moves $+5.4$ points $[-0.9, 12.1]$ and
+does not exclude zero.
 
-Two cautions follow for work that reports critic and reviewer recall. First, a union-recall figure
-is contingent on the matching rate on correct work: on a second substrate with three times longer
-specifications the same auditor reaches more than twice the recall while flagging more than three
-times as much correct code, and for that auditor the two substrates' false-positive intervals
-never meet, so no reading count offers a matched comparison. Second, repeated reading buys
-coverage in proportion to how much of the population sits near the auditor's decision boundary:
-one auditor we measure returns an identical verdict on all $250$ instances across eight
-independent readings while its replies, costs and latencies vary, so its union over $K$ readings
-is flat by construction.
+Much of what the auditor misses is failure the specification never determined. Under a rule asking
+whether the prose settles the hidden suite's expected value, two raters agree that $44$ of the
+$57$ never-flagged defects are cases where it does not, reversing the same instances' earlier
+classification and withdrawing a claim this work previously made. Where an outside party had
+independently flagged one of these specifications as defective, our raters agree on $9$ of the
+$11$ overlapping tasks.
+
+Two cautions follow for work that reports critic and reviewer recall. A union-recall figure is
+contingent on the matching rate on correct work, so recall quoted without it is not portable
+across substrates or auditors. And repeated reading buys coverage only in proportion to how much
+of the population sits near the auditor's decision boundary: an auditor sampled deterministically
+returns one verdict however often it is asked, and its union over $K$ readings is flat by
+construction.
 
 Every study was preregistered before its first model call, with hypotheses, intervals, kill
-conditions and stopping rules fixed in advance; four preregistered hypotheses were killed by their
-own rules. Every report was reviewed by a model from a different vendor with access to the raw
-records, and the reviews are archived verbatim beside the results they judge.
+conditions and stopping rules fixed in advance, and four preregistered hypotheses were killed by
+their own rules. Reports that have passed an independent review by a model from a different vendor
+with access to the raw records are marked as such; four studies are still in that review, and
+every number this paper draws from them is labelled where it appears. The reviews are archived
+verbatim beside the results they judge.
 \end{abstract}
 
 \input{sections/introduction}
@@ -83,9 +93,15 @@ records, and the reviews are archived verbatim beside the results they judge.
 
 \section*{Reproducibility and claims}
 The claims this paper is willing to defend, each with the interval and the label its source report
-gives it, are listed in \texttt{CLAIMS.md} in the accompanying repository, together with the
-claims the evidence does not support. Every preregistration, every numbered amendment, every
-report and every independent review is archived there verbatim.
+gives it, are listed in \texttt{CLAIMS.md} in the repository at
+\url{https://github.com/dongzhaohe321418-lab/audit-ceiling-paper}, together with the claims the
+evidence does not support. Every preregistration, every numbered amendment, every report and every
+independent review is archived there verbatim, including the reviews that refused approval. The
+repository also carries the auditor's constitution, the exact prompts for the auditor, the
+generator and each rating rubric, the capability card of every route with its sampling parameters,
+the frozen instance manifests with their hashes, and the analysis code that produces every number
+and figure below from those records. The repository is private while four of the studies are in
+review and is released with the paper.
 
 \bibliography{paper}
 \bibliographystyle{icml2026}

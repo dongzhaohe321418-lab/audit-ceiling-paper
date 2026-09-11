@@ -11,25 +11,68 @@ one; Wilson ignores the clustering that arises because most problems contribute 
 
 ## Admitted claims
 
-**C1 — Repeated independent reading saturates well below complete.** The shipped
+**C1 — Returns to repeated independent reading diminish well short of complete.** The shipped
 cross-vendor auditor's union recall on the defect population rises from 10.7% at one reading
-to **30.0%** [20.0, 40.7] at eight, with a last-step gain of 1.9 points; the constrained fit
-puts the asymptote at 31.5% but the preregistered flattening bar was not met, so **the fitted
-asymptote is an extrapolation and the raw union at K = 8 is the number to quote**. Pooling
-twenty draws across all three auditor families reaches **48.2%** [36.7, 60.0]. Evidence:
-ceiling 1 (`RESULTS-CEILING.md`, quotable at review round 21).
+to **30.0%** [20.0, 40.7] at eight, at **16.0%** [10.1, 22.3] on correct code. The last-step
+gain is **1.93 points, cluster [1.13, 2.82], against the preregistered flattening bar of 1.0**,
+so **the bar was not met**: the constrained fit's 31.5% asymptote is an extrapolation, the raw
+union at K = 8 is the number to quote, and **the word "saturates" may not be used of this
+curve**. What is licensed is diminishing returns at the budget reached. The bar is also a
+function of where a family was stopped, so a curve meeting it at K_max = 4 makes a weaker
+statement than one meeting it at K_max = 8, and that must be said wherever families run to
+different K are compared. Pooling twenty draws across all three auditor families reaches
+**48.2%** [36.7, 60.0]. Evidence: ceiling 1 (`RESULTS-CEILING.md`, quotable at review round 21).
 
-**C2 — Which auditor model reads matters more than how many times it reads.** Replacing the
-auditor with a stronger same-vendor model moves union recall at K = 8 by **−26.4 points**,
-cluster [−37.3, −15.6] (3 instances flagged by the new family only, 32 by the shipped auditor
-only; exact McNemar p = 4.2 × 10⁻⁷). This is a preregistered primary. Evidence: study 18
-(`RESULTS-CEILING3.md`, quotable at round 7, merged).
+**C2 — Which auditor model reads moves union recall more than how many times it reads, at a
+severity threshold and a sampling configuration that are not matched across families.**
+Replacing the auditor with a stronger same-vendor model moves union recall at K = 8 by
+**−26.4 points**, cluster [−37.3, −15.6] (4 of 110 against 33 of 110; 3 instances flagged by the
+new family only, 32 by the shipped auditor only; exact McNemar p = 4.2 × 10⁻⁷, cluster sign-flip
+p = 2.0 × 10⁻⁵). This is a preregistered primary, and **it may not be restated as "a stronger
+model is a worse auditor"**. Three qualifications travel with it and none may be dropped:
 
-**C3 — What the auditor is told to look for is the largest single lever measured.** One added
-rule — find what the visible tests do not cover — moved flags on the defect population by
-**+26.8 points**, cluster [13.6, 40.4], McNemar p = 0.0003. **Exploratory**: the
-preregistration named outcome contrasts, not this one, and the label travels with the number
-wherever it appears. Evidence: ceiling 2 (`RESULTS-CEILING.md`).
+* **Unmatched operating point.** The stronger model flags correct code at **3.3%** [0.7, 6.7]
+  against the shipped auditor's **16.0%** [10.1, 22.3]. The recall figure may never appear
+  without it.
+* **The sign reverses under a weaker severity rule.** Under the any-finding rule (EXPLORATORY,
+  not preregistered) the stronger model reaches **59.1%** [47.3, 70.6] on P at **34.0%**
+  [26.5, 41.7] on C, against the shipped auditor's **34.5%** [23.6, 45.5] at **19.3%**
+  [12.8, 26.3]; recall per false-positive point is 1.74 against 1.79, indistinguishable. The
+  contrast is evidence about **severity calibration**, not auditing ability.
+* **The routes are not sampled alike.** The cross-vendor route sends no sampling parameter; the
+  same-vendor routes send temperature 0 and are near-deterministic. Over K = 1 to 8 the first
+  gains 19.3 points of union and the second gains 3.0. **At K = 1 the gap is −10.1, not −26.4.**
+  Every cross-family union-of-K contrast in this programme inherits this confound and must
+  disclose it.
+
+A counterexample must be reported beside C2: `astra` (gpt-6-astra, high reasoning) reaches
+**32.7%** [20.7, 45.0] union recall at K = 4 at **10.7%** [5.9, 16.1] false positives,
+dominating the shipped auditor on both axes at half the readings. Evidence: study 18
+(`RESULTS-CEILING3.md`, quotable at round 7, merged), Tables 1, 2 and 4.
+
+**C3 — What the auditor is told to look for moves what it writes down, on a small arm, at a
+cost, and without a measured effect on outcomes.** One added rule — find what the visible tests
+do not cover — moved flags on the defect population from **10 of 56 to 25 of 56**: **+26.8
+points**, cluster [13.6, 40.4], exact McNemar p = 0.0003, cluster sign-flip p = 0.0009. With the
+pooled P + C flag contrast it is one of only two comparisons clearing the Bonferroni threshold of
+0.00313 over the sixteen computed, and the two are the same effect seen twice.
+
+**Exploratory**: the preregistration named outcome contrasts, not flag contrasts, and the label
+travels with the number wherever it appears. Three further restrictions travel with it:
+
+* **The estimand is not the one C1 and C2 use.** It is **56 instances from 41 problems**, not the
+  110-instance defect population; it counts **flags**, not union recall against the hidden suite;
+  and it is **one reading**, because every loop arm revises once, not a union over eight.
+  **+26.8 may therefore not be compared in magnitude with −26.4 or +19.3**, and the phrase "the
+  largest effect we measure" is withdrawn.
+* **It has a false-positive cost.** The same rule moved flags on correct code by **+12.50 points**
+  [5.17, 21.82]. The recall-side figure may not appear without it.
+* **It did not measurably move outcomes.** On the contrast that isolates the rule —
+  referent-loop against cross-loop on hidden-suite pass after one revision — the effect is
+  **+5.36 points, cluster [−0.89, +12.07], p = 0.146**, which does not exclude zero. Since this
+  programme's own position is that a flag is not a catch, this sentence must accompany C3.
+
+Evidence: ceiling 2 (`RESULTS-CEILING.md`).
 
 **C4 — The residual is dominated by failures the specification does not determine, and the
 earlier characterisation of it does not survive a change of rubric.** Under a rubric that asks
@@ -73,14 +116,22 @@ These three have reported and are in independent review. None may enter the manu
 review ends quotable, but two of them bear directly on claims C1 and C4 and are recorded here so
 the ledger is not read as settled.
 
-**Study 22 (injection).** On defects constructed so the specification determines them, the same
-auditor at the same eight readings catches 90 of 92, against 33 of 110 on the natural residual;
-against each instance's own unmodified twin, 90 of 92 against 11 of 92. One reading catches
-94.4%. If this survives review, **C4 gains its prospective test** and the paper may say the
-measured ceiling is not a limit on detecting specification-determined defects. Its own limitation
-is that the injected defects are detectably artificial (a preregistered probe separates them from
-natural ones at 96.7%, chance excluded), so the gap cannot be attributed wholly to
-specification-determinedness.
+**Study 22 (injection).** On defects constructed so the specification determines them, admitted
+by six mechanical filters and then put to two models that are not the auditor, the same auditor at
+the same eight readings reaches **84.2% [73.8, 93.1]** stratified over all 281 filter-accepted
+instances, against 33 of 110 on the natural residual. **The headline is the stratified figure, not
+the 90 of 92 on the gate-accepted population.** Amendment 6 preregistered an audit of 40 of the
+189 filter-accepted instances the gate refused and found them audited at **77.5% [62.2, 90.5]**,
+materially below the accepted population's 97.8%; under the amendment's stated reading rule that
+makes the gate part of the effect, so 97.8% is a property of the gate-accepted population and may
+not be quoted as a figure for specification-determined defects at large. The gate inflates the
+contrast by about 14 points and does not create it. Two limitations stand: the construction still
+conditions on the six filters, and the injected defects are detectably artificial (a preregistered
+probe separates them from natural ones at 96.7% [92.5, 98.6], chance excluded), so the gap cannot
+be attributed wholly to specification-determinedness. Amendment 6 also **withdraws Amendment 5's
+claim** that the paired twin contrast isolates the injected defect "and nothing else": it isolates
+the **edit**, which carries both the specification violation and the salience the probe measures.
+If this survives review, **C4 gains its prospective test**.
 
 **Study 20 (the referent rule at K = 8, with texts).** The rule raises union recall from 33 of
 110 to 67 of 110 (+30.9 points [19.1, 43.1]) — it moves the ceiling, not just one reading — but
@@ -131,3 +182,24 @@ the auditor's decision boundary.
 A number that has not been through an independent review that ended quotable does not enter
 the manuscript, even as a placeholder with a caveat. The pending table is the only place such
 a result may be named, and only by what it would license.
+
+**This rule was broken, and the record says so rather than being amended to fit.** A peer review
+of the manuscript on 2026-09-12 found that studies 17, 20, 22 and 23 were quoted throughout the
+introduction, discussion and both figures, while the Results section stated in its own opening
+paragraph that no numbers from studies in review appeared, and the abstract stated that every
+report had been cross-vendor reviewed. Both statements were false. The introduction and discussion
+had been written before the gate was enforced and the disclaimer was never reconciled with them.
+
+The repair is not to weaken the rule. It is:
+
+1. Every number from a study still in review is confined to one clearly labelled section of the
+   manuscript, carries the words *in review* at each occurrence, and is load-bearing for no
+   admitted claim.
+2. The two false sentences are replaced by an accurate statement of what has and has not been
+   reviewed: three studies completed, four in review.
+3. **The manuscript does not go to a preprint server or a venue until each of those four reviews
+   has ended in approval or its numbers have been removed from the manuscript.** This is a hard
+   blocker, recorded here so that shipping the paper requires either the reviews or the deletions,
+   and not a judgement call at submission time.
+
+The rule as stated above remains the rule for admitted claims.

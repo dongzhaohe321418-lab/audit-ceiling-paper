@@ -5,7 +5,7 @@
 Both substrates are Python functions with executable hidden test suites, so every stratum,
 recall denominator and false-positive population is decided by an interpreter and no model judges
 any outcome. \textbf{Substrate 1} is HumanEval+ and MBPP+ (EvalPlus), whose median task is 41
-words of prose and 6 lines of reference code, with the benchmark's base suite shown to the author
+words of prose and 6 lines of reference code, with the benchmark's base suite shown to the generator
 and its plus suite held back. \textbf{Substrate 2} is the standard-library half of BigCodeBench,
 whose median task is 118 words and 41 lines. BigCodeBench ships one test class per task, so the
 visible and hidden suites are separated here: two test methods chosen by a fixed seed are the
@@ -28,6 +28,24 @@ $\binom{K_{\max}}{K}$ subsets rather than by sampling. The matching quantity on 
 stratum is the union false-positive rate. A union recall figure is reported only beside the
 false-positive rate it cost.
 
+Four auditor routes appear below. The \textbf{shipped cross-vendor} auditor is
+\texttt{gpt-5.6-terra}; the \textbf{same-vendor} auditor is \texttt{claude-haiku-4-5}, the
+generator's own family and size; the \textbf{stronger same-vendor} auditor is
+\texttt{claude-sonnet-4.6}; and a third family, \texttt{gpt-6-astra} at high reasoning, is read
+at $K=4$. Candidates on both substrates are written by \texttt{claude-haiku-4-5}. Prompts, the
+auditor's constitution and every capability card are in the repository.
+
+The routes are \textbf{not sampled alike}, and this bounds every cross-family union-of-$K$
+contrast in the paper. The cross-vendor route's capability card does not permit a sampling
+temperature, so no sampling parameter is sent and the route varies between readings; the
+same-vendor routes permit one and the layer sends temperature $0$, so those routes are
+near-deterministic. A union over readings that do not differ cannot grow, so the two families'
+unions are not equally free to rise with $K$, and a cross-family difference in union recall
+confounds auditing ability with how much each union was permitted to grow. The asymmetry is a
+property of the shipped routing layer we measured rather than a design choice, we did not discover
+it until after the runs, and we report the $K=1$ contrast beside the $K=8$ contrast wherever it
+matters. A temperature-matched replication is the first item in \S\ref{sec:limits}.
+
 \subsection{Statistics}
 
 The independent unit is the instance and the resampling unit is the problem, because problems
@@ -39,7 +57,15 @@ percentile bootstrap's bound at zero is an artefact and an exact unconditional i
 instead. A saturation curve is summarised by a constrained exponential fit, and the fitted
 asymptote is quoted only when the preregistered flattening bar is met; otherwise it is labelled an
 extrapolation and the raw union at $K_{\max}$ is the number quoted. Counts of five or fewer are
-quoted as counts.
+quoted as counts. Multiplicity is handled as a single Bonferroni family per study over every
+comparison actually computed, not over those planned: in the study carrying the primary contrasts
+that family has sixteen members and a threshold of $0.00313$, and two comparisons clear it. Interval
+coverage is stated rather than assumed. In simulation the primary percentile bootstrap under-covers
+by roughly 2 to 5 points; under the actual clustered design its coverage is unvalidated, so every
+primary interval in this paper is of unverified coverage. We state this rather than assume the
+construction is sound because two earlier paired-contrast constructions in this programme were
+found by review to cover $0.416$ and $0.075$ where $0.95$ was claimed, and both were replaced. No sample size was
+justified in advance by a minimum-detectable-effect calculation.
 
 \subsection{Preregistration and independent review}
 
@@ -49,6 +75,9 @@ amendments committed before the step they govern, each recording what was known 
 an amendment followed an interim observation, the results say so and argue whether the change
 could favour the hypothesis. Each report was then reviewed by a model from a different vendor with
 read access to the raw records, asked to re-run the analysis, recompute the intervals
-independently, and check every sentence against the records. No report entered this paper until
-such a review ended in approval. Reviews are archived verbatim, including those that refused
-approval, and several studies needed many rounds.
+independently, and check every sentence against the records. Reviews are archived verbatim, including those that
+refused approval, and several studies needed many rounds. Three of the studies drawn on here have
+completed that review. Four have reported and are still in it; their numbers are confined to
+\S\ref{sec:inreview} and labelled \emph{in review} at every occurrence, and this manuscript does
+not go to a preprint server or a venue until each of those reviews has ended in approval or its
+numbers have been removed.

@@ -10,17 +10,24 @@ the first two and reports the aggregate gain. We hold the auditor, its instructi
 truth fixed, and vary the other three one at a time, against a truth no model supplies: a hidden
 test suite executed by an interpreter.
 
-Reading again saturates. Eight independent readings of the same increment by the shipped
-cross-vendor auditor reach 30.0\% union recall on defective increments, with a 95\% problem-cluster
-interval of 20.0 to 40.7, and the eighth reading adds 1.9 points. Twenty readings pooled across
-three auditor families reach 48.2\%. More sampling leaves that limit where it is.
+Returns to reading again diminish. Eight independent readings of the same increment by the
+shipped cross-vendor auditor reach 30.0\% union recall on defective increments, with a 95\%
+problem-cluster interval of 20.0 to 40.7, at 16.0\% [10.1, 22.3] on correct ones. The eighth
+reading still adds 1.9 points [1.1, 2.8], above the 1.0-point flattening bar we registered in
+advance, so the curve had not flattened at the budget we could afford and we do not claim
+saturation. Twenty readings pooled across three auditor families reach 48.2\%.
 
-The auditor and its instructions do move it. Swapping in a stronger model of the
-generator's own vendor changes union recall by -26.4 points [-37.3, -15.6], a preregistered
-primary: a stronger model is a worse auditor here. Adding one sentence to the auditor's rulebook,
-telling it to look for what the visible tests do not cover, moves flags by +26.8 points
-[13.6, 40.4], which is the largest effect we measure, and it costs enough false positives to put
-the rule outside the product's own constraint.
+Which model reads, and what it is told to look for, move the limit further. Swapping in a stronger
+model of the generator's own vendor changes union recall by -26.4 points [-37.3, -15.6], a
+preregistered primary. That contrast does not survive its own controls: the stronger model flags
+correct code at 3.3\% against 16.0\%, the sign reverses under a weaker severity rule, and the two
+routes are sampled differently, one at temperature 0 and one with no sampling parameter sent, so
+their unions are not equally free to grow. A third model beats both on recall and false positives
+at half the readings. Adding one sentence to the auditor's rulebook, telling it to look for what
+the visible tests do not cover, moves flags by +26.8 points [13.6, 40.4] on a 56-instance
+exploratory arm, at 12.5 points more flags on correct code, which puts the rule outside the
+product's own constraint; on the contrast that isolates the sentence, hidden-suite pass rate moves
++5.4 points [-0.9, 12.1] and does not exclude zero.
 
 Much of what the auditor misses turns out to be failure the specification never determined. We
 re-rated the never-flagged residual under a rule that asks whether the prose settles the hidden
@@ -31,14 +38,16 @@ specifications as defective, for their own purposes and before we looked, our ra
 the 11 tasks that overlap.
 
 We then built a population where specification-determinedness holds by construction and audited it
-with the same auditor and the same eight readings. Recall goes from roughly a third to 90 of 92,
-and one reading is worth almost as much as eight. The claim this supports is a bound: the measured
+with the same auditor and the same eight readings. Recall goes from roughly a third to 84.2\%
+[73.8, 93.1].
+That study is still in independent review, as are the second substrate below and two others, and
+every number this paper draws from them is labelled where it appears. The claim this supports is a bound: the measured
 ceiling lies above what the auditor can do on defects the specification settles. How often natural
 defects of that kind are caught remains open, because the constructed defects are detectably
 artificial, with a frontier model separating them from natural ones at 96.7\%. We measured that
 separability rather than assuming it away.
 
-The headline number does not travel either. On a second substrate whose specifications run three
+The headline number does not travel either. On a second substrate (also in review) whose specifications run three
 times longer and whose solutions run seven times longer, the same auditor reaches more than twice
 the recall while flagging more than three times as much correct work, and buys less recall per
 false positive at every reading count. For the cross-vendor auditor the two substrates' false-positive
@@ -51,8 +60,10 @@ an operating point.
 Every study was preregistered before its first model call, with hypotheses, intervals, kill
 conditions and stopping rules fixed in advance, and every departure recorded as a numbered
 amendment that says what was known at the time. Four preregistered hypotheses were killed by their
-own rules, two of them our own conjectures. Every report was reviewed by a model from a different
-vendor with access to the raw records, and no report entered this manuscript until such a review
-approved it; several needed many rounds, and the reviews are archived verbatim beside the results
-they judge. We record this as method, and it is what lets a reader
-read the negative results here as measurements.
+own rules, two of them our own conjectures, and one of those kills requires a headline in this
+paper to be stated as a flag rate rather than a recall. Reports are reviewed by a model from a
+different vendor with access to the raw records, several needing many rounds, and the reviews are
+archived verbatim beside the results they judge. Three of the studies reported here have completed
+that review; four are still in it, and Section~\ref{sec:inreview} collects their numbers under
+that label. We record this as method, and it is what lets a reader read the negative results here
+as measurements.
