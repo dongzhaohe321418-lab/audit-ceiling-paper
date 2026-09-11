@@ -1,0 +1,43 @@
+\section{Related work}
+
+\textbf{Critics that read code.} Trained critic models write natural-language critiques of
+model-written code and outperform unaided humans on inserted bugs \citep{mcaleese2024critics}.
+Two differences bear on what a ceiling means. Such work is evaluated largely on inserted defects,
+which are specification-determined by construction, whereas our natural stratum is the residue of
+an ordinary generation run, where whether the specification determines the failure is the open
+question. And the reported quantity is a preference or a per-critique comparison rather than the
+union recall of repeated independent readings, so it does not say where reading saturates.
+Aggregating several review passes is known to help: multi-review aggregation on 1{,}000 verified
+pull requests raises F1 by up to 43.67\% \citep{zeng2025swrbench}. That is the same mechanical
+move as our union-of-$K$, used as a method rather than as an instrument for finding a limit.
+
+\textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites and
+reported defects in the original reference solutions \citep{liu2023evalplus}; its code carries
+bespoke oracles for tasks where differential testing against the reference was not applicable.
+\citet{richter2026collapse} show that models collapse onto a single incorrect reading of an
+underspecified task and name twelve MBPP tasks they identified by hand; eleven fall inside our
+defect population and our raters, who labelled them before that paper was fetched, agree on nine.
+From the test-generation side, the dominant error in generated tests is a wrong expected value
+rather than an invalid input \citep{chen2023testing}, and generated oracles tend to capture a
+program's actual rather than its intended behaviour \citep{konstantinou2024oracles}. Our claim is
+the auditing counterpart: where the prose does not fix the value, a recall number computed against
+that suite measures the benchmark as much as the auditor.
+
+\textbf{Consensus as a substitute for ground truth.} Several systems validate generated tests
+without a reference by agreement, through self-consistency, dual execution or multi-agent
+discussion \citep{convertest2026, hallucination2025consensus}. Neither reports how many wrong
+assertions survive the filter, which is the quantity that decides whether the filter can be
+trusted. We measure it on a frozen set of canonical-failing tests and find that corroboration
+across independent generations does not reach our preregistered threshold, because wrong tests
+recur by problem. This is the concrete case of a general result: self-consistent errors are
+exactly the class that consistency-based detectors cannot see \citep{tan2025consistent}.
+
+\textbf{Who audits whom.} That an evaluator should not be the model under evaluation is supported
+by measurements of self-preference and family bias in LLM judges \citep{selfpref2025}. Our
+contribution is its size against model-free ground truth, and the finding that its direction is
+substrate-dependent.
+
+\textbf{Preregistration.} Preregistering an evaluation protocol is beginning to appear in machine
+learning, both as a proposal for agent experiments and as a defence against tuning a pipeline
+until it reports what the author wanted \citep{prereg2026agents}. We record our use of it as
+method rather than contribution.

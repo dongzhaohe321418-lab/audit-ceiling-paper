@@ -1,0 +1,54 @@
+\section{Method}
+
+\subsection{Substrates and ground truth}
+
+Both substrates are Python functions with executable hidden test suites, so every stratum,
+recall denominator and false-positive population is decided by an interpreter and no model judges
+any outcome. \textbf{Substrate 1} is HumanEval+ and MBPP+ (EvalPlus), whose median task is 41
+words of prose and 6 lines of reference code, with the benchmark's base suite shown to the author
+and its plus suite held back. \textbf{Substrate 2} is the standard-library half of BigCodeBench,
+whose median task is 118 words and 41 lines. BigCodeBench ships one test class per task, so the
+visible and hidden suites are separated here: two test methods chosen by a fixed seed are the
+visible suite and all methods are the hidden suite, with the class run unmodified and told which
+methods to execute. Tasks whose declared modules are unavailable in the frozen interpreter, or
+whose reference solution fails its own suite there, are dropped before generation and counted.
+
+Candidates are written by one generator shown the specification and the visible tests. A candidate
+that passes the visible suite and fails the hidden one is a \textbf{defective} instance; one that
+passes both is \textbf{correct}; one that fails the visible suite is discarded. Recall is measured
+on the defective stratum and false positives on a sample of the correct stratum.
+
+\subsection{The auditor and the estimand}
+
+The auditor reads the specification, the visible tests and the candidate, and returns findings
+with severities; an increment is blocked when any finding is graded BLOCKER. It never sees the
+hidden suite. The estimand throughout is \textbf{union recall at $K$}: the fraction of defective
+instances blocked by at least one of $K$ independent readings, averaged exactly over all
+$\binom{K_{\max}}{K}$ subsets rather than by sampling. The matching quantity on the correct
+stratum is the union false-positive rate. A union recall figure is reported only beside the
+false-positive rate it cost.
+
+\subsection{Statistics}
+
+The independent unit is the instance and the resampling unit is the problem, because problems
+recur across generation batches. Every rate carries a 95\% percentile bootstrap over whole problem
+clusters (10{,}000 resamples, seeds fixed in each preregistration), with the Wilson interval
+printed beside it and marked as too narrow. Paired contrasts carry an exact McNemar test and a
+cluster-level sign-flip permutation test; where every discordant pair points one way the
+percentile bootstrap's bound at zero is an artefact and an exact unconditional interval is quoted
+instead. A saturation curve is summarised by a constrained exponential fit, and the fitted
+asymptote is quoted only when the preregistered flattening bar is met; otherwise it is labelled an
+extrapolation and the raw union at $K_{\max}$ is the number quoted. Counts of five or fewer are
+quoted as counts.
+
+\subsection{Preregistration and independent review}
+
+Each study was preregistered before its first model call, fixing its population, hypotheses,
+primary outcome, intervals, kill conditions, budget and stopping rule. Departures are numbered
+amendments committed before the step they govern, each recording what was known at the time; where
+an amendment followed an interim observation, the results say so and argue whether the change
+could favour the hypothesis. Each report was then reviewed by a model from a different vendor with
+read access to the raw records, asked to re-run the analysis, recompute the intervals
+independently, and check every sentence against the records. No report entered this paper until
+such a review ended in approval. Reviews are archived verbatim, including those that refused
+approval, and several studies needed many rounds.
