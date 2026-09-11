@@ -101,6 +101,19 @@ false-positive rate anywhere in the measured range. The claim the paper can carr
 measured ceiling is an operating point, not a constant, and a union-recall figure quoted without
 its false-positive rate is not portable.**
 
+**Study 23's same-vendor arm, added after the first analysis.** At eight readings the same-vendor
+auditor beats the cross-vendor one on the second substrate by +17.0 points [2.0, 32.0] of recall —
+**the opposite sign to substrate 1's −12.7 [−25.0, −0.9]** — while costing +22.0 points [11.2,
+32.7] of false positives, that is 1.29 points of false positive per point of recall. Its verdict
+is identical across all eight readings on every one of 250 instances (verified independently:
+costs vary on 100, wall times on all 250, so the readings are distinct), so its union curve is
+flat and the registered efficiency ratio is undefined rather than large. The same model splits on
+9 of 260 verdicts on substrate 1, so this is an operating-point effect, not determinism. Two
+consequences for the ledger: **C5's direction is substrate-dependent and must be stated as a
+measurement on substrate 1, not as a general property**, and the paper gains a claim it did not
+have — repeated reading buys coverage only in proportion to how much of the population sits near
+the auditor's decision boundary.
+
 ## Pending — reported here only when their reviews end quotable
 
 | study | claim it would license | state |

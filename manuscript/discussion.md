@@ -15,6 +15,27 @@ of where it is standing on its own trade-off, and that the trade-off moves with 
 Published comparisons of reviewers and critics that report recall, F1 or win rates without the
 corresponding rate on correct work are comparing operating points that need not be the same.
 
+## Repeated reading buys coverage only where the decision is marginal
+
+Union-of-K is the instrument this paper uses to find a ceiling, so it is worth saying when the
+instrument does nothing at all. On the second substrate the same-vendor auditor's block decision
+is identical across all eight independent readings on every one of 250 instances, while its reply
+text, cost and latency vary — the readings happened, the verdict did not move. Its union curve is
+therefore flat, and the registered efficiency ratio, which divides by the gain in false positives
+over one reading, is undefined rather than large.
+
+This is not a discovery about determinism. The same model, on the first substrate, splits its
+verdict on 9 of 260 instances. What changed is the operating point: on the second substrate it
+flags 88% of defective and 77% of correct increments, so almost nothing is near its decision
+boundary and sampling noise has nothing to flip. The cross-vendor auditor, flagging 71% and 55%,
+splits on 103 of 250.
+
+The lesson generalises past this paper. Best-of-K, union-of-K and panel aggregation over critics
+buy coverage in proportion to how much of the population sits near the critic's boundary. An
+auditor tuned loud enough is invariant under resampling, and reporting its union over K readings
+as though repetition contributed something would be an artefact of the reporting, not a property
+of the system.
+
 ## What the ceiling is made of
 
 Having measured a ceiling, we spent most of this work asking what it consists of, because the
