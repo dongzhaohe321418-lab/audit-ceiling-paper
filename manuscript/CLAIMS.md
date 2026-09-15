@@ -102,8 +102,9 @@ bought per false-positive point is 1.68. Evidence: ceiling 1.
 * *"The ceiling is set by oracle-defined failures."* Not yet. The split behind it — the union
   of twenty draws catching 23 of 25 specification-determined defects and 24 of 68
   oracle-defined ones — is **post hoc**, on one substrate, from two raters one of whom is the
-  author. Study 22 tests it prospectively on a constructed population; until that reports, the
-  split may be described only as a post-hoc observation with its label.
+  author. Study 22 was built to test it prospectively and **failed to**: its construction never
+  enforced specification-determinedness (Amendment 7), so no prospective test exists. The split
+  may be described only as a post-hoc observation, with its label, until one does.
 * *"CrossAudit finds most defects."* No configuration measured here exceeds 48.2% union recall,
   and that figure pools twenty readings across three families.
 * *"The auditor cannot see these defects."* The naming and recognition adjudications measure
