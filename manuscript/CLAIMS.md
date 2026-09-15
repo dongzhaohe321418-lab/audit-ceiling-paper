@@ -187,8 +187,10 @@ artefacts lived only in the session scratchpad and were destroyed between the re
 them and the fix. Study 22 is **withdrawn** (Amendment 7). Study 23 needs a re-run (Amendment 1)
 and its budget is costed at `codex-review-queue/SUBSTRATE2-RERUN-BUDGET.md`, awaiting a decision.
 
-**Nothing in `\S`\,repeat--residual of the paper depends on any of these five studies**, which is
-why none of this forces a retraction of an admitted claim. Study 19's defect was a half-finished rename and is fixed (Amendment 4). Study 23's
+**No admitted claim (C1 to C5) depends on any of these five studies**, which is why five
+refusals in one day force no retraction. The paper's Results sections on repeated reading, the
+auditor, the rulebook and the residual rest on ceiling 1, study 18 and study 21, all of which
+passed review before they entered. Study 19's defect was a half-finished rename and is fixed (Amendment 4). Study 23's
 run is void and must be re-run (Amendment 1). Studies 22 and 20 need their headline claims
 restated, and study 22 has no usable headline figure at present.
 
