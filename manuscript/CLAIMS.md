@@ -172,10 +172,16 @@ measurement on substrate 1, not as a general property**, and the paper gains a c
 have — repeated reading buys coverage only in proportion to how much of the population sits near
 the auditor's decision boundary.
 
-## First cross-vendor reviews, 2026-09-15: all four studies came back NOT QUOTABLE
+## First cross-vendor reviews, 2026-09-15: all five studies came back NOT QUOTABLE
 
-Studies 22, 23, 20 and 19 were all reviewed on the day the allowance returned. **None was
-approved.** Study 19's defect was a half-finished rename and is fixed (Amendment 4). Study 23's
+Studies 22, 23, 20, 19 and 17 were all reviewed on the day the allowance returned. **None was
+approved.** Two of the five were refused for a defect introduced by a previous round's *repair*
+— study 19's rename was left half done, and study 17's replacement wording claimed the tests
+establish a reconstruction they never perform — which is worth recording as a pattern: a fix
+written to satisfy a reviewer is itself an unreviewed claim.
+
+Study 17 is fixed (round 9's findings applied and its recommendation to stop hardening the
+rendered Markdown accepted). Study 19 is fixed (Amendment 4). Study 19's defect was a half-finished rename and is fixed (Amendment 4). Study 23's
 run is void and must be re-run (Amendment 1). Studies 22 and 20 need their headline claims
 restated, and study 22 has no usable headline figure at present.
 
