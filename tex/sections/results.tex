@@ -158,60 +158,41 @@ defective, in twelve MBPP tasks named in a paper written for another purpose, ou
 paper's own ``incomplete'' category draws. That check is one-sided by construction: it can support
 agreement where an outsider looked, and can bound nothing about the rate.
 
-\subsection{In review: a second substrate, a prospective test, and what a flag is worth}
+\subsection{Four studies in review, and what their reviews found}
 \label{sec:inreview}
 
-Four studies have reported and are in independent cross-vendor review. Their numbers are given
-here because two of them bear directly on how far the sections above generalise, and reporting the
-ceiling of \S\ref{sec:repeat} without them would overstate its reach. Every figure in this
-subsection is provisional until its review ends, and none is quoted elsewhere in the paper without
-that label.
+Four further studies had reported when this paper was written, and all four were refused quotation
+by their independent reviews on the same day. We report that outcome rather than their numbers,
+because two of the refusals bear on how far the results above reach.
 
-\textbf{A second substrate, withdrawn.} This subsection reported a second benchmark, and every
-number it gave is now withdrawn. Its first cross-vendor review refused quotation, and we then
-confirmed the reason ourselves: the visible-test text shown to the auditor \emph{and} to the
-generator was sliced out of its test class without the class header, so it failed to parse on all
-300 tasks, while scoring executed the intact class. Both models read invalid Python on every task
-of that substrate. An auditor shown a broken test file can return a finding about the file rather
-than about the candidate, which raises the flag rate on both strata at once and so inflates recall
-and false positives together; because the finding texts were not archived, no reading can be
-reclassified after the fact. The extraction is fixed and the study is registered for a re-run
-whose numbers we will report whichever way they move. Nothing from it is quoted in this paper
-until then.
+\textbf{A second substrate, withdrawn.} This paper reported a second benchmark until its review
+refused quotation, and we then confirmed the reason ourselves: the visible-test text shown to the
+auditor \emph{and} to the generator was sliced out of its test class without the class header, so
+it failed to parse on all 300 tasks, while scoring executed the intact class. Both models read
+invalid Python on every task of that substrate. An auditor shown a broken test file can return a
+finding about the file rather than about the candidate, which raises the flag rate on both strata at
+once and so inflates recall and false positives together; the finding texts were not archived, so no
+reading can be reclassified after the fact. The extraction is fixed and the study is registered for
+a re-run whose numbers we will report whichever way they move.
 
-\textbf{A prospective test of the residual.} Defects were injected into passing solutions so that
-the specification's own words determine the failure, admitted by six mechanical filters, and then
-put to two models that are not the auditor. Over all 281 instances the filters accepted,
-stratified across those the two models accepted and a random sample of those they refused, the
-same auditor at the same eight readings reaches 84.2\% [73.8, 93.1] against 33 of 110 on the
-natural residual. We report the stratified figure rather than the 90 of 92 on the accepted
-population alone, because an amendment registered in advance of that arm measured the selection
-and found it real: instances the two models refused are audited at 77.5\% [62.2, 90.5], so the
-accepted population's 97.8\% is a property of that gate. The gate inflates the contrast by about
-14 points and does not create it. Two limits stand. The construction still conditions on the six
-filters. And a preregistered probe separates the constructed instances from natural ones at
-96.7\% [92.5, 98.6] among the items it would classify, or between 79.9\% and 97.3\% over all 184
-if the 32 it refused are counted as all right or all wrong, so they are detectably artificial and
-the answered-only figure flatters the separation; the paired contrast against each
-instance's unmodified twin isolates the edit, which carries both the specification violation and
-that salience, and not the violation alone.
+\textbf{A prospective test of the residual, withdrawn.} We constructed a population of injected
+defects intended to make specification-determinedness hold by construction. Review established that
+it does not: the filter we registered to recover each edit's first failing hidden input was
+implemented as a check that the injector had written a non-empty string, and no check connects the
+quoted specification text, the named input class, the witness and the actual failure. What the
+population contains is small edits that survive a sparse visible suite and fail a hidden one, and a
+preregistered probe separates them from natural code at 96.7\%. The auditor does block them far
+more often than it blocks the natural residual, but the two populations differ in more than the
+property we meant to isolate, so this is not the prospective test of \S\ref{sec:residual} and we
+do not offer it as one.
 
-\textbf{What a flag is worth.} On \emph{one} reading with finding texts archived, the shipped
-auditor returned a finding on 9 of 110 defect instances and asserted the actual defect on 5 to 7,
-depending on how two raters who agreed only at $\kappa = 0.391$ are combined: 5 of 110 (4.5\%,
-cluster [0.9, 8.9]) under the preregistered consensus rule, 7 of 110 (6.4\%, cluster [1.8, 11.8])
-if either rater's yes is allowed. That study's preregistered kill condition fired, because its
-registered primary fell below the registered floor of 20 of 110, and it fires under all eight ways
-of reading the rate. The headline for that arm is therefore a flag rate with a defect-naming rate
-beside it rather than a recall.
+\textbf{Two others.} A study of what a flag is worth, and a study of whether a changed rulebook
+moves a second vendor's family, were both refused for overstating what their measurements
+establish; their corrections do not change any number quoted above.
 
-These one-reading figures do \textbf{not} establish a naming rate for the 30.0\% union at eight
-readings, and we do not set the two beside each other: that union is eight draws and this is one,
-the texts of those eight readings were never archived, and nothing here licenses carrying 4.5\%
-onto them or scaling it by the number of draws. Adjudicating the texts of eight readings would
-make them comparable and has not been run. What the result does establish is that a flag and a
-catch are different events at a rate worth measuring, which bears on every recall figure in this
-paper that is built from flags.
+We report these outcomes because a paper that makes evidentiary discipline its method should show
+the gate rejecting its own work, not only passing it. None of the numbers in
+\S\ref{sec:repeat}--\S\ref{sec:residual} depends on any of these four studies.
 
 \subsection{What follows for a recall number}
 

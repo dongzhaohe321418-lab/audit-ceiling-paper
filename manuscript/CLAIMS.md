@@ -208,11 +208,20 @@ therefore confounds H23a and H23c together. Separately, no arm in these records 
 temperature-0 explanation of the flat curve from the operating-point one, so "operating point" may
 describe the observed recall/false-positive pair but may not be offered as an explanation.
 
-**Study 22.** The reviews reject the post-Amendment-6 headline on the ground that stratifying over
-all filter-accepted instances **removes the only semantic gate**, so the denominator of 84.2% is
-not shown to be "defects the specification determines". This is the reverse horn of the problem
-Amendment 6 fixed, and the study now has neither figure available: 97.8% is gate-selected for
-detectability, 84.2% has a denominator that does not match the claim.
+**Study 22, withdrawn entirely (Amendment 7, 2026-09-16).** The reviews reject the
+post-Amendment-6 headline because stratifying over all filter-accepted instances **removes the only
+semantic gate**, so 84.2%'s denominator is not "defects the specification determines". Checking
+that, we found the deeper fault: **F6 was implemented as `bool(obj.get("witness_input"))`** while
+this study registered it as recovering each edit's first failing hidden input by study 21's witness
+path. No filter connects the quoted text, the named class, the witness and the actual failure, so
+**no filter establishes specification entailment**, and the population is "small injected edits
+that survive a sparse visible suite and fail a hidden one". Seven archived instances even carry a
+comment naming the bug — one reads `DEFECT: should be +` and both gates accepted it — though only
+one reached population I and removing it leaves 89 of 91, still 97.8%, so self-announcement does
+not explain the effect; it shows nothing was looking for conspicuousness, which the 96.7% probe
+then measured. **C4 does not gain a prospective test from this work**, and the residual
+classification stays post hoc. Every injection number is out of the paper and Figure 3 is
+withdrawn with its files deleted.
 
 **Consequence for the manuscript, carried out 2026-09-15.** Every substrate-2 number is removed
 from the paper. Its results subsection now reports the defect instead of the numbers; both

@@ -16,7 +16,10 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import scienceplots  # noqa: F401  registers the styles
 
-W = Path("/private/tmp/claude-501/-Users-ericdong/e8f80e28-bc0c-43ea-845e-513b702467fc/scratchpad")
+# Durable worktrees. These were under the session scratchpad until 2026-09-16, when that
+# directory was reclaimed mid-session and took this script's inputs with it (and, separately,
+# study 20's L2 adjudication artefacts, which are gone for good). Inputs live in ~/Documents now.
+W = Path.home() / "Documents/Crossaudit/review-worktrees"
 OUT = Path(__file__).resolve().parents[1]
 STYLE = ["science", "nature", "no-latex"]
 
@@ -27,8 +30,13 @@ CROSS, SELF, INJ, TWIN = "#4477AA", "#EE6677", "#228833", "#BBBBBB"
 def load():
     c1 = json.loads((W / "wt-inject/benchmarks/code/records/ceiling/numbers.json")
                     .read_text())["ceiling1"]["families"]
-    s2 = json.loads((W / "wt-sub2/benchmarks/code/records/substrate2/numbers.json").read_text())
-    inj = json.loads((W / "wt-inject/benchmarks/code/records/inject/numbers.json").read_text())
+    # figure2 (substrate 2) and figure3 (injection) are withdrawn, so their records are read
+    # only if they are present; a missing one is no longer an error.
+    def opt(rel):
+        path = W / rel
+        return json.loads(path.read_text()) if path.exists() else None
+    s2 = opt("wt-sub2/benchmarks/code/records/substrate2/numbers.json")
+    inj = opt("wt-inject/benchmarks/code/records/inject/numbers.json")
     return c1, s2, inj
 
 
@@ -107,61 +115,23 @@ def figure2(c1, s2):
     raise SystemExit("figure2 is withdrawn: substrate 2's run is void")
 
 def figure3(c1, inj):
-    """Recall on defects the specification determines, against the natural residual."""
-    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(6.6, 2.6),
-                                  gridspec_kw={"width_ratios": [1.25, 1.0]})
-    a, b = inj["H22a_primary"]["a"], inj["H22a_primary"]["b"]
-    paired = inj["H22b_paired"]
-    bars = [
-        ("Injected defects\n(specification\ndetermines them)", a["k"] / a["n"],
-         a["wilson95"], INJ),
-        ("The same code\nwith the injection\nremoved", paired["twin"]["k"] / paired["n"],
-         paired["twin"]["wilson95"], TWIN),
-        ("Natural residual\n(substrate 1)", b["k"] / b["n"], b["wilson95"], CROSS),
-    ]
-    xs = range(len(bars))
-    for x, (label, value, ci, colour) in zip(xs, bars):
-        ax.bar(x, value, width=0.55, color=colour, edgecolor="black", linewidth=0.4,
-               yerr=[[value - ci[0]], [ci[1] - value]], ecolor="black",
-               error_kw=dict(elinewidth=0.7, capsize=2.0, capthick=0.7))
-        ax.text(x, ci[1] + 0.03, f"{value:.0%}", ha="center", fontsize=6.5)
-    ax.set_xticks(list(xs))
-    ax.set_xticklabels([b[0] for b in bars], fontsize=6)
-    ax.set_ylabel("Union flag rate at $K=8$")
-    ax.set_ylim(0, 1.08)
-    pct(ax)
-    ax.set_title("Same auditor, same eight readings", fontsize=7.5, pad=4)
-    ax.xaxis.set_minor_locator(mticker.NullLocator())
+    """WITHDRAWN 2026-09-16.
 
-    ax2.plot(range(1, len(inj["H22d_curve"]["curve"]) + 1), inj["H22d_curve"]["curve"], "-",
-             color=INJ, marker="o", markersize=3, linewidth=1.0,
-             label="Injected defects", clip_on=False)
-    ax2.plot(range(1, 9), c1["cross"]["P"]["curve"], "--", color=CROSS, marker="o",
-             markersize=3, linewidth=1.0, label="Natural residual", clip_on=False)
-    ax2.set_xlabel("Independent readings $K$")
-    ax2.set_ylabel("Union recall")
-    ax2.set_xlim(0.8, 8.2)
-    ax2.set_ylim(0, 1.05)
-    ax2.set_xticks(list(range(1, 9)))
-    pct(ax2)
-    ax2.legend(loc="center right", frameon=False, fontsize=6.5, handlelength=2.4)
-    ax2.xaxis.set_minor_locator(mticker.NullLocator())
-    for a, tag in ((ax, "a"), (ax2, "b")):
-        a.text(-0.14, 1.02, f"({tag})", transform=a.transAxes, fontsize=8, va="bottom")
-    ax2.set_title("One reading is almost all of it \u2014 on injected defects",
-                  fontsize=7.5, pad=4)
-    fig.tight_layout()
-    fig.savefig(OUT / "fig3_specification_determined.pdf", bbox_inches="tight")
-    fig.savefig(OUT / "fig3_specification_determined.png", dpi=400, bbox_inches="tight")
-    plt.close(fig)
-
+    This figure plotted the injected population against the natural residual. Study 22's
+    headline is withdrawn (inject Amendment 7): the construction never enforced
+    specification-determinedness -- F6 checked that the injector wrote a non-empty string
+    and nothing more -- so the population is "small injected edits", and its edits are
+    separable from natural code at 96.7%. The figure is not regenerated. If a construction
+    that enforces the property is built, draw it from that, not from this stub.
+    """
+    raise SystemExit("figure3 is withdrawn: study 22's headline is withdrawn")
 
 def main() -> int:
     plt.style.use(STYLE)
     c1, s2, inj = load()
     figure1(c1, s2)
     # figure2 withdrawn 2026-09-15: substrate 2's run is void
-    figure3(c1, inj)
+    # figure3 withdrawn 2026-09-16: study 22's headline is withdrawn
     print("wrote:", ", ".join(sorted(p.name for p in OUT.glob("fig*.p*"))))
     return 0
 

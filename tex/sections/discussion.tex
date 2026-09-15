@@ -49,9 +49,9 @@ two.
 
 A fourth contribution is not the auditor's at all, and we can only describe it post hoc. Under a
 rule that asks whether the specification's prose determines the hidden suite's expected value, 44
-of the 57 never-flagged defects fail that test. A constructed population where the prose does
-determine the answer is audited at 84.2\% [73.8, 93.1] by the same auditor (\emph{in review},
-\S\ref{sec:inreview}). The association between never being flagged and never being determined is
+of the 57 never-flagged defects fail that test. We attempted a constructed population where the prose
+does determine the answer; review established that the construction never enforced that property,
+so it provides no figure here (\S\ref{sec:inreview}). The association between never being flagged and never being determined is
 partly definitional, because the residual is defined by conditioning on never being flagged, so
 this is an observation about where the misses sit and not an estimate of how much the benchmark
 contributes.
@@ -91,7 +91,9 @@ both are drawn from benchmarks old enough that memorisation cannot be ruled out.
 generator is a single model on both substrates, so the defect population is one model's failure
 mode. Sixth, the residual rubric's raters were a model and the author, who wrote the rubric and was
 not blind to the earlier labels; one external label set agrees with them across eleven overlapping
-tasks. Seventh, the injected population's defects are distinguishable from natural ones. Each of
+tasks. Seventh, our attempt to build a population of
+specification-determined defects did not enforce the property, and its edits are separable from
+natural code at 96.7\%. Each of
 these is recorded in the study that carries it, together with the number it would change.
 
 \subsection{What we would do next}
