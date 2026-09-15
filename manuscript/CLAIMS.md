@@ -172,6 +172,30 @@ measurement on substrate 1, not as a general property**, and the paper gains a c
 have — repeated reading buys coverage only in proportion to how much of the population sits near
 the auditor's decision boundary.
 
+## First cross-vendor reviews, 2026-09-15: studies 22 and 23 came back NOT QUOTABLE
+
+Both were reviewed twice (a dispatcher bug re-ran each; the second reviews are independent and
+were kept). All four reports refuse quotation.
+
+**Study 23.** Confirmed independently by re-running the extraction: the visible-test files shown to
+the auditor are sliced out of their enclosing class without the `class` header, so **all 300 of 300
+fail to parse**, while scoring executes the intact class. The auditor was shown syntactically
+invalid Python on every task of this substrate, which can raise both recall and false positives and
+therefore confounds H23a and H23c together. Separately, no arm in these records separates the
+temperature-0 explanation of the flat curve from the operating-point one, so "operating point" may
+describe the observed recall/false-positive pair but may not be offered as an explanation.
+
+**Study 22.** The reviews reject the post-Amendment-6 headline on the ground that stratifying over
+all filter-accepted instances **removes the only semantic gate**, so the denominator of 84.2% is
+not shown to be "defects the specification determines". This is the reverse horn of the problem
+Amendment 6 fixed, and the study now has neither figure available: 97.8% is gate-selected for
+detectability, 84.2% has a denominator that does not match the claim.
+
+**Consequence for the manuscript.** Under the hard blocker recorded below, the substrate-2 and
+injection numbers may not be quoted. They are currently confined to the *in review* section; that
+section must now either be cut or rewritten to report the defects, and the paper cannot go to a
+preprint server until that is done.
+
 ## Pending — reported here only when their reviews end quotable
 
 | study | claim it would license | state |
