@@ -46,19 +46,13 @@ def figure1(c1, s2):
            c1["cross"]["P"]["curve_ci95"]),
           ("Substrate 1, same-vendor", c1["self"]["P"]["curve"], SELF, "-", "s",
            c1["self"]["P"]["curve_ci95"]),
-          ("Substrate 2, cross-vendor", s2["H23b_curve"]["P"]["curve"], CROSS, "--", "^",
-           s2["H23b_curve"]["P"]["curve_cluster_ci95"]),
-          ("Substrate 2, same-vendor", s2["self_family_curve"]["P"]["curve"], SELF, "--", "v",
-           s2["self_family_curve"]["P"]["curve_cluster_ci95"])]),
+]),
         (axes[1], "Correct increments (false positives)",
          [("Substrate 1, cross-vendor", c1["cross"]["C"]["curve"], CROSS, "-", "o",
            c1["cross"]["C"]["curve_ci95"]),
           ("Substrate 1, same-vendor", c1["self"]["C"]["curve"], SELF, "-", "s",
            c1["self"]["C"]["curve_ci95"]),
-          ("Substrate 2, cross-vendor", s2["H23b_curve"]["C"]["curve"], CROSS, "--", "^",
-           s2["H23b_curve"]["C"]["curve_cluster_ci95"]),
-          ("Substrate 2, same-vendor", s2["self_family_curve"]["C"]["curve"], SELF, "--", "v",
-           s2["self_family_curve"]["C"]["curve_cluster_ci95"])]),
+]),
     ]
     for ax, title, series in panels:
         for index, (label, curve, colour, ls, marker, ci) in enumerate(series):
@@ -102,81 +96,15 @@ def figure1(c1, s2):
 
 
 def figure2(c1, s2):
-    """Recall against false positives as readings accumulate.
+    """WITHDRAWN 2026-09-15.
 
-    The separation claim is made for the CROSS-VENDOR auditor only, because that is the
-    comparison the paper draws, and it is drawn with intervals rather than point estimates: the
-    two families pooled would overlap, and saying so is the point of the shaded pair.
+    This figure was the two substrates' operating-point comparison. Substrate 2's run is
+    void: the visible-test text shown to its auditor and generator did not parse on any of
+    its 300 tasks (substrate2 Amendment 1), so the tracks it drew are not measurements.
+    It is not regenerated. If the re-run restores the substrate, restore the figure from
+    git history rather than from this stub.
     """
-    fig, ax = plt.subplots(figsize=(3.6, 3.2))
-    tracks = [
-        ("Substrate 1, cross-vendor", c1["cross"]["C"]["curve"], c1["cross"]["P"]["curve"],
-         CROSS, "-", "o"),
-        ("Substrate 1, same-vendor", c1["self"]["C"]["curve"], c1["self"]["P"]["curve"],
-         SELF, "-", "s"),
-        ("Substrate 2, cross-vendor", s2["H23b_curve"]["C"]["curve"],
-         s2["H23b_curve"]["P"]["curve"], CROSS, "--", "^"),
-        ("Substrate 2, same-vendor", s2["self_family_curve"]["C"]["curve"],
-         s2["self_family_curve"]["P"]["curve"], SELF, "--", "v"),
-    ]
-    # Cross-vendor only: substrate 1's interval at K = 8 against substrate 2's at K = 1.
-    s1_hi = c1["cross"]["C"]["union_at_kmax_block"]["cluster_ci95"][1]
-    s2_lo = s2["H23b_curve"]["C"]["curve_cluster_ci95"][0][0]
-    ax.axvspan(0, s1_hi, color="0.90", zorder=0)
-    ax.axvspan(s2_lo, 0.86, color="0.955", zorder=0)
-    ax.text(s1_hi / 2, 0.965, "substrate 1, cross-vendor\n(upper 95% bound at $K=8$)",
-            fontsize=5.9, color="0.3", ha="center", va="top", linespacing=1.25)
-    ax.text((s2_lo + 0.86) / 2, 0.965, "substrate 2, cross-vendor\n(lower 95% bound at $K=1$)",
-            fontsize=5.9, color="0.3", ha="center", va="top", linespacing=1.25)
-
-    for label, fp, rec, colour, ls, marker in tracks:
-        ax.plot(fp, rec, ls, color=colour, marker=marker, markersize=3, linewidth=1.0,
-                label=label, clip_on=False, zorder=3)
-        ax.plot(fp[-1], rec[-1], marker=marker, color=colour, markersize=5.5,
-                markeredgecolor="black", markeredgewidth=0.45, clip_on=False, zorder=4)
-
-    ax.plot([0, 0.92], [0, 0.92], ":", color="0.55", linewidth=0.8, zorder=1)
-    ax.text(0.30, 0.245, "recall = false positives", fontsize=6.0, color="0.4",
-            ha="center", va="top", zorder=2,
-            bbox=dict(facecolor="white", edgecolor="none", pad=0.8))
-
-    fx, fy = s2["self_family_curve"]["C"]["curve"][-1], s2["self_family_curve"]["P"]["curve"][-1]
-    # below-left of the marker: the space above it carries the band caption
-    ax.annotate("all 8 readings identical", xy=(fx, fy), xytext=(-34, -17),
-                textcoords="offset points", fontsize=6.0, color=SELF, ha="center", va="top",
-                arrowprops=dict(arrowstyle="-", color=SELF, linewidth=0.7, shrinkA=0, shrinkB=4))
-    ax.annotate("$K=1$", xy=(c1["cross"]["C"]["curve"][0], c1["cross"]["P"]["curve"][0]),
-                xytext=(9, -3), textcoords="offset points", fontsize=6.2, color=CROSS,
-                bbox=dict(facecolor="white", edgecolor="none", pad=0.6))
-    ax.annotate("$K=8$", xy=(c1["cross"]["C"]["curve"][-1], c1["cross"]["P"]["curve"][-1]),
-                xytext=(6, 3), textcoords="offset points", fontsize=6.2, color=CROSS)
-
-    ax.set_xlabel("Union false-positive rate on correct work")
-    ax.set_ylabel("Union recall on defects")
-    ax.set_xlim(0, 0.86)
-    ax.set_ylim(0, 1.0)
-    pct(ax)
-    ax.xaxis.set_major_formatter(mticker.PercentFormatter(xmax=1.0, decimals=0))
-
-    from matplotlib.lines import Line2D
-    handles = []
-    for label, fp, _rec, colour, ls, marker in tracks:
-        # a series whose eight readings coincide gets a marker-only handle: a line would
-        # promise a trajectory the panel does not contain
-        single = max(fp) - min(fp) < 1e-9
-        handles.append(Line2D([], [], color=colour, marker=marker, markersize=3.4,
-                              linestyle="none" if single else ls, linewidth=1.0, label=label))
-    handles.append(Line2D([], [], color="0.35", marker="o", markersize=5.0, linestyle="none",
-                          markerfacecolor="none", markeredgewidth=0.6, label="outlined: $K=8$"))
-    leg = ax.legend(handles=handles, loc="lower right", frameon=True, fontsize=6.2,
-                    handlelength=2.6, borderaxespad=0.4, labelspacing=0.34,
-                    facecolor="white", edgecolor="none", framealpha=1.0)
-    leg.set_zorder(6)
-    fig.tight_layout()
-    fig.savefig(OUT / "fig2_operating_points.pdf", bbox_inches="tight")
-    fig.savefig(OUT / "fig2_operating_points.png", dpi=400, bbox_inches="tight")
-    plt.close(fig)
-
+    raise SystemExit("figure2 is withdrawn: substrate 2's run is void")
 
 def figure3(c1, inj):
     """Recall on defects the specification determines, against the natural residual."""
@@ -232,7 +160,7 @@ def main() -> int:
     plt.style.use(STYLE)
     c1, s2, inj = load()
     figure1(c1, s2)
-    figure2(c1, s2)
+    # figure2 withdrawn 2026-09-15: substrate 2's run is void
     figure3(c1, inj)
     print("wrote:", ", ".join(sorted(p.name for p in OUT.glob("fig*.p*"))))
     return 0

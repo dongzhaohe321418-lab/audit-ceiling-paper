@@ -191,10 +191,14 @@ not shown to be "defects the specification determines". This is the reverse horn
 Amendment 6 fixed, and the study now has neither figure available: 97.8% is gate-selected for
 detectability, 84.2% has a denominator that does not match the claim.
 
-**Consequence for the manuscript.** Under the hard blocker recorded below, the substrate-2 and
-injection numbers may not be quoted. They are currently confined to the *in review* section; that
-section must now either be cut or rewritten to report the defects, and the paper cannot go to a
-preprint server until that is done.
+**Consequence for the manuscript, carried out 2026-09-15.** Every substrate-2 number is removed
+from the paper. Its results subsection now reports the defect instead of the numbers; both
+cautions in the discussion are restated without it, the first as a methodological point and the
+second on the sampling asymmetry our own records do establish; Figure 1 is regenerated without its
+substrate-2 series; and **Figure 2, which was entirely the two substrates' operating-point
+comparison, is withdrawn and its files deleted** so nothing can plot void data. The injection
+numbers stay in the *in review* section pending the re-analysis its reviews require. The hard
+blocker below stands.
 
 ## Pending — reported here only when their reviews end quotable
 

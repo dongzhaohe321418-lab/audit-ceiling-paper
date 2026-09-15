@@ -1,57 +1,36 @@
 \section{Discussion}
 \subsection{What a union-recall number means}
 
-We report the shipped auditor's union recall over eight independent readings as 30.0\% on one
-substrate and 71.0\% on another, and both figures are contingent on the rate they cost. On the
-second substrate the same auditor flags 55.3\% of correct work where it flagged 16.0\% on the first,
-and it buys less recall per unit of false-positive cost at every reading count. A single reading on
-the second substrate already costs more false positives than eight readings on the first: 31.8\%
-[24.9, 39.0] against 16.0\% [10.1, 22.3], intervals that do not meet, a gap of 2.6 points. For the
-cross-vendor auditor, then, no reading count gives a matched false-positive rate across the two
-substrates. That holds for the cross-vendor auditor, which is the one the headline uses. Pooling
-the families breaks it, because substrate 1's same-vendor auditor reaches 24.0\% [17.2, 31.2],
-which overlaps substrate 2's range. An earlier draft asserted the unrestricted version on point
-estimates alone, and a review of the figures caught it. The second substrate is \emph{in review}
-(\S\ref{sec:inreview}).
+The caution this subsection argued --- that a union-recall figure is contingent on the rate it
+costs, so recall quoted without its false-positive rate is not portable --- rested on a second
+substrate whose numbers are now withdrawn (\S\ref{sec:inreview}). We state the caution as a
+methodological point rather than as a measured result, because the argument for it does not need
+our second substrate: recall and false positives move together with any severity threshold, and a
+critic can be tuned to any recall by blocking more. What our records still support directly is the
+narrower version of it inside substrate 1, where the same auditor at two severity rules sits at
+two different operating points (\S\ref{sec:auditor}), and where the shipped auditor's 30.0\%
+[20.0, 40.7] recall is quoted only beside the 16.0\% [10.1, 22.3] it cost.
 
-Two limits on that argument. The two substrates differ in specification length, solution length,
-problem population, defect distribution and suite construction at once, so this is a comparison of
-two operating points rather than a manipulation of one. The clean version of the experiment is a
-severity-threshold sweep within a single substrate, which we did not run. And non-overlap of two
-separately constructed intervals is a conservative proxy for a difference test, not a test, and the
-statement covers eight correlated reading counts without a correction for that.
-
-An auditor's recall is a property of where it stands on its own trade-off, and the trade-off moves
-with the material, so the two substrates measure one auditor at two operating points. Comparisons
-of reviewers and critics that report recall, F1 or win rates without the corresponding rate on
-correct work are comparing operating points that need not be the same. The same caution applies to
-this paper's own contrasts, and \S\ref{sec:auditor} reports where it bites hardest on our results.
-
-We do not quote precision. Precision depends on how much defective work an audit actually meets,
-and our strata are built at a designed ratio --- 110 defective against 150 correct on the first
-substrate --- chosen for the power of the contrasts and not to match any deployment. A precision
-computed at that ratio would describe our design rather than anyone's repository. Reporting recall
-beside its false-positive rate, as we do throughout, lets a reader who knows their own prevalence
-compute it; reporting our precision would invite them not to.
+The clean experiment for the general claim is a severity-threshold sweep within one substrate,
+which we did not run. Comparing two substrates was never that experiment: they differ in
+specification length, solution length, problem population, defect distribution and suite
+construction at once.
 
 \subsection{Repeated reading buys coverage only where the decision is marginal}
 
-Union-of-K is the instrument this paper uses to find a ceiling, and on the second substrate the
-same-vendor auditor shows what it measures when it measures nothing. That auditor's block decision
-is identical across all eight independent readings on every one of 250 instances, while its reply
-text, cost and latency vary. Its union curve is flat, and the registered efficiency ratio, which
-divides by the gain in false positives over one reading, is undefined rather than large.
+Union-of-$K$ is the instrument this paper uses to find a ceiling, and it is worth saying plainly
+what it cannot measure. Part of that needs no experiment at all: a union over readings that do not
+differ cannot grow, so a union-of-$K$ curve is flat for a route that returns the same verdict
+however often it is asked. That is arithmetic, not a finding.
 
-Part of that is arithmetic and needs no experiment: a union over readings that do not differ cannot
-grow. Part of it is a design fact this paper had to correct for, which is that the same-vendor
-route is sent temperature $0$ while the cross-vendor route is sent no sampling parameter at all
-(\S\ref{sec:auditor}). What the data add beyond those two is the operating point. On the second
-substrate that auditor flags 88.0\% [78.0, 96.0] of defective and 77.3\% [69.3, 84.9] of correct
-increments, so almost nothing sits near its decision boundary and resampling has little left to
-flip. The cross-vendor auditor on the same substrate, at 71.0\% and 55.3\%, splits its verdict
-across draws on 103 of 250 instances; the same-vendor auditor splits on none. We cannot separate
-the two explanations with the runs we have, because the arm that is flat is also the arm sampled
-at temperature 0, and no temperature-matched replication was run.
+The empirical illustration we had for it came from the second substrate, whose numbers are
+withdrawn (\S\ref{sec:inreview}), so we no longer offer one. What survives is the design fact
+behind it, which our own records do establish: the same-vendor routes are sent temperature $0$
+while the cross-vendor route is sent no sampling parameter at all (\S\ref{sec:auditor}), and over
+$K = 1$ to $8$ the first family's union gains 3.0 points against the second's 19.3. How much of
+that difference is sampling and how much is the operating point, we cannot say, because no
+temperature-matched arm was run. We report it as a confound on our own contrasts rather than as a
+result about auditors.
 
 Best-of-K, union-of-K and panel aggregation over critics therefore buy coverage in proportion to
 how much of the population sits near the critic's boundary, and only to the extent that the route

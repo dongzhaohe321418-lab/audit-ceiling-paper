@@ -39,17 +39,16 @@ monotonically as readings accumulate.
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{fig1_saturation.pdf}
-\caption{\textbf{Returns to repeated reading diminish, and where they diminish depends on the
-substrate.} Union rate against the number of independent readings $K$, for two auditor families on
-two substrates. (a) recall on defective increments; (b) false positives on correct increments.
-Bars at the right of each panel give the 95\% problem-cluster bootstrap interval of each series at
-$K=8$, dodged in $x$ so overlapping intervals stay separable. The cross-vendor curve on substrate 1
-does not meet the preregistered flattening bar (last-step gain 1.93 points [1.14, 2.78] against a
-bar of 1.0) and is not described as saturating; the cross-vendor curve on substrate 2 does meet it
-(0.62 points [0.13, 1.23]). The same-vendor auditor on
-substrate 2 is flat because its verdict is identical on all 250 instances across all eight
-readings; that route sends temperature $0$, and a union over near-deterministic readings cannot
-grow. Substrate 2 is \emph{in review} (\S\ref{sec:inreview}).}
+\caption{\textbf{Returns to repeated reading diminish short of complete.} Union rate against the
+number of independent readings $K$, for two auditor families on substrate 1. (a) recall on
+defective increments; (b) false positives on correct increments. Bars at the right of each panel
+give the 95\% problem-cluster bootstrap interval of each series at $K=8$, dodged in $x$ so
+overlapping intervals stay separable. Neither curve meets the preregistered flattening bar: the
+cross-vendor last-step gain is 1.93 points [1.14, 2.78] against a bar of 1.0, so neither is
+described as saturating. The same-vendor route is sent temperature $0$ and the cross-vendor route
+no sampling parameter at all, so the two unions are not equally free to rise with $K$
+(\S\ref{sec:auditor}). A second substrate was plotted here until 2026-09-15 and is withdrawn
+(\S\ref{sec:inreview}).}
 \label{fig:saturation}
 \end{figure*}
 
@@ -124,18 +123,6 @@ not exclude zero. The rule demonstrably moves what the auditor writes down. Whet
 into code that passes the hidden suite is not established, and since this paper argues elsewhere
 that a flag is not a catch, that distinction applies to our own intervention first.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{fig2_operating_points.pdf}
-\caption{\textbf{Recall and false positives move together, and for the cross-vendor auditor the
-two substrates never meet.} Each track is one auditor family on one substrate from $K=1$ to
-$K=8$; the outlined marker is $K=8$. The shaded spans are \emph{bounds}: the left ends at the
-upper 95\% bound of the cross-vendor auditor's false-positive rate on substrate 1 at $K=8$
-(22.3\%), the right begins at its lower 95\% bound on substrate 2 at $K=1$ (24.9\%), leaving a gap
-of 2.6 points. Pooling the two auditor families the ranges \emph{do} overlap, so the claim is made
-for the cross-vendor auditor alone. Substrate 2 is \emph{in review} (\S\ref{sec:inreview}).}
-\label{fig:operating}
-\end{figure}
 
 \subsection{Most of what the auditor missed is failure the specification never determined}
 \label{sec:residual}
@@ -180,15 +167,17 @@ ceiling of \S\ref{sec:repeat} without them would overstate its reach. Every figu
 subsection is provisional until its review ends, and none is quoted elsewhere in the paper without
 that label.
 
-\textbf{A second substrate.} On the standard-library half of a benchmark whose specifications run
-a median 118 words against 41 and whose solutions run a median 41 lines against 6, the same
-cross-vendor auditor reaches 71 of 100 at eight readings against 30.0\% on substrate 1, while its
-single-reading false-positive rate of 31.8\% [24.9, 39.0] already exceeds its eight-reading rate
-on substrate 1 of 16.0\% [10.1, 22.3], the intervals not meeting. The measured ceiling is an
-operating point, not a constant. The same-vendor auditor beats the cross-vendor one there by
-$+17.0$ points [2.0, 32.0], the opposite sign to substrate 1, at $+22.0$ points [11.2, 32.7] of
-false positives; its verdict is identical on all 250 instances across eight readings, which is the
-temperature-$0$ route of \S\ref{sec:auditor} seen from the other side.
+\textbf{A second substrate, withdrawn.} This subsection reported a second benchmark, and every
+number it gave is now withdrawn. Its first cross-vendor review refused quotation, and we then
+confirmed the reason ourselves: the visible-test text shown to the auditor \emph{and} to the
+generator was sliced out of its test class without the class header, so it failed to parse on all
+300 tasks, while scoring executed the intact class. Both models read invalid Python on every task
+of that substrate. An auditor shown a broken test file can return a finding about the file rather
+than about the candidate, which raises the flag rate on both strata at once and so inflates recall
+and false positives together; because the finding texts were not archived, no reading can be
+reclassified after the fact. The extraction is fixed and the study is registered for a re-run
+whose numbers we will report whichever way they move. Nothing from it is quoted in this paper
+until then.
 
 \textbf{A prospective test of the residual.} Defects were injected into passing solutions so that
 the specification's own words determine the failure, admitted by six mechanical filters, and then
