@@ -181,12 +181,19 @@ establish a reconstruction they never perform — which is worth recording as a 
 written to satisfy a reviewer is itself an unreviewed claim.
 
 Study 17 is fixed (round 9's findings applied and its recommendation to stop hardening the
-rendered Markdown accepted). Study 19 is fixed (Amendment 4). Study 19's defect was a half-finished rename and is fixed (Amendment 4). Study 23's
+rendered Markdown accepted). Study 19 is fixed (Amendment 4). Study 20 is fixed (Amendment 2),
+including a **permanent provenance loss** recorded rather than repaired: its L2 adjudication
+artefacts lived only in the session scratchpad and were destroyed between the review that flagged
+them and the fix. Study 22 is **withdrawn** (Amendment 7). Study 23 needs a re-run (Amendment 1)
+and its budget is costed at `codex-review-queue/SUBSTRATE2-RERUN-BUDGET.md`, awaiting a decision.
+
+**Nothing in `\S`\,repeat--residual of the paper depends on any of these five studies**, which is
+why none of this forces a retraction of an admitted claim. Study 19's defect was a half-finished rename and is fixed (Amendment 4). Study 23's
 run is void and must be re-run (Amendment 1). Studies 22 and 20 need their headline claims
 restated, and study 22 has no usable headline figure at present.
 
-**Study 20.** The review refuses the headline for turning higher eight-reading *flag coverage*
-into an established higher *ceiling*. H20a establishes higher union BLOCKER coverage at K = 8;
+**Study 20, corrected (Amendment 2, 2026-09-16).** The review refuses the headline for turning
+higher eight-reading *flag coverage* into an established higher *ceiling*. H20a establishes higher union BLOCKER coverage at K = 8;
 H20b establishes a positive difference between fitted asymptotes conditional on that model.
 Neither resolves the true saturation difference, since the cross arm has not flattened and
 heterogeneous low-probability detection can imitate a ceiling over eight readings. It also shows
