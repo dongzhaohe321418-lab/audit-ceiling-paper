@@ -172,7 +172,24 @@ measurement on substrate 1, not as a general property**, and the paper gains a c
 have — repeated reading buys coverage only in proportion to how much of the population sits near
 the auditor's decision boundary.
 
-## First cross-vendor reviews, 2026-09-15: studies 22 and 23 came back NOT QUOTABLE
+## First cross-vendor reviews, 2026-09-15: all four studies came back NOT QUOTABLE
+
+Studies 22, 23, 20 and 19 were all reviewed on the day the allowance returned. **None was
+approved.** Study 19's defect was a half-finished rename and is fixed (Amendment 4). Study 23's
+run is void and must be re-run (Amendment 1). Studies 22 and 20 need their headline claims
+restated, and study 22 has no usable headline figure at present.
+
+**Study 20.** The review refuses the headline for turning higher eight-reading *flag coverage*
+into an established higher *ceiling*. H20a establishes higher union BLOCKER coverage at K = 8;
+H20b establishes a positive difference between fitted asymptotes conditional on that model.
+Neither resolves the true saturation difference, since the cross arm has not flattened and
+heterogeneous low-probability detection can imitate a ceiling over eight readings. It also shows
+the kill fires for a more basic reason than rater disagreement: only nine P instances received any
+finding at all, so the largest possible defect-asserting count is nine, already below the floor of
+twenty. The paper's statement of this result was corrected on 2026-09-12 and is consistent with the
+review; the study report is not yet.
+
+
 
 Both were reviewed twice (a dispatcher bug re-ran each; the second reviews are independent and
 were kept). All four reports refuse quotation.
