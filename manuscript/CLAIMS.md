@@ -143,19 +143,26 @@ auditor's flag rate is not a defect-naming rate. On one reading with texts kept 
 finding on 9 of 110 defect instances and asserted the actual defect on 5 to 7, depending on how
 two raters who agreed only at κ = 0.391 are combined.
 
-**Study 23 (a second substrate).** On BigCodeBench's standard-library half — median specification
-118 words against 41, median solution 41 lines against 6 — the same auditor reaches 71 of 100 at
-eight readings, against 30.0% on substrate 1. **This obliges a change to C1 whatever the review
-says about the details: 30.0% is not a general figure.** But the auditor is not better there. Its
-recall per false-positive point is lower at every K, and its single-reading false-positive rate on
-substrate 2, 31.8% [24.9, 39.0], already exceeds its eight-reading rate on substrate 1, 16.0%
-[10.1, 22.3], with the intervals not meeting — so **for the cross-vendor auditor** no reading
-count gives a matched false-positive rate across the substrates. Pooling the auditor families
-breaks that: substrate 1's same-vendor auditor reaches 24.0% [17.2, 31.2] and overlaps substrate
-2's range. The restriction was added after a figure review found the unrestricted version resting
-on point estimates. The claim the paper can carry is that **the
-measured ceiling is an operating point, not a constant, and a union-recall figure quoted without
-its false-positive rate is not portable.**
+**Study 23, re-run complete 2026-09-17.** The voided run's defect — visible-test text that
+did not parse, shown to both the auditor and the generator on all 300 tasks — was corrected and
+the study re-run in full. **Correcting that one input reversed six of the voided run's
+conclusions, every one in the direction of that run having overstated**: the two cross-vendor
+false-positive intervals go from disjoint by 2.6 points to **overlapping by 3.5**, so
+"no reading count gives a matched rate across the substrates" is withdrawn; the same-vendor arm
+goes from splitting on 0 of 250 draws to **12 of 249**, so "identical verdict everywhere" is
+withdrawn; the registered gain ratio goes from 1.16 → 0.91 to **1.35 → 1.23**, staying above 1
+throughout; the flattening bar goes from met at 0.62 points to **missed at 1.52**, so the one
+curve in this programme that appeared to saturate does not; H23d goes from +17.0 [2.0, 32.0] to
+**+4.0 [−10.1, 18.2]**, which spans zero, so the claimed sign reversal against substrate 1 is
+withdrawn; and the same-vendor gain ratio goes from **undefined** — the voided arm never split,
+so the denominator was exactly zero and an absence of data was reported as a property of the
+auditor — to computable at 0.32 → 0.25.
+
+The two runs are reported side by side as descriptive and post hoc under Amendment 2: one run
+against one run, no interval and no p value on any difference between them, not an estimate of
+what unparseable tests do to an auditor, and **not used to validate the voided run**, whose
+defect was independent of where the numbers landed. Spend $37.16 of a $45 halt.
+**None of this enters the paper until the study passes cross-vendor review.**
 
 **Study 23's same-vendor arm, added after the first analysis.** At eight readings the same-vendor
 auditor beats the cross-vendor one on the second substrate by +17.0 points [2.0, 32.0] of recall —
