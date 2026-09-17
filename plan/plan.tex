@@ -8,6 +8,21 @@
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=teal]{hyperref}
 \usepackage{titlesec}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,shapes.geometric,calc,fit,backgrounds}
+\tikzset{
+  box/.style={draw=ink!55, fill=white, rounded corners=1.5pt, align=center,
+              inner sep=5pt, font=\small, minimum height=9mm},
+  dark/.style={draw=ink, fill=ink, text=white, rounded corners=1.5pt, align=center,
+              inner sep=5pt, font=\small\bfseries, minimum height=9mm},
+  acc/.style={draw=acc, fill=acc!8, rounded corners=1.5pt, align=center,
+              inner sep=5pt, font=\small, minimum height=9mm},
+  warnb/.style={draw=warn, fill=warn!8, rounded corners=1.5pt, align=center,
+              inner sep=5pt, font=\small, minimum height=9mm},
+  fl/.style={->, >=latex, draw=ink!60, thick},
+  cut/.style={draw=dead, very thick, dashed},
+  lbl/.style={font=\footnotesize\itshape, text=ink!70},
+}
 
 \definecolor{ink}{HTML}{141A22}
 \definecolor{acc}{HTML}{0E6E78}
@@ -40,7 +55,138 @@
 凡未通过独立跨厂商评审的数字，均标注其状态，不作为论据使用。
 \end{minipage}
 \end{center}
+\vspace{0.5cm}
+
+\noindent\textbf{这份文件怎么读。}第 1 节讲\emph{初衷}——这条研究线从一个产品开始，
+而不是从一个研究问题开始，它最初相信的东西被自己的测量推翻过两次。
+第 2 节把研究问题说清楚，第 3 节是装置，第 4 节是术语表与研究编年
+（\textbf{不熟悉本项目的读者应先读第 4.1 节的十个词}）。
+第 5 节是当前证据状态，包含 2026-09-15 五项评审全部被拒的完整记录。
+第 6 节是已识别的五条弱点，第 7、8 节是针对它们的两阶段计划，
+第 9 节是论文叙事及其必须遵守的约束，第 10、11 节是交付物与风险。
+
+\vspace{0.3cm}
+\noindent\textbf{一句话概括现状}：装置可用、纪律有效、四条主张成立但各自带着严重限定；
+最有意思的那条发现证据最弱；上一轮送审的五项研究\emph{全部}被驳回，其中两项是被前一轮的
+\emph{修复本身}驳回的。\textbf{这不是严谨的证据，是尚未收敛的证据}——本计划的第一阶段
+就是为了让它收敛。
 \vspace{0.4cm}
+
+\section{起源：一个产品，和它被自己推翻的前提}
+
+本项目不是从一个研究问题开始的，是从一个产品开始的。这一节说明它的初衷、
+它最初相信什么、以及那个信念怎么被自己的测量推翻——\textbf{这是整条研究线的真正起点，
+后面每一项研究都能追溯到这里。}
+
+\subsection{CrossAudit 是什么}
+
+一句话定位（写于 2026-08-12 的 \texttt{docs/PRODUCT\_VISION.md}）：
+
+\begin{quote}
+\textbf{一个自带独立质量监督体系的 Codex}——用户只描述目标，系统自主完成工作、验证、修订和交付；
+只有真正需要人类判断时才打断用户。
+\end{quote}
+
+机制是双源审计。一个模型（\emph{生成器}）把文件写进 Git 仓库；确定性检查层（DCL）先跑；
+然后\textbf{另一家厂商}的模型（\emph{审计者}）读同一个 commit 并给出 findings，每条标明层级——
+是被检查验证的，还是模型提出的。结论只有三种：通过（绑定一张覆盖裁决、规则、commit 与证据集的回执）、
+需要修改（生成器带约束改一轮）、需要你（问一个问题并等待）。
+
+\textbf{关键设计：厂商分离由框架强制，不是在提示词里请求的。}这一点是整个产品的卖点，
+也正是下面要被检验的那个前提。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[node distance=7mm]
+  \node[box] (goal) {用户描述目标};
+  \node[dark, right=9mm of goal] (gen) {生成器\\[-2pt]\footnotesize 厂商 A};
+  \node[box, right=9mm of gen] (git) {写入 Git\\[-2pt]\footnotesize commit};
+  \node[acc, right=9mm of git] (dcl) {DCL\\[-2pt]\footnotesize 确定性检查};
+  \node[dark, right=9mm of dcl] (aud) {审计者\\[-2pt]\footnotesize 厂商 B};
+
+  \draw[fl] (goal) -- (gen);
+  \draw[fl] (gen) -- (git);
+  \draw[fl] (git) -- (dcl);
+  \draw[fl] (dcl) -- (aud);
+
+  \node[acc, below=13mm of git] (pass) {通过\\[-2pt]\footnotesize 绑定回执};
+  \node[warnb, below=13mm of dcl] (rev) {需要修改\\[-2pt]\footnotesize 有约束地改一轮};
+  \node[box, below=13mm of aud] (ask) {需要你\\[-2pt]\footnotesize 问一个问题};
+
+  \draw[fl] (aud) -- (ask);
+  \draw[fl] (aud) -- (rev);
+  \draw[fl] (aud.south west) -- (pass.north east);
+  \draw[fl] (rev) to[out=180,in=270] (gen.south);
+
+  \node[lbl, below=2mm of pass, align=center]
+    {回执绑定：裁决 $\cdot$ 规则 $\cdot$ commit $\cdot$ 证据集};
+
+  \begin{scope}[on background layer]
+    \node[draw=dead, dashed, thick, rounded corners=3pt,
+          fit=(gen)(aud), inner sep=9pt] (sep) {};
+  \end{scope}
+  \node[lbl, text=dead, above=1mm of sep.north] {厂商分离由框架强制，不由提示词请求};
+\end{tikzpicture}
+\caption{CrossAudit 的产品回路。生成器与审计者来自\emph{不同厂商}，
+DCL 在审计者之前运行，三种裁决各有出口，通过时绑定一张可复核的回执。}
+\end{figure}
+
+成功标准同样写在愿景文件里：用户像用 Codex 一样自然地工作，却能在需要时\emph{证明}
+结果由谁生成、检查了什么、为何通过，以及交付物是否与审计证据完全一致。
+
+\subsection{最初的信念，和推翻它的测量}
+
+厂商分离的理由建立在一个直觉上：\textbf{模型看不见自己的缺陷}。自己审自己，等于让考生批自己的卷子。
+
+\textbf{这个直觉是错的，而且是被本项目自己的测量推翻的。}在一项 30 实例的研究里，
+自审模型\emph{命名出了更多}缺陷——31.7\% 对陌生审计者的 19.8\%。它不是看不见。
+
+真正的差别在于\textbf{它原谅它们}：自审把 64 条 findings 中的 61 条归为"建议"，
+只拦下 3.3\% 的增量；而跨厂商审计者把 48 条 findings \emph{全部}归为阻断，拦下 80.0\%。
+
+\begin{quote}
+\textbf{分离买到的是严重度，不是视力。}陌生人是那个不会把你的工作挥手放行的审阅者。
+\end{quote}
+
+产品 README 现在就是这么写的。\textbf{这是本项目的第一个范式}：一个卖点建立在一个直觉上，
+认真测量之后，卖点还在，但\emph{理由换了}。而"为什么有效"和"是否有效"是两个不同的问题，
+只有前者能指导下一步做什么。
+
+\subsection{第二次失败：报告没错，错在引用报告的那一层}
+
+第二个教训来自 \texttt{benchmarks/CORRECTIONS.md}——一份专门记录"哪些数字被撤回或重述"的文件。
+它存在的理由写在开头：这些结果打算拿去发表，而一个正在决定要不要信任这份记录的读者，
+\textbf{有权在自己发现之前先看到记录出过什么错}。
+
+它的诊断很具体：
+
+\begin{quote}
+提交的报告本身是谨慎的——它们给出置信区间、写明 $n$，其中几份还纠正了同一条线上更早的报告。
+\textbf{失败发生在报告的下游}，在结果被总结成头条主张的那一层：计划文档、决策记录、
+以及工作对话。在那一层，\textbf{区间被丢掉了}，一个"一中之一"的测量以"100\%"的形式流传出去。
+有一个数字不只是被剥掉了区间，而是\textbf{被彻底编造出来的}。
+\end{quote}
+
+由此产生了本项目最重要的一条制度：\textbf{规则必须绑定在数字被\emph{引用}的地方，
+而不只是它被\emph{计算}的地方。}\texttt{EXPERIMENT\_RECORD.md} 随后把这条写成了
+每项研究必须满足的落盘标准——写在运行之前的主张、足以重建运行的溯源、
+每实例每臂一行的原始记录，而不只是汇总。
+
+\textbf{这两次失败共同决定了后面一切的形态。}第一次教会我们：直觉需要被测量，
+哪怕测量结果支持结论、理由也可能是错的。第二次教会我们：报告写对不够，
+\emph{引用}报告的那一层才是泄漏发生的地方。
+
+\subsection{从产品问题到研究问题}
+
+两次修正之后，剩下一个产品回答不了的问题：
+
+\begin{quote}
+在产审计器在缺陷上的八读并集召回是 \textbf{30.0\%}，代价是正确代码上 \textbf{16.0\%} 的误报。
+\textbf{为什么不是 60\%？}继续投入——换更强的模型、改规则手册、多读几遍——能把它推到哪里？
+\end{quote}
+
+这个问题不能靠继续调产品来回答，因为分不清"模型不够强"和"题目本身没定义对错"。
+\textbf{于是有了这条研究线。}
 
 \section{核心问题与定位}
 
@@ -78,6 +224,45 @@ F（丢弃） & 未过可见测试 & 不进入分析 \\
 \end{tabular}
 \end{center}
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[node distance=6mm]
+  \node[box] (spec) {规格（散文）\\[-2pt]\footnotesize 中位 41 词};
+  \node[box, below=5mm of spec] (vis) {可见测试\\[-2pt]\footnotesize base suite};
+  \node[box, right=42mm of spec] (hid) {隐藏测试\\[-2pt]\footnotesize plus suite};
+
+  \node[dark, below=5mm of vis] (gen) {生成器};
+  \node[box, below=5mm of gen] (cand) {候选代码};
+  \node[acc, below=5mm of cand] (exec) {解释器执行两套测试};
+
+  \draw[fl] (spec) -- (vis);
+  \draw[fl] (vis) -- (gen);
+  \draw[fl] (gen) -- (cand);
+  \draw[fl] (cand) -- (exec);
+  \draw[fl] (hid.south) -- ++(0,-30mm) -| (exec.east);
+
+  \node[box, below=6mm of exec, minimum width=62mm] (str)
+    {P 有缺陷（110）\quad$\vert$\quad C “正确”（150）\quad$\vert$\quad F 丢弃};
+  \draw[fl] (exec) -- (str);
+
+  \node[dark, right=42mm of gen] (aud) {审计者 $\times\,K$\\[-2pt]\footnotesize holistic, $K=8$};
+  \node[box, below=16mm of aud] (out) {findings + 严重度\\[-2pt]\footnotesize $\ge 1$ BLOCKER $\Rightarrow$ 拦下};
+  \draw[fl] (aud) -- (out);
+  \draw[fl] (spec.east) -- ++(12mm,0) |- (aud.west);
+  \draw[fl] (cand.east) -- ++(8mm,0) |- (aud.south west);
+
+  \draw[cut] ($(hid.south)+(-9mm,-4mm)$) -- ($(hid.south)+(9mm,-4mm)$);
+  \node[lbl, text=dead, right=1mm of hid, yshift=-7mm, align=left]
+    {审计者\\永远看不到};
+
+  \node[acc, below=6mm of out, minimum width=44mm] (est) {union recall at $K$};
+  \draw[fl] (out) -- (est);
+  \draw[fl] (str.east) -- (est.west);
+\end{tikzpicture}
+\caption{实验装置。审计者读到规格、可见测试与候选代码；\textbf{隐藏测试只喂给解释器}。
+这道切断是整个装置成立的前提——它让“没抓到”成为可测量的事件，而不是一个判断。}
+\end{figure}
+
 “正确”打引号是认真的：它仅表示“通过隐藏测试”，是解释器给的标签，不是符合规格的保证。
 相应地，“误报”指对通过测试的代码提出标记，而非已证明的审计者错误。
 
@@ -102,6 +287,63 @@ Wilson 区间并列打印并标注“过窄”。$K$ 次阅读是重复测量，
 \item \textbf{主张清单}（\texttt{CLAIMS.md}）：列出论文被允许陈述的每一句话及其必须携带的
       标签，同时列出\emph{证据不支持、禁止出现}的说法。
 \end{enumerate}
+
+\section{术语与研究编年}
+
+\subsection{读本文需要的十个词}
+
+\begin{center}
+\begin{tabular}{@{}lp{10.2cm}@{}}
+\toprule
+\textbf{词} & \textbf{含义} \\
+\midrule
+生成器 & 写候选代码的模型。全程为 \texttt{claude-haiku-4-5}，冻结 \\
+审计者 & 读代码并给出 findings 的模型。它\emph{永远看不到隐藏测试} \\
+\texttt{cross} & 跨厂商审计者，\texttt{gpt-5.6-terra}。在产配置 \\
+\texttt{self} & 同厂商同规格审计者，\texttt{claude-haiku-4-5}。自己审自己 \\
+\texttt{self-strong} & 同厂商更强模型，\texttt{claude-sonnet-4.6} \\
+holistic & 一次性读完整个增量的审计形态。在产配置 \\
+decomposed & 把审计拆成若干子问题分别提问的形态 \\
+DCL & 确定性检查层。不调用模型的规则检查，先于审计者运行 \\
+BLOCKER & 最高严重度。\emph{至少一条 BLOCKER} 即判定拦下 \\
+回执 & 绑定裁决、规则、commit 与证据集的记录，写进 Git \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{研究编年}
+
+本研究线共二十余项研究，下表只列与本计划直接相关的。
+\textbf{编号是历史顺序，不是重要性顺序。}
+
+\begin{center}
+\begin{tabular}{@{}llp{7.4cm}@{}}
+\toprule
+\textbf{研究} & \textbf{记录} & \textbf{它问了什么 / 得到什么} \\
+\midrule
+study 2 & \texttt{RESULTS-2.md} & 拆解审计是否提高召回？是——高 9.1 点，但误报也动了 \\
+study 5 & \texttt{RESULTS-5.md} & \textbf{前提检验}：跨厂商审计者命名的缺陷\emph{更少}，
+  推翻"看不见自己缺陷"的直觉 \\
+study 7 & \texttt{RESULTS-EXPLORE.md} & \textbf{十五种架构一条 ROC}：在产架构就在 Pareto 前沿，
+  没有一种在 $\le6.7\%$ 误报下胜过它。\emph{预注册的空结果} \\
+study 16 & \texttt{RESULTS-TESTGEN.md} & 会写测试的审计者能否胜过只读的？ \\
+study 17 & \texttt{RESULTS-TESTGEN-VAL.md} & 能否在没有标准答案时认出\emph{写错的}测试？
+  \emph{未达预注册门槛} \\
+ceiling 1 & \texttt{RESULTS-CEILING.md} & \textbf{主研究}：union-of-$K$ 曲线、误报代价、
+  规则手册对照。C1/C5/C6 的证据 \\
+study 18 & \texttt{RESULTS-CEILING3.md} & 再加两个审计者族。C2 的证据 \\
+study 19 & \texttt{RESULTS-CEILING3B.md} & 改了规则手册能否推动第二个厂商的族？ \\
+study 20 & \texttt{RESULTS-CEILING4.md} & \textbf{标记是不是抓到？}保留 finding 文本做裁定 \\
+study 21 & \texttt{RESULTS-RERATE.md} & \textbf{残差重分类}：先问"规格定了吗"再问别的。C4 的证据 \\
+study 22 & \texttt{RESULTS-INJECT.md} & C4 的前瞻性检验。\textbf{已整个撤回} \\
+study 23 & \texttt{RESULTS-SUBSTRATE2.md} & 第二个基底。\textbf{整轮作废，重跑中} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{值得注意的是这条线的形状}：它不是一路推进，而是反复自我推翻。study 5 推翻了产品的
+原始前提；study 7 得到一个预注册的\emph{空结果}并接受了它；study 21 推翻了更早的残差分类；
+study 22 与 23 被评审整个否掉。\textbf{一条只前进不后退的研究线，通常是没有在测量。}
 
 \section{当前证据状态}
 
@@ -338,6 +580,33 @@ P7 不变量审计 & 约 \$15（可行性） & 约 1 周 & 先在 20--30 例上�
 P6 同样零成本且不依赖第一阶段的任何结论，可与 P0' 并行。
 \textbf{P5 与 P7 都要花钱，都应等 P0' 的对照表出来之后再启动}：若调研显示某条轴已被他人
 用更强的判准回答过，该项应改为复现或引用，而不是重做。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[node distance=6mm]
+  \node[acc] (p1) {\textbf{P1} 盲化人工评分\\[-2pt]\footnotesize \$0 · 打在 W1/W2};
+  \node[acc, right=8mm of p1] (p2) {\textbf{P2} 阈值扫描\\[-2pt]\footnotesize \$0 · 定 C2/C5 生死};
+  \node[warnb, right=8mm of p2] (p3) {\textbf{P3} 规格澄清实验\\[-2pt]\footnotesize \$40--60 · 唯一因果设计};
+  \draw[fl] (p1) -- (p3);
+  \node[lbl, above=0.5mm of p3, align=center] {若 P1 显示两组接近\\则前提不成立，应改题};
+
+  \node[acc, below=15mm of p1] (p0) {\textbf{P0$'$} 调研\\[-2pt]\footnotesize \$0 · 五条未覆盖轴};
+  \node[acc, below=15mm of p2] (p6) {\textbf{P6} 科学代码规格比例\\[-2pt]\footnotesize \$0 · 可并行};
+  \node[warnb, below=15mm of p3] (p5) {\textbf{P5} 只读 vs 工具辅助\\[-2pt]\footnotesize \$60--100};
+  \node[warnb, below=8mm of p5] (p7) {\textbf{P7} 不变量审计\\[-2pt]\footnotesize \$15 可行性};
+
+  \draw[fl] (p0) -- (p5);
+  \draw[fl] (p0) -- (p7.west);
+
+  \node[box, left=8mm of p1, rotate=90, anchor=north, minimum width=22mm] (a1) {第一阶段};
+  \node[box, left=8mm of p0, rotate=90, anchor=north, minimum width=22mm] (a2) {第二阶段};
+
+  \node[lbl, below=1.5mm of p0, align=center, text width=34mm]
+    {不花钱，却能防止把预算\\花在已被回答的问题上};
+\end{tikzpicture}
+\caption{两阶段的依赖与排序。绿框零成本、应先做；橙框要花钱、都有前置条件。
+箭头表示\emph{前置依赖}而非时间顺序——P6 与 P0$'$ 可与第一阶段并行。}
+\end{figure}
 
 \textbf{一条跨阶段的硬规矩}：任何新基底在第一次模型调用之前，必须先跑一次
 \textbf{“模型将看到的文本能否解析”}的闸门。这是 substrate 2 用一整轮作废换来的教训——
