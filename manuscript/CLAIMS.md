@@ -87,6 +87,17 @@ rubrics is only the size of the residual and the fact that under the second rubr
 fails the entailment test. Evidence: study 21 (`RESULTS-RERATE.md`, quotable at round 3,
 merged).
 
+*Added 2026-09-18, after that review and therefore NOT quotable:* study 21's record now also
+carries the contrast C4's two shares invite — residual 44 of 57 (77.2%) against flagged 24 of 53
+(45.3%), a difference of **+31.9 points** [9.6, 53.4] (`RESULTS-RERATE.md`, Table 6). Amendment 1
+registered that both shares would be reported; it did not register their difference, so the
+contrast is post hoc. Round 3 reviewed the study without it. It may not enter the manuscript, and
+C4 above stands on the share it already quotes, not on the difference. Recorded here because a
+new number in a merged study's record is exactly the path by which an unreviewed figure reaches
+the paper. Note also that comparing the 68-instance sheet with the flagged sheet yields +22.4
+points and is wrong: that sheet is 57 residual plus 11 flagged instances, so it contains part of
+the group it is compared with.
+
 **C5 — A same-vendor auditor is worse than a cross-vendor one on the same instances.** Raw
 union difference at K = 8 on the defect population: **−12.7 points** [−25.0, −0.9]. Evidence:
 ceiling 1.
@@ -257,6 +268,7 @@ blocker below stands.
 | 17 (testgen validation) | corroboration across independent generations does not reach the preregistered threshold for validating generated tests | review round 3 in flight |
 | 20 (ceiling 4) | the rulebook effect and the auditor axis at K = 8 with texts archived | run halted: the OpenAI account has no credit |
 | 22 (injection) | the prospective test of C4's post-hoc split | population constructed; audit held on the same credit |
+| 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 
 ## Rule
 
