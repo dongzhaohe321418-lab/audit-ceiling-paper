@@ -154,42 +154,67 @@ auditor's flag rate is not a defect-naming rate. On one reading with texts kept 
 finding on 9 of 110 defect instances and asserted the actual defect on 5 to 7, depending on how
 two raters who agreed only at κ = 0.391 are combined.
 
-**Study 23, re-run complete 2026-09-17.** The voided run's defect — visible-test text that
-did not parse, shown to both the auditor and the generator on all 300 tasks — was corrected and
-the study re-run in full. **Correcting that one input reversed six of the voided run's
-conclusions, every one in the direction of that run having overstated**: the two cross-vendor
-false-positive intervals go from disjoint by 2.6 points to **overlapping by 3.5**, so
-"no reading count gives a matched rate across the substrates" is withdrawn; the same-vendor arm
-goes from splitting on 0 of 250 draws to **12 of 249**, so "identical verdict everywhere" is
-withdrawn; the registered gain ratio goes from 1.16 → 0.91 to **1.35 → 1.23**, staying above 1
-throughout; the flattening bar goes from met at 0.62 points to **missed at 1.52**, so the one
-curve in this programme that appeared to saturate does not; H23d goes from +17.0 [2.0, 32.0] to
-**+4.0 [−10.1, 18.2]**, which spans zero, so the claimed sign reversal against substrate 1 is
-withdrawn; and the same-vendor gain ratio goes from **undefined** — the voided arm never split,
-so the denominator was exactly zero and an absence of data was reported as a property of the
-auditor — to computable at 0.32 → 0.25.
+**Study 23, third run complete 2026-09-19 — and it holds no quotable number.** Two runs were
+voided for the same fault in different costumes: visible-test text shown to both the auditor and
+the generator that did not parse on all 300 tasks, and then, from the repair for that, a hidden
+method's decorators re-attached to the first visible method on 26 of 300. The third run passed
+all three of Amendment 8's gates before a call was made, each proved able to fail first, and
+both ladders are complete at 8 draws x 252 instances per family. Generation $1.907, audit
+$27.659, total **$29.566** against a $45 cap; the study has now spent about **$82** across three
+runs.
 
-The two runs are reported side by side as descriptive and post hoc under Amendment 2: one run
-against one run, no interval and no p value on any difference between them, not an estimate of
-what unparseable tests do to an auditor, and **not used to validate the voided run**, whose
-defect was independent of where the numbers landed. Spend $37.16 of a $45 halt.
-**None of this enters the paper until the study passes cross-vendor review.**
+Amendment 8 fixed the criterion before the numbers existed: does a clean extraction reproduce
+the six reversals the second run produced? **Five of the six did. One did not.**
 
-**Study 23's same-vendor arm, added after the first analysis.** At eight readings the same-vendor
-auditor beats the cross-vendor one on the second substrate by +17.0 points [2.0, 32.0] of recall —
-**the opposite sign to substrate 1's −12.7 [−25.0, −0.9]** — while costing +22.0 points [11.2,
-32.7] of false positives, that is 1.29 points of false positive per point of recall. Its verdict
-is identical across all eight readings on every one of 250 instances (verified independently:
-costs vary on 100, wall times on all 250, so the readings are distinct), so its union curve is
-flat and the registered efficiency ratio is undefined rather than large. The cross-vendor arm on the same substrate splits on 103 of 250 and the
-same-vendor arm on none; an operating-point explanation and a temperature-0 explanation are not
-separable without a temperature-matched replication, which was not run. (An earlier version of
-this entry cited "9 of 260 verdicts on substrate 1" as evidence against determinism. That figure
-traces to no record and has been removed.) Two
-consequences for the ledger: **C5's direction is substrate-dependent and must be stated as a
-measurement on substrate 1, not as a general property**, and the paper gains a claim it did not
-have — repeated reading buys coverage only in proportion to how much of the population sits near
-the auditor's decision boundary.
+| the reversal | run 1 (void) | run 2 (void) | run 3 | reproduced |
+|---|---|---|---|---|
+| the false-positive intervals | apart, gap 2.6 | overlap 3.5 | apart, gap 3.2 | **no** |
+| the same-vendor arm splitting | 0 of 250 | 12 of 249 | 22 of 252 | yes |
+| the gain ratio staying above 1 | 1.16 → 0.91 | 1.35 → 1.23 | 1.21 → 1.17 | yes |
+| the flattening bar missed | 0.62, met | 1.52, missed | 1.47, missed | yes |
+| H23d spanning zero | +17.0 [2.0, 32.0] | +4.0 [−10.1, 18.2] | +6.9 [−4.9, 18.6] | yes |
+| the same-vendor gain ratio computable | undefined | 0.32 → 0.25 | 0.66 → 0.36 | yes |
+
+Amendment 8 states its criterion over the set. Five of six is a case it did not anticipate, and
+**the looser reading — judging each reversal on its own, which would license five findings — is
+declined**: the five that reproduced are the ones favourable to this work, and adopting a reading
+after seeing which way the numbers fell is the failure this study has already made three times.
+The registered consequence therefore follows: **the study has consumed three runs and about $82
+without a quotable number, and that is reported as found.** No fourth run is authorised and the
+paper continues to carry no substrate-2 figure.
+
+Run 3 is not void — its gates passed, its ladders are complete, its numbers are internally
+consistent, and `RESULTS-SUBSTRATE2.md` reports them in full. What it lacks is the licence
+Amendment 8 conditioned on reproducing the six, and the independent cross-vendor review every
+number in this programme needs. Whether a 5-of-6 outcome should license the five is left to the
+owner and to review, unresolved rather than settled in the direction that helps.
+
+The item that did not reproduce is worth its own line, because it is the one the paper leaned on
+hardest. The registered cross-vendor false-positive comparison has now been apart by 2.6 points,
+overlapping by 3.5, and apart by 3.2 across three extractions of the same protocol. **It is
+reported as unstable**, and "no reading count gives a matched rate across the substrates" is not
+available in either direction.
+
+**Study 23's same-vendor arm.** On the third run the same-vendor auditor's recall at eight
+readings is 81.4% [71.0, 90.4] against the cross-vendor arm's 74.5% [63.8, 84.5] on the same 102
+instances: **+6.9 points [−4.9, 18.6], which spans zero**, so no difference in recall is
+established and **no sign reversal against substrate 1's −12.7 [−25.0, −0.9] is claimed**. Two
+earlier entries claimed one, on +17.0 [2.0, 32.0] and then on +4.0 [−10.1, 18.2]; the first is
+from a voided run and the second already spanned zero. On false positives the same-vendor arm
+pays 66.0% [57.1, 74.5] against 53.3% [44.2, 62.3], **+12.7 points [1.4, 23.7]** — 1.85 points of
+false positive per point of recall.
+
+Its verdict is **not** identical across readings, which an earlier entry asserted: it splits on
+22 of 252 instances against the cross-vendor arm's 102, so its union curve rises slightly and the
+registered efficiency ratio is computable at 0.66 → 0.36 rather than undefined. An
+operating-point explanation and a temperature-0 explanation are still not separable without a
+temperature-matched replication, which was not run. (An earlier version of this entry cited
+"9 of 260 verdicts on substrate 1" as evidence against determinism. That figure traces to no
+record and has been removed.) **C5's direction is still to be stated as a measurement on
+substrate 1 rather than a general property** — but on this substrate the contrast that would have
+made it substrate-dependent includes zero, so the ledger gains nothing here, and the claim that
+repeated reading buys coverage in proportion to how much of the population sits near the
+auditor's decision boundary is not licensed by this study either.
 
 ## First cross-vendor reviews, 2026-09-15: all five studies came back NOT QUOTABLE
 
@@ -269,6 +294,7 @@ blocker below stands.
 | 20 (ceiling 4) | the rulebook effect and the auditor axis at K = 8 with texts archived | run halted: the OpenAI account has no credit |
 | 22 (injection) | the prospective test of C4's post-hoc split | population constructed; audit held on the same credit |
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
+| 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 
 ## Rule
 
@@ -294,5 +320,11 @@ The repair is not to weaken the rule. It is:
    has ended in approval or its numbers have been removed from the manuscript.** This is a hard
    blocker, recorded here so that shipping the paper requires either the reviews or the deletions,
    and not a judgement call at submission time.
+
+**Study 23 discharges its half of that blocker by the second route, and the record says which.**
+Its third run closed on 2026-09-19 without a quotable number, so there is no review to wait for.
+Nothing of it remains to delete: the manuscript's only mention of substrate 2 is the Methods
+sentence defining what it is, and `tex/` carries none of its figures or rates. The blocker now
+stands on studies 17, 19, 20 and 22.
 
 The rule as stated above remains the rule for admitted claims.
