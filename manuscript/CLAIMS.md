@@ -102,6 +102,23 @@ the group it is compared with.
 union difference at K = 8 on the defect population: **−12.7 points** [−25.0, −0.9]. Evidence:
 ceiling 1.
 
+**C7 — Corroboration across independent generations does not validate a generated test.**
+A wrong generated test — one that fails on the dataset's canonical solution — is not reliably
+recognised by asking whether further independent generation draws also fail on the same
+candidate. On this frozen substrate neither paid rule reached the preregistered validation
+threshold: the retained wrong-test rates are **12.2%** (Wilson 7.0–20.6; cluster 3.6–22.6) for
+majority-over-draws and **14.9%** for any-draw, against a preregistered limit of **2%**, and
+each retained 5 and 6 of the 7 validated-only P instances against a floor of 5 of 7. **H17 is
+killed on the rate**, and the paid rules do not beat the free within-draw comparator, which
+retains wrong tests at 12.8%. A 2.4% floor on the brief's original unique-test quantity holds
+because 29 of the 45 wrong tests never fail on any candidate at all. Evidence: study 17
+(`RESULTS-TESTGEN-VAL.md`, quotable at review round 11, 2026-09-20).
+
+This claim is **negative and substrate-bound**: it says these rules do not validate generated
+tests on this substrate, not that generated tests cannot be validated. Rounds 3 to 10 of its
+review were about the reporting medium rather than the measurement, and every figure has
+reproduced unchanged since round 1.
+
 **C6 — The false-positive price of reading eight times.** Union false positives on the clean
 population rise to **16.0%** [10.1, 22.3] at K = 8 for the cross-vendor auditor; the recall
 bought per false-positive point is 1.68. Evidence: ceiling 1.
@@ -327,8 +344,8 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | study | claim it would license | state |
 |---|---|---|
 | 19 (ceiling 3b) | a changed rulebook moves a second vendor's family as it moved the shipped auditor | round 9 refused 2026-09-20: Amendment 4's own regeneration had deleted `secondaries` and Tables 6-7 and the branch carried three red tests. Fixed at fc5b002; round 10 not yet run |
-| 17 (testgen validation) | corroboration across independent generations does not reach the preregistered threshold for validating generated tests | round 10 refused 2026-09-20: the §5 withdrawal had not reached three other places that promised rendering guarantees. Fixed at 036f2dc; round 11 not yet run |
-| 20 (ceiling 4) | union flag coverage at K = 8, not a ceiling | round 2 refused 2026-09-20: Amendment 2 had recorded a provenance gap that the archived ledger disproves. Fixed at 707c3f7; round 3 not yet run. (The credit halt is gone; the same route bought study 23's third run.) |
+| 17 (testgen validation) | — | **QUOTABLE at round 11, 2026-09-20.** Moved to the admitted claims as C7 |
+| 20 (ceiling 4) | union flag coverage at K = 8, not a ceiling, conditional on surviving L2 labels | round 3 refused 2026-09-20: the withdrawal had not reached Amendment 2, and the round-2 denial-count repair was itself wrong (96 rows, 106 occurrences, not 96 responses). Fixed at be3daa1; round 4 not yet run |
 | 22 (injection) | **nothing** — both headlines withdrawn; C4 gains no prospective test from this work | round 2 refused 2026-09-20: the withdrawal had not reached the generator, the records or the splice registry, and mis-stated F6. Fixed at 8025ff4; round 3 not yet run |
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
@@ -357,6 +374,11 @@ The repair is not to weaken the rule. It is:
    has ended in approval or its numbers have been removed from the manuscript.** This is a hard
    blocker, recorded here so that shipping the paper requires either the reviews or the deletions,
    and not a judgement call at submission time.
+
+**Study 17 discharges its half of that blocker by the first route, 2026-09-20.** Round 11 ended
+quotable; its claim is admitted as C7 and may now enter the manuscript body. With study 23 closed
+without a quotable number, **the blocker now stands on studies 19, 20 and 22**, each of which has
+been fixed since its last refusal and none of which has been re-reviewed on that fix.
 
 **Study 23 discharges its half of that blocker by the second route, and the record says which.**
 Its third run closed on 2026-09-19 without a quotable number, so there is no review to wait for.
