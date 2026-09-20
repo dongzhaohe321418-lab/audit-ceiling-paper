@@ -285,14 +285,51 @@ comparison, is withdrawn and its files deleted** so nothing can plot void data. 
 numbers stay in the *in review* section pending the re-analysis its reviews require. The hard
 blocker below stands.
 
+## Second reviews, 2026-09-20: all four came back NOT QUOTABLE, three for the repair
+
+Studies 17, 19, 20 and 22 were re-reviewed on the fixes made after 2026-09-15. **None was
+approved, and in three of the four the reason was the repair rather than the measurement.** The
+pattern this ledger recorded on 2026-09-15 — *a fix written to satisfy a reviewer is itself an
+unreviewed claim* — held again, at a higher rate: it was two of five then, three of four now.
+
+* **Study 19.** Amendment 4 finished the rename the previous round ordered and, regenerating,
+  **deleted the whole `secondaries` block from numbers.json and Tables 6-7 from tables.md** while
+  the report still spliced those tables. Its commit message said "regenerating numbers.json moves
+  no value", which was true and not a description of the commit. The branch was pushed with three
+  red tests. The rename had also missed its own binding test, which still read the withdrawn key
+  — so the check that would have caught an incomplete rename was itself asking for the old name.
+* **Study 17.** The §5 withdrawal was appended in one place while three other files kept
+  promising what it withdrew, including two sentences the reviewer disproved by editing a figure
+  in the prose and watching every test pass.
+* **Study 22.** The withdrawal never reached the generator or the standalone records, so
+  `numbers.json` and `tables.md` still carried the withdrawn population label; the splice
+  registry still required a withdrawn sentence as an anchor; and four tests had been red since
+  Amendment 6 added an arm without updating them. The self-indictment was also wrong in two
+  ways, both of which made it cleaner than the truth: F6 is a truthiness check rather than a
+  string check (102 of 281 witnesses are lists), and F6 *as registered* would not have
+  established entailment either.
+* **Study 20** is the exception, and it points the other way. Amendment 2 recorded a **permanent
+  provenance loss that had not occurred**: it said the within-draw gap could not be recovered
+  from the records, resting on cache rows with no clock time, while the archived usage ledger
+  carries millisecond timestamps giving exactly the first review's 12:40:09. Every other
+  correction in this programme has moved a number toward making the work look better. This one
+  made it look worse. **A claim that evidence has been lost is a claim like any other.**
+
+All four are fixed and pushed (036f2dc, fc5b002, 707c3f7, 8025ff4); none has been re-reviewed,
+so none is quotable and the shipping blocker still stands on all four.
+
+One operational note belongs here because it recurs. Two of the four branches were pushed with
+failing tests that nobody ran, and in both cases the failures were exactly the checks that would
+have caught what the reviewer found. The tests were not weak; they were not run.
+
 ## Pending — reported here only when their reviews end quotable
 
 | study | claim it would license | state |
 |---|---|---|
-| 19 (ceiling 3b) | a changed rulebook moves a second vendor's family as it moved the shipped auditor | review round 4 in flight |
-| 17 (testgen validation) | corroboration across independent generations does not reach the preregistered threshold for validating generated tests | review round 3 in flight |
-| 20 (ceiling 4) | the rulebook effect and the auditor axis at K = 8 with texts archived | run halted: the OpenAI account has no credit |
-| 22 (injection) | the prospective test of C4's post-hoc split | population constructed; audit held on the same credit |
+| 19 (ceiling 3b) | a changed rulebook moves a second vendor's family as it moved the shipped auditor | round 9 refused 2026-09-20: Amendment 4's own regeneration had deleted `secondaries` and Tables 6-7 and the branch carried three red tests. Fixed at fc5b002; round 10 not yet run |
+| 17 (testgen validation) | corroboration across independent generations does not reach the preregistered threshold for validating generated tests | round 10 refused 2026-09-20: the §5 withdrawal had not reached three other places that promised rendering guarantees. Fixed at 036f2dc; round 11 not yet run |
+| 20 (ceiling 4) | union flag coverage at K = 8, not a ceiling | round 2 refused 2026-09-20: Amendment 2 had recorded a provenance gap that the archived ledger disproves. Fixed at 707c3f7; round 3 not yet run. (The credit halt is gone; the same route bought study 23's third run.) |
+| 22 (injection) | **nothing** — both headlines withdrawn; C4 gains no prospective test from this work | round 2 refused 2026-09-20: the withdrawal had not reached the generator, the records or the splice registry, and mis-stated F6. Fixed at 8025ff4; round 3 not yet run |
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 
