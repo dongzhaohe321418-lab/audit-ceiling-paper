@@ -102,6 +102,24 @@ the group it is compared with.
 union difference at K = 8 on the defect population: **−12.7 points** [−25.0, −0.9]. Evidence:
 ceiling 1.
 
+**C8 — The referent rule moves a second vendor's family as it moved the shipped auditor, and
+the grading rule does not.** On `self-strong` (Sonnet 4.6) at four readings, the referent rule
+raises BLOCKER union recall by **+20.9 points**, problem-cluster [+10.8, +31.8], at a
+false-positive cost on C of **+8.0 points** [+3.4, +12.7]. The grading rule shows **no
+demonstrated recall improvement**: +0.9 points [−1.8, +4.5], and H19a fails its registered
+criterion, which demonstrates neither equivalence nor that the grading rule did nothing.
+This is C3's effect reproduced on a different vendor's model, at a different K, with its own
+false-positive price. Evidence: study 19 (`RESULTS-CEILING3B.md`, quotable at review round 10,
+2026-09-20).
+
+**What C8 does not license.** The post-hoc Table 5b quantity — whether a finding **reports a
+failure** on the named class — is broader than asserting a defect: its prompt admits a finding
+even where it grades the class non-blocking or says the specification is silent, so findings that
+disclaim the requirement are counted in. It is **3 of 110** under the shipped constitution and
+**27 of 110** under the referent rule, and **may not be quoted as defect recognition**. Seven
+review rounds passed over the opposite error — the report called the instrument *narrower* than
+defect assertion, the flattering direction — before round 9 caught it.
+
 **C7 — Corroboration across independent generations does not validate a generated test.**
 A wrong generated test — one that fails on the dataset's canonical solution — is not reliably
 recognised by asking whether further independent generation draws also fail on the same
@@ -343,10 +361,10 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 
 | study | claim it would license | state |
 |---|---|---|
-| 19 (ceiling 3b) | a changed rulebook moves a second vendor's family as it moved the shipped auditor | round 9 refused 2026-09-20: Amendment 4's own regeneration had deleted `secondaries` and Tables 6-7 and the branch carried three red tests. Fixed at fc5b002; round 10 not yet run |
+| 19 (ceiling 3b) | — | **QUOTABLE at round 10, 2026-09-20.** Moved to the admitted claims as C8 |
 | 17 (testgen validation) | — | **QUOTABLE at round 11, 2026-09-20.** Moved to the admitted claims as C7 |
 | 20 (ceiling 4) | union flag coverage at K = 8, not a ceiling, conditional on surviving L2 labels | round 3 refused 2026-09-20: the withdrawal had not reached Amendment 2, and the round-2 denial-count repair was itself wrong (96 rows, 106 occurrences, not 96 responses). Fixed at be3daa1; round 4 not yet run |
-| 22 (injection) | **nothing** — both headlines withdrawn; C4 gains no prospective test from this work | round 2 refused 2026-09-20: the withdrawal had not reached the generator, the records or the splice registry, and mis-stated F6. Fixed at 8025ff4; round 3 not yet run |
+| 22 (injection) | a **descriptive** observation only; **no** prospective test of C4 | round 3, 2026-09-20: *"quotable only descriptively; not quotable for C4"* — the withdrawal is still incomplete in six named places and Amendment 7 still misdescribes F6. Being fixed; round 4 not yet run |
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 
@@ -375,10 +393,16 @@ The repair is not to weaken the rule. It is:
    blocker, recorded here so that shipping the paper requires either the reviews or the deletions,
    and not a judgement call at submission time.
 
-**Study 17 discharges its half of that blocker by the first route, 2026-09-20.** Round 11 ended
-quotable; its claim is admitted as C7 and may now enter the manuscript body. With study 23 closed
-without a quotable number, **the blocker now stands on studies 19, 20 and 22**, each of which has
-been fixed since its last refusal and none of which has been re-reviewed on that fix.
+**Studies 17 and 19 discharge their halves of that blocker by the first route, 2026-09-20.**
+Round 11 and round 10 both ended quotable; their claims are admitted as C7 and C8 and may enter
+the manuscript body. Study 23 is closed without a quotable number, so nothing of it is there to
+remove.
+
+**The blocker now stands on studies 20 and 22.** Study 20 was refused at round 3 and is fixed at
+be3daa1, awaiting round 4. Study 22's round 3 reads *"quotable only descriptively; not quotable
+for C4"* — which is the study's own position since Amendment 7, so its remaining work is to
+finish the withdrawal rather than to defend a figure. **Neither has been re-reviewed on its
+current fix, so neither is quotable, and the manuscript does not ship.**
 
 **Study 23 discharges its half of that blocker by the second route, and the record says which.**
 Its third run closed on 2026-09-19 without a quotable number, so there is no review to wait for.
