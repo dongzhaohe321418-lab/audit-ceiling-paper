@@ -144,6 +144,33 @@ the review that flagged them and the repair. The labels survive and every number
 them; how L2 produced them cannot be audited. Round 4 permits qualified quotation on that basis
 and forbids setting these figures directly against the eight-reading union of 30.0%.
 
+**C10 — An injected-defect population does not give claim C4 a prospective test, and the
+attempt says why.** Study 22 built a population where "specification-determined" was to be fixed
+by construction, and **the construction does not deliver that property**: F6 was registered as
+recovering the first failing hidden input and is a truthiness check on `witness_input`, and F2 to
+F5 each accept cases their registered wording excludes. **No filter establishes specification
+entailment, and no repair of F6 alone would have** — recovering the input and executing a witness
+shows the edit changes behaviour on an exercised input, not that the specification entails the
+value expected there. Both headline figures are withdrawn. **C4 keeps exactly the status study 21
+gave it, post hoc and unreplicated.** Evidence: study 22 (`RESULTS-INJECT.md`, *final in its
+descriptive form* at review round 9, 2026-09-21).
+
+**What may be quoted from it is descriptive and nothing more.** At eight readings the auditor
+blocked **90 of 92** filter-and-gate-accepted injected instances against **11 of their 92
+unmodified twins** (79 discordant pairs one way, none the other) and against **33 of 110** on the
+natural residual; the gate-rejected sample was blocked **31 of 40**, which is why the gate's
+conservativeness argument is withdrawn — gate acceptance is associated with detectability. A
+probe separates the injected set from the natural one at 96.7% on the items it answered, **by a
+feature it does not identify**: its two arms share no problem, so task composition alone could
+produce the result, and its model is one of the two gate models.
+
+**A successor needs more than independence.** An independent party must validate the actual
+violation **and** the specification-entailing expected behaviour, under a fixed, blinded
+protocol. A second substrate alone does not do it and an independent rater alone does not do it,
+because task composition and construction confounding survive both. That is a condition on a
+future study, not unfinished work here: the naming adjudication and the deferred OpenAI gate are
+**final omissions**.
+
 **C7 — Corroboration across independent generations does not validate a generated test.**
 A wrong generated test — one that fails on the dataset's canonical solution — is not reliably
 recognised by asking whether further independent generation draws also fail on the same
@@ -388,7 +415,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | 19 (ceiling 3b) | — | **QUOTABLE at round 10, 2026-09-20.** Moved to the admitted claims as C8 |
 | 17 (testgen validation) | — | **QUOTABLE at round 11, 2026-09-20.** Moved to the admitted claims as C7 |
 | 20 (ceiling 4) | — | **QUOTABLE (qualified) at round 4, 2026-09-20.** Moved to the admitted claims as C9 |
-| 22 (injection) | a **descriptive** observation only; **no** prospective test of C4 | round 3 refused for an incomplete withdrawal and four false statements in the repair itself. Fixed at 2050044; **round 4 dispatched 2026-09-20** |
+| 22 (injection) | — | **FINAL (descriptive) at round 9, 2026-09-21.** Moved to the admitted claims as C10 |
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 
@@ -422,11 +449,27 @@ Round 11 and round 10 both ended quotable; their claims are admitted as C7 and C
 the manuscript body. Study 23 is closed without a quotable number, so nothing of it is there to
 remove.
 
-**The blocker now stands on study 22 alone.** Study 20 cleared at round 4 and is admitted as C9.
-Study 22's round 3 reads *"quotable only descriptively; not quotable for C4"* — which is the
-study's own position since Amendment 7, so its remaining work was to finish the withdrawal
-rather than to defend a figure; that is done at 2050044 and round 4 is in flight. **Until it
-returns, study 22 is not quotable and the manuscript does not ship.**
+**The blocker is discharged, 2026-09-21.** All four studies it named are resolved, and the
+record says by which route each went:
+
+| study | route | outcome |
+|---|---|---|
+| 17 (testgen validation) | review | quotable at round 11 → **C7** |
+| 19 (ceiling 3b) | review | quotable at round 10 → **C8** |
+| 20 (ceiling 4) | review | qualified quotable at round 4 → **C9** |
+| 22 (injection) | review | final descriptively at round 9 → **C10** |
+| 23 (substrate 2) | removal | closed without a quotable number; nothing of it was in `tex/` |
+
+**The shipping condition in point 3 above is therefore met.** That does not mean the manuscript
+is ready — it means this particular gate no longer holds it. C7 to C10 have to be written into
+the paper before anything is submitted, and three of them are narrow or negative claims whose
+limits are part of the claim: C8's post-hoc quantity may not be quoted as defect recognition,
+C9's adjudication-derived figures are conditional on labels whose production cannot be audited,
+and C10 licenses description only.
+
+**What the five refusals of 2026-09-15 cost to clear: thirty-one further review rounds, and in
+most of them the refusal was about a repair rather than a measurement.** No measurement moved in
+any of the four studies. What moved was what the reports claimed about them.
 
 **Study 23 discharges its half of that blocker by the second route, and the record says which.**
 Its third run closed on 2026-09-19 without a quotable number, so there is no review to wait for.
