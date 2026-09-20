@@ -120,6 +120,30 @@ disclaim the requirement are counted in. It is **3 of 110** under the shipped co
 review rounds passed over the opposite error — the report called the instrument *narrower* than
 defect assertion, the flattering direction — before round 9 caught it.
 
+**C9 — The referent rule raises union FLAG COVERAGE at K = 8; whether it raises the ceiling is
+not established.** On the defect population the rule takes union flag coverage from 33 of 110 to
+**67 of 110**: **+30.9 points**, problem-cluster [19.1, 43.1], discordance 38 against 4. The
+false-positive price is **+20.7 points** [12.8, 28.8], and its single-draw rate of 23.6%
+[17.1, 30.3] fails the product bar on all eight draws. Under the ZIBB secondary the residual
+falls 56 to 32, 23 of the 24 leaving being unexercised edges. Evidence: study 20
+(`RESULTS-CEILING4.md`, quotable at review round 4, 2026-09-20).
+
+**Three limits are part of the claim, not caveats on it.** H20b's fitted-asymptote difference of
++27.1 points [10.9, 39.0] does **not** establish a higher ceiling: the `cross` arm never
+flattened, so one of its two terms is an extrapolation; heterogeneous low-probability detection
+imitates a ceiling at this budget, since an instance found with probability 0.02 per reading
+survives eight readings about 85% of the time; and this study's own ZIBB estimator finds no
+never-detectable class in **either** arm, a boundary estimate that settles little given its
+interval. **Its adjudication kill is arithmetic, not a labelling artefact**: only 9 of 110
+instances drew any finding on `cross-T`, so the largest defect-asserting count available under
+perfect adjudication was 9, below the floor of 20.
+
+**Every adjudication-derived figure here is conditional on surviving labels.** L2's raw reply,
+prompt, launcher and execution log lived only in a session scratchpad and were destroyed between
+the review that flagged them and the repair. The labels survive and every number reproduces from
+them; how L2 produced them cannot be audited. Round 4 permits qualified quotation on that basis
+and forbids setting these figures directly against the eight-reading union of 30.0%.
+
 **C7 — Corroboration across independent generations does not validate a generated test.**
 A wrong generated test — one that fails on the dataset's canonical solution — is not reliably
 recognised by asking whether further independent generation draws also fail on the same
@@ -363,8 +387,8 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 |---|---|---|
 | 19 (ceiling 3b) | — | **QUOTABLE at round 10, 2026-09-20.** Moved to the admitted claims as C8 |
 | 17 (testgen validation) | — | **QUOTABLE at round 11, 2026-09-20.** Moved to the admitted claims as C7 |
-| 20 (ceiling 4) | union flag coverage at K = 8, not a ceiling, conditional on surviving L2 labels | round 3 refused 2026-09-20: the withdrawal had not reached Amendment 2, and the round-2 denial-count repair was itself wrong (96 rows, 106 occurrences, not 96 responses). Fixed at be3daa1; round 4 not yet run |
-| 22 (injection) | a **descriptive** observation only; **no** prospective test of C4 | round 3, 2026-09-20: *"quotable only descriptively; not quotable for C4"* — the withdrawal is still incomplete in six named places and Amendment 7 still misdescribes F6. Being fixed; round 4 not yet run |
+| 20 (ceiling 4) | — | **QUOTABLE (qualified) at round 4, 2026-09-20.** Moved to the admitted claims as C9 |
+| 22 (injection) | a **descriptive** observation only; **no** prospective test of C4 | round 3 refused for an incomplete withdrawal and four false statements in the repair itself. Fixed at 2050044; **round 4 dispatched 2026-09-20** |
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 
@@ -398,11 +422,11 @@ Round 11 and round 10 both ended quotable; their claims are admitted as C7 and C
 the manuscript body. Study 23 is closed without a quotable number, so nothing of it is there to
 remove.
 
-**The blocker now stands on studies 20 and 22.** Study 20 was refused at round 3 and is fixed at
-be3daa1, awaiting round 4. Study 22's round 3 reads *"quotable only descriptively; not quotable
-for C4"* — which is the study's own position since Amendment 7, so its remaining work is to
-finish the withdrawal rather than to defend a figure. **Neither has been re-reviewed on its
-current fix, so neither is quotable, and the manuscript does not ship.**
+**The blocker now stands on study 22 alone.** Study 20 cleared at round 4 and is admitted as C9.
+Study 22's round 3 reads *"quotable only descriptively; not quotable for C4"* — which is the
+study's own position since Amendment 7, so its remaining work was to finish the withdrawal
+rather than to defend a figure; that is done at 2050044 and round 4 is in flight. **Until it
+returns, study 22 is not quotable and the manuscript does not ship.**
 
 **Study 23 discharges its half of that blocker by the second route, and the record says which.**
 Its third run closed on 2026-09-19 without a quotable number, so there is no review to wait for.
