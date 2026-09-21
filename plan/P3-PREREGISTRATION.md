@@ -163,3 +163,48 @@ resamples, seed `20260921`, and Wilson beside it.
 **This is a precondition check, not a replacement for P1.** One model rater does not make a human
 rating unnecessary; it tests whether the premise survives removing the one rater who knew the
 hypothesis. It is post hoc with respect to study 21 and is labelled so wherever it appears.
+
+### Amendment 1, outcome — INCONCLUSIVE by its own registered rule, and the sheet is broken
+
+Ran 2026-09-21 on `gpt-5.6-luna` through the harness's own route, not Codex, whose allowance is
+exhausted until 2026-09-22. All 121 items were labelled.
+
+| group | n | `undetermined` | `determined` | `cannot-tell` |
+|---|---:|---:|---:|---:|
+| missed | 68 | 42 (61.8%) | 21 | 5 (7.4%) |
+| caught | 53 | 4 (7.5%) | 7 | **42 (79.2%)** |
+
+**The registered rule fires: more than a third of one group is `cannot-tell`, so this is
+inconclusive rather than negative, and the decision waits for P1.** That is applied as written.
+
+**But the reason is a defect in the sheet, and the sheet is mine.** The 42 `cannot-tell` answers
+in the caught arm are exactly the 42 items whose `failing_input_class` is **empty** — a one-to-one
+correspondence, with no empty item receiving a judgement and no non-empty item in that arm
+refusing one. The booklet asks whether the specification determines what should be returned *on
+the failing input class*. For 42 of the 53 control items, no failing input class is shown. The
+question cannot be answered, and `cannot-tell` is the correct answer to it.
+
+**Why it is empty.** `failing_input_class` lives in `records/ceiling/residual_classification.json`,
+which by construction covers only the residual — the instances no family flagged. The caught
+instances were never classified, so the control arm was built from a source that structurally has
+no data for it.
+
+**This breaks P1 as well as this check.** A human rater meets the same 42 unanswerable items. The
+sheet on the owner's desktop cannot compare the two groups in its current form, and that should
+be known before anyone spends an evening on it.
+
+**What the answerable items show, recorded but not relied on.** Excluding the 42, the missed arm
+is 61.8% `undetermined` (n = 68) and the caught arm 36.4% (n = 11). The direction matches study
+21's 77.2% against 45.3%. With n = 11 in the control it settles nothing, and it is reported here
+only so that the inconclusive verdict is not mistaken for a null result.
+
+**A third place where "the author" enters the chain.** `residual_dump.py` describes the
+classification as "the one hand step in this study": `failing_input_class` is written by the
+author from the dumped evidence. So the premise P3 rests on passes through the author at the
+classification, at L1's labels, and at the sheet built from both.
+
+**The repair, which is not a patch.** The same script already re-runs each failing hidden input
+and recovers the expected and actual values mechanically. That evidence exists for any stratum-P
+instance, caught or missed, and does not pass through a hand step. Rebuilding both arms on it
+would make the sheet comparable, remove one author dependency, and make P1 answerable. That is
+the next action; it costs no model calls.
