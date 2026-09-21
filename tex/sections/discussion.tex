@@ -41,8 +41,8 @@ resampling, and its union over K readings can rise only as far as its marginal c
 \subsection{What the ceiling is made of}
 
 Repetition is the smallest of the contributions we could measure. Eight readings of one auditor buy
-19.3 points of union recall, and twenty readings across three families leave 51.8\% of the defect
-population untouched. Changing which model reads moves the same quantity --- union recall at $K=8$
+19.3 points of union recall, and twenty readings across three families leave 51.8\% [40.0, 63.3]
+of the defect population untouched --- the complement of the pooled 48.2\% [36.7, 60.0]. Changing which model reads moves the same quantity --- union recall at $K=8$
 over the same 110 instances --- by 26.4 points, though \S\ref{sec:auditor} gives three reasons not
 to read that as auditing ability. Changing one sentence of the rulebook moves flags by 26.8 points,
 but on 56 instances at one reading, and we do not place that number on the same scale as the other
@@ -57,11 +57,13 @@ partly definitional, because the residual is defined by conditioning on never be
 this is an observation about where the misses sit and not an estimate of how much the benchmark
 contributes.
 
-The constructed population carries a limitation we measured rather than assumed. Its defects are
-detectably artificial: a frontier model separates them from natural ones at 96.7\%. What the
-construction licenses is a bound, that the measured ceiling lies above what an auditor can do on
-defects the specification settles, and it leaves open how often natural defects of that kind are
-caught.
+The constructed population carries a limitation we measured rather than assumed, and a second
+one that review established. A frontier model separates its edits from natural ones at 96.7\%
+on the items it answered, between 79.9\% and 97.3\% once the items it would not classify are
+counted at either extreme --- \emph{by a feature it does not identify}, since the two arms
+share no problem and the model is one of the two that gated the population. And the construction
+does not enforce specification-determinedness at all, so it licenses \emph{no} bound on the
+measured ceiling. We had written that it did. It does not.
 
 \subsection{Flagging is not naming}
 
@@ -94,7 +96,7 @@ mode. Sixth, the residual rubric's raters were a model and the author, who wrote
 not blind to the earlier labels; one external label set agrees with them across eleven overlapping
 tasks. Seventh, our attempt to build a population of
 specification-determined defects did not enforce the property, and its edits are separable from
-natural code at 96.7\%. Each of
+natural code at 96.7\% [79.9, 97.3] by something the probe does not identify. Each of
 these is recorded in the study that carries it, together with the number it would change.
 
 \subsection{What we would do next}

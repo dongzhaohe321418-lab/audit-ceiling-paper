@@ -23,7 +23,7 @@ within a problem are not independent and only the second respects that.
 The shipped cross-vendor auditor reads an increment holistically and returns findings; an
 increment is blocked if any finding is graded BLOCKER. Over eight independent readings of the same
 110 defective instances, union recall rises from 10.7\% at one reading to 30.0\% [20.0, 40.7] at
-eight. The eighth reading still adds 1.93 points, cluster [1.14, 2.78], against the flattening bar
+eight (Figure~\ref{fig:saturation}). The eighth reading still adds 1.93 points, cluster [1.14, 2.78], against the flattening bar
 of 1.0 points registered before the first model call. The bar was not met. The constrained fit
 puts the asymptote at 31.5\%, but on our own registered criterion that figure is an extrapolation
 and the raw union at eight readings is the number to quote. What the data support is diminishing
@@ -34,8 +34,10 @@ meets it at a small $K_{\max}$ is making a weaker statement than one that meets 
 Twenty readings pooled across three auditor families reach 48.2\% [36.7, 60.0].
 
 The price is measured on the same footing. Union false positives on 150 correct increments reach
-16.0\% [10.1, 22.3] at eight readings, and the recall bought per point of false positive falls
-monotonically as readings accumulate.
+16.0\% [10.1, 22.3] at eight readings. The recall bought per point of false positive ---
+recall gained over one reading divided by false positives gained over one reading --- is
+\textbf{1.68} at eight, and falls monotonically as readings accumulate. It is a ratio of two
+measured rates and carries no interval of its own.
 
 \begin{figure*}[t]
 \centering
