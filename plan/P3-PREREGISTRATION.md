@@ -122,3 +122,44 @@ is evidence that the premise is not obviously false — not confirmation that it
 **Therefore: this registration is complete and no reading is bought under it until either P1's
 human rating confirms the premise, or the owner decides to proceed on the model raters alone.**
 That decision is the owner's and is recorded here rather than made by inference.
+
+---
+
+## Amendment 1 — a third rater on the blinded sheet, registered 2026-09-21 before its first call
+
+**Why.** §6 said nothing is bought until P1's human rating confirms the premise or the owner
+decides to proceed. The owner delegated the decision. Before spending P3's \$40–60 on a premise,
+the premise is checked where it is actually weak.
+
+**Where it is weak.** The +31.9-point contrast rests on study 21's consensus of **L1, who is the
+author of this study and of the paper**, and L2 (`gpt-6-astra`). Amendment 2 of that study found
+its sheets were **not blind to instance identity** — the id sat inside the hidden-outcome block.
+So the premise currently rests on the author's own labels, taken from a partially unblinded
+sheet, plus one model. P1 exists to fix exactly that, and P1 is one person's time away.
+
+**What is registered here.** The 121-item blinded sheet already built for P1
+(`~/Desktop/CrossAudit-审计天花板/人类评分任务/评分册.md`, 68 missed + 53 caught, shuffled,
+answer key isolated) is rated by a **third rater that is neither the author nor `gpt-6-astra`**,
+under the booklet's own three-option rubric — `determined`, `undetermined`, `cannot-tell` —
+with no other instruction. The sheet was checked before this amendment and carries no `arm`,
+`instance`, `old_id` or `problem_id` in its body: the rater sees the specification and the
+visible tests, and nothing else.
+
+**The quantity.** The share of `undetermined` among the 68 missed items against the 53 caught
+items, with a problem-cluster percentile bootstrap over the union of their problems, 10,000
+resamples, seed `20260921`, and Wilson beside it.
+
+**What each outcome does, fixed before the numbers exist.**
+
+* If the difference **excludes zero in the same direction**, the premise stands on evidence
+  independent of the author, and **P3 starts without waiting for P1**. P1 remains worth doing and
+  is not cancelled by this.
+* If it **includes zero**, the premise does not hold once the author's labels are removed, and
+  **P3 does not run as written.** The plan's own rule then applies: change the question rather
+  than run it. What P3 would become is not decided in advance here.
+* If the third rater returns `cannot-tell` on more than a third of either group, the rating is
+  **inconclusive** rather than negative, and the decision waits for P1 after all.
+
+**This is a precondition check, not a replacement for P1.** One model rater does not make a human
+rating unnecessary; it tests whether the premise survives removing the one rater who knew the
+hypothesis. It is post hoc with respect to study 21 and is labelled so wherever it appears.
