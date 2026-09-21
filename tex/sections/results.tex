@@ -1,10 +1,11 @@
 \section{Results}
 The claims this paper defends, each with its interval and its label, are listed in
 \texttt{CLAIMS.md}. A claim enters that file only after its report has passed an independent
-review by a model from a different vendor with access to the raw records. Sections
-\ref{sec:repeat}--\ref{sec:residual} draw only on reports that have passed such a review.
-Section~\ref{sec:inreview} reports four studies that are still in that review; every number in it
-carries the label \emph{in review}, and none of them is load-bearing for the claims above.
+review by a model from a different vendor with access to the raw records. Every section below draws only on
+reports that have passed such a review. Section~\ref{sec:inreview} reports four studies whose
+reviews took between four and eleven rounds each to reach that point, and states what each of
+them does and does not license; none of them is load-bearing for
+\S\ref{sec:repeat}--\S\ref{sec:residual}.
 Rates carry the 95\% problem-cluster percentile bootstrap as the primary interval, with the Wilson
 interval beside it where the source report gives one, because problems recur across generation
 batches and an interval that treats instances as independent is too narrow. The coverage of that
@@ -47,8 +48,8 @@ overlapping intervals stay separable. Neither curve meets the preregistered flat
 cross-vendor last-step gain is 1.93 points [1.14, 2.78] against a bar of 1.0, so neither is
 described as saturating. The same-vendor route is sent temperature $0$ and the cross-vendor route
 no sampling parameter at all, so the two unions are not equally free to rise with $K$
-(\S\ref{sec:auditor}). A second substrate was plotted here until 2026-09-15 and is withdrawn
-(\S\ref{sec:inreview}).}
+(\S\ref{sec:auditor}). A second substrate was plotted here until 2026-09-15; it was re-run twice and
+closed without a quotable number (\S\ref{sec:inreview}).}
 \label{fig:saturation}
 \end{figure*}
 
@@ -94,9 +95,12 @@ sampled at temperature $0$, blocks far less.
 
 A same-vendor auditor of the generator's own size was worse than the cross-vendor one on these
 instances by $-12.7$ points $[-25.0, -0.9]$ of union recall at eight readings, signed so that a
-negative value favours the cross-vendor auditor. A study on a second substrate reverses that sign,
-so this is reported as a measurement on this substrate rather than as a property of same-vendor
-auditing.
+negative value favours the cross-vendor auditor. We reported until 2026-09-21 that a study on a second
+substrate reverses that sign. \emph{That is withdrawn}: the study closed without a quotable
+number, and on its clean run the same contrast included zero, so no reversal was established
+either (\S\ref{sec:inreview}). The figure above is therefore a measurement on this substrate,
+and whether it is a property of same-vendor auditing is open --- which is what it was before we
+attempted the second substrate, not something that study settled in either direction.
 
 \subsection{One rulebook sentence moves flags, and does not measurably move outcomes}
 \label{sec:rulebook}
@@ -158,41 +162,100 @@ defective, in twelve MBPP tasks named in a paper written for another purpose, ou
 paper's own ``incomplete'' category draws. That check is one-sided by construction: it can support
 agreement where an outsider looked, and can bound nothing about the rate.
 
-\subsection{Four studies in review, and what their reviews found}
+\subsection{Four studies, thirty-one review rounds, and what they license}
 \label{sec:inreview}
 
-Four further studies had reported when this paper was written, and all four were refused quotation
-by their independent reviews on the same day. We report that outcome rather than their numbers,
-because two of the refusals bear on how far the results above reach.
+Four further studies had reported when this paper was first written, and all four were refused
+quotation by their independent reviews on the same day. They have since passed, after between
+four and eleven rounds each. We report them here rather than folding them into the sections
+above because three of the four are narrow or negative results whose limits are part of the
+claim, and because the shape of the refusals is itself a finding about this method.
 
-\textbf{A second substrate, withdrawn.} This paper reported a second benchmark until its review
-refused quotation, and we then confirmed the reason ourselves: the visible-test text shown to the
-auditor \emph{and} to the generator was sliced out of its test class without the class header, so
-it failed to parse on all 300 tasks, while scoring executed the intact class. Both models read
-invalid Python on every task of that substrate. An auditor shown a broken test file can return a
-finding about the file rather than about the candidate, which raises the flag rate on both strata at
-once and so inflates recall and false positives together; the finding texts were not archived, so no
-reading can be reclassified after the fact. The extraction is fixed and the study is registered for
-a re-run whose numbers we will report whichever way they move.
+\textbf{A rulebook sentence moves a second vendor's family.} The referent rule --- \emph{find
+what the visible tests do not exercise} --- raises union BLOCKER recall on \texttt{self-strong}
+(Sonnet 4.6) at four readings by \textbf{+20.9 points}, cluster [+10.8, +31.8], at a
+false-positive cost on correct code of \textbf{+8.0 points} [+3.4, +12.7]. The grading rule
+shows no demonstrated improvement: $+0.9$ points $[-1.8, +4.5]$, and that hypothesis fails its
+registered criterion, which demonstrates neither equivalence nor that the rule did nothing. This
+reproduces \S\ref{sec:rulebook}'s effect on a different vendor's model at a different $K$, with
+its own price. A post-hoc quantity from the same study --- whether a flagged finding
+\emph{reports a failure} on the named class --- is \textbf{3 of 110} under the shipped
+constitution and \textbf{27 of 110} under the rule, and \emph{may not be quoted as defect
+recognition}: its rubric admits a finding even where it grades the class non-blocking or says
+the specification is silent, so findings that disclaim the requirement are counted in. Seven
+review rounds passed over the opposite error, in which the report called that instrument
+\emph{narrower} than defect assertion --- the direction that makes a quantity look more
+conservative than it is.
 
-\textbf{A prospective test of the residual, withdrawn.} We constructed a population of injected
-defects intended to make specification-determinedness hold by construction. Review established that
-it does not: the filter we registered to recover each edit's first failing hidden input was
-implemented as a check that the injector had written a non-empty string, and no check connects the
-quoted specification text, the named input class, the witness and the actual failure. What the
-population contains is small edits that survive a sparse visible suite and fail a hidden one, and a
-preregistered probe separates them from natural code at 96.7\%. The auditor does block them far
-more often than it blocks the natural residual, but the two populations differ in more than the
-property we meant to isolate, so this is not the prospective test of \S\ref{sec:residual} and we
-do not offer it as one.
+\textbf{Higher flag coverage at eight readings is not a higher ceiling.} On the defect
+population the same rule takes union flag coverage from 33 of 110 to \textbf{67 of 110},
+\textbf{+30.9 points} [19.1, 43.1], at \textbf{+20.7 points} [12.8, 28.8] of false positives,
+with a single-draw rate of 23.6\% [17.1, 30.3] that fails the product bar on all eight draws.
+The fitted asymptotes differ by $+27.1$ points [10.9, 39.0] and \emph{that does not establish a
+higher ceiling}: the cross-vendor arm never flattened, so one of the two terms is an
+extrapolation; heterogeneous low-probability detection imitates a ceiling at this budget, since
+an instance found with probability $0.02$ per reading survives eight readings about 85\% of the
+time; and this study's own zero-inflated estimator finds no never-detectable class in
+\emph{either} arm. Its adjudication kill is arithmetic rather than a labelling artefact --- only
+9 of 110 instances drew any finding, so the largest defect-asserting count available under
+perfect adjudication was 9, below the floor of 20. Every adjudication-derived figure in it is
+conditional on labels whose production can no longer be audited: one rater's raw reply, prompt,
+launcher and execution log lived only in a session scratchpad and were destroyed between the
+review that flagged them and the repair.
 
-\textbf{Two others.} A study of what a flag is worth, and a study of whether a changed rulebook
-moves a second vendor's family, were both refused for overstating what their measurements
-establish; their corrections do not change any number quoted above.
+\textbf{Corroboration does not validate a generated test.} A wrong generated test --- one that
+fails on the dataset's canonical solution --- is not reliably recognised by asking whether
+further independent generation draws also fail on the same candidate. Neither paid rule reaches
+the preregistered threshold: retained wrong-test rates are \textbf{12.2\%} (Wilson 7.0--20.6;
+cluster 3.6--22.6) and \textbf{14.9\%} against a limit of \textbf{2\%}, and neither beats the
+free within-draw comparator at 12.8\%. A floor of 2.4\% holds on the original unique-test
+quantity because 29 of the 45 wrong tests never fail on any candidate at all. The claim is
+negative and substrate-bound: these rules do not validate generated tests here, not that
+generated tests cannot be validated.
 
-We report these outcomes because a paper that makes evidentiary discipline its method should show
-the gate rejecting its own work, not only passing it. None of the numbers in
-\S\ref{sec:repeat}--\S\ref{sec:residual} depends on any of these four studies.
+\textbf{An injected population does not give the residual result a prospective test.} We
+constructed a population of injected defects intended to make specification-determinedness hold
+by construction. It does not. The filter registered to recover each edit's first failing hidden
+input is a truthiness check on a field the injector wrote; of 281 recorded witnesses 179 are
+strings and 102 are lists, none is executed, and four of the remaining five filters accept cases
+their registered wording excludes --- a suite that reports success after an early exit, a
+process that terminates without an assertion or an exception, an added import from a module
+already imported. \emph{No filter establishes specification entailment, and repairing the first
+one alone would not have}: recovering the failing input and executing a witness shows the edit
+changes behaviour on an input the hidden suite exercises, not that the specification entails the
+value expected there. What may be quoted is descriptive. At eight readings the auditor blocked
+\textbf{90 of 92} accepted injected instances against \textbf{11 of their 92} unmodified twins,
+79 discordant pairs one way and none the other, and against \textbf{33 of 110} on the natural
+residual; the instances the construction's own gate \emph{refused} were blocked \textbf{31 of
+40}, which is why that gate cannot be assumed conservative. A probe separates the injected set
+from the natural one at 96.7\% on the items it answered, \emph{by a feature it does not
+identify}: the two arms share no problem, so task composition alone could produce the result,
+and the probe's model is one of the two gate models. So \S\ref{sec:residual} keeps exactly the
+status its own study gave it, post hoc and unreplicated. A successor needs an independent party
+to validate the actual violation \emph{and} the specification-entailing expected behaviour under
+a fixed, blinded protocol; a second substrate alone does not suffice, and an independent rater
+alone does not either, because task composition and construction confounding survive both.
+
+\textbf{A fifth study was re-run twice and closed without a quotable number.} A second benchmark
+was reported here until its review refused quotation and we confirmed the reason: the
+visible-test text shown to the auditor \emph{and} to the generator was sliced out of its test
+class without the class header, so it failed to parse on all 300 tasks while scoring executed
+the intact class. The repair for that fault introduced a second one, re-attaching a hidden
+method's decorators to the first visible method on 26 tasks. A third run on a clean extraction
+reproduced five of the six findings that the second run had reversed and did not reproduce the
+sixth; the criterion registered before those numbers existed was stated over the set, so the
+strict reading applies and the study is closed. Three runs, about \$82, and no quotable number.
+Whether five of six should have licensed the five is recorded as an open question in
+\texttt{CLAIMS.md} rather than settled by us.
+
+\textbf{What the refusals were about.} Of the thirty-one rounds these four studies took after
+their first refusal, most ended in a refusal of the \emph{repair} rather than of the measurement.
+No measurement moved. The recurring failure was a check or a sentence that claimed more than it
+delivered: a binding that protected one sentence of a withdrawal spread across six; the same
+binding rewritten to protect all six, with two of them truncated before the words that carried
+their meaning; a check that stripped HTML comments and called the result what a reader sees; and
+a test named for a code path that never called it. The corrective is not a better patch but a
+smaller claim, written where the claim was.
 
 \subsection{What follows for a recall number}
 

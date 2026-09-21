@@ -33,8 +33,9 @@ directions: self-correction without external feedback does not reliably improve 
 degrade it \citep{huang2024selfcorrect}, and models prefer their own generations when used as
 judges \citep{chen2025selfpreference}. Our same-vendor and self-audit arms are the code-audit case
 of that literature, and we read our null there as consistent with it rather than as new. What our
-arms add is the false-positive rate beside the recall, and the observation that the direction
-reverses on a second substrate.
+arms add is the false-positive rate beside the recall. We also reported that the direction
+reverses on a second substrate; that claim is withdrawn with the study it came from
+(\S\ref{sec:inreview}).
 
 \textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites and
 reported defects in the original reference solutions \citep{liu2023evalplus}; its code carries
@@ -53,7 +54,7 @@ without a reference by agreement, through self-consistency, dual execution, or m
 suites \citep{taherkhani2026consistency, xu2025consensus}. In neither paper could we find the quantity that decides whether such
 a filter can be trusted: how many wrong assertions survive it. We measure it on a frozen set of canonical-failing tests and find that corroboration
 across independent generations does not reach our preregistered threshold, because wrong tests
-recur by problem; that study is \emph{in review} (\S\ref{sec:inreview}). This is the concrete case of a general result: self-consistent errors are
+recur by problem (\S\ref{sec:inreview}). This is the concrete case of a general result: self-consistent errors are
 exactly the class that every detection method they evaluate struggles to detect
 \citep{tan2025consistent}.
 
