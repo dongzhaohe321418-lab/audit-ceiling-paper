@@ -66,9 +66,39 @@ self-consistency (A1) and fault-awareness (A2).
    recall *and* false positives on correct code. The two are not the same experiment and must
    not be presented as replications of one another.
 
-## Not yet done
+## Table 2, read from primary text (pp. 13–14), and what it costs us
 
-* The reported FPR/FNR tables (their §5.1, Table 2) were not read. **No number from this paper
-  may enter our manuscript until they are.**
+Their Table 2 gives FPR and FNR per model, benchmark and prompting mode. Selected cells, in
+**their** convention (FNR = rejecting correct code = our false positive on stratum C):
+
+| model | benchmark | `Direct` FPR / FNR | `Full` FPR / FNR |
+|---|---|---|---|
+| GPT-4o | HumanEval | 2.44 / 26.2 | **0.00 / 73.2** |
+| GPT-4o | MBPP | 3.70 / 35.9 | **0.20 / 87.9** |
+| Claude-4-5-sonnet | HumanEval | 2.44 / 26.2 | 0.61 / 36.0 |
+| Claude-4-5-sonnet | QuixBugs | 5.00 / 40.0 | 2.50 / 50.0 |
+| Gemini-2.0-flash | HumanEval | 8.54 / 25.6 | 5.49 / 34.1 |
+
+No intervals are given with these rates.
+
+**Their §5.2 names the mechanism, and it is the one our rulebook study measured.** Enriching the
+prompt does not improve judgement uniformly; it *redistributes* error between the two kinds,
+buying fewer false acceptances at the price of more false rejections. Every model above moves
+that way: FPR down, FNR up.
+
+**This changes what our rulebook result may claim as new.** Our study 17/20 finding — a rulebook
+sentence raises union BLOCKER recall by +20.9 points [+10.8, +31.8] at +8.0 points [+3.4, +12.7]
+of false positives on correct code — is an instance of a **documented** tradeoff, not a
+discovery of one. What is ours is the measurement: a defect population, a matched-rate
+comparison, union at a stated depth, and intervals. **The paper must not present the tradeoff
+itself as a finding**, and any sentence that reads that way is to be narrowed to the
+measurement.
+
+Their answer to RQ1 is also a prior statement adjacent to our residual claim: judging
+conformance from the specification alone, without executing tests, is error-prone and
+model-dependent. Ours is narrower and about misses rather than false rejections, and it should
+be positioned against this rather than beside it.
+
+## Not yet done
 * The remaining four axes: sequential/adaptive, property-directed, debate/adversarial, and
   retrieval-augmented.
