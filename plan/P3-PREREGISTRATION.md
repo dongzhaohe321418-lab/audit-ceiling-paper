@@ -662,3 +662,51 @@ seen which text belongs to which condition. The author is the second rater, as r
 the author's independence limit is the one P1 already records.
 
 Shuffle seed `20260921`, as §5 fixes it.
+
+## Amendment 13 — the audit read the wrong program, and all 384 readings are void (2026-09-22)
+
+**Found during the author's own adjudication pass, before any outcome was computed.** Reading
+sheet item `P0002` I could not reconcile the finding with the evidence: the candidate shown
+returns exactly what the hidden suite expects on the first two failing inputs, while the
+witness's "actual" column showed a different program's output. It was not the finding that was
+wrong.
+
+**What happened.** `generate.py` set each condition's candidate to `Problem.canonical_solution`.
+In this corpus that field is **per problem**, while an instance is a **(batch, problem)** pair:
+`b1:Mbpp/459` and `b2:Mbpp/459` are two independent generations of one problem, each with its
+own candidate. The instance's identity — stratum P, flagged by no draw of any family — was
+established for *its* generated candidate. **All 32 instances' real candidates differ from
+`canonical_solution`.** Every one of the 384 audit readings was made against a program that was
+not the one the population is about, at a cost of \$2.19.
+
+**Why no gate caught it.** Gate 1 checks that the candidate is **byte-identical across the three
+conditions**. It was — identically wrong. The gate checks consistency and never checked
+identity: that the code under audit is *this instance's* code. `prove_spec_reaches_auditor.py`
+has the same shape of gap: it proves the three conditions send three different specifications
+and that the files are constant across them, and a constant wrong file passes it exactly as a
+constant right one does. **Both checks were satisfied by the defect.**
+
+**The repair.**
+
+1. The candidate comes from the frozen generation batches,
+   `study-data/wt-testgen-runs/inputs/solutions-b1.jsonl` and `-b2.jsonl`, keyed by the
+   instance's batch and problem. All 32 resolve there, with no instance ambiguous between files.
+2. A new check, `prove_candidate_is_the_instances.py`, requires each condition's candidate to
+   match the frozen batch file for that instance **and** to reproduce the witness's recorded
+   `actual` value on the witness's own failing inputs. The second half is the part that would
+   have caught this: a wrong program can match a digest scheme but cannot reproduce another
+   program's outputs.
+3. The 384 readings are **discarded, not reinterpreted**. `rows.jsonl` is kept as
+   `rows-void-canonical-candidate.jsonl` so the mistake stays inspectable, and the audit is
+   re-run.
+
+**What is unaffected, stated so the repair is not credited with more than it fixes.** The
+specifications, the gates on them, the population, and the manipulation check all stand: the
+manipulation check rated specification prose and never saw a candidate. What is void is the
+audit reading and everything downstream of it — the sheet, the leak counts on findings, and
+`L2`'s partial pass, which was stopped when this was found.
+
+**A cost worth recording.** \$2.19 of readings, and the defect survived every gate this study
+built. It was caught by reading the artefact by hand. The three proof programmes written for
+this study all check that a thing is *consistent* or *distinct*; none of them checked that a
+thing is *the right one*, and that is the class of check this study was missing.
