@@ -428,3 +428,48 @@ across arms, sees one instance's specification up to three times. The intervals 
 the problem, which is the right unit for the dependence between instances. It does not remove
 the rater's repeated exposure to the same text, which no design that rates all three arms of the
 same instance can remove.
+
+## Amendment 8 — the bare truth value is a predicate's vocabulary, not a leak (2026-09-22)
+
+The first full generation run kept 25 of 44 and dropped 19 at the gates. Reading the drop tally
+turned up a pattern that should be stated exactly, because my first reaction to it was wrong.
+
+**Every one of the 20 expected-value catches was the token `True` or `False`.** Not one was a
+substantive expected value. Gate 2 fires when the clarification contains the value the hidden
+suite expects at a failing input, and for a predicate that value is `True` or `False` — which is
+also the only vocabulary in which the behavioural rule can be written. "Returns true when the
+string is empty" is a general rule, and the gate cannot tell it from a leak.
+
+**The first thing I checked was whether this had cost anything, and the honest answer was
+almost none.** No instance was dropped for the boolean token alone; every instance that hit it
+also hit another gate. Had I stopped there I would have left the gate alone, and that would have
+been the right conclusion from the wrong evidence.
+
+What it did cost is the regeneration. **Eight instances — 18% of the population — spent their
+single permitted regeneration on a boolean token, and all eight were then dropped.** Whether
+their first drafts had any other problem cannot be recovered, because the record kept only the
+second evaluation's reasons. That is a second defect and it is fixed in the same change: both
+evaluations are now recorded, for kept instances as well as dropped ones.
+
+**The amendment.** An expected value of `True`, `False` or `None` does not fire the
+expected-value rule on its own. It fires when a failing input appears beside it, which is the
+pairing a leak actually carries, and the input rule fires on that pairing independently. A
+substantive expected value — anything that is not one of those three tokens — still fires the
+rule alone, and the hidden-line rule is untouched.
+
+Three planted cases prove both directions: a bare `True` stating a general rule passes, the same
+`True` beside its failing input is caught, and a substantive expected value is still caught
+alone. Seventeen cases now pass under the rule that each must be caught by the gate it plants.
+
+**This amendment was written after seeing the drop pattern, and that is the fact to weigh
+against it.** The defence is not that I did not look — I did, and what I saw is above. It is
+that the rule turns on an argument that would have been correct before the run: naming a
+predicate's returned truth value is how its rule is stated, and no clarification of a predicate
+can avoid it. A rule tuned to recover the eight instances would have set a length threshold or
+an allowlist of observed values; this one names the three literals that carry no information
+beyond the return type, and tightens nothing away.
+
+**The whole population is regenerated from scratch under the amended gate**, rather than
+re-running only the instances that were dropped. Re-running the drops alone would give them a
+fresh budget the 25 survivors never had, and the survivors would be a set selected by the
+stricter rule. One run, one record, the same budget for every instance.
