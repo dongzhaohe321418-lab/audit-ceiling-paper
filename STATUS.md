@@ -1,13 +1,12 @@
 # Status
 
-*Generated 2026-09-22 16:20 by `analysis/status.py`. Do not hand-edit: run the script.*
+*Generated 2026-09-22 17:27 by `analysis/status.py`. Do not hand-edit: run the script.*
 
 ## Running now
 
 * cross-vendor review (1 process)
 * review dispatcher (1 process)
 * report snapshot guard (1 process)
-* third-rater run (2 processes)
 
 **Codex allowance:** available
 
@@ -27,15 +26,15 @@
 | `codex-review-c4r1` | 4 | Quotable, with qualification — the measured coverage improvement reproduces without establishing a higher true ceiling. |
 | `codex-review-inject1` | 8 | Quotable descriptively / not quotable for C4.** The decisive reason is that the blocking observations reproduce, while s |
 | `codex-review-sub2r1` | 0 | not quotable — the re-run still shows models a different, sometimes runtime-broken visible suite from the one used for s |
-| `codex-review-sweep1` | 2 | — |
+| `codex-review-sweep1` | 6 | — |
 | `codex-review-testval8` | 2 | Quotable — the documentation now limits its assurance to what the evidence establishes. |
 
 ## Branch tips
 
 | repo | head | subject |
 |---|---|---|
-| paper | `4031acd` | P3 Amendment 1 outcome: inconclusive by the registered rule, and the sheet is broken *(uncommitted changes)* |
-| harness (fusion) | `48033b7` | rate3: the sheet's control arm was unanswerable, and the witness fixes both arms *(uncommitted changes)* |
+| paper | `1577968` | P3 Amendment 7: rate the placebo too, as the instrument's own control *(uncommitted changes)* |
+| harness (fusion) | `2ea6eee` | sweep r6: state only what I verified in the records myself |
 | study/injection | `a39eeaa` | study 22 round 9: FINAL in its descriptive form |
 | study/ceiling4 | `05b433f` | study 20 round 4: quotable, and four sentences narrowed to the evidence |
 | study/ceiling3b | `92e0bc7` | study 19 round 10: quotable, and the three non-blocking notes taken |
