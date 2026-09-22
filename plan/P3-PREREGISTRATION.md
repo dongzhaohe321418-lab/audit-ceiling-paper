@@ -541,3 +541,52 @@ rating's own repeats disagree at that rate, the manipulation check cannot settle
 the instance-level duplicate structure needed to measure that is absent here — each instance
 appears once per arm, and the arms differ by construction. That is recorded now as a known
 blind spot of this check rather than discovered afterwards.
+
+### Amendment 4's manipulation check — outcome (2026-09-22)
+
+Rated by `gpt-5.6-sol` under Amendment 10, on one shuffled sheet carrying all three arms of all
+32 instances run 3 kept, unlabelled, 96 items, seed 20260922.
+
+| arm | `determined` |
+|---|---:|
+| original | 15/32 = 46.9% |
+| clarified | 24/32 = 75.0% |
+| placebo | 18/32 = 56.3% |
+
+| contrast | points | problem-cluster 95% |
+|---|---:|---|
+| **clarified − original — the registered bar** | **+28.1** | **[+2.6, +54.3]** |
+| placebo − original — Amendment 7's validity read | +9.4 | [−3.7, +25.8] |
+| clarified − placebo — **post hoc** | +18.8 | [−9.4, +45.2] |
+
+**The registered bar is met.** The clarified specifications are judged `determined` more often
+than the originals and the difference excludes zero, so under Amendment 4 the audit reading may
+be bought. That is the registered rule and it is honoured.
+
+**Three things are recorded beside it, and none of them changes the bar.**
+
+*The contrast that isolates information does not exclude zero.* Both edited arms added text and
+only one added a rule, so **clarified − placebo is the comparison that holds added length
+constant** — and it is +18.8 points with an interval from −9.4 to +45.2. The registered
+comparison is against the original, and the registered comparison passed; but a third of the
+movement it measures is reproduced by an edit that resolves nothing, and the part attributable
+to the information is not distinguishable from zero on 19 problem clusters. **Any reading bought
+with this manipulation carries that.**
+
+*Amendment 7's validity read passes on its stated terms and only just.* The placebo contrast
+contains zero, so the registered grounds for doubting the instrument — a placebo excluding zero
+in the positive direction — are not triggered. Its point estimate is +9.4 points, which is not
+nothing, and saying it is would be reading a threshold as a finding.
+
+*The rater never abstained.* `cannot-tell` was available on all 96 items and was used **zero**
+times. The same three-option rubric drew 12 abstentions in 121 items from `gpt-5.6-luna` on the
+rebuilt P1 sheet and 47 in 121 on the broken one. A rater that never abstains on 96 items is
+plausibly forcing choices, and forced choices on the original arm are exactly what would inflate
+the registered contrast. **There is no duplicate structure in this sheet with which to measure
+it** — Amendment 10 recorded that blind spot before the reading, and this is what it looks like
+from the other side.
+
+**No bar is added now.** Amendment 7 said a threshold invented for a reading whose distribution
+nobody had seen would be a bar set where the result will clear it; the same objection applies to
+inventing one after the reading, in the other direction. The audit proceeds as registered, with
+these three sentences attached to whatever it returns.
