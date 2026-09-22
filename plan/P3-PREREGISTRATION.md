@@ -239,3 +239,30 @@ the rebuilt sheet and is not cancelled: it would say whether a human reading the
 evidence agrees, which is a different question from whether the premise survives a change of
 rater. Six items needed a per-item retry after a batch returned nothing; one of those
 (`H080`) took three attempts. Nothing else was re-asked.
+
+## Amendment 2 — a registered secondary population, 2026-09-21, before the first P3 call
+
+The population §5 registers is the residual intersected with study 21's consensus
+`ambiguous-oracle`: **44 instances**, frozen to `records/clarify/population.json`.
+
+Amendment 1's third rater, reading the rebuilt sheet, judges those same 44 as **30
+`undetermined`, 13 `determined`, 1 `cannot-tell`**. So on an independent reading, **roughly
+three in ten of the population are not specification-undetermined at all**.
+
+That matters for the manipulation rather than for the premise. Clarifying a specification that
+already settles the question is a no-op: those instances can only dilute the effect, and if H3
+fails it will not be possible to tell a null result from a diluted one.
+
+**Registered now, before any P3 reading is bought:**
+
+* The **primary** stays the 44 instances §5 registers. The registration is not rewritten because
+  a later rating disagreed with it.
+* A **secondary** is added on the 30 instances that both study 21's consensus and the third
+  rater call undetermined. It is reported beside the primary, always, whichever way each goes.
+* **If the two disagree in direction, the primary is what the study reports** and the
+  disagreement is the finding. If H3 holds on the 30 and fails on the 44, that is evidence the
+  manipulation works where there is something to manipulate — a weaker claim than H3 and stated
+  as one, not as H3 confirmed.
+
+The 13 disputed instances are listed in the record rather than dropped, so a reader can see which
+they are.
