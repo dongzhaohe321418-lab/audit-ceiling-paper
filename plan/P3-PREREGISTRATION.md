@@ -473,3 +473,35 @@ beyond the return type, and tightens nothing away.
 re-running only the instances that were dropped. Re-running the drops alone would give them a
 fresh budget the 25 survivors never had, and the survivors would be a set selected by the
 stricter rule. One run, one record, the same budget for every instance.
+
+## Amendment 9 — the regeneration must aim at the arm that failed, and this is the last run (2026-09-22)
+
+Run 2, under Amendment 8, kept 29 of 44, dropped 13 at the gates and lost 2 to provider
+refusals. Two facts in its record need stating, one a defect and one a finding.
+
+**The defect.** The single permitted regeneration tested for a length problem first. An instance
+carrying *both* a clarification problem and a length problem therefore regenerated the
+**placebo** and left the offending clarification untouched — a regeneration that could not
+repair what had failed. **Two of the thirteen drops went that way.** The branch now regenerates
+the clarification whenever the clarification is implicated, and regenerates the placebo after it
+because a new clarification moves the length the placebo must match; a length-only failure
+regenerates the placebo alone.
+
+**The finding, which is not a defect and is not repaired.** In the other eleven drops the
+regeneration aimed correctly at the clarification, and **the clarifier failed again every
+time.** Across run 2 the one permitted regeneration rescued **zero** instances. That is a
+property of `gpt-5.6-luna`, the weakest and least entangled model available once the Anthropic
+credit ran out, and it is reported as a property of the study's instrument rather than smoothed
+away by allowing more attempts. The allowance stays at one.
+
+**Run 3 is the primary population and the final generation run**, whatever it yields. This is
+registered now, before it runs, because the hazard of re-running after seeing a yield is
+obvious: a population regenerated until it looks right is a population selected on its outcome.
+The guards against that are stated here and are checkable — **every run's record is committed**
+(`conditions-run1-strict-gate.json`, `conditions-run2-amendment8.json`, and run 3 as
+`conditions.json`), the keep and drop counts of all three are reported together, and **no
+further generation run will be made except to repair a defect that changes which instances can
+enter, in which case that defect and this sentence will both be quoted.**
+
+A worse yield in run 3 than in run 2 is not grounds to prefer run 2. If run 3 keeps fewer
+instances, run 3 is still the population.
