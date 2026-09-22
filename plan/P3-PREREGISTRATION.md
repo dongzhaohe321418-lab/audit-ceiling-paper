@@ -590,3 +590,38 @@ from the other side.
 nobody had seen would be a bar set where the result will clear it; the same objection applies to
 inventing one after the reading, in the other direction. The audit proceeds as registered, with
 these three sentences attached to whatever it returns.
+
+## Amendment 11 — K was never fixed, and is fixed now, before the first audit call (2026-09-22)
+
+The core registration says "three conditions × 44 instances × **K** readings" and never says what
+K is. That is a researcher degree of freedom left open: reading a ladder and choosing its depth
+afterwards is choosing the result. It is closed here, before any audit reading is bought.
+
+**K = 4 readings per instance per condition.** The primary outcome is **union at K = 4** — an
+instance counts as correctly diagnosed in a condition when at least one of that condition's four
+readings is adjudicated as correctly diagnosing it. The ladder at K = 1, 2 and 3 is reported
+beside it, computed by exact subset averaging over all C(4,K) subsets as everywhere else in this
+programme, and **is not the primary** whatever it shows.
+
+**Why 4, argued from things that were true before the run.** It is the common depth P2 settled
+on and the depth at which ceiling 1's families are comparable; it is not chosen from anything
+this study has produced. Money is not the constraint — at `gpt-5.6-terra`'s measured $0.0163 per
+reading, 32 × 3 × 4 = 384 readings is about **$6**, an order below the registration's $40–60
+estimate. **Adjudication is the constraint**, and K = 4 puts it at study 19's scale.
+
+**What is adjudicated, and what is not.** Every reading that returned a finding goes on the
+blind sheet. A reading that returned **no finding at all** is counted as not diagnosed
+mechanically, without adjudication — there is no text to judge. This follows study 19's H19d
+exactly. The count of no-finding readings per condition is reported, because if it differs
+sharply across conditions that is itself a result and it must not hide inside the outcome.
+
+**The budget stands as registered**: cap $70, halt at $60, and the halt is checked against the
+manifests before each batch rather than estimated. Generation has cost about $6 across three
+runs and the manipulation check one rating pass; the audit at K = 4 is about $6 more. **A fourth
+condition is still not authorised, and neither is a second ladder.**
+
+**One thing this amendment cannot fix.** Fixing K after the manipulation check has run means I
+knew, when choosing it, that the clarified arm reads as more determined and that the
+clarified-minus-placebo contrast does not exclude zero. K = 4 is argued above from facts that
+predate this study, and the ladder is reported so that the choice is checkable rather than
+merely asserted — but the ordering is what it is, and it is recorded rather than glossed.
