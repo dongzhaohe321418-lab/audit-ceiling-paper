@@ -266,3 +266,26 @@ fails it will not be possible to tell a null result from a diluted one.
 
 The 13 disputed instances are listed in the record rather than dropped, so a reader can see which
 they are.
+
+## Amendment 3 — who writes the clarification, 2026-09-22, before the first generation call
+
+§2 says what a clarification may and may not add and does not name the model that writes it.
+Registered now, before any call:
+
+**The clarifier is `anthropic:claude-sonnet-4-6`. The auditor is the shipped cross-vendor
+auditor, `openai:gpt-5.6-terra`, as in ceiling 1.** They are different vendors and different
+models, and the first draft of the generator had the clarifier set to `gpt-5.6-terra` — the
+auditor that missed these very instances, writing the clarifications it would then be asked to
+read. That is caught here rather than in review.
+
+**Why a strong model and not the study's frozen generator.** `claude-haiku-4-5` writes the
+candidates in this programme and would be the conventional choice, but a clarification that
+fails to state the missing rule turns H3's null into a fact about the writer. The manipulation
+has to be real for its absence to mean anything. The trade is disclosed: the clarifier is
+stronger than the generator, and that is a property of the manipulation, not of the auditor.
+
+**The clarifier sees the witness; the auditor does not.** Only someone who knows which rule was
+left open can write it down, so the clarifier is shown the failing inputs. The auditor is shown
+the specification, the visible suite and the candidate — never the witness, the hidden suite, or
+which condition it is reading. Gate 2 checks mechanically that the clarification did not carry
+the failure across that boundary.
