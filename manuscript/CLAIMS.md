@@ -192,6 +192,34 @@ reproduced unchanged since round 1.
 population rise to **16.0%** [10.1, 22.3] at K = 8 for the cross-vendor auditor; the recall
 bought per false-positive point is 1.68. Evidence: ceiling 1.
 
+**C11 — Measured flag coverage is rule-dependent, and C2's magnitude belongs to C2's rule.**
+The severity sweep re-grades findings already archived by ceiling 1 and study 18 under four
+decision rules, with **no model calls**. C2's -26.4 points is specific to its **preregistered**
+flag, "≥ 1 BLOCKER finding" — ceiling 1's registration fixes it and study 18 inherits it — and
+**exploratory re-grading under any-finding grading reverses the sign.** That is a mechanical
+consequence of changing the counting rule. **It does not identify why the families produced
+different findings or different severities**, and it does not show that any auditor recognised
+any defect. Evidence: P2 (`RESULTS-SWEEP.md`, *quotable* at review round 7, 2026-09-22).
+
+**What may be quoted, at the stated depth and not otherwise.** At the common depth K = 4,
+`astra` exceeds `cross` on union recall over stratum P by **+11.5 points** [+2.9, +21.3],
+averaged over all 70 four-draw subsets on each side, paired over the same instances and
+clustered by problem; the paired false-positive difference is **-0.3 points** [-3.8, +3.4]. On
+`cross`'s complete eight-draw ladder the same contrast is **+2.7 points** [-6.5, +13.0] with a
+false-positive difference of **-5.3 points** [-10.3, -0.7] — **the complete-ladder comparison
+establishes lower false positives, not higher recall.** The observed false-positive rates at
+K = 4 are similar (10.7% [5.9, 16.0] against 10.9% [6.9, 15.4]); **that is an observation about
+two rates and not a matched operating point**, and the contrast leaves their difference
+unresolved. `self-strong` has no point between 3.3% and 34.0% false positives — exactly where a
+matched comparison would sit — so **that family is bracketed, not measured.**
+
+**Three limits are part of the claim.** Re-grading is not re-asking: it shows where existing
+findings fall under a different cut, not how an auditor would behave under different severity
+instructions. Flag coverage is not naming: nothing here assesses finding content against the
+hidden failure. And the sampling asymmetry travels with every cross-family row — the cross-vendor
+route is sent no sampling parameter while the same-vendor routes are sent temperature 0.
+
+
 ## Claims the evidence does not support, and which must not appear
 
 * *"The ceiling is set by unexercised edges."* Withdrawn by C4. The paper's earlier claim (2)
@@ -418,6 +446,9 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | 22 (injection) | — | **FINAL (descriptive) at round 9, 2026-09-21.** Moved to the admitted claims as C10 |
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
+| P2 (severity sweep) | — | **QUOTABLE at round 7, 2026-09-22.** Moved to the admitted claims as C11 |
+| P1 (third rating) | the missed-against-caught determinacy contrast, +19.8 points [+1.5, +38.2] | `RESULTS-RATE3.md` written 2026-09-22; **not yet reviewed**, and rated by a model, not the outside human P1 asks for |
+| P3 (clarification) | nothing yet — the registered manipulation check has not run | conditions generating 2026-09-22 under Amendments 5-7 |
 
 ## Rule
 
@@ -458,6 +489,7 @@ record says by which route each went:
 | 19 (ceiling 3b) | review | quotable at round 10 → **C8** |
 | 20 (ceiling 4) | review | qualified quotable at round 4 → **C9** |
 | 22 (injection) | review | final descriptively at round 9 → **C10** |
+| P2 (severity sweep) | review | quotable at round 7 → **C11** |
 | 23 (substrate 2) | removal | closed without a quotable number; nothing of it was in `tex/` |
 
 **The shipping condition in point 3 above is therefore met.** That does not mean the manuscript
