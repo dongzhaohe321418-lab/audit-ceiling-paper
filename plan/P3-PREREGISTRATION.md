@@ -588,9 +588,11 @@ nothing, and saying it is would be reading a threshold as a finding.
 times. The same three-option rubric drew 12 abstentions in 121 items from `gpt-5.6-luna` on the
 rebuilt P1 sheet and 47 in 121 on the broken one. A rater that never abstains on 96 items is
 plausibly forcing choices, and forced choices on the original arm are exactly what would inflate
-the registered contrast. **There is no duplicate structure in this sheet with which to measure
-it** — Amendment 10 recorded that blind spot before the reading, and this is what it looks like
-from the other side.
+the registered contrast. Amendment 10 recorded that blind spot before the reading, and *said
+there is no duplicate structure with which to measure it. That was wrong, and Amendment 10 now
+records the correction: the sheet carries **13 exact duplicate original specifications** and the
+rater agreed with itself on **12 of 13**. It measures repeatability on the original arm only,
+so the blind spot is real and smaller than either paragraph first claimed.*
 
 **No bar is added now.** Amendment 7 said a threshold invented for a reading whose distribution
 nobody had seen would be a bar set where the result will clear it; the same objection applies to
@@ -699,9 +701,11 @@ constant right one does. **Both checks were satisfied by the defect.**
    instance's batch and problem. All 32 resolve there, with no instance ambiguous between files.
 2. A new check, `prove_candidate_is_the_instances.py`, requires each condition's candidate to
    match the frozen batch file for that instance **and** to reproduce the witness's recorded
-   `actual` value on the witness's own failing inputs. The second half is the part that would
-   have caught this: a wrong program can match a digest scheme but cannot reproduce another
-   program's outputs.
+   `actual` value on the witness's own failing inputs. *This amendment said the second half
+   proves identity, because a wrong program cannot reproduce another's outputs. It does not:
+   agreement on finitely many witness cases establishes **consistency**, and identity comes from
+   the frozen-source comparison in the first half. Corrected after the second review of
+   `RESULTS-CLARIFY.md`.*
 3. The 384 readings are **discarded, not reinterpreted**. `rows.jsonl` is kept as
    `rows-void-canonical-candidate.jsonl` so the mistake stays inspectable, and the audit is
    re-run.
@@ -744,3 +748,30 @@ diagnosed instances sit on five problems out of eighteen. §4 said the result wo
 as found either way. This is what was found.
 
 Full report and its limits: `benchmarks/code/RESULTS-CLARIFY.md`. Not yet reviewed.
+
+### H3 — outcome, corrected after the second review (2026-09-23)
+
+The second review found the load-bearing classification wrong on **three of its 32 rows** and
+the population understated by one instance. Both are corrected above and in
+`RESULTS-CLARIFY.md`. The corrected reading, on **32 instances over 19 problems**:
+
+| condition | correctly diagnosed at K = 4 |
+|---|---:|
+| original | 0 / 32 |
+| **clarified** | **9 / 32 = 28.1%** |
+| placebo | 0 / 32 |
+
+Clarified minus original **+28.1 points** [+7.7, +51.4]; exact McNemar **0.0039**; cluster
+sign-flip **0.0602** (exact enumeration 0.0625). Amendment 2's registered secondary: **8/23**
+against **0/23**, **+34.8 points** [+10.0, +60.9]. Agreement 84/91, κ 0.852.
+
+Judged against **all 137 archived failing cases**, the additions divide into **6 that agree with
+the oracle throughout, 1 that relaxes a stated precondition, 2 that agree on some cases and
+contradict on others, and 23 that contradict it** — diagnosed 6/6, 1/1, 2/2 and 0/23. The
+correctness of an addition was **measured, not assigned**, so this is an association on a
+selected population and not a manipulated factor.
+
+**H3's registered criterion is unchanged and still met.** What changed is the description of
+what the manipulation was, and the study now says that the generator was shown failing inputs
+without their expected values and inferred a rule that contradicts the oracle on 23 of 32
+instances.
