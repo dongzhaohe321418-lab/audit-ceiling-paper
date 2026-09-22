@@ -164,12 +164,12 @@ defective, in twelve MBPP tasks named in a paper written for another purpose, ou
 paper's own ``incomplete'' category draws. That check is one-sided by construction: it can support
 agreement where an outsider looked, and can bound nothing about the rate.
 
-\subsection{Four studies, thirty-one review rounds, and what they license}
+\subsection{Six studies, forty-four review rounds, and what they license}
 \label{sec:inreview}
 
 Four further studies had reported when this paper was first written, and all four were refused
 quotation by their independent reviews on the same day. They have since passed, after between
-four and eleven rounds each. We report them here rather than folding them into the sections
+four and eleven rounds each. Two more have since reported and passed, at seven rounds and six. We report them here rather than folding them into the sections
 above because three of the four are narrow or negative results whose limits are part of the
 claim, and because the shape of the refusals is itself a finding about this method.
 
@@ -250,14 +250,56 @@ strict reading applies and the study is closed. Three runs, about \$82, and no q
 Whether five of six should have licensed the five is recorded as an open question in
 \texttt{CLAIMS.md} rather than settled by us.
 
-\textbf{What the refusals were about.} Of the thirty-one rounds these four studies took after
-their first refusal, most ended in a refusal of the \emph{repair} rather than of the measurement.
-No measurement moved. The recurring failure was a check or a sentence that claimed more than it
+\textbf{Measured flag coverage is rule-dependent, and a headline's magnitude belongs to its own
+rule.} Re-grading findings already archived by two of the studies above under four decision
+rules, with no new model calls, leaves the shipped BLOCKER threshold's estimate intact for its
+own rule --- which \emph{was} preregistered, as ``$\geq 1$ BLOCKER finding'' --- while
+\emph{reversing its sign} under any-finding grading. That reversal is a mechanical consequence
+of changing what counts, and it identifies nothing about why the families produced different
+findings or different severities. At a common depth of four readings, \texttt{astra} exceeds the
+cross-vendor auditor on union recall over the defect stratum by \textbf{+11.5 points} [+2.9,
++21.3], averaged over all 70 four-draw subsets on each side and paired within instance, with a
+false-positive difference of $-0.3$ points $[-3.8, +3.4]$. On the cross-vendor auditor's
+complete eight-draw ladder the same contrast is $+2.7$ points $[-6.5, +13.0]$ with a
+false-positive difference of \textbf{$-5.3$ points} $[-10.3, -0.7]$: that comparison establishes
+\emph{lower false positives, not higher recall}. Observed false-positive rates near one another
+are not a matched operating point, and one family has no reachable point between 3.3\% and
+34.0\% false positives --- precisely where a matched comparison would sit --- so its ranking is
+\emph{bracketed rather than measured}. Nothing here assesses finding content against the hidden
+failure, so none of it speaks to what any finding identified.
+
+\textbf{The ambiguity gap survives a rater who is not an author, and the instrument that shows
+it disagrees with itself.} The contrast in \S\ref{sec:residual} between missed and caught
+instances had been rated by a model and by an author. A third model re-rated the whole sheet
+after we rebuilt it on mechanically recovered witnesses --- necessary because its control arm
+had been \emph{unanswerable}: 42 of 53 caught entries carried no failing-input evidence and all
+42 drew \texttt{cannot-tell}. The share labelled \emph{undetermined} is 43 of 68 against 23 of
+53, \textbf{+19.8 points} [+1.2, +38.1]; those two groups are not two populations, since 11
+instances sit in both arms, and removing the duplicates gives $+23.3$ points $[+2.0, +43.6]$ ---
+\emph{post hoc}, and larger, so the overlap had understated it. The limit is part of the result:
+on those 11 instances, shown with identical text and identical evidence, \textbf{the rater
+agreed with itself on 7 of 11} on this binary outcome and 5 of 11 on the full label, where the
+earlier study's two raters each agreed 11 of 11. Every interval's lower end lies within five
+points of zero, and this remains a model rather than the outside human the design asks for.
+Separately, the \emph{unrepaired} sheet scored $+54.2$ points $[+38.5, +69.5]$ --- 2.7 times the
+repaired contrast, in the direction that flatters the hypothesis --- which is evidence about
+sheets and not about specifications, and which a preregistered inconclusiveness gate catches.
+
+\textbf{What the refusals were about.} Of the forty-four rounds these six studies took, most
+ended in a refusal of the \emph{repair} rather than of the measurement. No measurement moved in
+any of them; every figure above reproduced independently at every round it was checked. The recurring failure was a check or a sentence that claimed more than it
 delivered: a binding that protected one sentence of a withdrawal spread across six; the same
 binding rewritten to protect all six, with two of them truncated before the words that carried
 their meaning; a check that stripped HTML comments and called the result what a reader sees; and
-a test named for a code path that never called it. The corrective is not a better patch but a
-smaller claim, written where the claim was.
+a test named for a code path that never called it. A second pattern appeared in the last
+thirteen rounds and is worth separating from the first: most of those refusals were
+\emph{overstatements away from our own interest} --- a registration whose chronology its own
+repository contradicted, a withdrawal that overcorrected past what the record supported, a
+publication prohibition a registered gate never imposed, a limitation credited to another
+study's work that the other study had not performed. Modesty is not the safe direction; it is
+another direction in which a sentence can be wrong. The corrective is not a better patch but a
+smaller claim, written where the claim was --- and a heading, a title and a limitation are
+claims.
 
 \subsection{What follows for a recall number}
 
