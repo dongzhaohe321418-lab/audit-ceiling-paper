@@ -82,6 +82,21 @@ construction is sound because two earlier paired-contrast constructions in this 
 found by review to cover $0.416$ and $0.075$ where $0.95$ was claimed, and both were replaced. No sample size was
 justified in advance by a minimum-detectable-effect calculation.
 
+\textbf{An interval that contains zero is reported as one that does not exclude zero, and
+nothing more.} No equivalence margin was registered anywhere in this programme and no
+equivalence test was performed, so none of those intervals is evidence that two conditions are
+alike or that an intervention did nothing --- a distinction this work has already had to make
+the hard way, having once inferred equal cost from an interval containing zero and withdrawn it
+on review. Where a hypothesis fails its registered criterion we say it failed, not that the
+effect is absent.
+
+All analysis is plain Python 3.13 using only the standard library --- \texttt{random},
+\texttt{math}, \texttt{itertools}, \texttt{csv} and \texttt{json}. The bootstrap, the exact
+McNemar test, the cluster sign-flip permutation and the exact subset enumeration behind every
+union-at-$K$ figure are implemented in the repository rather than called from a numerical
+package, so each is readable at the point where it is used, and none depends on a third-party
+version.
+
 \subsection{Preregistration and independent review}
 
 Each study was preregistered before its first model call, fixing its population, hypotheses,
