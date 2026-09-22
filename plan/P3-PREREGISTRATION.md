@@ -625,3 +625,40 @@ knew, when choosing it, that the clarified arm reads as more determined and that
 clarified-minus-placebo contrast does not exclude zero. K = 4 is argued above from facts that
 predate this study, and the ladder is reported so that the choice is checkable rather than
 merely asserted — but the ordering is what it is, and it is recorded rather than glossed.
+
+## Amendment 12 — the adjudication sheet cannot show the specification (2026-09-22, before it is built)
+
+§5 says the sheet builder is study 19's, reused unchanged. **It cannot be, and the reason is
+structural rather than incidental.** Study 19's sheet shows the rater the specification, the
+candidate, the hidden failure and the finding text. In study 19 the specification was constant
+across the arms being compared. **In P3 the specification *is* the manipulation.** A sheet that
+shows it hands the rater the condition label in the first paragraph, and §5's requirement that
+sheets carry "no condition label" would be satisfied in letter and destroyed in fact.
+
+**The sheet therefore shows: an opaque id, the candidate solution, the hidden failure — its
+first failing inputs with the expected and actual values — and the finding text.** No
+specification, no arm, no instance id, no severity, no rule. The question is unchanged from the
+registration: does this finding state the behaviour the hidden suite expects at an input the
+hidden suite exercises, in a way that would let a reader fix the code without seeing the test?
+
+Dropping the specification is a loss and is stated as one: a rater judging whether a finding
+would let someone fix the code has less context than a rater who can see what the function was
+asked to do. The hidden failure carries the necessary part — input, expected, actual — which is
+the standard the question is written against, and study 19's sheet showed the same evidence.
+
+**A leak this cannot close, and how it will be measured rather than asserted away.** A finding
+written under the clarified condition may quote or paraphrase the sentence the clarification
+added. No blinding removes that: the finding is the auditor's own text, and the arms differ
+precisely because the input differed. So before adjudication, **every finding is checked
+mechanically for overlap with its own condition's added sentence, and the count is reported per
+arm.** If a large share of clarified-arm findings carry recognisable clarification wording, the
+adjudication is compromised in a way the design cannot fix, and that is a result to report, not
+a detail to bury.
+
+**The rater.** `gpt-6-astra`, which is neither the auditor (`gpt-5.6-terra`) nor the clarifier
+(`gpt-5.6-luna`), and which performed exactly this adjudication for study 19's H19d. **`gpt-5.6-sol`
+is now excluded**: it rated all three arms' specifications for the manipulation check, so it has
+seen which text belongs to which condition. The author is the second rater, as registered, and
+the author's independence limit is the one P1 already records.
+
+Shuffle seed `20260921`, as §5 fixes it.
