@@ -358,3 +358,45 @@ still misses after one regeneration is still dropped with its reason recorded.
 
 Drops remain reported in full. If the drop rate stays high after this change, that is reported
 as the study's outcome and not repaired by further amendment.
+
+## Amendment 6 — two gates that were instructed but never checked (2026-09-22, before generation)
+
+The three-instance smoke run that followed Amendment 5 passed two of three instances, and the
+third was a genuine leak catch. Reading the two that passed turned up something no gate was
+looking for: **two of the three edited specifications began with a `SPECIFICATION:` header**,
+echoed back out of the prompt. No original has one.
+
+Neither existing gate can see it. The leak gate cannot: the header carries no hidden
+information. The length gate cannot: one word is inside the band. And the header is not
+harmless. It is a label reading *this arm was edited*, legible to the determinacy rater whose
+blinding the entire manipulation check rests on, and to the auditor afterwards.
+
+That prompted a second question: both generators are instructed to "change no sentence that is
+already there", and **nothing had ever checked that either**. The instruction had been trusted
+since it was written.
+
+Two gates are therefore added before any instance is bought:
+
+* **Gate 4, preservation.** Every sentence of the original must appear in the edited text, in
+  the original's order. Additions before, between, or after them are the point; a deletion, a
+  reordering, or a rewritten sentence is not. The check is at sentence granularity, not line
+  granularity: the first draft compared lines and failed its own clean fixture, because
+  appending a sentence to an existing paragraph rewrites that line while deleting nothing.
+* **Gate 5, no scaffolding.** None of the lines used to *build* the prompt may appear in what
+  comes back. It is stated over the scaffolding as a whole, and the caller passes the same
+  constants it built the prompt from, so the gate cannot drift out of step with the prompt.
+  Stating it over the one header that was observed would have been a gate shaped like the
+  accident.
+
+A transcription artefact should not cost an instance its one regeneration, so the generator
+also strips a leading scaffolding header before the gates run. The gate remains the independent
+check: it is what catches the header if the stripping ever fails.
+
+**The proof programme was strengthened at the same time, and this matters more than the gates.**
+It had been checking only whether a planted case was caught by *something*. Three of the five
+new cases were caught by the length gate rather than by the rule they planted — the same
+failure the hidden-line case had already been fixed for once. Every case now names the text its
+intended gate produces, and a case caught by a different gate fails. Two of the original eight
+cases had their expectations corrected by this, and the fixture's six identical sentences were
+replaced with six distinct ones, because "reordered" and "dropped a sentence" could not be
+planted against six copies of the same sentence. Fourteen cases now pass under the stricter rule.
