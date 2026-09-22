@@ -102,3 +102,53 @@ be positioned against this rather than beside it.
 ## Not yet done
 * The remaining four axes: sequential/adaptive, property-directed, debate/adversarial, and
   retrieval-augmented.
+
+---
+
+# The sequential / relay axis, and one paper that is about our own method
+
+Read 2026-09-22 from the HTML full text. **Jin & Chen above is about the object of study; this
+one is about the instrument we use to check ourselves.**
+
+**"Audit Without Verification: When LLM Accountability Layers Relay Rather Than Check"**,
+arXiv 2609.07680v1.
+
+**What it studies.** An external auditor model that reads other agents' *filed reports* — an
+escalation flag, an anomaly type, a suspected origin, and free text — and must say which step of
+a six-link chain introduced a defect. Two domains: a supply chain (57,600 episodes across two
+chain models, 345,600 requests each) and a six-link software-delivery toolchain (21,600 requests
+per chain model).
+
+**Its result.** On episodes where no agent proposed the true origin, the auditor reached **4.1%**
+accuracy against a 20% random baseline and 31.0% for a fixed-link comparator. Where an agent
+raised a **false** alarm on a genuinely clean episode, the auditor endorsed an innocent party in
+**34.4% and 62.6%** of those episodes across the two chain models. Across 7,996 clean episodes
+where every agent stayed silent, the auditor originated **zero** allegations.
+
+**The number that decides whether this applies to us.** The 4.1% is the **restricted-interface**
+condition: reports only, no access to the underlying artefact. **Given the raw documentation, the
+same auditor reached 60.3% on the same episodes.**
+
+## What this says about our cross-vendor reviews, in both directions
+
+**Where we are on the right side of it.** Our reviewers are handed the worktree. They recompute
+rates from the committed records, re-execute the analysis with writes intercepted, and reproduce
+intervals with their own implementations — that is the 60.3% condition and not the 4.1% one.
+Empirically they behave like checkers: they refused this programme's reports seven times on the
+sweep and six times on the third rating, mostly over claims the prose made about arithmetic they
+had already confirmed.
+
+**Where we are not.** **Every review prompt this programme writes states the claimed result
+before the reviewer starts.** That is precisely the paper's "conclusion field ... available to
+the component whose independence it compromises", and its recommendation is to separate
+observation from conclusion and make the conclusion *suppressible at the audit boundary*. We
+have never tested what our reviewers find without being told what we claim.
+
+**A concrete proposal, not yet run.** Dispatch one review of an already-settled report under a
+prompt that gives the binding files, the question, and the verification list, but **withholds
+every claimed figure and the verdict of previous rounds**, then compare what it finds against
+what the conclusion-bearing prompt found. If the findings coincide, the prompts' conclusions are
+not doing the work; if the suppressed-prompt reviewer finds something the others missed, the
+programme has been measuring its own reports through a channel it did not know was open. Either
+outcome is worth the one dispatch, and it is the only check of our own instrument we have not
+made.
