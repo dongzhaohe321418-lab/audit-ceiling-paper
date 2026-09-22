@@ -220,6 +220,38 @@ hidden failure. And the sampling asymmetry travels with every cross-family row �
 route is sent no sampling parameter while the same-vendor routes are sent temperature 0.
 
 
+**C12 — The missed-against-caught ambiguity gap survives a rater who is not the author, on a
+control arm that can be answered — and the instrument that shows it disagrees with itself.**
+P1's third rating had `gpt-5.6-luna` re-rate all 121 entries of the study 21 sheet after it was
+rebuilt on mechanically recovered witnesses, because its control arm had been unanswerable: 42
+of 53 caught entries carried no failing input class and all 42 drew `cannot-tell`. Evidence: P1
+(`RESULTS-RATE3.md`, *quotable* at review round 6, 2026-09-22).
+
+**What may be quoted, with its scope.** On the sheet's two groups — the reading the method
+registered in P3's Amendment 1 — the share labelled `undetermined` is **43/68 = 63.2% against
+23/53 = 43.4%, +19.8 points** [+1.2, +38.1]. **Those two groups are not two populations**: 11
+instances sit in both arms, because the 68-entry missed sheet is 57 residual instances plus 11
+caught ones. Removing the duplicated instances' missed-arm copies — **post hoc**, registered
+nowhere — gives **38/57 against 23/53, +23.3 points** [+2.0, +43.6]. The overlap *understated*
+the contrast.
+
+**Three limits are part of the claim, and the first is binding.** On the 11 instances carried in
+both arms, with identical specification text and identical witness display, **the rater agreed
+with itself on 7 of 11 on this binary outcome (6 problems), 5 of 11 on the full three-option
+label (6 problems), and 5 of 7 among the abstention-free pairs (4 problems)** — where study 21's
+two raters each agreed 11 of 11 on the same instances under a different instrument. Second,
+every interval's lower end is within five points of zero. Third, **this is a model, not the
+human from outside the project that P1 exists to obtain**, and `L1` — the author — rated all 121
+entries, so for every instance the programme holds a re-test rather than an independent review.
+
+**Not a claim, and recorded to stop it becoming one.** The same rater scored the *unrepaired*
+sheet at +54.2 points [+38.5, +69.5], 2.7 times the repaired contrast and in the direction that
+flatters C4, because its caught arm could not be answered. That comparison is **evidence about
+sheets, not about specifications**, it does not isolate presentation from a fresh model run, and
+the registered one-third `cannot-tell` gate fires on it — the broken arm was 79.2% — so it could
+not have authorised proceeding under the positive branch.
+
+
 ## Claims the evidence does not support, and which must not appear
 
 * *"The ceiling is set by unexercised edges."* Withdrawn by C4. The paper's earlier claim (2)
@@ -447,7 +479,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 | P2 (severity sweep) | — | **QUOTABLE at round 7, 2026-09-22.** Moved to the admitted claims as C11 |
-| P1 (third rating) | nothing yet — the missed-against-caught reading is **withdrawn**: 11 of the sheet's instances sit in both arms | round 1 refused 2026-09-22 on three blocking errors, all real. Rewritten; the disjoint post-hoc reading is +23.3 points [+2.0, +43.6], rated by `gpt-5.6-luna`, **not** the outside human P1 asks for. The method was registered in P3's Amendment 1; `plan/P1-ANALYSIS-REGISTRATION.md` is withdrawn as falsely describing its own chronology, and the disjoint reading, the abstention-excluded secondary and the broken-sheet comparison are post hoc. **Binding constraint: on the 11 instances carried in both arms — 6 problems — the rater agreed with itself on 7 of 11 on the primary binary outcome (6 problems), 5 of 11 on the full label (6 problems), and 5 of 7 among the abstention-free pairs (**4** problems), while the comparator's two raters each agreed 11 of 11** |
+| P1 (third rating) | — | **QUOTABLE at round 6, 2026-09-22.** Moved to the admitted claims as C12 |
 | P3 (clarification) | nothing yet — the registered manipulation check has not run | conditions generating 2026-09-22 under Amendments 5-7 |
 
 ## Rule
@@ -490,6 +522,7 @@ record says by which route each went:
 | 20 (ceiling 4) | review | qualified quotable at round 4 → **C9** |
 | 22 (injection) | review | final descriptively at round 9 → **C10** |
 | P2 (severity sweep) | review | quotable at round 7 → **C11** |
+| P1 (third rating) | review | quotable at round 6 → **C12** |
 | 23 (substrate 2) | removal | closed without a quotable number; nothing of it was in `tex/` |
 
 **The shipping condition in point 3 above is therefore met.** That does not mean the manuscript
