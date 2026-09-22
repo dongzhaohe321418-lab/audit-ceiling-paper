@@ -710,3 +710,31 @@ audit reading and everything downstream of it — the sheet, the leak counts on 
 built. It was caught by reading the artefact by hand. The three proof programmes written for
 this study all check that a thing is *consistent* or *distinct*; none of them checked that a
 thing is *the right one*, and that is the class of check this study was missing.
+
+### H3 — outcome (2026-09-22)
+
+Adjudicated by `L1` (the author) and `L2` (`gpt-6-astra`) on the 87-item blind sheet; both must
+say yes; disagreement counts as not diagnosed, as §3 fixed before any reading.
+
+| condition | correctly diagnosed at K = 4 |
+|---|---:|
+| original | 0 / 31 |
+| **clarified** | **9 / 31 = 29.0%** |
+| placebo | 0 / 31 |
+
+Clarified minus original **+29.0 points**, problem-cluster percentile bootstrap
+**[+9.1, +51.7]**, seed 20260921, 10,000 resamples. Exact McNemar **0.0039**; cluster sign-flip
+permutation **0.0615**. The placebo difference is +0.0.
+
+**H3 holds on both halves, by the criterion §4 registered**: the clarified-minus-original
+difference excludes zero on the problem-cluster bootstrap, and the placebo difference is smaller
+than the clarified difference.
+
+**And the test §5 names as the one that respects clustering gives 0.0615.** That is recorded
+here, in the outcome, rather than in a limits paragraph. The kill criterion was written over the
+interval and not over a p-value, so the registered reading is unchanged — but the design's own
+preferred test does not clear a conventional threshold, and the reason is that the nine
+diagnosed instances sit on five problems out of eighteen. §4 said the result would be reported
+as found either way. This is what was found.
+
+Full report and its limits: `benchmarks/code/RESULTS-CLARIFY.md`. Not yet reviewed.

@@ -480,7 +480,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 | P2 (severity sweep) | — | **QUOTABLE at round 7, 2026-09-22.** Moved to the admitted claims as C11 |
 | P1 (third rating) | — | **QUOTABLE at round 6, 2026-09-22.** Moved to the admitted claims as C12 |
-| P3 (clarification) | nothing yet — the registered manipulation check has not run | conditions generating 2026-09-22 under Amendments 5-7 |
+| P3 (clarification) | the causal reading of C4: correct diagnosis 0/31 original, **9/31 clarified**, 0/31 placebo, +29.0 points [+9.1, +51.7] | **H3 holds on its registered criterion**, 2026-09-22, under 13 amendments. **Not yet reviewed.** Read beside it: the cluster sign-flip permutation the registration itself calls the test that respects clustering gives **p = 0.0615** (exact McNemar 0.0039), because the nine diagnosed instances sit on five problems of eighteen. Amendment 13 discarded the first audit's 384 readings — they audited `canonical_solution`, which is per problem, for instances that are per (batch, problem), and no gate caught it |
 
 ## Rule
 
