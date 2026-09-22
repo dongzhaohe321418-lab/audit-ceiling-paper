@@ -42,7 +42,10 @@ def running() -> list[str]:
                        ("dispatch.sh", "review dispatcher"),
                        ("guard-all.sh", "report snapshot guard"),
                        ("third_rater", "third-rater run"),
-                       ("audit2_sub", "study 23 audit")):
+                       ("audit2_sub", "study 23 audit"),
+                       ("clarify/audit_run", "P3 audit readings"),
+                       ("clarify/generate", "P3 condition generation"),
+                       ("manipulation_check", "P3 manipulation check")):
         pids = sh("pgrep", "-f", pat).split()
         if pids:
             out.append(f"{label} ({len(pids)} process{'es' if len(pids) > 1 else ''})")
@@ -103,11 +106,20 @@ def main() -> int:
         "",
         "## Blocked on the owner",
         "",
-        "* **P1, the 121-item blinded rating** — `~/Desktop/CrossAudit-审计天花板/人类评分任务/`.",
-        "  Rebuilt 2026-09-22 on mechanical evidence after the control arm was found",
-        "  unanswerable; 49 of 53 control items are answerable now against 11 before.",
-        "* **Whether P3 may start on model raters alone**, if the rebuilt sheet's third rating",
-        "  clears its registered bar. The decision is recorded in `plan/P3-PREREGISTRATION.md`.",
+        "* **P1, the 121-item blinded rating by a human from outside the project** —",
+        "  `~/Desktop/CrossAudit-审计天花板/人类评分任务/`. The sheet was rebuilt 2026-09-22 on",
+        "  mechanical evidence after its control arm was found unanswerable, and a third MODEL",
+        "  has now rated it (C12). **That does not discharge this**: P1 exists to obtain a",
+        "  rating by someone outside the project, and C12 says so in the claim itself.",
+        "* **The Anthropic credit**, which blocks every same-vendor arm and the",
+        "  temperature-matched replication.",
+        "",
+        "## Decided, and recorded rather than left implied",
+        "",
+        "* **P3 proceeds on model raters alone.** The owner delegated the decision; the",
+        "  precondition was checked and holds, the registered manipulation check cleared its",
+        "  bar, and the audit readings are being bought. Every step is in",
+        "  `plan/P3-PREREGISTRATION.md` with the amendment that governs it.",
         "",
         "## Review rounds",
         "",

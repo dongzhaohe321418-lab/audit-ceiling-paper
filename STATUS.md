@@ -1,22 +1,30 @@
 # Status
 
-*Generated 2026-09-22 17:27 by `analysis/status.py`. Do not hand-edit: run the script.*
+*Generated 2026-09-22 19:21 by `analysis/status.py`. Do not hand-edit: run the script.*
 
 ## Running now
 
-* cross-vendor review (1 process)
-* review dispatcher (1 process)
 * report snapshot guard (1 process)
+* P3 audit readings (1 process)
 
 **Codex allowance:** available
 
 ## Blocked on the owner
 
-* **P1, the 121-item blinded rating** — `~/Desktop/CrossAudit-审计天花板/人类评分任务/`.
-  Rebuilt 2026-09-22 on mechanical evidence after the control arm was found
-  unanswerable; 49 of 53 control items are answerable now against 11 before.
-* **Whether P3 may start on model raters alone**, if the rebuilt sheet's third rating
-  clears its registered bar. The decision is recorded in `plan/P3-PREREGISTRATION.md`.
+* **P1, the 121-item blinded rating by a human from outside the project** —
+  `~/Desktop/CrossAudit-审计天花板/人类评分任务/`. The sheet was rebuilt 2026-09-22 on
+  mechanical evidence after its control arm was found unanswerable, and a third MODEL
+  has now rated it (C12). **That does not discharge this**: P1 exists to obtain a
+  rating by someone outside the project, and C12 says so in the claim itself.
+* **The Anthropic credit**, which blocks every same-vendor arm and the
+  temperature-matched replication.
+
+## Decided, and recorded rather than left implied
+
+* **P3 proceeds on model raters alone.** The owner delegated the decision; the
+  precondition was checked and holds, the registered manipulation check cleared its
+  bar, and the audit readings are being bought. Every step is in
+  `plan/P3-PREREGISTRATION.md` with the amendment that governs it.
 
 ## Review rounds
 
@@ -25,16 +33,17 @@
 | `codex-review-c3br8` | 2 | quotable — the complete measured outputs now reproduce, and the active interpretation matches the instrument. |
 | `codex-review-c4r1` | 4 | Quotable, with qualification — the measured coverage improvement reproduces without establishing a higher true ceiling. |
 | `codex-review-inject1` | 8 | Quotable descriptively / not quotable for C4.** The decisive reason is that the blocking observations reproduce, while s |
+| `codex-review-rate3` | 5 | Quotable — the report now keeps its reproducible model-rating results within the scope the evidence supports. |
 | `codex-review-sub2r1` | 0 | not quotable — the re-run still shows models a different, sometimes runtime-broken visible suite from the one used for s |
-| `codex-review-sweep1` | 6 | — |
+| `codex-review-sweep1` | 7 | Quotable** — the report now confines its conclusions to reproducible, exploratory flag coverage. |
 | `codex-review-testval8` | 2 | Quotable — the documentation now limits its assurance to what the evidence establishes. |
 
 ## Branch tips
 
 | repo | head | subject |
 |---|---|---|
-| paper | `1577968` | P3 Amendment 7: rate the placebo too, as the instrument's own control *(uncommitted changes)* |
-| harness (fusion) | `2ea6eee` | sweep r6: state only what I verified in the records myself |
+| paper | `8f7c8c5` | paper: rebuild with C11 and C12 (11 pages, clean) *(uncommitted changes)* |
+| harness (fusion) | `26a5aa2` | P3: H3's outcome code, checked against datasets whose answers are known by hand |
 | study/injection | `a39eeaa` | study 22 round 9: FINAL in its descriptive form |
 | study/ceiling4 | `05b433f` | study 20 round 4: quotable, and four sentences narrowed to the evidence |
 | study/ceiling3b | `92e0bc7` | study 19 round 10: quotable, and the three non-blocking notes taken |
