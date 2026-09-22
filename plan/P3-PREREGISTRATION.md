@@ -537,10 +537,16 @@ manipulation-check result had been produced when this was written.
 P1's measurement of `gpt-5.6-luna` on a similar task is the reason to take that seriously: on
 11 specifications rated twice in one pass, `luna` agreed with itself 7 times on the binary
 outcome and 5 on the full label, where study 21's two raters each agreed 11 of 11. **If this
-rating's own repeats disagree at that rate, the manipulation check cannot settle anything**, and
-the instance-level duplicate structure needed to measure that is absent here — each instance
-appears once per arm, and the arms differ by construction. That is recorded now as a known
-blind spot of this check rather than discovered afterwards.
+rating's own repeats disagree at that rate, the manipulation check cannot settle anything.**
+
+*This paragraph originally said the duplicate structure needed to measure that is absent here,
+because each instance appears once per arm. The first review of `RESULTS-CLARIFY.md` found that
+claim overstated:* the manipulation sheet carries **13 exact duplicate original specifications**
+— two instances of the same problem share one original — and the rater agreed with itself on
+**12 of 13**, disagreeing on the two `Mbpp/391` copies. That measures repeatability on the
+*original* arm only, not accuracy and not repeatability on the edited arms, so the blind spot is
+real but smaller than stated. **A limit asserted larger than the truth is still a wrong
+sentence.**
 
 ### Amendment 4's manipulation check — outcome (2026-09-22)
 
