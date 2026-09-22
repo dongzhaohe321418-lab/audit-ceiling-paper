@@ -400,3 +400,31 @@ intended gate produces, and a case caught by a different gate fails. Two of the 
 cases had their expectations corrected by this, and the fixture's six identical sentences were
 replaced with six distinct ones, because "reordered" and "dropped a sentence" could not be
 planted against six copies of the same sentence. Fourteen cases now pass under the stricter rule.
+
+## Amendment 7 — the placebo is rated too (2026-09-22, before the manipulation check ran)
+
+Amendment 4 registered one comparison: the clarified specification must be judged `determined`
+more often than the original, with the difference excluding zero, or no audit reading is bought.
+That bar is unchanged and remains the study's gate.
+
+The sheet now carries a third arm. The placebo adds length and register without adding
+information, which makes it the control the determinacy instrument itself needs: **if the
+placebo is also judged more determined than the original, the rating is tracking how much text
+was added rather than what it says.** A positive primary contrast means nothing on its own in
+that case, and it is better to know before the audit is bought than after.
+
+The placebo contrast is reported beside the primary one and interpreted, not registered as a
+second gate. Stating a bar for it now would be inventing a threshold for a reading whose
+distribution nobody has seen. What is registered is that the placebo contrast will be reported
+whatever it shows, and that a placebo contrast excluding zero in the positive direction is
+grounds to doubt the instrument and is to be reported as such.
+
+All three arms are rated on one shuffled sheet, unlabelled, by `gpt-6-astra` — neither the
+clarifier (`gpt-5.6-luna`) nor the auditor (`gpt-5.6-terra`).
+
+**A limitation recorded before the reading, not after.** The 44 instances sit on 26 problems,
+18 of which carry two instances, so a rater sees the same problem's prose more than once and,
+across arms, sees one instance's specification up to three times. The intervals are clustered on
+the problem, which is the right unit for the dependence between instances. It does not remove
+the rater's repeated exposure to the same text, which no design that rates all three arms of the
+same instance can remove.
