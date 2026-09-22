@@ -1,11 +1,11 @@
 # Status
 
-*Generated 2026-09-22 19:21 by `analysis/status.py`. Do not hand-edit: run the script.*
+*Generated 2026-09-22 23:40 by `analysis/status.py`. Do not hand-edit: run the script.*
 
 ## Running now
 
-* report snapshot guard (1 process)
-* P3 audit readings (1 process)
+* cross-vendor review (1 process)
+* review dispatcher (1 process)
 
 **Codex allowance:** available
 
@@ -32,6 +32,7 @@
 |---|---:|---|
 | `codex-review-c3br8` | 2 | quotable — the complete measured outputs now reproduce, and the active interpretation matches the instrument. |
 | `codex-review-c4r1` | 4 | Quotable, with qualification — the measured coverage improvement reproduces without establishing a higher true ceiling. |
+| `codex-review-clarify1` | 0 | — |
 | `codex-review-inject1` | 8 | Quotable descriptively / not quotable for C4.** The decisive reason is that the blocking observations reproduce, while s |
 | `codex-review-rate3` | 5 | Quotable — the report now keeps its reproducible model-rating results within the scope the evidence supports. |
 | `codex-review-sub2r1` | 0 | not quotable — the re-run still shows models a different, sometimes runtime-broken visible suite from the one used for s |
@@ -42,8 +43,8 @@
 
 | repo | head | subject |
 |---|---|---|
-| paper | `8f7c8c5` | paper: rebuild with C11 and C12 (11 pages, clean) *(uncommitted changes)* |
-| harness (fusion) | `26a5aa2` | P3: H3's outcome code, checked against datasets whose answers are known by hand |
+| paper | `15a4884` | P3: record H3's outcome in the registration, and its state in CLAIMS *(uncommitted changes)* |
+| harness (fusion) | `38480a3` | P3: H3 holds on the registered rule, and the test the design prefers gives 0.0615 |
 | study/injection | `a39eeaa` | study 22 round 9: FINAL in its descriptive form |
 | study/ceiling4 | `05b433f` | study 20 round 4: quotable, and four sentences narrowed to the evidence |
 | study/ceiling3b | `92e0bc7` | study 19 round 10: quotable, and the three non-blocking notes taken |
