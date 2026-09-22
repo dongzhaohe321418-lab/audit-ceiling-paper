@@ -327,3 +327,34 @@ and a null from a clarification that clarified nothing says only that.
 study needs it now, and the audit runs on the OpenAI side; but any work that needs the
 same-vendor families, including a temperature-matched replication, is blocked until it is
 topped up.
+
+## Amendment 5 — the placebo is told the length it must match (2026-09-22, before generation)
+
+The first generation run reached five instances and dropped all five. One drop was a real leak
+catch: the clarification quoted a line of the hidden test. **The other four were the placebo
+length gate**, which requires the two edited conditions to add word counts within 15% of each
+other. In all four the clarification was roughly twice the placebo's length.
+
+That is not a finding about clarification. It is a defect in the procedure. The placebo writer
+was told to add sentences "of the same length as the surrounding text"; the gate measures it
+against *the clarification's* added words — a number written after the placebo, and never shown
+to the writer. The placebo was asked to hit a target it had not been told.
+
+Two changes, both to the generation procedure and neither to any gate:
+
+1. The clarification is generated **first**. Its added word count is computed and passed to the
+   placebo writer as an explicit target, with the reason stated: the placebo holds everything
+   constant except the information, so a shorter placebo confounds bulk with content.
+2. The single permitted regeneration now regenerates **the condition the failure names**. A
+   length failure regenerates the placebo against the current clarification. A leak failure
+   regenerates the clarification. The first run regenerated the clarification on every failure,
+   which for a length failure moves the target rather than the thing that missed it.
+
+**The gates are unchanged, and the ±15% band is unchanged.** The distinction this amendment
+turns on: telling a writer what it must achieve is a fix to the procedure; widening the band
+until what the writer produced is acceptable would be shaping the test around the result, and
+is not done here. The gate still checks the output independently, and an instance whose placebo
+still misses after one regeneration is still dropped with its reason recorded.
+
+Drops remain reported in full. If the drop rate stays high after this change, that is reported
+as the study's outcome and not repaired by further amendment.
