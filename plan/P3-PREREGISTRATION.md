@@ -208,3 +208,34 @@ and recovers the expected and actual values mechanically. That evidence exists f
 instance, caught or missed, and does not pass through a hand step. Rebuilding both arms on it
 would make the sheet comparable, remove one author dependency, and make P1 answerable. That is
 the next action; it costs no model calls.
+
+### Amendment 1, second outcome — the premise holds without the author, at about six-tenths the size
+
+The sheet was rebuilt on mechanical witness evidence for both arms (`rate3/rebuild_sheet.py`),
+and `gpt-5.6-luna` rated it again. The control arm is answerable now: `cannot-tell` falls from
+79.2% to 9.4%, and 71 of the 121 labels changed.
+
+| group | n | `undetermined` | Wilson | `cannot-tell` |
+|---|---:|---:|---|---:|
+| missed | 68 | 43 (63.2%) | [51.4, 73.7] | 7 (10.3%) |
+| caught | 53 | 23 (43.4%) | [31.0, 56.7] | 5 (9.4%) |
+
+**Difference +19.8 points, problem-cluster percentile bootstrap [+1.2, +38.1]**, 10,000
+resamples, seed 20260921. It excludes zero, and neither arm is near the one-third `cannot-tell`
+threshold.
+
+**So the first registered branch fires: the premise stands on evidence independent of the
+author, and P3 starts without waiting for P1.** That is applied as registered.
+
+**And the size should be read plainly.** Study 21's contrast, on L1 the author plus
+`gpt-6-astra`, was +31.9 points [9.6, 53.4]. This is **+19.8 [+1.2, +38.1]** — about six-tenths
+of it, with a lower bound close to zero. The premise survives removing the author; the effect it
+survives at is smaller than the study that first reported it suggested. No stricter bar is
+imposed here after the fact, because the rule was written before the number existed and inventing
+one now is the failure this programme has made repeatedly.
+
+**What this does not settle.** One model rater is not a human rating. P1 remains worth doing on
+the rebuilt sheet and is not cancelled: it would say whether a human reading the same mechanical
+evidence agrees, which is a different question from whether the premise survives a change of
+rater. Six items needed a per-item retry after a batch returned nothing; one of those
+(`H080`) took three attempts. Nothing else was re-asked.
