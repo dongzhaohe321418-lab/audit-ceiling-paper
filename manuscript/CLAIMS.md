@@ -447,7 +447,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | 21 (rerate), added after review | the missed-against-caught ambiguity contrast, +31.9 points [9.6, 53.4] | post hoc; written to the record 2026-09-18, never reviewed |
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 | P2 (severity sweep) | — | **QUOTABLE at round 7, 2026-09-22.** Moved to the admitted claims as C11 |
-| P1 (third rating) | the missed-against-caught determinacy contrast, +19.8 points [+1.5, +38.2] | `RESULTS-RATE3.md` written 2026-09-22; **not yet reviewed**, and rated by a model, not the outside human P1 asks for |
+| P1 (third rating) | nothing yet — the missed-against-caught reading is **withdrawn**: 11 of the sheet's instances sit in both arms | round 1 refused 2026-09-22 on three blocking errors, all real. Rewritten; the disjoint post-hoc reading is +23.3 points [+2.4, +44.0], rated by `gpt-5.6-luna`, **not** the outside human P1 asks for, and **not registered in advance** — `plan/P1-ANALYSIS-REGISTRATION.md` is withdrawn |
 | P3 (clarification) | nothing yet — the registered manipulation check has not run | conditions generating 2026-09-22 under Amendments 5-7 |
 
 ## Rule
