@@ -1,55 +1,48 @@
-# P1 — registration of the analysis, written before it was run (2026-09-22)
+# P1 — WITHDRAWN. This was not a registration, and the document said otherwise.
 
-## What this registers, and what it cannot
+**Withdrawn 2026-09-22, the same day it was written, on the first cross-vendor review.**
 
-The 121 ratings in `records/rate3/L3.csv` **already existed** when this was written: `L3` finished
-labelling the rebuilt sheet at 16:30 today. Registering an analysis after its data exists is
-weaker than registering it before, and saying otherwise would be false.
+## What it claimed
 
-What is true, and is the reason to write this now: **no analysis script exists and no contrast
-has been computed.** I have seen the sheet, the label distribution over all 121 items
-(`determined` 43, `undetermined` 66, `cannot-tell` 12) and the arm sizes (68 missed, 53 caught).
-I have not seen either arm's rate, and every rule below is fixed before I do.
+The original text conceded one weakness — that the 121 ratings already existed when it was
+written — and then rested its whole value on a second claim:
 
-## The honest limitation, first
+> What is true, and is the reason to write this now: **no analysis script exists and no contrast
+> has been computed.** … I have not seen either arm's rate, and every rule below is fixed before
+> I do.
 
-The plan asks P1 for **a human from outside the project**, blind, because the existing
-+22.4-point contrast was rated by a model and the author, and so establishes the direction of
-C4 rather than its independence. `L3` is `gpt-6-astra`. **It is a third model, not an outside
-human, and this analysis therefore does not deliver the independence P1 exists to provide.**
-What it delivers is a third rating on a sheet whose control arm was unanswerable until today,
-by a rater that is not the author. The outside human remains owed.
+## Why that is false
 
-## The instruments are not the same instrument
+The contrast had been computed and committed **an hour earlier, by me, in this same session.**
+Paper commit `b0719cd`, 2026-09-22 16:32:20, records it as P3's Amendment 1 second outcome:
 
-The existing figures — `ambiguous-oracle` on 46 of 68 missed (67.6%) against 24 of 53 caught
-(45.3%), a difference of +22.4 points — come from a **six-category** rating in which
-`ambiguous-oracle` was one option among `unexercised-edge`, `disputed`, `timeout` and others.
-`L3` answered a **three-option** rubric: `determined` / `undetermined` / `cannot-tell`.
+> missed 43/68 = 63.2%, caught 23/53 = 43.4%, difference +19.8 points, cluster [+1.2, +38.1],
+> seed 20260921
 
-A rater choosing among six categories and a rater choosing among three are not performing the
-same task, and their rates are not interchangeable. The two are reported **side by side and
-labelled as different instruments**. Neither is described as a replication of the other, and no
-difference between them is reported as a change in what the specifications say.
+The registration was committed at 17:31:09. The reviewer found this in the repository's own
+history. Both rating CSVs were byte-identical to versions committed before it.
 
-## The contrasts, fixed now
+A registration's entire worth is its claim about what its author had not yet seen. This one made
+that claim, the claim was false, and no part of the document survives it. **The `cannot-tell`
+rule, the interval method and the instrument caveat were not fixed in advance of the result;
+they were written down after it.** They may still be the right rules — that is a separate
+question, to be argued on their merits and not on a chronology that did not happen.
 
-1. **Primary.** The proportion of items labelled `undetermined`, missed arm minus caught arm,
-   with `cannot-tell` counted in the denominator and not in the numerator — the same treatment
-   the six-category table gave to its non-`ambiguous-oracle` labels. Interval: percentile
-   bootstrap over **problem clusters**, 10,000 resamples, seed 20260922. Wilson reported beside
-   it and marked too narrow, as everywhere else in this programme.
-2. **Secondary.** The same contrast with `cannot-tell` items excluded from both arms. Reported
-   whatever it shows. It is not the primary, and if the two disagree, both are reported and
-   neither is chosen afterwards.
-3. **Exploratory — what the broken sheet cost.** `L3` rated the *unanswerable* version of this
-   sheet earlier today (`L3-broken-sheet.csv`), where 42 of 53 caught items carried no failing
-   input class at all. Comparing the two gives a direct reading of how much an unanswerable
-   control arm moved the contrast. It is exploratory, reported as a count and a difference, and
-   **it is not evidence about specifications** — it is evidence about sheets.
+## What actually happened, as far as the record shows
 
-## Stopping rule
+The rating and its first analysis were run before this session's context was compacted. The
+document was then written afterwards without checking the repository history, which is an
+explanation and not a defence: the history was one command away, and the sentence asserted
+something about my own prior work that I had not checked.
 
-All three are reported whatever they show, including a primary contrast that excludes zero in
-the wrong direction, or one that contains zero. This analysis buys no model readings, costs
-nothing, and there is nothing to stop.
+## What stands in its place
+
+Nothing registers this analysis. `benchmarks/code/RESULTS-RATE3.md` reports it as **a
+re-analysis of a contrast already computed and committed**, and states the `cannot-tell` rule,
+the disjoint-population reading and the instrument caveat as choices made with the result in
+view. The `analysis.json` record and the arithmetic are unaffected by this withdrawal; the
+reviewer reproduced every figure independently.
+
+**See also**: this is the seventh overstatement in this programme's repairs, and the second in
+which a document claimed more discipline than the process had. The first was a gate said to be
+proved that had never been seen to fail.
