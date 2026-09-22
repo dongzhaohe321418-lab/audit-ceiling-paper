@@ -505,3 +505,39 @@ enter, in which case that defect and this sentence will both be quoted.**
 
 A worse yield in run 3 than in run 2 is not grounds to prefer run 2. If run 3 keeps fewer
 instances, run 3 is still the population.
+
+## Amendment 10 — the manipulation check's rater had already answered its question (2026-09-22)
+
+Amendment 7 named `gpt-6-astra` to rate the three arms for determinacy, on the reasoning that it
+is neither the clarifier nor the auditor. That reasoning was incomplete, and the gap surfaced
+while repairing P1: **`gpt-6-astra` was study 21's `L2`, and it has already rated all 44 of this
+population's original specifications on the same question** — its `ambiguous-oracle` category is
+the determinacy judgement in the earlier instrument's words. Verified: 44 of 44, and 32 of 32
+among the instances run 3 kept.
+
+That is not a limitation to disclose and proceed under. The manipulation check compares three
+arms of the same instance, and under Amendment 7 one arm would be specifications this rater has
+judged before while the other two are new to it. A difference between a remembered arm and two
+fresh ones is not a measurement of what clarification did.
+
+**The rater becomes `gpt-5.6-sol`.** Its exposure to this material is of a different kind and is
+stated rather than claimed away: it appears in study 2's holistic arm and in the checks record,
+covering 83 rows that touch these problems. It has therefore seen some of these problems, in a
+different task, and has not answered the determinacy question about any of them. Of the four
+models available it is the only one not excluded — `terra` is the auditor that will read these
+specifications, `luna` wrote the clarifications, and `astra` is above.
+
+**The registered bar is unchanged**: the clarified specifications must be judged `determined`
+more often than the originals, with the difference excluding zero on the problem-cluster
+bootstrap, or no audit reading is bought. Amendment 7's placebo arm and its interpretation are
+unchanged. Only the rater changes, and it changes **before any reading was bought** — no
+manipulation-check result had been produced when this was written.
+
+**A limit this does not fix.** `gpt-5.6-sol` is a weaker model than the one it replaces, and
+P1's measurement of `gpt-5.6-luna` on a similar task is the reason to take that seriously: on
+11 specifications rated twice in one pass, `luna` agreed with itself 7 times on the binary
+outcome and 5 on the full label, where study 21's two raters each agreed 11 of 11. **If this
+rating's own repeats disagree at that rate, the manipulation check cannot settle anything**, and
+the instance-level duplicate structure needed to measure that is absent here — each instance
+appears once per arm, and the arms differ by construction. That is recorded now as a known
+blind spot of this check rather than discovered afterwards.
