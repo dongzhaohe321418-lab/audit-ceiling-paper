@@ -23,10 +23,19 @@ The registration was committed at 17:31:09. The reviewer found this in the repos
 history. Both rating CSVs were byte-identical to versions committed before it.
 
 A registration's entire worth is its claim about what its author had not yet seen. This one made
-that claim, the claim was false, and no part of the document survives it. **The `cannot-tell`
-rule, the interval method and the instrument caveat were not fixed in advance of the result;
-they were written down after it.** They may still be the right rules — that is a separate
-question, to be argued on their merits and not on a chronology that did not happen.
+that claim, the claim was false, and no part of *this document* survives it.
+
+**The first version of this withdrawal then overcorrected, and the second review caught that
+too.** It said the `cannot-tell` rule and the interval method "were not fixed in advance of the
+result". They were. P3's Amendment 1 (`d5919b9`, 2026-09-21 20:24:05, a day before the ratings)
+registered the three-option rubric, the share over **all** entries in each group, the
+problem-cluster percentile bootstrap over the union of their problems, 10,000 resamples, seed
+`20260921`, Wilson beside it, and an inconclusiveness gate at one-third `cannot-tell`.
+
+So the record is: **a method registered in advance, then a redundant registration that described
+its own chronology falsely, then later additions that were never registered at all** — the
+disjoint-population diagnostic and the broken-sheet comparison. Each of the three deserves its
+own name, and flattening them into "nothing was registered" was the easier, and wrong, summary.
 
 ## What actually happened, as far as the record shows
 
@@ -38,9 +47,8 @@ something about my own prior work that I had not checked.
 ## What stands in its place
 
 Nothing registers this analysis. `benchmarks/code/RESULTS-RATE3.md` reports it as **a
-re-analysis of a contrast already computed and committed**, and states the `cannot-tell` rule,
-the disjoint-population reading and the instrument caveat as choices made with the result in
-view. The `analysis.json` record and the arithmetic are unaffected by this withdrawal; the
+re-analysis of a contrast already computed and committed**, and separates what Amendment 1
+registered in advance from what was added afterwards with the result in view. The `analysis.json` record and the arithmetic are unaffected by this withdrawal; the
 reviewer reproduced every figure independently.
 
 **See also**: this is the seventh overstatement in this programme's repairs, and the second in
