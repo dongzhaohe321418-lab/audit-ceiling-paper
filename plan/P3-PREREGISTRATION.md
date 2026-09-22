@@ -289,3 +289,41 @@ left open can write it down, so the clarifier is shown the failing inputs. The a
 the specification, the visible suite and the candidate — never the witness, the hidden suite, or
 which condition it is reading. Gate 2 checks mechanically that the clarification did not carry
 the failure across that boundary.
+
+## Amendment 4 — the clarifier, again, and a manipulation check, 2026-09-22
+
+Amendment 3 registered `claude-sonnet-4-6` as the clarifier. **It cannot run: the Anthropic
+account's credit is exhausted** (`HTTP 400: your credit balance is too low`). The OpenAI side
+works, so the choice is now between the models that side offers, and none of them is both strong
+and unentangled:
+
+* `gpt-5.6-terra` is the P3 auditor. Excluded by Amendment 3.
+* `gpt-6-astra` is strong, and it is one of the families whose misses **define** this residual —
+  the population is the instances *no* family flagged, astra included — and it was study 21's L2.
+  Having it write the clarifications is the same shape as having terra write them.
+* `gpt-5.6-luna` is the least entangled and the weakest.
+
+**Registered: the clarifier is `gpt-5.6-luna`, and a manipulation check is added.** A weak writer
+is a real risk to this design, and the answer is not to pick an entangled strong one but to
+**measure whether the manipulation worked** before buying any audit reading.
+
+**The manipulation check.** Each instance's original and clarified specifications are rated for
+determinacy by the instrument Amendment 1 validated — the booklet's three-option rubric, a rater
+that is neither the clarifier nor the auditor — with the two conditions shuffled together and
+unlabelled. The clarification is doing its job only if the clarified specifications are judged
+`determined` substantially more often than the originals.
+
+**The bar, fixed before the numbers exist.** If the clarified condition is not judged
+`determined` more often than the original, with the difference excluding zero on the
+problem-cluster bootstrap, **the manipulation has failed and no audit reading is bought.** The
+study then reports that a clarification written by an available model does not measurably settle
+these specifications, which is a fact about this attempt and not about C4.
+
+This check costs one rating pass and no audit readings. It exists because H3's null is
+uninterpretable without it: a null from a real clarification says something about the auditor,
+and a null from a clarification that clarified nothing says only that.
+
+**Note for the owner, outside the registration.** The Anthropic credit is out. Nothing in this
+study needs it now, and the audit runs on the OpenAI side; but any work that needs the
+same-vendor families, including a temperature-matched replication, is blocked until it is
+topped up.
