@@ -121,7 +121,7 @@ def main() -> int:
         ("Undetermined share, 3-family residual", f"{res57['count']} of {res57['n']}",
          pct(res57["share"]), ci(*res57["cluster_ci"], sign=False), "post hoc"),
         ("\\quad 6-family residual", f"{k32} of {n32}", pct(100 * k32 / n32), "---",
-         "post hoc, pending"),
+         "post hoc (C14)"),
         ("Clarified $-$ original, diagnosis", f"{h3['n']} selected, {h3['n_problems']} problems",
          pts(h3["points"]), ci(*h3["cluster_ci95"]), "one-signed; exact $p$ .0625"),
     ]

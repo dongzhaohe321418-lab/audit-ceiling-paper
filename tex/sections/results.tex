@@ -186,7 +186,8 @@ way and 1 the other at $p = 3.0\times10^{-6}$: the sentence makes the auditor lo
 On the correct stratum alone the cost is $+12.50$ points with an interval that contains zero. And on the contrast that actually
 isolates the rule --- the referent arm against the cross-vendor arm on hidden-suite pass rate after
 one revision, over both strata, 112 instances on 96 problems --- the effect is $+5.36$ points,
-cluster $[-0.89, +12.07]$, $p = 0.146$, which does not exclude zero. The rule demonstrably moves what the auditor writes down. Whether that converts
+cluster $[-0.89, +12.07]$, exact McNemar $p = 0.146$ and cluster sign-flip $p = 0.183$, which
+does not exclude zero. The rule demonstrably moves what the auditor writes down. Whether that converts
 into code that passes the hidden suite is not established, and since this paper argues elsewhere
 that a flag is not a catch, that distinction applies to our own intervention first.
 
@@ -238,8 +239,9 @@ paper's own ``incomplete'' category draws. That check is one-sided by constructi
 agreement where an outsider looked, and can bound nothing about the rate.
 
 \textbf{A rater that audited nothing, asked a different question.} One of the two raters above
-is \texttt{gpt-6-astra}, whose own misses help define the residual. A model with no audit role
-anywhere in this programme, \texttt{gpt-5.6-luna}, later rated the same 57 instances, post hoc,
+is \texttt{gpt-6-astra}, whose own misses help define the residual. A model that is not one of the
+families defining it, \texttt{gpt-5.6-luna} --- which read these instances only as a secondary audit
+route in an earlier architecture study --- later rated the same 57 instances, post hoc,
 under a different rubric --- whether the prose determines an answer at all, on a sheet showing
 at most three failing inputs and never the expected values (\S\ref{sec:inreview}). It labels
 \textbf{38 of 57 undetermined}, 13 determined and 6 cannot-tell. The two figures measure
@@ -430,9 +432,9 @@ enumeration), against $0.0039$ for a McNemar test that counts nine independent p
 evidence where five exist. It is not significant at 0.05. The registered naming-rate secondary
 was never computed. Two further limits are part of the result. \emph{The inferred rule contradicts the
 hidden suite entirely on 23 of the 32 instances and partly on 2}, and diagnosis was 0 of 23
-where it contradicted against 9 of 9 elsewhere; that split is measured rather than assigned, and
-it means what moved diagnosis was specification text that agreed with the oracle, not the
-resolution of an ambiguity as such. And a separate model rated the clarified prose more
+where it contradicted against 9 of 9 elsewhere. That split was classified after the outcome was
+seen, not assigned, and the agreeing instances may simply be the easier problems; it does not say
+which property of the edits moved diagnosis. And a separate model rated the clarified prose more
 determining than the original by $+28.1$ points $[+2.6, +54.3]$ but than the placebo by
 $+18.8$ $[-9.4, +45.2]$, so whether the placebo was inert as a specification is unresolved here.
 One adjudicator is an author and the other is \texttt{gpt-6-astra}, the model that also

@@ -90,13 +90,15 @@ contrast that turned out one-signed, so its interval is reported as registered a
 its exact cluster test (\S\ref{sec:inreview}). A saturation curve is summarised by a constrained exponential fit, and the fitted
 asymptote is quoted only when the preregistered flattening bar is met; otherwise it is labelled an
 extrapolation and the raw union at $K_{\max}$ is the number quoted. Counts of five or fewer are
-quoted as counts. Multiplicity is handled as a single Bonferroni family per study over every
-comparison actually computed, not over those planned: in the study carrying the primary contrasts
-that family has sixteen members and a threshold of $0.00313$, and two comparisons clear it. \textbf{Interval coverage is
+quoted as counts. Multiplicity is handled per study as each registered it: the study carrying the
+primary contrasts corrects over every comparison it computed, a Bonferroni family of sixteen with
+a threshold of $0.00313$ that two comparisons clear; others registered a single primary, and
+study 19 reports its twenty further quantities without correction. \textbf{Interval coverage is
 measured rather than assumed or waved at.} Under the two strata's actual cluster profiles --- 110
 instances in 56 problems, and 150 in 143 --- with within-problem concordance $0.5$, the
 percentile bootstrap's coverage of a nominal $95\%$ rate interval is, over 400 replicates of 600
-resamples each (Monte Carlo standard error about $0.011$; \texttt{analysis/coverage\_simulation.py}):
+resamples each (Monte Carlo standard error about 0.011 near 95\% coverage and 0.020 at the lowest
+cell; single rates only, with integer-index percentiles where the analyses interpolate; \texttt{analysis/coverage\_simulation.py}):
 
 \begin{center}\small
 \footnotesize\setlength{\tabcolsep}{2.5pt}

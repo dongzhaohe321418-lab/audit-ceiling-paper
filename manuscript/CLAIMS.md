@@ -71,8 +71,9 @@ travels with the number wherever it appears. Three further restrictions travel w
   largest effect we measure" is withdrawn.
 * **It has a false-positive cost, and the cost's interval contains zero.** The same rule moved
   flags on correct code by **+12.50 points**. Every discordant pair points one way (7 against 0),
-  so the percentile bootstrap's bound at zero is an artefact of the method; the admissible exact
-  unconditional interval is **[−3.6, +26.8]**, and the exact McNemar p is 0.0156 against this
+  so the percentile bootstrap's bound at zero is an artefact of the method; the admissible
+  unconditional interval — grid-approximated and unclustered, so approximately rather than
+  guaranteed exact — is **[−3.6, +26.8]**, and the exact McNemar p is 0.0156 against this
   study's Bonferroni threshold of 0.003125. **This entry previously quoted [5.17, 21.82]**, the
   interval the programme's own rule forbids for a one-signed discordance. The recall-side figure
   may not appear without the cost, and the cost may not be quoted as excluding zero.
@@ -301,8 +302,10 @@ Evidence: `reports/RESULTS-DERIVED.md` §1, *quotable* at manuscript review roun
 
 **C15 — Single-rate bootstrap coverage, measured.** Under the two strata's cluster profiles and an
 assumed within-problem correlation of 0.5, the percentile problem-cluster interval for a single
-rate covers **0.93–0.97** at true rates of 0.10 and above and **0.80** at 0.03 on the 56-cluster
-stratum (400 replicates, Monte Carlo SE about 0.01–0.02). It says nothing about paired contrasts
+rate covers **0.93–0.97** at the tested true rates 0.10, 0.16, 0.30, 0.48 and 0.60, and **0.80** at
+0.03 on the 56-cluster stratum (400 replicates of a 600-resample, integer-index-percentile
+interval; Monte Carlo SE about 0.01–0.02). It does not cover rates outside those tested, and it
+does not validate the 10,000-resample interpolating implementation the analyses use. It says nothing about paired contrasts
 or conditional shares, whose coverage is unmeasured. Evidence: `reports/RESULTS-DERIVED.md` §2,
 *quotable* at manuscript review round 2.
 
@@ -553,7 +556,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | P1 (third rating) | — | **QUOTABLE at round 6, 2026-09-22.** Moved to the admitted claims as C12 |
 | P3 (clarification) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C13. Rounds 1 and 2 refused it (manipulation misdescribed; 3 of 32 classification rows wrong) |
 | derived (residual composition; coverage) | — | **QUOTABLE at manuscript review round 2, 2026-09-23.** Moved to the admitted claims as C14 and C15 |
-| R1-M3 cross-tab (post hoc) | per-instance agreement of a non-participating rater with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
+| R1-M3 cross-tab (post hoc) | per-instance agreement of a rater outside the residual's families (luna; `cheap-cross` in the explore study) with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
 
 ## Rule
 

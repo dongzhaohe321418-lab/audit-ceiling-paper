@@ -13,7 +13,7 @@ reason. **Open** — requires work not yet done.
 |---|---|---|---|
 | R1-M1 | One estimator, two names: 33/110 is "union recall", 67/110 becomes "flag coverage" | **Resolved** | `CLAIMS.md` forbidden-claims list corrected; results §3.5 uses one name; the last two main-text uses of "flag coverage" (Figure 2 caption, §3.5 heading) and C11's title renamed to union recall |
 | R1-M2 | Residual is 57 at three families, 32 at six; the class that leaves supplies the third leg | **Resolved** | `results.tex`, §3.4; computed 43 of 68 undetermined instances are flagged by some family, and the undetermined share is 44/57 = 77.2% against 25/32 = 78.1% |
-| R1-M3 | The model rater is one of the auditor families whose misses define the population | **Resolved, with a smaller number** | P1's L3 (`gpt-5.6-luna`, no audit role) is shown to have rated exactly the residual (asserted in `rate3/residual_crosstab.py`); §3.4 now reports its 38/57 = 66.7% beside the pair's 77.2% and reads it as support for *most*, not for 77%. The per-instance cross-tab (30 of 44) is pending review in `CLAIMS.md` |
+| R1-M3 | The model rater is one of the auditor families whose misses define the population | **Resolved, with a smaller number** | P1's L3 (`gpt-5.6-luna`, not one of the residual's families — it was a secondary route, `cheap-cross`, in the explore study; the earlier "no audit role" was false) is shown to have rated exactly the residual (asserted in `rate3/residual_crosstab.py`); §3.4 now reports its 38/57 = 66.7% beside the pair's 77.2% and reads it as support for *most*, not for 77%. The per-instance cross-tab (30 of 44) is pending review in `CLAIMS.md` |
 | R1-M4 | Title and abstract assert a decomposition the three legs cannot deliver | **Resolved** | Retitled "What Moves the Ceiling … Measured One at a Time"; abstract and introduction now say each factor is measured alone and the limit is not apportioned; the stale `manuscript/abstract.md` draft, which still asserted withdrawn claims, is superseded by a pointer |
 | R1-M5 | Method describes two substrates; one produced nothing; population construction never given | **Resolved** | §2.1 rewritten: one substrate carries every result, the second is named as closed; 542→540 exclusions with reason, generator `claude-haiku-4-5-20251001`, the registered two-pass pooling rule with per-pass P/C/F counts, P 110 on 56 problems, C 150 of 910 by seed. Five stale "both substrates"/"no sweep"/"coverage unvalidated" sentences in the discussion and Limitations fixed; the Limitations still carried R2-M3's withdrawn 2–5-point range |
 | R1-M6 | "Cross-vendor" is confounded with "OpenAI model"; no mirror arm | **Declined for now, disclosed** | Running the mirror is a new generation ladder plus two audit ladders; recorded as an unidentified axis |
@@ -92,3 +92,19 @@ all verified before acting:
 | 6 | abstract dropped the cost interval and P3's interval | both added (1867 characters) |
 | 7 | the flattening bar's depth dependence was stated backwards | corrected, with the curve's own increments (2.9 at step 4, 1.9 at step 8) |
 | 8 | "refreshes the copies" was false | "checks each is byte-identical" |
+
+## Whole-manuscript review, round 3 (at `fb400e3`): NOT SUBMITTABLE — converging
+
+Round 2's findings 3–8 ruled fixed; 1 and 2 partly. C14 ruled faithful; C15 needed narrower
+scope. Seven findings, all verified, plus one of ours:
+
+| # | finding | action |
+|---|---|---|
+| R3-1 (blocking) | "what moved diagnosis was specification text that agreed with the oracle" — a mechanism from a post-hoc split (**our sentence**) | replaced: classified after the outcome, agreeing instances may be easier, does not say which property moved diagnosis; forbidden pattern added |
+| R3-2 | Limitations still claimed coverage for "the primary intervals"; C15 overreached rates and implementation; C3 in the ledger said "exact"; methods SE | all scoped: single rates, tested rates 0.10–0.60, 600 resamples, integer-index percentiles vs interpolation, SE 0.01–0.02 |
+| R3-3 | intro said the pooled contrast puts the rule outside the false-positive constraint | now the correct-stratum observed rate, 10/56, against 3/56 |
+| R3-4 | "partly definitional" overcorrected an empirical association | now empirical, with the disjoint +23.3 [2.0, 43.6], not causal |
+| R3-5 | a general law of resampling from per-instance counts; the diminishing shape is by construction | reduced to the arithmetic; stated that the shape is not evidence of a ceiling |
+| R3-6 | Bonferroni stated as universal; one p value missing its sign-flip | per-study policy stated; 0.146 / 0.183 |
+| R3-7 | Table 1 still said "pending" for C14 | "post hoc (C14)" |
+| ours | **"a model with no audit role anywhere" for gpt-5.6-luna was false** — it was `cheap-cross` in the explore study and read these same instances | corrected in results, abstract, tracker, CLAIMS and P4's Amendment 1; forbidden pattern added |

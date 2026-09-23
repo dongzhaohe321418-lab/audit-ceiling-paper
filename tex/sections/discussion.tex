@@ -36,10 +36,12 @@ that difference is sampling and how much is the operating point, we cannot say, 
 temperature-matched arm was run. We report it as a confound on our own contrasts rather than as a
 result about auditors.
 
-Best-of-K, union-of-K and panel aggregation over critics therefore buy coverage in proportion to
-how much of the population sits near the critic's boundary, and only to the extent that the route
-is sampled at all. An auditor tuned loud enough, or sampled deterministically, is invariant under
-resampling, and its union over K readings can rise only as far as its marginal cases allow.
+What follows for best-of-K, union-of-K or panel aggregation over critics is only the arithmetic:
+a route whose verdict does not vary between readings gains nothing by being read again. We
+measured per-instance flag counts, not any distance to a decision boundary, and ran no panel
+aggregation, so we offer no law for how much a varying route gains. Nor is the diminishing shape
+itself evidence of a ceiling: exact subset averaging makes each reading's marginal gain no
+larger than the last by construction, and what the curves measure is the size of those gains.
 
 \subsection{What the ceiling is made of}
 
@@ -56,9 +58,10 @@ rule that asks whether the specification's prose determines the hidden suite's e
 of the 57 never-flagged defects fail that test. We attempted a constructed population where the prose
 does determine the answer; review established that no filter in it enforces that property, and
 what it licenses is descriptive only (\S\ref{sec:inreview}). The association between never being flagged and never being determined is
-partly definitional, because the residual is defined by conditioning on never being flagged, so
-this is an observation about where the misses sit and not an estimate of how much the benchmark
-contributes. One intervention changes the specification instead of conditioning on it
+empirical, not definitional --- selecting the missed instances does not fix their labels, and
+against caught instances the third rater's post-hoc contrast is $+23.3$ points $[+2.0, +43.6]$
+--- but selection and confounding prevent a causal reading, so it is an observation about where
+the misses sit and not an estimate of how much the benchmark contributes. One intervention changes the specification instead of conditioning on it
 (\S\ref{sec:inreview}): adding a behavioural rule to the prose moved diagnosis on 9 of 32 such
 instances, all of them where the added rule agreed with the hidden suite and none of the 23
 where it contradicted it. It is the first evidence here that manipulates the specification instead of
