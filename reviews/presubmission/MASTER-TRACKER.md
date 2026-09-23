@@ -170,3 +170,12 @@ All round-7 findings ruled fixed; derived §3 remains quotable; no regressions. 
 | R8-1 | the Figure 3 caption and results called the broken arm's larger contrast "not noise", without the repair-and-rerun confound RATE3 states | both passages now state that the repair, a fresh run and its sampling changed together |
 | R8-2 | the residual reversal attributed to question order; RERATE says ordering, definitions and raters changed together | "a second protocol", with all three named |
 | R8-3 | this tracker's round-7 entry understated R7-1 and overstated round-6 closure | corrected in place |
+
+## Whole-manuscript review, round 9 (at `a790e17`): NOT SUBMITTABLE — one moderate, one minor
+
+All round-8 findings ruled fixed; no regressions; derived §3 remains quotable.
+
+| # | finding | action |
+|---|---|---|
+| R9-1 | the abstract and discussion quoted the third rater's 38/57 and +23.3 without its binding 7-of-11 self-agreement | carried in both; the abstract trimmed elsewhere to stay under arXiv's limit (1873 characters with markup) |
+| R9-2 | the rulebook contrast was said to count "flags, not union recall"; on the defect stratum it is recall at K = 1 | corrected in results and C3; the population, depth and exploratory limits kept |

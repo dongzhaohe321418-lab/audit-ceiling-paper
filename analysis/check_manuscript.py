@@ -86,6 +86,9 @@ FORBIDDEN = {
         r"only that can place|no reachable point",
     "coverage asserted of reported intervals":
         r"intervals are narrower than they claim|read\s+as narrower than they claim",
+    # Review paper1 r9: the rulebook contrast is recall at K = 1, not "not recall".
+    "rulebook contrast denied to be recall":
+        r"counts flags, not\s+union recall",
     "luna called roleless":
         r"no audit role",
     # Review paper1 r3: the post-hoc oracle-agreement split read as a mechanism.

@@ -68,8 +68,9 @@ pooled P + C flag contrast it is one of only two comparisons clearing the Bonfer
 travels with the number wherever it appears. Three further restrictions travel with it:
 
 * **The estimand is not the one C1 and C2 use.** It is **56 instances from 41 problems**, not the
-  110-instance defect population; it counts **flags**, not union recall against the hidden suite;
-  and it is **one reading**, because every loop arm revises once, not a union over eight.
+  110-instance defect population; it is recall at **one reading** (union recall at K = 1 on that
+  population — *an earlier version said it was not recall; review paper1 r9*), because every loop arm revises
+  once, not a union over eight.
   **+26.8 may therefore not be compared in magnitude with −26.4 or +19.3**, and the phrase "the
   largest effect we measure" is withdrawn.
 * **It has a false-positive cost, and the cost's interval contains zero.** The same rule moved
