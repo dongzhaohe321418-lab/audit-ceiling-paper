@@ -1,22 +1,32 @@
 \section{Method}
 
-\subsection{Substrates and ground truth}
+\subsection{Substrate, population and ground truth}
 
-Both substrates are Python functions with executable hidden test suites, so every stratum,
-recall denominator and false-positive population is decided by an interpreter and no model judges
-any outcome. \textbf{Substrate 1} is HumanEval+ and MBPP+ (EvalPlus), whose median task is 41
-words of prose and 6 lines of reference code, with the benchmark's base suite shown to the generator
-and its plus suite held back. \textbf{Substrate 2} is the standard-library half of BigCodeBench,
-whose median task is 118 words and 41 lines. BigCodeBench ships one test class per task, so the
-visible and hidden suites are separated here: two test methods chosen by a fixed seed are the
-visible suite and all methods are the hidden suite, with the class run unmodified and told which
-methods to execute. Tasks whose declared modules are unavailable in the frozen interpreter, or
-whose reference solution fails its own suite there, are dropped before generation and counted.
+Every result in this paper is measured on one substrate: HumanEval+ and MBPP+ (EvalPlus),
+Python functions whose median task is 41 words of prose and 6 lines of reference code, each with
+an executable hidden test suite, so every stratum, recall denominator and false-positive
+population is decided by an interpreter and no model judges any outcome. The benchmark's base
+suite is shown to the generator as the \emph{visible} suite and its plus suite is held back as
+the \emph{hidden} one. A second substrate, the standard-library half of BigCodeBench, was built
+and audited and closed without a quotable number, when its preregistered criterion was not met
+on a third run; nothing from it is reported here.
 
-Candidates are written by one generator shown the specification and the visible tests. A candidate
-that passes the visible suite and fails the hidden one is a \textbf{defective} instance; one that
-passes both we call \textbf{correct}; one that fails the visible suite is discarded. Recall is
-measured on the defective stratum and false positives on a sample of the correct stratum.
+\textbf{How the population was built.} The corpus has 542 problems; two, \texttt{HumanEval/32}
+and \texttt{Mbpp/590}, were excluded by name before generation because their own reference
+solutions fail their own hidden suites in this harness, which leaves 540. One frozen generator,
+\texttt{claude-haiku-4-5-20251001}, was shown each specification and its visible suite and wrote
+one solution per problem. A candidate that passes the visible suite and fails the hidden one is
+a \textbf{defective} instance; one that passes both we call \textbf{correct}; one that fails the
+visible suite is discarded from every recall and false-positive population. The defect stratum
+is small --- about 10\% of solutions --- so, under a rule registered before the second pass and
+depending only on execution outcomes, generation was repeated over the same 540 problems until
+there were at least 100 defective instances or three passes. It stopped at two: 56 and 54
+defective, 455 and 455 correct, 29 and 31 discarded. An instance is therefore a (pass, problem)
+pair, and one problem can contribute two. Recall is measured on all \textbf{110} defective
+instances, which come from \textbf{56 problems}; false positives on \textbf{150} of the 910
+correct instances, drawn once from a fixed seed before any auditor ran, from 143 problems. Seven
+of the 110 defective instances fail by not terminating rather than by a failed assertion, and
+the registered population keeps them.
 
 Two things follow from those definitions and are meant literally throughout. \emph{Correct} means
 \emph{passes the hidden suite}: it is a benchmark label produced by an interpreter, not a
@@ -43,7 +53,7 @@ Four auditor routes appear below. The \textbf{shipped cross-vendor} auditor is
 \texttt{gpt-5.6-terra}; the \textbf{same-vendor} auditor is \texttt{claude-haiku-4-5}, the
 generator's own family and size; the \textbf{stronger same-vendor} auditor is
 \texttt{claude-sonnet-4.6}; and a third family, \texttt{gpt-6-astra} at high reasoning, is read
-at $K=4$. Candidates on both substrates are written by \texttt{claude-haiku-4-5}. Prompts, the
+at $K=4$. Prompts, the
 auditor's constitution and every capability card are in the repository.
 
 The routes are \textbf{not sampled alike}, and this bounds every cross-family union-of-$K$
@@ -78,7 +88,8 @@ comparison actually computed, not over those planned: in the study carrying the 
 that family has sixteen members and a threshold of $0.00313$, and two comparisons clear it. \textbf{Interval coverage is
 measured rather than assumed or waved at.} Under the two strata's actual cluster profiles --- 110
 instances in 56 problems, and 150 in 143 --- with within-problem concordance $0.5$, the
-percentile bootstrap's coverage of a nominal $95\%$ rate interval is:
+percentile bootstrap's coverage of a nominal $95\%$ rate interval is, over 400 replicates of 600
+resamples each (Monte Carlo standard error about $0.011$; \texttt{analysis/coverage\_simulation.py}):
 
 \begin{center}\small
 \footnotesize\setlength{\tabcolsep}{2.5pt}
@@ -86,8 +97,8 @@ percentile bootstrap's coverage of a nominal $95\%$ rate interval is:
 \toprule
 true rate & 0.03 & 0.05 & 0.10 & 0.16 & 0.30 & 0.48 & 0.60 \\
 \midrule
-defect (56) & 0.797 & 0.870 & 0.932 & 0.932 & 0.953 & 0.935 & 0.927 \\
-correct (143) & 0.887 & 0.917 & 0.938 & 0.932 & 0.943 & 0.955 & 0.965 \\
+defect (56) & 0.798 & 0.870 & 0.933 & 0.933 & 0.953 & 0.935 & 0.928 \\
+correct (143) & 0.888 & 0.918 & 0.938 & 0.933 & 0.943 & 0.955 & 0.965 \\
 \bottomrule
 \end{tabular}
 \end{center}

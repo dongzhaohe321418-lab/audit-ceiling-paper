@@ -78,7 +78,7 @@ the revision is open.
 
 We have run it. Under the two strata's actual cluster profiles, coverage of a nominal 95% rate
 interval is near nominal at the rates our headlines sit at and badly anticonservative at small
-rates — 0.797 at a true rate of 0.03 on the 56-cluster stratum. A table replaces the scalar
+rates — 0.798 at a true rate of 0.03 on the 56-cluster stratum. A table replaces the scalar
 range, and the one small-rate figure in the results is marked in place as narrower than it
 claims. The simulation is committed and costs no model calls.
 

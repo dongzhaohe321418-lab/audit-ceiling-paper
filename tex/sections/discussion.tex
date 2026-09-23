@@ -8,12 +8,15 @@ substrate that was re-run twice and closed without a quotable number
 methodological point rather than as a measured result, because the argument for it does not need
 our second substrate: recall and false positives move together with any severity threshold, and a
 critic can be tuned to any recall by blocking more. What our records still support directly is the
-narrower version of it inside substrate 1, where the same auditor at two severity rules sits at
+narrower version of it on the substrate we report, where the same auditor at two severity rules sits at
 two different operating points (\S\ref{sec:auditor}), and where the shipped auditor's 30.0\%
 [20.0, 40.7] recall is quoted only beside the 16.0\% [10.1, 22.3] it cost.
 
-The clean experiment for the general claim is a severity-threshold sweep within one substrate,
-which we did not run. Comparing two substrates was never that experiment: they differ in
+The cleaner experiment for the general claim is a severity sweep within one substrate. Our
+sweep re-grades archived findings at four decision rules and shows each family's recall and
+false-positive rate moving with the rule (Figure~\ref{fig:sweep}); because it re-grades rather
+than re-asks, it cannot place the families at a common operating point. Comparing two substrates
+was never that experiment: they differ in
 specification length, solution length, problem population, defect distribution and suite
 construction at once.
 
@@ -88,15 +91,17 @@ establishing that would take adjudicating eight readings' texts, which were not 
 The confound we would fix first is that auditor families are not sampled alike: one route is sent
 temperature $0$ and the other no sampling parameter at all, which bounds how far one union can
 grow before any difference in ability is measured. Every cross-family union-of-K contrast here
-inherits it. Second, no auditor is compared with another at a matched false-positive rate; we have
-two severity thresholds per family and no sweep between them, so the paper cannot say whether the
-families differ once brought to the same operating point. Third, the primary intervals are
-problem-cluster percentile bootstraps over 56 clusters whose coverage under this design has not
-been validated by simulation, and no sample size was justified in advance by a detectable-effect
-calculation. Fourth, both substrates are short, self-contained Python functions with executable
+inherits it. Second, no auditor is compared with another at a matched false-positive rate; our sweep
+re-grades archived findings at four decision rules, which cannot move a family to a point its
+findings do not reach --- one has none between 3.3\% and 34.0\% false positives --- so the paper
+cannot say whether the families differ once brought to the same operating point. Third, the primary intervals are
+problem-cluster percentile bootstraps over 56 clusters whose coverage we measured by simulation
+to be near nominal at the rates the headlines sit at and anticonservative below about $0.10$
+(\S\ref{sec:stats}), and no sample size was justified in advance by a detectable-effect
+calculation. Fourth, the substrate is short, self-contained Python functions with executable
 hidden tests, so nothing here measures auditing a change to a large program with no oracle, and
-both are drawn from benchmarks old enough that memorisation cannot be ruled out. Fifth, the
-generator is a single model on both substrates, so the defect population is one model's failure
+both of its benchmarks are old enough that memorisation cannot be ruled out. Fifth, the
+generator is a single model, so the defect population is one model's failure
 mode. Sixth, the residual rubric's raters were a model and the author, who wrote the rubric and was
 not blind to the earlier labels; one external label set agrees with them across eleven overlapping
 tasks. Seventh, our attempt to build a population of

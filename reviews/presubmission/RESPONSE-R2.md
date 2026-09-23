@@ -43,10 +43,12 @@ profiles:
 
 | true rate | 0.03 | 0.05 | 0.10 | 0.16 | 0.30 | 0.48 | 0.60 |
 |---|---|---|---|---|---|---|---|
-| defect stratum, 56 clusters | **0.797** | 0.870 | 0.932 | 0.932 | 0.953 | 0.935 | 0.927 |
-| correct stratum, 143 clusters | 0.887 | 0.917 | 0.938 | 0.932 | 0.943 | 0.955 | 0.965 |
+| defect stratum, 56 clusters | **0.798** | 0.870 | 0.933 | 0.933 | 0.953 | 0.935 | 0.928 |
+| correct stratum, 143 clusters | 0.888 | 0.918 | 0.938 | 0.933 | 0.943 | 0.955 | 0.965 |
 
-Our 0.797 at 0.03 on the defect stratum sits beside the referee's independently measured 0.807
+*Rounded half-up from the record (400 replicates; Monte Carlo SE ≈ 0.011). An earlier version rounded ties inconsistently — 0.9375 up, 0.8875 down — through binary floating point.*
+
+Our 0.798 at 0.03 on the defect stratum sits beside the referee's independently measured 0.807
 and 0.826. The table replaces the scalar range in the methods, and the 3.3% figure is marked in
 place as an interval narrower than it claims. The script is committed and uses no model calls.
 

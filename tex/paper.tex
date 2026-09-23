@@ -75,11 +75,14 @@ failing inputs inferred a behavioural rule that \emph{contradicted} the hidden o
 32 instances. That is a property of the benchmarks, not of the generator, and it bounds what any
 recall figure measured this way can mean.
 
-\textbf{Intervals of unverified coverage.} The primary intervals are percentile bootstraps over
-problem clusters whose coverage under this design has not been validated; in simulation the
-construction under-covers by roughly 2 to 5 points. Two earlier constructions in this programme
-were found by review to cover $0.416$ and $0.075$ where $0.95$ was claimed. We state coverage as
-unverified rather than assume it.
+\textbf{Interval coverage, measured and imperfect.} The primary intervals are percentile
+bootstraps over problem clusters. Simulated under the design's own cluster profiles (400
+replicates, Monte Carlo standard error about $0.011$), a nominal $95\%$ interval covers between
+$0.93$ and $0.97$ at true rates of $0.10$ and above, and $0.80$ at a rate of $0.03$ on the
+56-cluster stratum (\S\ref{sec:stats}), so small-rate intervals are narrower than they claim. An
+earlier version of this paragraph gave a range the source report had withdrawn. Two earlier
+constructions in this programme were found by review to cover $0.416$ and $0.075$ where $0.95$
+was claimed.
 
 \textbf{The validation instrument shares the failure mode under study.} Reports were checked by a
 language model, which is what this paper measures a ceiling on. Studies cleared review at rounds
