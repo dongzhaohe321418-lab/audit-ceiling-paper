@@ -68,9 +68,11 @@ record mirrored at `records/code/ceiling/pooled_union.json`: the Boolean union o
 | defective (P) | 53/110 = 48.2% | [36.4, 59.8] |
 | correct (C) | **54/150 = 36.0%** | **[28.2, 44.2]** |
 
-The paper keeps the reviewed interval [36.7, 60.0] for the recall, which comes from study 21's
-record at seed 20260924; the [36.4, 59.8] here is the same quantity at ceiling 1's seed and is
-not quoted.
+The paper keeps the reviewed interval [36.7, 60.0] for the recall: it is the complement of ceiling
+1's residual-share interval, bootstrapped at `BOOT_SEED + 4` = 20260912 (`report_ceiling.py`) and
+imported unchanged by study 21. The [36.4, 59.8] here is the same quantity at seed 20260908 and
+is not quoted. *An earlier version attributed the quoted interval to study 21 at seed 20260924;
+review round 6 corrected it.*
 
 **What it licenses.** Pooling twenty readings of three routes buys 48.2% recall at 36.0% false
 positives, more than twice the shipped route's price. It does not license a comparison of

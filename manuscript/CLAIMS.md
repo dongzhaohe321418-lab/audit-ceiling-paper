@@ -23,7 +23,7 @@ function of where a family was stopped: exact subset-averaged increments do not 
 K_max = 4 than at 8, and meeting it at either says little about an asymptote (*reversed
 wording corrected 2026-09-23, review paper1 r5*). Pooling twenty draws across all three auditor families reaches
 **48.2%** [36.7, 60.0], **at 54/150 = 36.0% [28.2, 44.2] false positives** — its own price, never
-the shipped route's 16.0% (the price is `reports/RESULTS-DERIVED.md` §3, pending review round 6).
+the shipped route's 16.0% (the price is `reports/RESULTS-DERIVED.md` §3, *quotable* at manuscript review round 6).
 Evidence: ceiling 1 (`RESULTS-CEILING.md`, quotable at review round 21).
 
 **C2 — Which auditor model reads moves union recall more than how many times it reads, at a
@@ -197,7 +197,8 @@ killed on the rate**, and neither paid rule is shown to improve on the free with
 comparator (12.8%): the better one keeps the same wrong applications plus four correct ones, an
 advantage the study cannot resolve (*"do not beat" withdrawn 2026-09-23, review paper1 r5*).
 The registered population includes candidates failing their visible tests (58 of 107
-applications); on visible-passing candidates only, post hoc: 18.2% and 23.3%. A 2.4% floor on the brief's original unique-test quantity holds
+applications); on visible-passing candidates only, post hoc: 6/33 = 18.2% [0.0, 44.8] and 10/43 = 23.3%
+[6.8, 47.1] — the first contains zero and 2%, so no failure on that population is established. A 2.4% floor on the brief's original unique-test quantity holds
 because 29 of the 45 wrong tests never fail on any candidate at all. Evidence: study 17
 (`RESULTS-TESTGEN-VAL.md`, quotable at review round 11, 2026-09-20).
 
@@ -562,7 +563,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | P1 (third rating) | — | **QUOTABLE at round 6, 2026-09-22.** Moved to the admitted claims as C12 |
 | P3 (clarification) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C13. Rounds 1 and 2 refused it (manipulation misdescribed; 3 of 32 classification rows wrong) |
 | derived (residual composition; coverage) | — | **QUOTABLE at manuscript review round 2, 2026-09-23.** Moved to the admitted claims as C14 and C15 |
-| derived: pooled union's false positives | 54/150 = 36.0% [28.2, 44.2] (`RESULTS-DERIVED.md` §3) | in `tex/` beside the pooled recall because the operating-point rule requires it; put to review round 6, removed with the pooled recall if refused |
+| derived: pooled union's false positives | — | **QUOTABLE at manuscript review round 6, 2026-09-23.** Carried in C1 |
 | R1-M3 cross-tab (post hoc) | per-instance agreement of a rater outside the residual's families (luna; `cheap-cross` in the explore study) with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
 
 ## Rule

@@ -93,7 +93,7 @@ def main() -> int:
          ci(*pool["union_recall_registered_cluster_ci"], sign=False), "preregistered"),
         # Its own price, never the shipped route's (review paper1 r5).
         ("\\quad its false positives", f"{pu['C']['n']} correct", pct(100 * pu["C"]["rate"]),
-         ci100(pu["C"]["cluster_ci95"]), "derived (pending)"),
+         ci100(pu["C"]["cluster_ci95"]), "derived (C1)"),
         ("Gain from the eighth reading", f"{gain['n']} defect", pts(100 * gain["rate"], 2),
          ci100(gain["cluster_ci95"], 2), "bar 1.0, not met"),
         ("Same-vendor stronger $-$ cross, recall", f"{c3['n']} defect", pts(c3["difference_points"]),

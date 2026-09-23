@@ -81,6 +81,11 @@ FORBIDDEN = {
         r"rater that audited nothing",
     "comparator superiority asserted":
         r"neither beats the\s+free",
+    # Review paper1 r6.
+    "operating-point matching said impossible from archived findings":
+        r"only that can place|no reachable point",
+    "coverage asserted of reported intervals":
+        r"intervals are narrower than they claim|read\s+as narrower than they claim",
     "luna called roleless":
         r"no audit role",
     # Review paper1 r3: the post-hoc oracle-agreement split read as a mechanism.

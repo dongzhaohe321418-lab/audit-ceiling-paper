@@ -14,8 +14,10 @@ two different operating points (\S\ref{sec:auditor}), and where the shipped audi
 
 The cleaner experiment for the general claim is a severity sweep within one substrate. Our
 sweep re-grades archived findings at four decision rules and shows each family's recall and
-false-positive rate moving with the rule (Figure~\ref{fig:sweep}); because it re-grades rather
-than re-asks, it cannot place the families at a common operating point. Comparing two substrates
+false-positive rate moving with the rule (Figure~\ref{fig:sweep}); its deterministic rules
+do not place the families at a common operating point. A randomised mixture of two archived
+rules could reach one in expectation without new model calls, but that would be a new post-hoc
+policy needing its own uncertainty analysis, and we have not built it. Comparing two substrates
 was never that experiment: they differ in
 specification length, solution length, problem population, defect distribution and suite
 construction at once.
@@ -97,9 +99,9 @@ The confound we would fix first is that auditor families are not sampled alike: 
 temperature $0$ and the other no sampling parameter at all, which bounds how far one union can
 grow before any difference in ability is measured. Every cross-family union-of-K contrast here
 inherits it. Second, no auditor is compared with another at a matched false-positive rate; our sweep
-re-grades archived findings at four decision rules, which cannot move a family to a point its
-findings do not reach --- one has none between 3.3\% and 34.0\% false positives --- so the paper
-cannot say whether the families differ once brought to the same operating point. Third, the primary intervals are
+re-grades archived findings at four deterministic decision rules, under which one family has no
+point between 3.3\% and 34.0\% false positives, and we built no randomised policy between
+them, so the paper cannot say whether the families differ once brought to the same operating point. Third, the primary intervals are
 problem-cluster percentile bootstraps over 56 clusters; a simulation of an analogous single-rate
 interval (600 resamples rather than 10{,}000, tested rates only) covers near nominally at the
 headlines' rates and anticonservatively below about $0.10$ (\S\ref{sec:stats}), and for the paired contrasts and conditional shares it is
@@ -120,9 +122,9 @@ these is recorded in the study that carries it, together with the number it woul
 The severity sweep we ran re-grades archived findings under four rules and shows the auditor
 contrast is rule-dependent (\S\ref{sec:auditor}); it cannot reach a matched operating point for
 every family, because re-grading only moves a cut through findings already produced, and one
-family has no reachable point between 3.3\% and 34.0\% false positives. Re-asking rather than
+family has no point under the four deterministic rules between 3.3\% and 34.0\% false positives. Re-asking rather than
 re-grading --- instructing each family at graded severity and reading afresh --- is the
-experiment this paper most needs, since only that can place the families at a common
+experiment this paper most needs, since it can place the families at a common
 false-positive rate and decide whether the auditor contrast survives there. Replicating the cross-family arms with the
 sampling parameters matched would remove the confound above, and extending the cross-vendor family
 past eight readings would turn a statement about our budget into a statement about a curve. We have run a first version of the experiment we most wanted --- hold the code and the visible

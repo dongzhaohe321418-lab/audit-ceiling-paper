@@ -136,3 +136,16 @@ R4-1, 3, 5, 6, 7 ruled fixed; 2 and 4 partly. Six findings, all verified before 
 | R5-4 | problem recurrence promoted to a self-consistent-error mechanism | "compatible with", with the indices-not-assertions limit |
 | R5-5 | C7 still said the paid rules "do not beat" the comparator | corrected |
 | R5-6 | C1 still had the depth dependence reversed | corrected with the curve's increments |
+
+## Whole-manuscript review, round 6 (at `18fe530`): NOT SUBMITTABLE — derived §3 quotable
+
+R5-1, 3, 4, 5, 6 ruled fixed; R5-2 partly. `RESULTS-DERIVED.md` §3 (pooled 54/150 = 36.0%) ruled
+**quotable** → carried in C1; Table 1 label updated. Five findings, all verified:
+
+| # | finding | action |
+|---|---|---|
+| R6-1 | methods and Limitations still said small-rate intervals *are* narrower than they claim | "may be", from analogous simulations |
+| R6-2 | "only re-asking can place the families at a common operating point" — a randomised mixture of two archived rules reaches 24/150 in expectation (19/46 weight; checked) | limited to the deterministic rules evaluated; the randomised route named as unbuilt and post hoc; "no reachable point" qualified in all four places |
+| R6-3 | the post-hoc visible-passing rates lacked denominators and intervals | 6/33 [0.0, 44.8], 10/43 [6.8, 47.1]; the first contains zero and 2% |
+| R6-4 | §3 attributed the quoted recall interval to study 21 at seed 20260924 | it is ceiling 1's residual interval at `BOOT_SEED + 4` = 20260912 (checked in code) |
+| R6-5 | "every detection method" overgeneralised Tan et al. | "the methods Tan et al. evaluate" |
