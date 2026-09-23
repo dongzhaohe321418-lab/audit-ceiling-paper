@@ -75,12 +75,33 @@ asymptote is quoted only when the preregistered flattening bar is met; otherwise
 extrapolation and the raw union at $K_{\max}$ is the number quoted. Counts of five or fewer are
 quoted as counts. Multiplicity is handled as a single Bonferroni family per study over every
 comparison actually computed, not over those planned: in the study carrying the primary contrasts
-that family has sixteen members and a threshold of $0.00313$, and two comparisons clear it. Interval
-coverage is stated rather than assumed. In simulation the primary percentile bootstrap under-covers
-by roughly 2 to 5 points; under the actual clustered design its coverage is unvalidated, so every
-primary interval in this paper is of unverified coverage. We state this rather than assume the
-construction is sound because two earlier paired-contrast constructions in this programme were
-found by review to cover $0.416$ and $0.075$ where $0.95$ was claimed, and both were replaced. No sample size was
+that family has sixteen members and a threshold of $0.00313$, and two comparisons clear it. \textbf{Interval coverage is
+measured rather than assumed or waved at.} Under the two strata's actual cluster profiles --- 110
+instances in 56 problems, and 150 in 143 --- with within-problem concordance $0.5$, the
+percentile bootstrap's coverage of a nominal $95\%$ rate interval is:
+
+\begin{center}\small
+\begin{tabular}{lccccccc}
+\toprule
+true rate & 0.03 & 0.05 & 0.10 & 0.16 & 0.30 & 0.48 & 0.60 \\
+\midrule
+defect stratum (56 clusters) & 0.797 & 0.870 & 0.932 & 0.932 & 0.953 & 0.935 & 0.927 \\
+correct stratum (143 clusters) & 0.887 & 0.917 & 0.938 & 0.932 & 0.943 & 0.955 & 0.965 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Coverage is near nominal at the rates this paper's headlines sit at and
+\textbf{badly anticonservative at small rates}: an interval quoted around $3\%$ on the defect
+stratum covers about $0.80$, not $0.95$. Intervals on rates below roughly $0.10$ should be read
+as narrower than they claim. \emph{An earlier version of this paper said the bootstrap
+under-covers ``by roughly 2 to 5 points'' and that its coverage under the clustered design was
+unvalidated. The first was a generalisation the source report had already withdrawn as
+unsupported; the second was wrong, since a clustered simulation sat in this paper's own test
+suite. A pre-submission referee found both.} The simulation is
+\texttt{analysis/coverage\_simulation.py} and costs no model calls. Two earlier paired-contrast
+constructions in this programme were found by review to cover $0.416$ and $0.075$ where $0.95$
+was claimed, and both were replaced. No sample size was
 justified in advance by a minimum-detectable-effect calculation.
 
 \textbf{An interval that contains zero is reported as one that does not exclude zero, and
@@ -101,7 +122,13 @@ version.
 \subsection{Preregistration and independent review}
 
 Each study was preregistered before its first model call, fixing its population, hypotheses,
-primary outcome, intervals, kill conditions, budget and stopping rule. Departures are numbered
+primary outcome, intervals, kill conditions, budget and stopping rule --- \textbf{with one
+exception this paper reports rather than elides}. The analysis behind
+\S\ref{sec:inreview}'s third-rating result was registered a day \emph{after} its contrast had
+been computed and committed, in a document that claimed the opposite; that document is withdrawn
+in the repository and the analysis is registered nowhere. Its method was fixed in advance by an
+earlier amendment, and the disjoint reading, the abstention-excluded secondary and the
+broken-sheet comparison were not. Departures are numbered
 amendments committed before the step they govern, each recording what was known at the time; where
 an amendment followed an interim observation, the results say so and argue whether the change
 could favour the hypothesis. Each report was then reviewed by a model from a different vendor to the generator, with
