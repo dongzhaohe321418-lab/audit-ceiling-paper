@@ -36,7 +36,7 @@ def main() -> int:
     colours = plt.cm.tab10.colors
 
     with plt.style.context(["science", "nature", "no-latex"]):
-        fig, ax = plt.subplots(figsize=(3.4, 2.9))
+        fig, ax = plt.subplots(figsize=(3.4, 3.05))
         for fi, fam in enumerate(fams):
             pts = [r for r in rows if r[0] == fam]
             pts.sort(key=lambda r: r[6])
@@ -57,8 +57,10 @@ def main() -> int:
             ax.plot([], [], ":o", color=colours[fi % len(colours)], ms=3.2, lw=0.5,
                     label=fam)
         ax.plot([0, 48], [0, 48], "-", color="0.72", lw=0.5, zorder=0)
-        ax.text(31.5, 33.5, "recall = false positives", fontsize=4.6, color="0.45",
-                rotation=32, ha="center", va="bottom")
+        # The rotated label on the diagonal was crossed by four error bars; a collision audit
+        # caught it. It sits in the empty lower-right corner instead, unrotated.
+        ax.text(43.5, 3.0, "recall = false positives", fontsize=5.2, color="0.45",
+                ha="right", va="bottom")
         ax.set_xlabel("false positives on correct code (%)")
         ax.set_ylabel("union recall on defective code (%)")
         ax.set_xlim(-1.5, 45)
@@ -71,9 +73,12 @@ def main() -> int:
         ax.add_artist(fam_leg)
         h = [plt.Line2D([], [], marker=m, ls="none", color="0.25", ms=3.2)
              for m, _ in RULE_MARKER.values()]
+        # The rule legend sat inside the axes and its last entry touched a plotted region;
+        # a collision audit caught it. It moves below the axes, where nothing is drawn.
         ax.legend(h, [lab.replace("$\\geq$", "\u2265") for _, lab in RULE_MARKER.values()],
-                  loc="lower right", frameon=False, handlelength=1.0, fontsize=5.0,
-                  title="decision rule", title_fontsize=5.0)
+                  loc="upper center", bbox_to_anchor=(0.5, -0.155), ncol=4, frameon=False,
+                  handlelength=1.0, fontsize=5.2, columnspacing=1.0,
+                  title="decision rule", title_fontsize=5.2)
         fig.savefig(OUT, bbox_inches="tight")
     print(f"wrote {OUT}  ({len(rows)} points from {REC.name})")
     return 0

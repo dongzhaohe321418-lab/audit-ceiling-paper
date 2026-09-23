@@ -61,14 +61,17 @@ def main() -> int:
             c = "#c0392b" if name == "unrepaired sheet" else ("#2c6fbb" if disjoint else "#7f8c8d")
             ax.errorbar(pt, yi, xerr=[[lo], [hi]], fmt="o", ms=3.4, color=c,
                         ecolor=c, elinewidth=0.8, capsize=1.6)
-            ax.text(pt, yi + 0.20, f"{pt:+.1f}", ha="center", fontsize=5.2, color=c)
+            # The value label sat on the error bar for the widest point; a collision audit caught
+            # it crossing the stroke. Labels go below the marker, clear of the whiskers.
+            ax.text(pt, yi - 0.30, f"{pt:+.1f}", ha="center", va="top",
+                    fontsize=5.2, color=c)
         ax.axvline(0, color="0.6", lw=0.5)
         ax.set_yticks(list(y))
         ax.set_yticklabels(labels, fontsize=5.6)
         ax.set_xlabel("undetermined, missed minus caught (percentage points)")
         ax.set_xlim(-6, 80)
         ax.annotate("the same rater, on the sheet\nwhose control arm it could not answer",
-                    xy=(54.2, 0), xytext=(62, 0.72), fontsize=4.8, color="#c0392b",
+                    xy=(54.2, 0), xytext=(62, 0.72), fontsize=5.2, color="#c0392b",
                     ha="center", va="center",
                     arrowprops=dict(arrowstyle="-", color="#c0392b", lw=0.4,
                                     shrinkA=0, shrinkB=3))
