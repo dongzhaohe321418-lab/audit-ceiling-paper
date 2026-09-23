@@ -133,7 +133,7 @@ def main() -> int:
          pts(h3["points"]), ci(*h3["cluster_ci95"]), "one-signed; exact $p$ .0625"),
     ]
     out = [
-        r"\begin{table*}[t]", r"\caption{Every primary quantity this paper quotes, with the "
+        r"\begin{table*}[t]", r"\caption{Every primary quantity of the general-code studies (Section~\ref{sec:ceiling} and Appendix~\ref{sec:results}), with the "
         r"population it is measured on and the label its source report gives it. Values are "
         r"percentages or percentage points. Intervals are 95\% problem-cluster percentile "
         r"bootstraps unless the label names another method. The coverage simulation of "

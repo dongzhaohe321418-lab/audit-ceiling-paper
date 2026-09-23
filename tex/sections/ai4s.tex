@@ -12,13 +12,14 @@ gates, amendments and full results are in Appendix~\ref{sec:ai4s-full}.
   \centering
   \includegraphics[width=\textwidth]{fig4_ai4s}
   \caption{What each tier flags. (a) Scientific code: the shipped auditor's union flag rate against
-  the number of readings, on defective (orange) and correct (grey) instances, in the registered arm
-  that gave the whole problem as the task (dashed) and the arm that named the step as the deliverable
-  (solid). (b) Scientific results and (c) scientific data, by fault type, with clean items leftmost:
-  the deterministic tier (blue: the \texttt{science} profile in b, the card-derived validator in c),
-  the LLM auditor at four readings (orange), and re-execution (b) or the union of the two (c) in
-  green. Bars carry exact binomial 95\% intervals on the item counts (supplementary; they ignore
-  clustering). Registered flag rule throughout: any model BLOCKER in the union of readings.}
+  the number of readings, on defective (orange) and correct (grey) instances, in arm A, whose task gave
+  the whole problem (dashed), and arm B, whose task was reframed around the step (solid). (b) Scientific
+  results and (c) scientific data, by fault type, with clean items leftmost: the deterministic tier
+  (blue: the \texttt{science} profile in b, the card-derived validator in c), the LLM auditor at four
+  readings (orange), and re-execution (b) or the union of the two (c) in green. The LLM's flag is any
+  model BLOCKER in the union of readings; the profile's is a hard failure, the validator's any fired
+  check, re-execution's a value outside \texttt{np.allclose} defaults. Bars carry exact binomial 95\%
+  intervals on the item counts (supplementary; they ignore clustering).}
   \label{fig:ai4s}
 \end{figure*}
 
@@ -36,19 +37,26 @@ registered arm's outcomes, a second registered arm changed only the task text, n
 function as the deliverable instead of opening with the whole problem; the program bytes are
 identical (Appendix~\ref{sec:ai4s-code-full}).
 
-\textbf{Results.} In these runs, what the auditor was told the deliverable is changed its flag rate
+\textbf{Results.} In these runs, how the task framed the deliverable changed the flag rate
 substantially (Figure~\ref{fig:ai4s}a). With the whole problem as the task, the shipped auditor
 flagged 87.7\% [72.7, 98.6] of defective and 68.7\% [56.6, 79.7] of correct instances at eight
-readings, many of its objections to correct code being that one step did not implement the whole
-problem. With the step as the deliverable, flags on correct code fell to 36.0\% [26.4, 45.6], a
+readings; some of its objections to correct code were that one step did not implement the whole
+problem. With the task reframed around the step, flags on correct code fell to 36.0\% [26.4, 45.6], a
 paired change of $-32.7$ points [$-42.8$, $-22.4$], and recall fell to 72.8\% [59.3, 87.3], $-14.8$
-points [$-28.6$, $-2.7$]. The generator's own model flagged 46.9 points less of the defective
-instances than the shipped auditor in each arm (a route comparison). At one reading the shipped
-auditor flags 61.7\% of defective against 19.8\% of correct instances: it discriminates, modestly.
-A read sample of its flags on correct code ranges from real divergences between code and step text
-to contradictions inside the benchmark's own instructions and tests too weak to separate outputs.
-Few defects escaped all sixteen readings (7 and 19 in the two arms); most were rated
-consensus-undetermined by the prose, but the registered test that this share exceeds the
+points [$-28.6$, $-2.7$], though the cluster sign-flip test for that recall change gives
+$p = 0.0625$. The change is the whole reframing (the step named, the problem description moved last
+and marked as context, earlier functions exempted), and the arms ran in sequence. The generator's own
+model flagged 46.9 points less of the defective instances than the shipped auditor in each arm
+([$-63.0$, $-30.7$] and [$-61.5$, $-34.4$]; a route comparison), at 27.3\% and 18.0\% on correct code.
+At one reading in the reframed arm the shipped auditor flags 61.7\% [47.9, 75.9] of defective against
+19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. A read sample of 20 of its flags
+on correct code ranges from real divergences between code and step text to contradictions inside the
+benchmark's own instructions and tests too weak to separate outputs; which flags point at defects was
+not established. An independent expert audit of SciCode's test problems found self-contradictory
+specifications, non-reproducible gold answers and over-tight tolerances that reject correct solutions
+\citep{hu2026scicodeverified}, so some instances labelled defective here may be correct code the
+benchmark rejects. Few defects escaped all sixteen readings (7 and 19 in the two arms); most were
+rated consensus-undetermined by the prose, but the registered test that this share exceeds the
 general-code residual's 77.2\% is killed in both arms by its own interval rule.
 
 \subsection{Scientific results}
@@ -70,8 +78,8 @@ LLM auditor flags 23 of the 25 fabrications, 21 with a sound finding about the f
 usually by working the result out from the code, for example evaluating a KL divergence to 1 where
 the report says 1000; the other two rest on wrong calculations. All 23 discordant items go the LLM's
 way (exact McNemar $p = 2.4\times10^{-7}$). On reporting faults its rate is of the combined workflow,
-since its prompt carried the profile's findings. Re-execution misses four faults on outputs within
-\texttt{np.allclose}'s default absolute tolerance of zero. The LLM also flags 12 of 74 clean items:
+since its prompt carried the profile's findings. Re-execution misses four faults whose change
+to a near-zero output falls within \texttt{np.allclose}'s default absolute tolerance. The LLM also flags 12 of 74 clean items; read one by one (post hoc),
 8 correctly identify defects in our construction (a provenance sentence false where the benchmark
 passes inputs as call literals; a unit label contradicting documented units), 4 rest on wrong
 calculations or a syntax error that is not there.
@@ -86,14 +94,18 @@ values, duplicated rows, a shuffled target, swapped columns, a $-999$ sentinel, 
 families read each item four times, against a validator written from the card and frozen before any
 item existed (Appendix~\ref{sec:ai4s-data-full}).
 
-\textbf{Results.} The two tiers catch different faults (Figure~\ref{fig:ai4s}c). The validator flags
+\textbf{Results.} The two tiers flag different faulty items (Figure~\ref{fig:ai4s}c). The validator flags
 92 of 140 faulty items (65.7\% [57.9, 73.6]) and no clean item; the shipped auditor 65 of 140 (46.4\%
-[38.6, 54.3]) at 4 of 140 clean items (2.9\%); their union 112 (80.0\% [73.6, 86.4]) at the same 4.
+[38.6, 54.3]) at 4 of 140 clean items (2.9\% [0.7, 5.7]); their union 112 (80.0\% [73.6, 86.4]) at the
+same 4. These intervals resample items within dataset; four datasets are too few to resample, so no
+interval carries between-dataset variation. The auditor's 4 clean flags and 4 of its faulty-item flags
+are requests for fuller column descriptions on one card; counting only findings about the injected
+fault (post hoc), the auditor flags 61 and the union 110.
 Of the 20 faulty items the auditor flags and the validator misses, 18 carry a finding about the
 injected fault itself (post hoc), mixed units or swapped columns; in one it argued that three atoms
 spanning a 135\,pm radius range cannot have a mean radius of 1.6\,pm, which is the converted cell.
 It flagged no shuffled target and no duplicated rows (0 of 20 each), and did worse than the
 validator on every fault the validator was written for. The generator's own model flags 67 of 140
-clean items, and for at least 48 of those one finding states a row count, field count, missing
+clean items, and for at least 48 of those (a post hoc lower bound) one finding states a row count, field count, missing
 column or truncation the file contradicts. The validator omits one range the concrete documentation
 states and uses a list of continuous columns the card does not give.

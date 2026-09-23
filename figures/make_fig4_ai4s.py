@@ -54,14 +54,14 @@ def bars(ax, groups: list[str], series: list[tuple[str, list[tuple[int, int]], t
         ax.errorbar(xs, ys, yerr=[lo, hi], fmt="none", ecolor="0.25", elinewidth=0.5,
                     capsize=0.9, zorder=3)
     ax.set_xticks(range(len(groups)))
-    ax.set_xticklabels(groups, fontsize=4.6)
+    ax.set_xticklabels(groups, fontsize=5.4)
     ax.tick_params(axis="x", length=0)
     ax.set_ylim(0, 124)
     ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.set_ylabel("items flagged (%)")
     ax.axvline(0.5, color="0.6", lw=0.5, ls=":", zorder=1)
     ax.set_title(title, fontsize=7, loc="left")
-    ax.legend(fontsize=5, frameon=False, loc="upper center", ncol=len(series),
+    ax.legend(fontsize=5.8, frameon=False, loc="upper center", ncol=len(series),
               handlelength=1.0, columnspacing=0.8, borderaxespad=0.2)
 
 
@@ -72,8 +72,8 @@ def count(cell: dict) -> tuple[int, int]:
 def panel_data(ax, r: dict) -> None:
     v, c = r["validator"], r["families"]["cross"]
     faults = ["F1", "F2", "F3", "F4", "F5", "F6", "F7"]
-    names = ["clean", "mixed\nunits", "neg.\nvalues", "dup.\nrows", "shuffle\ntarget",
-             "swap\ncols", "$-999$", "round\nto int"]
+    names = ["clean", "unit\nmix", "neg.", "dup.\nrows", "shuf.\ntarget",
+             "swap\ncols", "$-999$", "round"]
     ser = []
     for label, src, colour in (("validator", v, DET), ("auditor", c["by_k"]["4"], LLM),
                                ("union", c["union_with_validator"], THIRD)):
@@ -84,7 +84,7 @@ def panel_data(ax, r: dict) -> None:
 
 def panel_results(ax, r: dict) -> None:
     faults = ["R1", "R2", "R3", "R4", "R5", "F1", "F4"]
-    names = ["clean", "scale\nslip", "sign\nflip", "other\ncase", "5%\nerror", "digit\nswap",
+    names = ["clean", "scale", "sign", "other\ncase", "5%", "digit\nswap",
              "fab.\nscale", "fab.\n5%"]
     a = r["auditors"]
 
@@ -104,15 +104,17 @@ def panel_code(ax, r: dict) -> None:
     for arm, res, style in (("A: whole problem", r, "--"), ("B: step as deliverable", rb, "-")):
         f = res["families"]["cross"]
         ax.plot(ks, f["recall_curve_pct"], style + "o", ms=2.4, lw=0.8, color=LLM,
-                label=f"{arm}, defective")
+                label=f"{arm[0]}: defective")
         ax.plot(ks, f["false_positive_curve_pct"], style + "s", ms=2.2, lw=0.8, color=COL[7],
-                label=f"{arm}, correct")
+                label=f"{arm[0]}: correct")
     ax.set_xlabel("readings $K$")
     ax.set_ylabel("items flagged (%)")
     ax.set_xticks(ks)
-    ax.set_ylim(0, 105)
+    ax.set_ylim(0, 124)
+    ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.set_title("(a) scientific code", fontsize=7, loc="left")
-    ax.legend(fontsize=5, frameon=False, loc="lower right")
+    ax.legend(fontsize=5.2, frameon=False, loc="upper center", ncol=2, handlelength=1.6,
+              columnspacing=0.8, borderaxespad=0.2)
 
 
 def main() -> int:

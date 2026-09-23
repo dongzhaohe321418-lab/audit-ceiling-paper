@@ -11,10 +11,11 @@ does not carry to another setting.
 
 \textbf{What the science studies add.} They give the science profile's design rule (the model names
 evidence, code verifies it) an empirical reading and a boundary. On results, number$\to$source
-verified every inconsistency between a report, its results file and its log, and could not see a
-result that was wrong consistently; the model, by recomputing, flagged 23 of 25 such fabrications. On
-data, a validator written from the card caught what a rule can state and missed what needs reading
-across columns and units, which the model caught in 18 of the 28 such items the validator missed.
+flagged every inconsistency between a report, its results file and its log, and could not see a
+result that was wrong consistently; the model flagged 23 of 25 such fabrications, 21 with a sound
+finding about the fault (post hoc). On data, a validator written from the card flagged what a rule can
+state and missed what needs reading across columns and units; the model flagged 18 of the 28 such
+items the validator missed with a finding about the fault (post hoc).
 Where both tiers ran, the deterministic one flagged no clean item and the model carried the errors;
 on data the union was better than either part, and on results the model's flags already contained
 the profile's, whose findings its prompt carried. Neither study shows that the model tier scales: the
@@ -23,18 +24,21 @@ missed every fault that needs comparison across many rows. A model reading is a 
 where the artefact fits in the reader's working memory, not a substitute for executing the code or
 computing over the data.
 
-\textbf{Clean items must be clean by the auditor's standard.} In all three science studies the auditor
-flagged defects in our own construction: a card and file that named a column differently, a file
-outside the audited scope, a report claiming a run no file performed, a provenance sentence false for
-inputs passed as literals, a unit label contradicting the code's documentation, and a task that named
-the whole problem when one step was delivered. Each was a correct flag on an item we had built as
-clean. We caught two in pilots, one when every verdict came back as an escalation, and the rest only
-by reading every flag on a clean item, which the registrations required. Without that reading, the
-false-positive rate would have measured the evaluator.
+\textbf{Clean items must be clean by the auditor's standard.} In the results and data studies the
+auditor flagged defects in our own construction: a card and file that named a column differently, a
+file outside the audited scope, a report claiming a run no file performed, a provenance sentence false
+for inputs passed as literals, and a unit label contradicting the code's documentation. Each was a
+correct flag on an item we had built as clean. We caught two in pilots, one when every verdict came
+back as an escalation, and the rest by reading every flag on a clean item, which the registrations
+required. In the code study the task we wrote named the whole problem when one step was delivered,
+and a sample of the auditor's flags on correct code objected to exactly that; there we read a sample,
+not every flag. Without such reading, a false-positive rate can measure the evaluator.
 
 \textbf{Limits.} The auditor families are not sampled alike, which bounds every cross-family union
 contrast, and no family was compared at a matched false-positive rate. Primary intervals are
-problem-cluster bootstraps whose coverage was simulated only for single rates. Every rating was made
+problem-cluster bootstraps (items within dataset for the data study) whose coverage was simulated only
+for single rates. SciCode itself contains specifications that contradict their tests
+\citep{hu2026scicodeverified}, so some of its defective labels may be wrong. Every rating was made
 by a model, one of them the agent that designed the studies; no human rated anything. The reviewer of
 every report is also one of the measured families. The science studies use one benchmark or four
 tables each, synthetic faults, small artefacts and one generator. The full limits, and the

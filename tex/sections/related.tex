@@ -33,10 +33,14 @@ with the paper alone \citep{luo2025pitfalls}; pattern-based linting targets meth
 scientific Python \citep{samsonau2026scicodelint}; cleaning agents find row-level errors in corrupted
 tables and miss errors spanning rows \citep{bendinelli2025cleaning}; and simulation code can run and
 still solve the wrong equations \citep{song2026moose}. SciCode supplies scientist-written tests
-\citep{tian2024scicode}, and reproduction benchmarks ask agents to recover reported results
-\citep{siegel2024corebench}. We found no prior measurement of an LLM auditor's recall \emph{and}
-false-positive rate against executed or constructed ground truth on scientific code, results and data,
-set beside the deterministic checks a shipped system runs on the same artefacts.
+\citep{tian2024scicode}, and an expert audit of it found many specifications and tests that reject
+correct solutions \citep{hu2026scicodeverified}; reproduction benchmarks ask agents to recover
+reported results \citep{siegel2024corebench}. On constructed statistical workflows, LLM reviewers
+detect planted flaws almost always but flag 17--50\% of correct scripts \citep{chelate2026replicationtrap},
+and Luo et al.\ already report both true- and false-positive rates. Scientific auditing and paired
+operating points are therefore not new. What we add is this measurement programme applied to
+scientific code, and the comparison of the LLM tier with deterministic verification on reported
+results and data, which we did not find in prior work.
 
 \textbf{Preregistration} of evaluation protocols is beginning to appear in machine learning
 \citep{vaccaro2026prereg, thomas2026phacking}; we count our use of it as method, not contribution.

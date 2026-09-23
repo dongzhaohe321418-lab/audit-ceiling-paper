@@ -44,27 +44,27 @@ blind sheet under Act 3's question adapted to science: do the step's prose and b
 determine the value the test expects, including tolerance, units, conventions and numerical
 method. The raters are the agent that ran the study and a model that audits nothing here.
 
-\textbf{Results.} In these runs, what the auditor was told the deliverable is changed its flag rate
-substantially (Figure~\ref{fig:ai4s}a). In the registered design the task
-opened with the whole multi-step problem, and the shipped auditor flagged 87.7\% [72.7, 98.6] of
-defective instances and 68.7\% [56.6, 79.7] of correct ones at eight readings. Many of its
-objections to correct code were that one step did not implement the whole problem. A second
-registered arm, run after the first and changing only the task text, named the step's function as
-the deliverable and gave the problem description as context. On the same program bytes, flags on
-correct code fell to 36.0\% [26.4, 45.6], a paired change of $-32.7$ points [$-42.8$, $-22.4$], and
-recall fell to 72.8\% [59.3, 87.3], $-14.8$ points [$-28.6$, $-2.7$]. The generator's own model flagged
-less of both strata in both arms, 46.9 points less of the defective instances than the shipped
-auditor (exact McNemar $p = 1.6\times10^{-9}$ in each arm). With no tests shown, the shipped auditor
-discriminates, but modestly: at one reading, 61.7\% of defective against 19.8\% of correct instances.
-
-On reading a sample of its flags on correct code, some point at real divergences between the code
-and the step's text or its own documentation, and some at contradictions inside the benchmark's own
-instructions or at tests too weak to tell outputs apart. Few defects went unflagged by any of the
-sixteen readings: 7 in the first arm and 19 in the second. Most of them the two raters called
-undetermined by the prose, 4 of 7 and 13 of 19 (for example an entropy's logarithm base, or the
-direction of a minimum-image vector), but the registered test that this share exceeds the general-code
-residual's 77.2\% is killed in both arms by its own interval rule. These labels describe the prose,
-not why a defect was missed.
+\textbf{Results.} In these runs, how the task framed the deliverable changed the flag rate
+substantially (Figure~\ref{fig:ai4s}a). With the whole problem as the task, the shipped auditor
+flagged 87.7\% [72.7, 98.6] of defective and 68.7\% [56.6, 79.7] of correct instances at eight
+readings; some of its objections to correct code were that one step did not implement the whole
+problem. With the task reframed around the step, flags on correct code fell to 36.0\% [26.4, 45.6], a
+paired change of $-32.7$ points [$-42.8$, $-22.4$], and recall fell to 72.8\% [59.3, 87.3], $-14.8$
+points [$-28.6$, $-2.7$], though the cluster sign-flip test for that recall change gives
+$p = 0.0625$. The change is the whole reframing (the step named, the problem description moved last
+and marked as context, earlier functions exempted), and the arms ran in sequence. The generator's own
+model flagged 46.9 points less of the defective instances than the shipped auditor in each arm
+([$-63.0$, $-30.7$] and [$-61.5$, $-34.4$]; a route comparison), at 27.3\% and 18.0\% on correct code.
+At one reading in the reframed arm the shipped auditor flags 61.7\% [47.9, 75.9] of defective against
+19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. A read sample of 20 of its flags
+on correct code ranges from real divergences between code and step text to contradictions inside the
+benchmark's own instructions and tests too weak to separate outputs; which flags point at defects was
+not established. An independent expert audit of SciCode's test problems found self-contradictory
+specifications, non-reproducible gold answers and over-tight tolerances that reject correct solutions
+\citep{hu2026scicodeverified}, so some instances labelled defective here may be correct code the
+benchmark rejects. Few defects escaped all sixteen readings (7 and 19 in the two arms); most were
+rated consensus-undetermined by the prose, but the registered test that this share exceeds the
+general-code residual's 77.2\% is killed in both arms by its own interval rule.
 
 \subsection{Scientific results}
 \label{sec:ai4s-results-full}
@@ -105,11 +105,10 @@ distributions to 1 where the report says 1000. The other two rest on calculation
 themselves wrong. Paired on the faulty items, all 23 discordant items go the LLM's way (exact
 McNemar $p = 2.4\times10^{-7}$; a problem-level sign-flip test, post hoc, gives $3.8\times10^{-6}$).
 On the reporting faults its rate is of the combined workflow, since its prompt carried the
-profile's findings. Re-execution flags every fault except four whose outputs are within
-\texttt{np.allclose}'s default absolute tolerance of zero; two of those outputs are floating-point
-zeros.
+profile's findings. Re-execution flags every fault except four whose change to a near-zero output falls within
+\texttt{np.allclose}'s default absolute tolerance; two of those outputs are floating-point zeros.
 
-The LLM also flags 12 of the 74 clean items, and 8 of those flags are right. In 9 instances the
+The LLM also flags 12 of the 74 clean items, and on reading each (post hoc) 8 of those flags are right. In 9 instances the
 benchmark passes the test's inputs inside the call itself, so the report's sentence that the
 program ran ``on the inputs in \texttt{inputs.py}'' was false; 7 of those clean items were flagged
 for it. Two of four outputs whose unit the solution documents were flagged for our
@@ -147,7 +146,7 @@ what the validator cannot. Two instrument defects were found and fixed by amendm
 readings reported here: the card and file named one column differently, and the files first sat
 outside the audited scope, so the product had told the model there was nothing to audit.
 
-\textbf{Results.} The two tiers catch different faults (Figure~\ref{fig:ai4s}c). The validator flags
+\textbf{Results.} The two tiers flag different faulty items (Figure~\ref{fig:ai4s}c). The validator flags
 92 of 140 faulty items (65.7\% [57.9, 73.6]) and no clean item. The shipped auditor flags 65 of 140
 (46.4\% [38.6, 54.3]) at 4 of 140 clean items (2.9\% [0.7, 5.7]), and their union flags 112 of 140
 (80.0\% [73.6, 86.4]) at the same 4. (These intervals resample items within dataset; four datasets
