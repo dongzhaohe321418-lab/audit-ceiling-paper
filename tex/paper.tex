@@ -36,26 +36,24 @@
 \printAffiliationsAndNotice{}
 
 \begin{abstract}
-An automated auditor reads code it did not write and decides whether to block it. We measure what
-moves the limit on how much it catches, against ground truth no model supplies (hidden test suites
-run by an interpreter), varying one factor at a time on 110 defective and 150 correct increments.
-Eight independent readings of a shipped cross-vendor auditor reach 30.0\% union recall $[20.0,
-40.7]$ at 16.0\% false positives, and the eighth still adds 1.9 points, so returns diminish with no
-plateau shown. A stronger same-vendor model moves recall by $-26.4$ points $[-37.3, -15.6]$, a
-preregistered primary, while flagging 3.3\% of correct code against 16.0\%. The sign reverses under
-a weaker severity rule, so the contrast depends on the counting rule and does not measure auditing
-ability. One added rulebook sentence moves flags by $+26.8$ points $[13.6, 40.4]$ on an
-exploratory arm, at $+12.5$ points $[-3.6, +26.8]$ on correct code, and does not measurably move
-hidden-suite pass rate. Of 57 defects no reading flagged, two model raters, one of which wrote the
-rubric, judge 44 to be failures the specification never determined; a model that made none of
-those readings, asked a narrower question and agreeing with itself on 7 of 11 repeats, labels 38.
-Adding a behavioural rule to the specification with the code held fixed raised adjudicated
-diagnosis from 0 to 9 of 32 selected instances ($+28.1$ points $[7.7, 51.4]$), against 0 under a
-placebo edit, only where the added rule agreed with the hidden suite; the exact cluster test gives
-$p = 0.06$. A recall figure is therefore a property of auditor, rulebook, decision rule and
-benchmark together, and is not portable without its false-positive rate. Every study that made
-model calls was preregistered, the two unregistered analyses are named, and the independent
-cross-vendor reviews of every report are archived beside the records.
+When models write code, report results and prepare data, other models increasingly check them. We
+study one shipped arrangement for doing so, in which an auditor from a different vendor reads the
+work and deterministic checks verify what code can verify, and we measure what limits it against
+ground truth no model supplies. On general-purpose code with hidden test suites, eight readings of
+the shipped auditor reach 30.0\% union recall $[20.0, 40.7]$ at 16.0\% flags on correct code, and
+returns diminish without a plateau. Which model reads, one added rulebook sentence, and the decision
+rule each move that figure, and on a post hoc rating much of what is missed is behaviour the
+specification never determined, so a recall figure is a property of auditor, rulebook, rule and benchmark together. We
+then test the arrangement on science, in three preregistered studies. On reported results, checking
+that every number traces to its source caught all 49 inconsistencies among report, results and log
+and none of 25 results that were wrong consistently; the model auditor, recomputing from the code,
+flagged 23 of those 25. On data, a validator written from the documentation and the auditor caught
+different faults (92 and 65 of 140) and together 112, at the auditor's 2.9\% flag rate on clean data.
+On scientific code with no tests shown, naming the step rather than the whole problem as the
+deliverable cut the auditor's flags on correct code from 68.7\% to 36.0\% on the same programs. Where
+both tiers ran, the deterministic one flagged no clean item and could not see consistent error; the
+model saw some of it and erred itself. Every study that made model calls was preregistered, the two
+unregistered analyses are named, and every report quoted passed independent cross-vendor review.
 \end{abstract}
 
 \input{sections/introduction}
