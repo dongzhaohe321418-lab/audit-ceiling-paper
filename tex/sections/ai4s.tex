@@ -76,6 +76,17 @@ for byte. All 74 passed all three conditions with no repair.
 % RESULTS: recall by fault type for LLM, DCL, re-execution and the unions; clean false positives;
 % the fabrication rows are the point of the study.
 
+% One panel is admitted so far; this becomes figure* at full width when all three are.
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fig4_ai4s}
+  \caption{Scientific data: items flagged by the card-derived validator, the shipped auditor at four
+  readings, and their union, by fault type; the leftmost group is clean items. Bars carry exact
+  binomial 95\% intervals on the item counts (supplementary; they ignore clustering by dataset).
+  Registered flag rule: any model BLOCKER in the union of readings.}
+  \label{fig:ai4s}
+\end{figure}
+
 \subsection{Scientific data}
 \label{sec:ai4s-data}
 
@@ -103,5 +114,24 @@ what the validator cannot. Two instrument defects were found and fixed by amendm
 readings reported here: the card and file named one column differently, and the files first sat
 outside the audited scope, so the product had told the model there was nothing to audit.
 
-% RESULTS: union recall by fault at K = 4 for both families; clean false positives; LLM-only
-% catches; localisation; after review.
+\textbf{Results.} The two tiers catch different faults (Figure~\ref{fig:ai4s}). The validator flags
+92 of 140 faulty items (65.7\% [57.9, 73.6]) and no clean item. The shipped auditor flags 65 of 140
+(46.4\% [38.6, 54.3]) at 4 of 140 clean items (2.9\% [0.7, 5.7]), and their union flags 112 of 140
+(80.0\% [73.6, 86.4]) at the same 4. (These intervals resample items within dataset; four datasets
+are too few to resample, so no interval here carries between-dataset variation.) Of the 20 faulty
+items the auditor flags and the validator misses, 18 carry a finding about the injected fault
+itself, 9 of them mixed units and 9 swapped columns (post hoc). In one, the auditor reasoned that
+three atoms spanning a 135\,pm radius range cannot have a mean radius of 1.6\,pm, which is the cell
+the fault had converted to ångströms. The other 2, and all 4 flags on clean items, are requests for
+fuller column descriptions on one dataset's card. The auditor flagged no shuffled target and no
+duplicated rows (0 of 20 each), and on every fault the validator was written to catch it did worse
+than the validator. The generator's own model, read through its command-line route, is not a usable
+data auditor here: it flags 67 of 140 clean items, and in at least 48 of those one finding states a
+row count, field count, missing column or truncation that the file contradicts (post hoc lower
+bound).
+
+The deterministic validator is not neutral. It was frozen from the card before any item existed,
+but it omits one range the concrete source's documentation states and uses a list of continuous
+columns the card does not give; with the omitted range it would flag 93 of 140. Unit conversion
+also left floating-point tails that mark some converted cells in two of the tables. None of the
+auditor's mixed-unit findings cites them, but that does not show they had no influence.
