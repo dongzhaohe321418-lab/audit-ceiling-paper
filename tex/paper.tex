@@ -36,61 +36,23 @@
 \printAffiliationsAndNotice{}
 
 \begin{abstract}
-An automated auditor reads code it did not write and decides whether to block it. We ask what moves
-the limit on how much it catches, against ground truth no model supplies: hidden test suites
-executed by an interpreter. Holding the code and its ground truth fixed and varying one thing at a
-time, we find the limit moves with how often the auditor reads, which model reads, what its
-rulebook tells it to look for, and whether the benchmark's hidden suite asks a question the
-specification answers. Because each was varied alone, we report how far each moves it and do not
-apportion the limit among them.
-
-Returns to repeated reading diminish well short of complete. Eight independent readings of the
-shipped cross-vendor auditor reach $30.0\%$ union recall on defective increments $[20.0, 40.7]$,
-at $16.0\%$ on correct ones $[10.1, 22.3]$; the eighth reading still adds $1.9$ points $[1.1,
-2.8]$, above the $1.0$-point flattening bar registered in advance. We therefore report diminishing
-returns at the budget we could afford and do not claim saturation. Twenty readings pooled over
-three auditor families reach $48.2\%$ $[36.7, 60.0]$, though those twenty are not twenty opportunities: one of the three routes gains $1.8$ points from its first reading to its eighth against another's $19.3$.
-
-Which model reads moves the limit further than how often it reads, though not in a way that
-survives its own controls. A stronger same-vendor model scores $-26.4$ points of union recall
-$[-37.3, -15.6]$, a preregistered primary, while flagging correct code at $3.3\%$ against
-$16.0\%$. Under a weaker severity rule the sign reverses, and the two routes are not sampled
-alike: one sends temperature $0$ and the other sends no sampling parameter at all, so their unions
-are not equally free to grow. We read the contrast as evidence about severity calibration and
-sampling rather than about auditing ability, and we report a third model that beats both on recall
-and on false positives at half the readings. Adding one sentence to the rulebook, telling the
-auditor to look for what the visible tests do not cover, moves flags by $+26.8$ points $[13.6,
-40.4]$ on an exploratory $56$-instance arm, at $12.5$ points more flags on correct code whose admissible interval $[-3.6, +26.8]$ does not exclude zero; on the
-contrast that isolates the sentence, hidden-suite pass rate moves $+5.4$ points $[-0.9, 12.1]$ and
-does not exclude zero.
-
-Much of what the auditor misses is failure the specification never determined. Under a rule asking
-whether the prose settles the hidden suite's expected value, two raters --- a model and an author
-of this paper, who wrote the rubric and was not blind to the earlier labels --- agree that $44$ of
-the $57$ never-flagged defects are cases where it does not, reversing the same instances' earlier
-classification and withdrawing a claim this work previously made. Where an outside party had
-independently flagged one of these specifications as defective, our raters agree on $9$ of the
-$11$ overlapping tasks.
-
-Two cautions follow for work that reports critic and reviewer recall. A union-recall figure is
-contingent on the matching rate on correct work, so recall quoted without it is not portable
-across substrates or auditors. And repeated reading buys coverage only in proportion to how much
-of the population sits near the auditor's decision boundary: an auditor sampled deterministically
-returns one verdict however often it is asked, and its union over $K$ readings is flat by
-construction.
-
-Every study was preregistered before its first model call, with hypotheses, intervals, kill
-conditions and stopping rules fixed in advance, with one exception this paper names, and four preregistered hypotheses were killed by
-their own rules. Reports that have passed an independent review by a model from a different vendor
-with access to the raw records are marked as such. The four studies that were in review when
-this paper was first written have since passed, after between four and eleven rounds each; two
-more have since passed at seven rounds and six; and one, an intervention that adds a behavioural
-rule to the specification and re-audits the same code, passed at three: correct diagnosis rose
-from $0$ to $9$ of $32$ selected instances against $0$ under a placebo edit, $+28.1$ points
-$[7.7, 51.4]$, on five problems and only where the added rule agreed with the hidden suite, so
-it supports a specification-edit contrast and not a causal account of the misses. Every number this paper draws from a report under review
-is labelled where it appears. The reviews are archived
-verbatim beside the results they judge.
+An automated auditor reads code it did not write and decides whether to block it. We measure what
+moves the limit on how much it catches, against ground truth no model supplies (hidden test suites
+run by an interpreter), varying one factor at a time on 110 defective and 150 correct increments.
+Eight independent readings of a shipped cross-vendor auditor reach 30.0\% union recall $[20.0,
+40.7]$ at 16.0\% false positives, and the eighth still adds 1.9 points: returns diminish, with no
+plateau shown. A stronger same-vendor model moves recall by $-26.4$ points $[-37.3, -15.6]$, a
+preregistered primary, but the sign reverses under a weaker severity rule, so we read it as
+calibration and sampling, not auditing ability. One added rulebook sentence moves flags by $+26.8$
+points on an exploratory arm and does not measurably move hidden-suite pass rate. Of 57 defects no
+reading flagged, two raters, one an author, judge 44 to be failures the specification never
+determined. Adding a behavioural rule to the specification with the code held fixed raised
+adjudicated diagnosis from 0 to 9 of 32 selected instances, against 0 under a placebo edit, but
+only where the added rule agreed with the hidden suite. A recall figure is therefore a property of
+auditor, rulebook, decision rule and benchmark together, and is not portable without its
+false-positive rate. Every study was preregistered, with one named exception; each report is
+marked by whether it passed independent cross-vendor review, and the reviews are archived beside
+the records.
 \end{abstract}
 
 \input{sections/introduction}

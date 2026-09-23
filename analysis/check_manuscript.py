@@ -30,9 +30,11 @@ ROOT = Path(__file__).resolve().parent.parent
 #: Every .tex the manuscript actually compiles, not only the ones under `sections/`. A generated
 #: table lived at `tex/table1.tex` and the checker reported its label as undefined -- the
 #: checker's blind spot, not the paper's error. Anything `\input` from the body counts.
+#: `paper.tex` was excluded until 2026-09-23, and it holds the abstract and the Limitations
+#: section: the forbidden-claims check never read the most-quoted paragraph of the paper. Every
+#: file is scanned now; `paper.tex` only `\input`s the others, so nothing is read twice.
 SECTIONS = sorted((ROOT / "tex" / "sections").glob("*.tex")) + [
-    f for f in sorted((ROOT / "tex").glob("*.tex"))
-    if f.name not in {"paper.tex"} and f.is_file()
+    f for f in sorted((ROOT / "tex").glob("*.tex")) if f.is_file()
 ]
 
 #: Sentences CLAIMS.md's "must not appear" list forbids, as patterns a reader would recognise
@@ -58,6 +60,14 @@ FORBIDDEN = {
     "study 22's probe identifying edit salience":
         r"same fact\s+from the other side|probe shows that salience is detectable|"
         r"detectably artificial",
+    # Admitted claims carry prohibitions of their own; the list above had none of them, and the
+    # abstract that quoted the forbidden interval passed this check (found 2026-09-23).
+    "C1: the curve saturates (the flattening bar was not met)":
+        r"\bsaturates\b|reaches saturation|has saturated|curve saturat",
+    "C2 read as auditing ability":
+        r"is a worse auditor|stronger model is (?:a )?worse",
+    "C13: a causal verb on the clarification result":
+        r"(?:underdetermination|ambiguity|incompleteness) (?:causes|caused|explains)",
     "study 22 licensing a bound on the ceiling":
         r"construction licenses is a bound",
 }
@@ -71,10 +81,21 @@ def main() -> int:
     body = " ".join(flat(f.read_text(encoding="utf-8")) for f in SECTIONS)
     failures: list[str] = []
 
+    # A forbidden sentence may be named in order to deny it ("the evidence does not support `a
+    # stronger model is a worse auditor'"). A hit counts unless the 70 characters before it carry
+    # a negation or an opening quotation mark; the pre-54a5802 abstract, which asserted two of
+    # these, still fails.
     for name, pattern in FORBIDDEN.items():
-        hits = re.findall(pattern, body, flags=re.I)
+        hits = [m.group(0) for m in re.finditer(pattern, body, flags=re.I)
+                if not re.search(r"\bnot\b|\bno\b|``", body[max(0, m.start() - 70):m.start()])]
         if hits:
             failures.append(f"forbidden claim present -- {name}: {hits[:2]}")
+
+    # The percentile bootstrap's interval on the one-signed C-stratum cost may appear only where
+    # the text says it is forbidden -- which is how the historical correction names it.
+    for m in re.finditer(r"5\.17, 21\.82", body):
+        if "forbidden" not in body[max(0, m.start() - 80):m.start()]:
+            failures.append(f"forbidden interval quoted: ...{body[max(0, m.start() - 80):m.end() + 10]}...")
 
     # Every asymptote must be qualified where the flattening bar was not met.
     for m in re.finditer(r"asymptote", body, flags=re.I):
