@@ -385,6 +385,27 @@ at most ten numbers, two synthetic fabrication types, one model at default sampl
 A4S-2 (`reports/RESULTS-AI4S-RESULTS.md`, *quotable* at review round 3, 2026-09-24, gpt-6-astra;
 harness `e3baa55`, branch `study/ai4s-results`, not yet merged into the integration branch).
 
+**C19 — On multi-step scientific code, the auditor's flag rate moved substantially with what the
+task named as the deliverable.** SciCode steps the frozen generator sometimes solves (184 of 336
+evaluated steps excluded as never passed): 81 defective instances (30 problems) and 150 correct (53
+problems), no tests shown, eight readings per family, flag = any model BLOCKER. Arm A (registered;
+the task opened with the whole problem's description): the shipped cross-vendor auditor flags
+**87.7%** [72.7, 98.6] of defective and **68.7%** [56.6, 79.7] of correct instances at K = 8. Arm B
+(registered after A's outcomes; the same program bytes, the step's function named as the deliverable
+and the problem description given as context; run after A, not randomised): **72.8%** [59.3, 87.3]
+and **36.0%** [26.4, 45.6]. Paired B − A: correct **−32.7 points [−42.8, −22.4]** (McNemar
+p = 5.9 × 10⁻¹²), defective **−14.8 [−28.6, −2.7]** (p = 0.0018; cluster sign-flip p = 0.0625). At
+K = 1 in B: 61.7% against 19.8%. The generator's own model flags 46.9 points less of the defective
+instances in both arms (route comparison). The never-flagged residual is 7 (A) and 19 (B) instances;
+most were rated consensus-undetermined (4/7, 13/19), but the registered H2 rule is **killed** in
+both arms. **Limits that travel with it:** the change is the whole reframing, not one of its parts;
+which flags on correct code point at defects was not established (a read sample includes code that
+diverges from its text and benchmark instructions that contradict their own tests); determinacy
+labels do not explain misses; one benchmark, one generator, steps built on the generator's own
+earlier steps. Evidence: A4S-1/1b (`reports/RESULTS-AI4S-CODE.md`, *quotable* at review round 3,
+2026-09-24, gpt-6-astra; harness `cb3b8d9`, branch `study/ai4s-codeaudit`, not yet merged into the
+integration branch).
+
 ## Claims the evidence does not support, and which must not appear
 
 * *"The ceiling is set by unexercised edges."* Withdrawn by C4. The paper's earlier claim (2)
@@ -652,6 +673,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | P4 (flags on correct code) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C16 |
 | A4S-3 (scientific data) | — | **QUOTABLE at round 5, 2026-09-24.** Moved to the admitted claims as C17. Rounds 1–4 refused it (documentation flags counted as detections; clean-flag labelling; delivery disputes counted as refuted) |
 | A4S-2 (scientific results) | — | **QUOTABLE at round 3, 2026-09-24.** Moved to the admitted claims as C18. Rounds 1–2 refused it (flags counted as detections; unit inventory; one leftover sentence) |
+| A4S-1/1b (scientific code) | — | **QUOTABLE at round 3, 2026-09-24.** Moved to the admitted claims as C19. Rounds 1–2 refused it (interpretation beyond the evidence; one reversed example) |
 | R1-M3 cross-tab (post hoc) | per-instance agreement of a rater outside the residual's families (luna; `cheap-cross` in the explore study) with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
 
 ## Rule

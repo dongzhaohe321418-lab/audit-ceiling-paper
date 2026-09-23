@@ -36,13 +36,35 @@ generator's own model each read every instance eight times. The generator's mode
 through a command-line route rather than the API; the route adds a short fixed context and uses
 default sampling, so this study's same-vendor family is not temperature-0, unlike Act 2's.
 
+\textbf{Two arms.} After the registered arm's outcomes, a second registered arm changed only the
+task text, naming the step's function as the deliverable; the program bytes are identical.
+
 \textbf{Residual.} Defective instances flagged by no reading of either family are rated on a
 blind sheet under Act 3's question adapted to science: do the step's prose and background
 determine the value the test expects, including tolerance, units, conventions and numerical
 method. The raters are the agent that ran the study and a model that audits nothing here.
 
-% RESULTS: union recall and false positives at K = 8 (cross, self), ladder, paired contrast (H3),
-% residual consensus share (H2), after review.
+\textbf{Results.} In these runs, what the auditor was told the deliverable is changed its flag rate
+substantially (Figure~\ref{fig:ai4s}a). In the registered design the task
+opened with the whole multi-step problem, and the shipped auditor flagged 87.7\% [72.7, 98.6] of
+defective instances and 68.7\% [56.6, 79.7] of correct ones at eight readings. Many of its
+objections to correct code were that one step did not implement the whole problem. A second
+registered arm, run after the first and changing only the task text, named the step's function as
+the deliverable and gave the problem description as context. On the same program bytes, flags on
+correct code fell to 36.0\% [26.4, 45.6], a paired change of $-32.7$ points [$-42.8$, $-22.4$], and
+recall fell to 72.8\% [59.3, 87.3], $-14.8$ points [$-28.6$, $-2.7$]. The generator's own model flagged
+less of both strata in both arms, 46.9 points less of the defective instances than the shipped
+auditor (exact McNemar $p = 1.6\times10^{-9}$ in each arm). With no tests shown, the shipped auditor
+discriminates, but modestly: at one reading, 61.7\% of defective against 19.8\% of correct instances.
+
+On reading a sample of its flags on correct code, some point at real divergences between the code
+and the step's text or its own documentation, and some at contradictions inside the benchmark's own
+instructions or at tests too weak to tell outputs apart. Few defects went unflagged by any of the
+sixteen readings: 7 in the first arm and 19 in the second. Most of them the two raters called
+undetermined by the prose, 4 of 7 and 13 of 19 (for example an entropy's logarithm base, or the
+direction of a minimum-image vector), but the registered test that this share exceeds the general-code
+residual's 77.2\% is killed in both arms by its own interval rule. These labels describe the prose,
+not why a defect was missed.
 
 \subsection{Scientific results}
 \label{sec:ai4s-results}
@@ -98,13 +120,15 @@ sees consistent error but is sometimes wrong itself.
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=0.72\textwidth]{fig4_ai4s}
-  \caption{What each tier flags, by fault type; the leftmost group in each panel is clean items.
-  Blue is the deterministic tier and orange the LLM auditor in both panels. (b) Scientific results:
-  the \texttt{science} profile, the LLM auditor at four readings, and re-execution (green). (c) Scientific data: the card-derived validator, the
-  shipped auditor at four readings, and their union (green). Bars carry exact
-  binomial 95\% intervals on the item counts (supplementary; they ignore clustering by dataset).
-  Registered flag rule: any model BLOCKER in the union of readings.}
+  \includegraphics[width=\textwidth]{fig4_ai4s}
+  \caption{What each tier flags. (a) Scientific code: the shipped auditor's union flag rate against
+  the number of readings, on defective (orange) and correct (grey) instances, in the registered arm
+  that gave the whole problem as the task (dashed) and the arm that named the step as the deliverable
+  (solid). (b) Scientific results and (c) scientific data, by fault type, with clean items leftmost:
+  the deterministic tier (blue: the \texttt{science} profile in b, the card-derived validator in c),
+  the LLM auditor at four readings (orange), and re-execution (b) or the union of the two (c) in
+  green. Bars carry exact binomial 95\% intervals on the item counts (supplementary; they ignore
+  clustering). Registered flag rule throughout: any model BLOCKER in the union of readings.}
   \label{fig:ai4s}
 \end{figure*}
 
