@@ -213,7 +213,8 @@ readings, a single realisation (an earlier version said 70 on each side), paired
 instances and clustered by problem; the paired false-positive difference is **-0.3 points** [-3.8, +3.4]. On
 `cross`'s complete eight-draw ladder the same contrast is **+2.7 points** [-6.5, +13.0] with a
 false-positive difference of **-5.3 points** [-10.3, -0.7] — **the complete-ladder comparison
-establishes lower false positives, not higher recall.** The observed false-positive rates at
+points toward lower false positives, not higher recall** — an unadjusted interval whose upper
+end is 0.7 points from zero, so a direction and not an established finding (R2-M4). The observed false-positive rates at
 K = 4 are similar (10.7% [5.9, 16.0] against 10.9% [6.9, 15.4]); **that is an observation about
 two rates and not a matched operating point**, and the contrast leaves their difference
 unresolved. `self-strong` has no point between 3.3% and 34.0% false positives — exactly where a

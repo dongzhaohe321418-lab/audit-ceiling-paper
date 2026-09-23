@@ -8,12 +8,19 @@ them does and does not license; none of them is load-bearing for
 \S\ref{sec:repeat}--\S\ref{sec:residual}.
 Rates carry the 95\% problem-cluster percentile bootstrap as the primary interval, with the Wilson
 interval beside it where the source report gives one, because problems recur across generation
-batches and an interval that treats instances as independent is too narrow. The coverage of that
-bootstrap under this clustered design with 56 problem clusters has not been validated by
-simulation, and every primary interval in this paper inherits that caveat.
+batches and an interval that treats instances as independent is too narrow. That bootstrap's coverage
+under this clustered design is measured in \S\ref{sec:stats}: near nominal at the rates the
+headlines sit at, and anticonservative below a true rate of about $0.10$.
 
 Sixteen comparisons were computed in the study that carries the primary contrasts, under one
-Bonferroni family with a threshold of $0.00313$. Where a $p$ value appears below, the exact
+Bonferroni family with a threshold of $0.00313$. \textbf{That correction is applied to $p$
+values and never to intervals}: every interval in this paper is an unadjusted 95\% interval, so
+a directed statement resting on an interval alone, with no $p$ value that clears its family, is
+worded as a direction and not as a finding. \textbf{Each $p$ value belongs to the family of the
+study that computed it.} Those in \S\ref{sec:rulebook} are members of that sixteen-member family.
+The one in \S\ref{sec:auditor} is study 18's single registered primary, which had no family to
+correct within; it would also clear $0.00313$. The clarification study's are reported beside a
+primary registered on its interval, and no correction was registered for them. Where a $p$ value appears below, the exact
 McNemar value and the cluster-level sign-flip permutation value are both given, because instances
 within a problem are not independent and only the second respects that.
 
@@ -28,7 +35,12 @@ The shipped cross-vendor auditor reads an increment holistically and returns fin
 increment is blocked if any finding is graded BLOCKER. Over eight independent readings of the same
 110 defective instances, union recall rises from 10.7\% at one reading to 30.0\% [20.0, 40.7] at
 eight (Figure~\ref{fig:saturation}). The eighth reading still adds 1.93 points, cluster [1.14, 2.78], against the flattening bar
-of 1.0 points registered before the first model call. The bar was not met. The constrained fit
+of 1.0 points registered before the first model call. The bar was not met. Under exact subset
+averaging that statistic has a closed form: it is the number of instances flagged by exactly one
+of the $K$ readings divided by $K n$, here $17/(8\cdot110)$, so it is a count of singletons and
+not a fitted slope. Its interval resamples problems and so carries task-sampling variance; the
+statistic is made of reading-sampling variance, which the interval does not describe, and the bar
+should be read as a statement about these 17 instances rather than about a population slope. The constrained fit
 puts the asymptote at 31.5\%, but on our own registered criterion that figure is an extrapolation
 and the raw union at eight readings is the number to quote. What the data support is diminishing
 returns at the budget we could afford, not saturation: at 1.9 points per reading the curve was
@@ -66,7 +78,7 @@ Replacing the auditor with a stronger model of the generator's own vendor moved 
 eight readings by $-26.4$ points, cluster $[-37.3, -15.6]$: 4 of 110 against 33 of 110. Three
 instances were flagged only by the new family and thirty-two only by the shipped auditor, at an
 exact McNemar $p$ of $4.2 \times 10^{-7}$ and a cluster sign-flip $p$ of $2.0 \times 10^{-5}$.
-This was a preregistered primary. Three things qualify what it means, all of them measured here
+This was study 18's single preregistered primary, so no family correction applies. Three things qualify what it means, all of them measured here
 and none of them favourable to reading it as a statement about auditing ability.
 
 First, the two auditors are not at the same operating point, which is the comparison this paper
@@ -336,8 +348,10 @@ should be read knowing that one arm's luck in four draws is fully in the number 
 is not, with a
 false-positive difference of $-0.3$ points $[-3.8, +3.4]$. On the cross-vendor auditor's
 complete eight-draw ladder the same contrast is $+2.7$ points $[-6.5, +13.0]$ with a
-false-positive difference of \textbf{$-5.3$ points} $[-10.3, -0.7]$: that comparison establishes
-\emph{lower false positives, not higher recall}. Observed false-positive rates near one another
+false-positive difference of \textbf{$-5.3$ points} $[-10.3, -0.7]$: that comparison points
+toward \emph{lower false positives, not higher recall}, on an interval whose upper end is
+0.7 points from zero and which is not adjusted for the other contrasts computed beside it, so
+it is a direction the data lean and not one they establish. Observed false-positive rates near one another
 are not a matched operating point, and one family has no reachable point between 3.3\% and
 34.0\% false positives --- precisely where a matched comparison would sit --- so its ranking is
 \emph{bracketed rather than measured}. Nothing here assesses finding content against the hidden

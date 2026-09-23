@@ -18,19 +18,19 @@ reason. **Open** — requires work not yet done.
 | R1-M5 | Method describes two substrates; one produced nothing; population construction never given | **Open** | |
 | R1-M6 | "Cross-vendor" is confounded with "OpenAI model"; no mirror arm | **Declined for now, disclosed** | Running the mirror is a new generation ladder plus two audit ladders; recorded as an unidentified axis |
 | R1-M7 | Every primary interval is of unverified coverage and the simulation costs nothing | **Partly resolved** | R2-M3's measurement supersedes it; see below |
-| R1-M8 | Bonferroni family membership is never stated per p-value | **Open** | |
+| R1-M8 | Bonferroni family membership is never stated per p-value | **Resolved** | this commit: results §3 states each p value's family — §3.3 in the ceiling study's 16-member family (0.003125); §3.2 is study 18's single primary with no family; P3's are uncorrected beside an interval-registered primary |
 | R1-M9 | False-positive rates are quoted as prices without adjudication | **Open** | |
 | R2-M1 | The abstract quotes the interval the paper's own rule forbids | **Resolved** | `54a5802`; all four sites now carry the exact unconditional [−3.6, +26.8], which contains zero |
 | R2-M2 | "Falls monotonically" is contradicted by its own source table | **Resolved** | `54a5802`; the ladder 1.67–1.68 is printed |
-| R2-M3 | The coverage statement reinstates a range the source report withdrew | **Open** | The referee's own simulation is more informative than ours and must be reproduced before quoting |
-| R2-M4 | Multiplicity is applied to p-values and never to intervals | **Open** | |
-| R2-M5 | The flattening statistic is a singleton count; its interval covers a different variance | **Open** | |
-| R2-M6 | "All 70 subsets on each side" is false; astra has one | **Open** | |
-| R2-M7 | "Twenty readings" overstates effective depth; one family gains 1.8 points over eight | **Open** | |
+| R2-M3 | The coverage statement reinstates a range the source report withdrew | **Resolved** | `b46542d` measured coverage table replaced the range; this commit removes a stale results sentence that still said coverage was unvalidated |
+| R2-M4 | Multiplicity is applied to p-values and never to intervals | **Resolved** | this commit: stated in results §3 that intervals are unadjusted and interval-only directions are worded as directions; −5.3 [−10.3, −0.7] no longer "establishes"; `CLAIMS.md` C11 aligned. No adjusted interval computed: the sweep registered no family, and inventing one would be post hoc |
+| R2-M5 | The flattening statistic is a singleton count; its interval covers a different variance | **Resolved** | this commit: §3.1 gives the closed form 17/(8·110), verified against `counts_k`, and says the interval carries task- not reading-sampling variance |
+| R2-M6 | "All 70 subsets on each side" is false; astra has one | **Resolved** | `07e255e` in the paper; `38ebc41` in `CLAIMS.md` C11, which had kept the error |
+| R2-M7 | "Twenty readings" overstates effective depth; one family gains 1.8 points over eight | **Resolved** | `07e255e`; `def00e0` repaired a split number it left in §3.1 and labels "nearer thirteen" a heuristic |
 | R3-M1 | The reviewer of record is a measured auditor family and a ground-truth rater | **Resolved** | `5e2ca54`; disclosed in methods, seventh limitation, astra-ranking claims marked self-assessed |
 | R3-M2 | The blinding experiment was not blinded | **Resolved** | `5e2ca54`; inference withdrawn, reduced to an n=1 uncontrolled disagreement count |
 | R3-M3 | The repository does not contain what the Reproducibility section claims | **Partly resolved** | `479f36e` states the corpus-licence constraint; the inventory and the runnable code path are **open** |
-| R3-M4 | "Every study was preregistered" has a documented counterexample | **Open** | |
+| R3-M4 | "Every study was preregistered" has a documented counterexample | **Resolved** | `b46542d`; the exception is named in the abstract, introduction and methods |
 | R3-M5 | "No measurement ever moved" is false | **Resolved** | `5e2ca54`; two counterexamples named |
 | R3-M6 | The manuscript carries a framing its own ledger has corrected | **Resolved** | §3.4 and `CLAIMS.md` C12 now agree; Figure 3 panel labels **open** |
 | R3-M7 | Five review-status statements stale or contradictory; 44 against 47 rounds | **Resolved** | `5e2ca54`; count corrected to 47 with its convention |
