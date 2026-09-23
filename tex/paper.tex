@@ -40,22 +40,22 @@ An automated auditor reads code it did not write and decides whether to block it
 moves the limit on how much it catches, against ground truth no model supplies (hidden test suites
 run by an interpreter), varying one factor at a time on 110 defective and 150 correct increments.
 Eight independent readings of a shipped cross-vendor auditor reach 30.0\% union recall $[20.0,
-40.7]$ at 16.0\% false positives, and the eighth still adds 1.9 points: returns diminish, with no
+40.7]$ at 16.0\% false positives, and the eighth still adds 1.9 points, so returns diminish with no
 plateau shown. A stronger same-vendor model moves recall by $-26.4$ points $[-37.3, -15.6]$, a
-preregistered primary, while flagging 3.3\% of correct code against 16.0\%; the sign reverses under
-a weaker severity rule, so the contrast depends on the counting rule and is not a measure of
-auditing ability. One added rulebook sentence moves flags by $+26.8$ points $[13.6, 40.4]$ on an
+preregistered primary, while flagging 3.3\% of correct code against 16.0\%. The sign reverses under
+a weaker severity rule, so the contrast depends on the counting rule and does not measure auditing
+ability. One added rulebook sentence moves flags by $+26.8$ points $[13.6, 40.4]$ on an
 exploratory arm, at $+12.5$ points $[-3.6, +26.8]$ on correct code, and does not measurably move
-hidden-suite pass rate. Of 57 defects no reading flagged, two model raters, one of which wrote the rubric, judge 44 to be failures the
-specification never determined; a model that made none of those readings, asked a narrower question and agreeing with itself on
-7 of 11 repeats, labels 38. Adding a behavioural rule to the specification with the code held fixed raised
-adjudicated diagnosis from 0 to 9 of 32 selected instances ($+28.1$ points $[7.7, 51.4]$), against 0
-under a placebo edit, only where the added rule agreed with the hidden suite; the exact cluster
-test gives $p = 0.06$. A
-recall figure is therefore a property of auditor, rulebook, decision rule and benchmark together,
-and is not portable without its false-positive rate. Every study that made model calls was
-preregistered and the two unregistered analyses are named; the independent cross-vendor reviews
-of every report are archived beside the records.
+hidden-suite pass rate. Of 57 defects no reading flagged, two model raters, one of which wrote the
+rubric, judge 44 to be failures the specification never determined; a model that made none of
+those readings, asked a narrower question and agreeing with itself on 7 of 11 repeats, labels 38.
+Adding a behavioural rule to the specification with the code held fixed raised adjudicated
+diagnosis from 0 to 9 of 32 selected instances ($+28.1$ points $[7.7, 51.4]$), against 0 under a
+placebo edit, only where the added rule agreed with the hidden suite; the exact cluster test gives
+$p = 0.06$. A recall figure is therefore a property of auditor, rulebook, decision rule and
+benchmark together, and is not portable without its false-positive rate. Every study that made
+model calls was preregistered, the two unregistered analyses are named, and the independent
+cross-vendor reviews of every report are archived beside the records.
 \end{abstract}
 
 \input{sections/introduction}
@@ -85,17 +85,15 @@ own cluster profiles and an assumed within-problem correlation, with 600 resampl
 the 10{,}000 the analyses use (400 replicates; Monte Carlo standard error 0.01--0.02), a nominal
 $95\%$ interval covers between $0.93$ and $0.97$ at the tested true rates from $0.10$ to $0.60$, and $0.80$ at a rate of $0.03$ on the
 56-cluster stratum (\S\ref{sec:stats}), which suggests that small-rate intervals may be narrower
-than they claim. An
-earlier version of this paragraph gave a range the source report had withdrawn. Two earlier
-constructions in this programme were found by review to cover $0.416$ and $0.075$ where $0.95$
+than they claim. Two earlier interval constructions in this programme were found by review to cover $0.416$ and $0.075$ where $0.95$
 was claimed.
 
 \textbf{The validation instrument shares the failure mode under study.} Reports were checked by a
 language model, which is what this paper measures a ceiling on. Studies cleared review at between
 three and twenty-one rounds, with the round before the last always returning substantive
-findings; measurements moved on review in three studies, and elsewhere the refusals concerned
-interpretation, where the instrument is weakest; and withholding our conclusions from one
-pass produced six substantive findings that six briefed passes had missed. The defect class it
+findings. Measurements moved on review in three studies; elsewhere the refusals concerned
+interpretation, where the instrument is weakest. Withholding our conclusions from one pass
+produced six substantive findings that six briefed passes had missed. The defect class it
 leaves open is the one that looks right to a language model, and we do not know what remains in
 it.
 
@@ -119,7 +117,7 @@ The repository at \url{https://github.com/dongzhaohe321418-lab/audit-ceiling-pap
 claims ledger (\texttt{CLAIMS.md}), with the claims the evidence does not support; the results
 report of every study the paper draws on; every registered study's preregistration and numbered
 amendments; every independent review of those reports, verbatim and including
-refusals; and the derived records --- counts, labels, hashes and intervals --- that the figures
+refusals; and the derived records (counts, labels, hashes and intervals) that the figures
 and Table~\ref{tab:primary} are drawn from. A single command, \texttt{reproduce.sh},
 regenerates Figures 1--3 and Table~\ref{tab:primary} from those records and checks that each
 is byte-identical to the copy the manuscript compiles, with no model calls, no network access and no path outside the checkout; it was run from

@@ -4,42 +4,41 @@
 
 Every result in this paper is measured on one substrate: HumanEval+ and MBPP+ (EvalPlus),
 Python functions whose median task is 41 words of prose and 6 lines of reference code, each with
-an executable hidden test suite, so every stratum, recall denominator and false-positive
-population is decided by an interpreter and no model judges a recall or false-positive
-outcome. The one outcome defined by adjudication, correct diagnosis in the clarification study,
-is judged jointly by two models, and is labelled so where it appears. The benchmark's base
-suite is shown to the generator as the \emph{visible} suite and its plus suite is held back as
-the \emph{hidden} one. A second substrate, the standard-library half of BigCodeBench, was built
-and audited and closed without a quotable number, when its preregistered criterion was not met
-on a third run; nothing from it is reported here.
+an executable hidden test suite. Every stratum, recall denominator and false-positive population
+is therefore decided by an interpreter, and no model judges a recall or false-positive outcome.
+The one outcome defined by adjudication, correct diagnosis in the clarification study, is judged
+jointly by two models and is labelled so where it appears. The benchmark's base suite is shown to
+the generator as the \emph{visible} suite, and its plus suite is held back as the \emph{hidden}
+one. A second substrate, the standard-library half of BigCodeBench, was built and audited and
+closed without a quotable number when its preregistered criterion was not met on a third run;
+nothing from it is reported here.
 
-\textbf{How the population was built.} The corpus has 542 problems; two, \texttt{HumanEval/32}
+\textbf{How the population was built.} The corpus has 542 problems. Two, \texttt{HumanEval/32}
 and \texttt{Mbpp/590}, were excluded by name before generation because their own reference
 solutions fail their own hidden suites in this harness, which leaves 540. One frozen generator,
 \texttt{claude-haiku-4-5-20251001}, was shown each specification and its visible suite and wrote
-one solution per problem. A candidate that passes the visible suite and fails the hidden one is
-a \textbf{defective} instance; one that passes both we call \textbf{correct}; one that fails the
-visible suite is discarded from every recall and false-positive population. The defect stratum
-is small --- about 10\% of solutions --- so, under a rule registered before the second pass and
-depending only on execution outcomes, generation was repeated over the same 540 problems until
-there were at least 100 defective instances or three passes. It stopped at two: 56 and 54
-defective, 455 and 455 correct, 29 and 31 discarded. An instance is therefore a (pass, problem)
-pair, and one problem can contribute two. Recall is measured on all \textbf{110} defective
-instances, which come from \textbf{56 problems}; false positives on \textbf{150} of the 910
-correct instances, drawn once from a fixed seed before any auditor ran, from 143 problems. Seven
-of the 110 defective instances fail by not terminating rather than by a failed assertion, and
-the registered population keeps them.
+one solution per problem. A candidate that passes the visible suite and fails the hidden one is a
+\emph{defective} instance; one that passes both we call \emph{correct}; one that fails the visible
+suite is discarded from every recall and false-positive population. The defect stratum is small,
+about 10\% of solutions, so under a rule registered before the second pass and depending only on
+execution outcomes, generation was repeated over the same 540 problems until there were at least
+100 defective instances or three passes. It stopped at two: 56 and 54 defective, 455 and 455
+correct, 29 and 31 discarded. An instance is therefore a (pass, problem) pair, and one problem can
+contribute two. Recall is measured on all \textbf{110} defective instances, which come from
+\textbf{56 problems}; false positives on \textbf{150} of the 910 correct instances, drawn once
+from a fixed seed before any auditor ran, from 143 problems. Seven of the 110 defective instances
+fail by not terminating rather than by a failed assertion, and the registered population keeps
+them.
 
-Two things follow from those definitions and are meant literally throughout. \emph{Correct} means
-\emph{passes the hidden suite}: it is a benchmark label produced by an interpreter, not a
-guarantee that the program meets its specification, and a suite can be incomplete or wrong. Since
-this paper's own third result is that a specification often fails to determine what the hidden
-suite asks, we cannot also treat passing that suite as correctness in the ordinary sense, and a
-\emph{false positive} is likewise a flag on test-passing code rather than a demonstrated mistake
-by the auditor. And the defect population is not a sample of model-written code: it is the
-\textbf{residue that already survived the visible tests}, which is by construction the harder
-part. A recall figure here is the fraction of that residue an auditor catches, never the fraction
-of all defects a model writes.
+Two consequences of these definitions hold throughout. \emph{Correct} means \emph{passes the
+hidden suite}. It is a benchmark label produced by an interpreter, not a guarantee that the
+program meets its specification, and a suite can be incomplete or wrong. Since this paper's own
+third result is that a specification often fails to determine what the hidden suite asks, we
+cannot treat passing that suite as correctness in the ordinary sense, and a \emph{false positive}
+is likewise a flag on test-passing code rather than a demonstrated mistake by the auditor. And the
+defect population is not a sample of model-written code: it is the residue that already survived
+the visible tests, which is by construction the harder part. A recall figure here is the fraction
+of that residue an auditor catches, never the fraction of all defects a model writes.
 
 \subsection{The auditor and the estimand}
 
@@ -47,58 +46,61 @@ The auditor reads the specification, the visible tests and the candidate, and re
 with severities; an increment is blocked when any finding is graded BLOCKER. It never sees the
 hidden suite. The estimand throughout is \textbf{union recall at $K$}: the fraction of defective
 instances blocked by at least one of $K$ independent readings, averaged exactly over all
-$\binom{K_{\max}}{K}$ subsets rather than by sampling. The matching quantity on the correct
-stratum is the union false-positive rate. A union recall figure is reported only beside the
+$\binom{K_{\max}}{K}$ subsets rather than by sampling. The matching quantity on the correct stratum
+is the union false-positive rate, and a union recall figure is reported only beside the
 false-positive rate it cost.
 
-Four auditor routes appear below. The \textbf{shipped cross-vendor} auditor is
-\texttt{gpt-5.6-terra}; the \textbf{same-vendor} auditor is \texttt{claude-haiku-4-5}, the
-generator's own family and size; the \textbf{stronger same-vendor} auditor is
-\texttt{claude-sonnet-4.6}; and a third family, \texttt{gpt-6-astra} at high reasoning, is read
-at $K=4$. The auditor's constitution, its prompt
-builder and every route's capability card are in the auditor harness, a separate repository,
-at the commit named in the provenance file, whose per-reading records carry the hash of every
-prompt actually sent.
+Four auditor routes appear below. The shipped cross-vendor auditor is \texttt{gpt-5.6-terra}; the
+same-vendor auditor is \texttt{claude-haiku-4-5}, the generator's own family and size; the
+stronger same-vendor auditor is \texttt{claude-sonnet-4.6}; and a third family,
+\texttt{gpt-6-astra} at high reasoning, is read at $K=4$. The auditor's constitution, its prompt
+builder and every route's capability card are in the auditor harness, a separate repository, at
+the commit named in the provenance file, whose per-reading records carry the hash of every prompt
+actually sent.
 
 The routes are \textbf{not sampled alike}, and this bounds every cross-family union-of-$K$
 contrast in the paper. The cross-vendor route's capability card does not permit a sampling
-temperature, so no sampling parameter is sent and the route varies between readings; the
-same-vendor routes permit one and the layer sends temperature $0$, so those routes are
-near-deterministic. A union over readings that do not differ cannot grow, so the two families'
-unions are not equally free to rise with $K$, and a cross-family difference in union recall
-confounds auditing ability with how much each union was permitted to grow. The asymmetry is a
-property of the shipped routing layer we measured rather than a design choice, we did not discover
-it until after the runs, and we report the $K=1$ contrast beside the $K=8$ contrast wherever it
-matters. A temperature-matched replication is the first item in \S\ref{sec:limits}.
+temperature, so no sampling parameter is sent and the route varies between readings. The
+same-vendor routes permit one, and the layer sends temperature $0$, so those routes are nearly
+deterministic. A union over readings that do not differ cannot grow, so the two families' unions
+are not equally free to rise with $K$, and a cross-family difference in union recall confounds
+auditing ability with how much each union could grow. The asymmetry is a property of the shipped
+routing layer we measured rather than a design choice. We did not discover it until after the
+runs, and we report the $K=1$ contrast beside the $K=8$ contrast wherever it matters. A
+temperature-matched replication is the first item in \S\ref{sec:limits}.
 
 \subsection{Statistics}
 \label{sec:stats}
 
 The unit of observation is the instance and the resampling unit is the problem, because problems
 recur across generation batches and instances sharing a problem are not independent. The $K$
-readings of an instance are repeated measurements of it, not $K$ further independent observations.
-The bootstrap over problems estimates uncertainty from which tasks the benchmark happens to
-contain; it does not estimate how much a fresh batch of model calls on these same tasks would
-move the numbers, which would need replicate runs we did not budget for at every arm. Every rate carries a 95\% percentile bootstrap over whole problem
-clusters (10{,}000 resamples, seeds fixed in each preregistration), with the Wilson interval
-printed beside it and marked as too narrow. Paired contrasts carry an exact McNemar test and a
-cluster-level sign-flip permutation test; where every discordant pair points one way the
-percentile bootstrap's bound at zero is an artefact and an unconditional interval (grid-approximated,
-unclustered) is quoted
-instead --- with one exception: the clarification study's registration fixed the bootstrap for a
-contrast that turned out one-signed, so its interval is reported as registered and read beside
-its exact cluster test (\S\ref{sec:inreview}). A saturation curve is summarised by a constrained exponential fit, and the fitted
-asymptote is quoted only when the preregistered flattening bar is met; otherwise it is labelled an
-extrapolation and the raw union at $K_{\max}$ is the number quoted. Counts of five or fewer are
-quoted as counts. Multiplicity is handled per study as each registered it: the study carrying the
-primary contrasts corrects over every comparison it computed, a Bonferroni family of sixteen with
-a threshold of $0.00313$ that two comparisons clear; others registered a single primary, and
-study 19 reports its twenty further quantities without correction. \textbf{Interval coverage is
-measured rather than assumed or waved at.} Under the two strata's actual cluster profiles --- 110
-instances in 56 problems, and 150 in 143 --- with within-problem concordance $0.5$, the
-percentile bootstrap's coverage of a nominal $95\%$ rate interval is, over 400 replicates of 600
-resamples each (Monte Carlo standard error about 0.011 near 95\% coverage and 0.020 at the lowest
-cell; single rates only, with integer-index percentiles where the analyses interpolate; \texttt{analysis/coverage\_simulation.py}):
+readings of an instance are repeated measurements of it, not $K$ further independent
+observations. The bootstrap over problems estimates uncertainty from which tasks the benchmark
+happens to contain. It does not estimate how much a fresh batch of model calls on the same tasks
+would move the numbers, which would need replicate runs we did not budget for at every arm.
+
+Every rate carries a 95\% percentile bootstrap over whole problem clusters (10{,}000 resamples,
+seeds fixed in each preregistration), with the Wilson interval printed beside it and marked as too
+narrow. Paired contrasts carry an exact McNemar test and a cluster-level sign-flip permutation
+test. Where every discordant pair points one way, the percentile bootstrap's bound at zero is an
+artefact, and an unconditional interval (grid-approximated, unclustered) is quoted instead. The
+one exception is the clarification study, whose registration fixed the bootstrap for a contrast
+that turned out one-signed; its interval is reported as registered and read beside its exact
+cluster test (\S\ref{sec:inreview}). A saturation curve is summarised by a constrained
+exponential fit, and the fitted asymptote is quoted only when the preregistered flattening bar is
+met; otherwise it is labelled an extrapolation and the raw union at $K_{\max}$ is the number
+quoted. Counts of five or fewer are quoted as counts. Multiplicity is handled per study as each
+registered it: the study carrying the primary contrasts corrects over every comparison it
+computed, a Bonferroni family of sixteen with a threshold of $0.00313$ that two comparisons clear;
+others registered a single primary, and study 19 reports its twenty further quantities without
+correction.
+
+We measured interval coverage by simulation rather than assuming it. Under the two strata's
+actual cluster profiles (110 instances in 56 problems, and 150 in 143), with within-problem
+concordance $0.5$, the percentile bootstrap's coverage of a nominal $95\%$ rate interval is as
+follows, over 400 replicates of 600 resamples each. The Monte Carlo standard error is about 0.011
+near 95\% coverage and 0.020 at the lowest cell; the simulation covers single rates only, and uses
+integer-index percentiles where the analyses interpolate (\texttt{analysis/coverage\_simulation.py}).
 
 \begin{center}\small
 \footnotesize\setlength{\tabcolsep}{2.5pt}
@@ -116,123 +118,115 @@ correct (143) & 0.888 & 0.918 & 0.938 & 0.933 & 0.943 & 0.955 & 0.965 \\
 sit at and \textbf{badly anticonservative at small true rates}: at a true rate of $0.03$ on the
 defect stratum the simulated interval covers about $0.80$, not $0.95$. This is evidence of
 potential undercoverage for analogous intervals, not a measured coverage of any interval quoted
-here. Intervals on rates below roughly $0.10$ may be narrower than they claim. \emph{An earlier version of this paper said the bootstrap
-under-covers ``by roughly 2 to 5 points'' and that its coverage under the clustered design was
-unvalidated. The first was a generalisation the source report had already withdrawn as
-unsupported; the second was wrong, since a clustered simulation sat in this paper's own test
-suite. A pre-submission referee found both.} The simulation is
-\texttt{analysis/coverage\_simulation.py} and costs no model calls. Two earlier paired-contrast
-constructions in this programme were found by review to cover $0.416$ and $0.075$ where $0.95$
-was claimed, and both were replaced. No sample size was
-justified in advance by a minimum-detectable-effect calculation.
+here. Intervals on rates below roughly $0.10$ may be narrower than they claim. The simulation
+costs no model calls. Two earlier paired-contrast constructions in this programme were found by
+review to cover $0.416$ and $0.075$ where $0.95$ was claimed, and both were replaced. No sample
+size was justified in advance by a minimum-detectable-effect calculation.
 
-\textbf{An interval that contains zero is reported as one that does not exclude zero, and
-nothing more.} No equivalence margin was registered anywhere in this programme and no
-equivalence test was performed, so none of those intervals is evidence that two conditions are
-alike or that an intervention did nothing --- a distinction this work has already had to make
-the hard way, having once inferred equal cost from an interval containing zero and withdrawn it
-on review. Where a hypothesis fails its registered criterion we say it failed, not that the
-effect is absent.
+\textbf{An interval that contains zero is reported as one that does not exclude zero, and nothing
+more.} No equivalence margin was registered anywhere in this programme and no equivalence test was
+performed, so none of those intervals is evidence that two conditions are alike or that an
+intervention did nothing. This work once inferred equal cost from an interval containing zero and
+withdrew the inference on review. Where a hypothesis fails its registered criterion we say it
+failed, not that the effect is absent.
 
-All analysis is plain Python 3.13 using only the standard library --- \texttt{random},
-\texttt{math}, \texttt{itertools}, \texttt{csv} and \texttt{json}. The bootstrap, the exact
+All analysis is plain Python 3.13 using only the standard library (\texttt{random},
+\texttt{math}, \texttt{itertools}, \texttt{csv} and \texttt{json}). The bootstrap, the exact
 McNemar test, the cluster sign-flip permutation and the exact subset enumeration behind every
-union-at-$K$ figure are implemented in the repository rather than called from a numerical
-package, so each is readable at the point where it is used, and none depends on a third-party
-version.
+union-at-$K$ figure are implemented in the repository rather than called from a numerical package,
+so each can be read where it is used and none depends on a third-party version.
 
 \subsection{Preregistration and independent review}
 \label{sec:methods-review}
 
 \textbf{Who did what.} The studies were designed, run, analysed and written up by an AI research
-agent, Claude (Anthropic; \texttt{claude-opus-5} and \texttt{claude-fable-5-1}, working in
-Claude Code), under the direction of the author, who is responsible for the work. Wherever a
-rating or adjudication below is attributed to \texttt{L1}, the rater was that agent. It wrote
-the rubrics, knew the hypotheses and the earlier labels, and is from the same vendor as the
-generator. \textbf{No human rated or adjudicated anything in this paper.} Every report was then
-reviewed by a second model, \texttt{gpt-6-astra}, as described below.
+agent, Claude (Anthropic; \texttt{claude-opus-5} and \texttt{claude-fable-5-1}, working in Claude
+Code), under the direction of the author, who is responsible for the work. Wherever a rating or
+adjudication below is attributed to \texttt{L1}, the rater was that agent. It wrote the rubrics,
+knew the hypotheses and the earlier labels, and is from the same vendor as the generator.
+\textbf{No human rated or adjudicated anything in this paper.} Every report was then reviewed by a
+second model, \texttt{gpt-6-astra}, as described below.
 
 Each study that made model calls was preregistered before its first one, fixing its population,
-hypotheses, primary outcome, intervals, kill conditions, budget and stopping rule ---
-\textbf{with two exceptions this paper reports rather than elides}. First, the severity sweep of
-\S\ref{sec:auditor} re-grades findings already archived, makes no model calls, and was never
-registered: every figure it produces is post hoc and exploratory, and none is a confirmatory
-test. An earlier version of
-this paragraph named only the second exception. Second, the analysis behind
-\S\ref{sec:inreview}'s third-rating result was registered a day \emph{after} its contrast had
-been computed and committed, in a document that claimed the opposite; that document is withdrawn
-in the repository and the analysis is registered nowhere. Its method was fixed in advance by an
-earlier amendment, and the disjoint reading, the abstention-excluded secondary and the
-broken-sheet comparison were not. Planned departures are numbered
-amendments committed before the step they govern, each recording what was known at the time;
-deviations discovered only afterwards, such as a leak check or a spend guard implemented more
-narrowly than registered, are disclosed in the report and are not amendments. Where
-an amendment followed an interim observation, the results say so and argue whether the change
-could favour the hypothesis. Each report was then reviewed by a model from a different vendor to the generator, with
-read access to the raw records, asked to re-run the analysis, recompute the intervals
-independently, and check every sentence against the records. \textbf{That reviewer is
-\texttt{gpt-6-astra}, which is also one of the auditor families measured in \S\ref{sec:auditor}
-and one of the two raters behind \S\ref{sec:residual}'s labels, and one of the two
-adjudicators whose joint labels define the clarification study's outcome.} For most claims this is a
-cross-vendor check on work the reviewer had no part in. \textbf{For the claims that rank
-\texttt{astra} against the other families it is not: there the reviewer is the subject}, and
-those comparisons, and the clarification study's adjudication, should be read as
-self-assessed until a model that audited nothing in this
-programme has checked them. This project's own P3 Amendment 10 disqualified the same model as the
-clarification study's manipulation-check rater for the same reason, yet kept it as that study's
-second adjudicator and its reviewer; the standard was applied unevenly within one study, and not
-applied to the review at all until a pre-submission referee pointed it out. Reviews are archived verbatim, including those that
-refused approval, and several studies needed many rounds: on one day five reports were refused
-at once, and clearing those five took thirty-one further rounds. What moved, in most of them,
-was what the reports claimed about their measurements --- and in most of the later refusals the object of the refusal was a repair written to satisfy the previous
-round, not the study it repaired. We state that because it is the most transferable thing this
-process produced: a fix written to satisfy a reviewer is itself an unreviewed claim.
+hypotheses, primary outcome, intervals, kill conditions, budget and stopping rule, with two
+exceptions. First, the severity sweep of \S\ref{sec:auditor} re-grades findings already archived,
+makes no model calls, and was never registered: every figure it produces is post hoc and
+exploratory, and none is a confirmatory test. Second, the analysis behind
+\S\ref{sec:inreview}'s third-rating result was registered a day \emph{after} its contrast had been
+computed and committed, in a document that claimed the opposite; that document is withdrawn in
+the repository and the analysis is registered nowhere. Its method was fixed in advance by an
+earlier amendment, but the disjoint reading, the abstention-excluded secondary and the
+broken-sheet comparison were not.
 
-\textbf{The reviewer is a language model, and this paper is about the ceiling on language
-models reading code they did not write.} That applies to our own instrument, and the round
-counts are the evidence: the studies of \S\ref{sec:inreview} cleared review at rounds \textbf{3, 3,
-4, 6, 7, 9, 10 and 11}, and the ceiling study behind the headlines at 21, and in every case the round before the last still returned substantive findings. Some of those
-findings were defects introduced by the repairs between rounds, so the counts do not estimate a
-single pass's recall; they show that no report cleared in fewer than three. \emph{Quotable at
-round $N$} means a report survived $N$ passes, not that it was verified, and the marks in this paper
-should be read as a filter of unknown recall rather than as proof.
+Planned departures are numbered amendments committed before the step they govern, each recording
+what was known at the time. Deviations discovered only afterwards, such as a leak check or a spend
+guard implemented more narrowly than registered, are disclosed in the report and are not
+amendments. Where an amendment followed an interim observation, the results say so and argue
+whether the change could favour the hypothesis.
 
-Two things sharpen that. First, the split. Measurements did move on review: the severity
-sweep's first review found its loader misreading one family's draws and another's population,
-and every cross-family figure was recomputed; the clarification study's second review moved its primary
-from 9 of 31 to 9 of 32 instances and its contrast from $+29.0$ to $+28.1$ points, by finding
-an instance wrongly excluded; and a label count inside a reviewed report was 71 where its data
-say 67. An earlier version of this sentence said measurements never moved, and a later one
-confined the exceptions to one study; both were wrong. Once a figure's inputs were right, the
-reviewers reproduced rates, intervals, subset enumerations and seeds independently and found no
-arithmetic error, and most refusals were about what the prose claimed. On recomputation the instrument is strong; on
-interpretation it is weak, and the two should not be quoted as one assurance. Second, the class
-of defect this leaves open is the one that looks right to a language model. The clarification
-study audited the wrong program for 384 readings --- a per-problem field used where a
-per-instance one was needed --- and every automated gate passed, because each checked that the
-code was \emph{identical across conditions} and it was, identically wrong. It was found by hand,
-reading an adjudication sheet and noticing that a displayed program returned exactly what its
-hidden suite was said to reject. Neither the gates nor a reviewer found it, and we do not know
-what else of that kind remains.
+Each report was then reviewed by a model from a different vendor to the generator, with read
+access to the raw records, asked to re-run the analysis, recompute the intervals independently,
+and check every sentence against the records. \textbf{That reviewer is \texttt{gpt-6-astra}},
+which is also one of the auditor families measured in \S\ref{sec:auditor}, one of the two raters
+behind \S\ref{sec:residual}'s labels, and one of the two adjudicators whose joint labels define
+the clarification study's outcome. For most claims this is a cross-vendor check on work the
+reviewer had no part in. For the claims that rank \texttt{astra} against the other families, and
+for the clarification study's adjudication, the reviewer is the subject, and those results should
+be read as self-assessed until a model that audited nothing in this programme has checked them.
+This project's own P3 Amendment 10 disqualified the same model as the clarification study's
+manipulation-check rater for the same reason, yet kept it as that study's second adjudicator and
+its reviewer; the standard was applied unevenly within one study, and not applied to the review
+at all until a pre-submission referee pointed it out.
+
+Reviews are archived verbatim, including those that refused approval, and several studies needed
+many rounds. On one day five reports were refused at once, and clearing those five took
+thirty-one further rounds. In most of them what moved was what the reports claimed about their
+measurements, and in most of the later refusals the object was a repair written to satisfy the
+previous round rather than the study it repaired. A fix written to satisfy a reviewer is itself an
+unreviewed claim; that is the most transferable thing this process taught us.
+
+\textbf{The reviewer is a language model, and this paper is about the ceiling on language models
+reading code they did not write.} That applies to our own instrument. The studies of
+\S\ref{sec:inreview} cleared review at rounds \textbf{3, 3, 4, 6, 7, 9, 10 and 11}, and the
+ceiling study behind the headlines at 21; in every case the round before the last still returned
+substantive findings. Some of those findings were defects introduced by the repairs between
+rounds, so the counts do not estimate a single pass's recall; they show only that no report
+cleared in fewer than three. \emph{Quotable at round $N$} means a report survived $N$ passes, not
+that it was verified, and the marks in this paper should be read as a filter of unknown recall.
+
+Two further points follow. First, measurements did move on review. The severity sweep's first
+review found its loader misreading one family's draws and another's population, and every
+cross-family figure was recomputed; the clarification study's second review moved its primary
+from 9 of 31 to 9 of 32 instances and its contrast from $+29.0$ to $+28.1$ points, by finding an
+instance wrongly excluded; and a label count inside a reviewed report was 71 where its data say
+67. Once a figure's inputs were right, the reviewers reproduced rates, intervals, subset
+enumerations and seeds independently and found no arithmetic error, and most refusals were about
+what the prose claimed. On recomputation the instrument is strong; on interpretation it is weak,
+and the two should not be quoted as one assurance. Second, the class of defect this leaves open is
+the one that looks right to a language model. The clarification study audited the wrong program
+for 384 readings, because a per-problem field was used where a per-instance one was needed, and
+every automated gate passed: each checked that the code was \emph{identical across conditions},
+and it was, identically wrong. The agent found it while reading an adjudication sheet, by noticing
+that a displayed program returned exactly what its hidden suite was said to reject. Neither the
+gates nor a reviewer found it, and we do not know what else of that kind remains.
 
 \textbf{Every review prompt in this programme stated the claimed result before the reviewer
-began.} We attempted to test what that costs, and the attempt failed in a way worth reporting.
-One report, quotable at round 6 after five refusals and unchanged since, was dispatched again
-under a prompt whose own text withheld every figure and every prior verdict and asked for an
-independent computation first. \textbf{That prompt's list of binding artefacts then named two
-files that state those figures}, one of them the claims-ledger entry for the result under
-review. The blinding was not enforced, so the agreement between that pass and the briefed one
-establishes nothing, and we draw no inference from it. What the pass did return is a
-\emph{disagreement count}: six substantive findings that six briefed rounds on the same file had
-not produced, among them that the report's two groups were two different definitions of
+began.} We tried to test what that costs, and the attempt failed. One report, quotable at round 6
+after five refusals and unchanged since, was dispatched again under a prompt whose own text
+withheld every figure and every prior verdict and asked for an independent computation first.
+That prompt's list of binding artefacts then named two files that state those figures, one of
+them the claims-ledger entry for the result under review. The blinding was not enforced, so the
+agreement between that pass and the briefed one establishes nothing. What the pass did return is a
+disagreement count: six substantive findings that six briefed rounds on the same file had not
+produced, among them that the report's two groups were two different definitions of
 \emph{caught} rather than one population with duplicate rows, that its rating sheet displays at
 most three failing inputs while 81 of its 121 entries have more recorded, and that a count of
-changed labels was 71 where the data say 67. **That count is $n=1$, uncontrolled and
-unregistered**: a seventh round might have found new things under any prompt, and no
-matched briefed round was run against the same file. We report it as a reason to test blinding
-properly rather than as a result about blinding, and the first round of every review after this
-one is dispatched with the conclusions withheld from the prompt \emph{and} from every artefact
-it names.
+changed labels was 71 where the data say 67. \textbf{That count is $n=1$, uncontrolled and
+unregistered.} A seventh round might have found new things under any prompt, and no matched
+briefed round was run against the same file. We report it as a reason to test blinding properly
+rather than as a result about blinding. Later first rounds withheld the conclusions from the
+prompt text, but the report under review stayed among the named artefacts, with an instruction to
+derive the result before reading it; that is a request, not blinding.
 
 Every study drawn on here has completed that review. One further study was re-run twice and closed
 without a quotable number; the paper names it only to say what it no longer supports.
