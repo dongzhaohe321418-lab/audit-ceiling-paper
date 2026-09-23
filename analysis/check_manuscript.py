@@ -62,6 +62,17 @@ FORBIDDEN = {
         r"detectably artificial",
     # Admitted claims carry prohibitions of their own; the list above had none of them, and the
     # abstract that quoted the forbidden interval passed this check (found 2026-09-23).
+    # Review paper1 r1 (2026-09-23): five sentences the ledger now forbids.
+    "study 23's substrate-dependent direction":
+        r"direction is\s+substrate-dependent|substrate-dependent direction",
+    "astra ranked on both axes":
+        r"beats both on recall|dominating the shipped auditor on both",
+    "no measurement moved":
+        r"no measurement (?:ever )?moved",
+    "the sweep read as recognition or cause":
+        r"writes down\s+more of what is wrong|fact about severity\s+calibration",
+    "P3 read as unselected":
+        r"not conditioned on being\s+missed",
     "C1: the curve saturates (the flattening bar was not met)":
         r"\bsaturates\b|reaches saturation|has saturated|curve saturat",
     "C2 read as auditing ability":

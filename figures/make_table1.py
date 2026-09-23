@@ -60,7 +60,9 @@ def main() -> int:
     c = j("ceiling/numbers.json")
     x = c["ceiling1"]["families"]["cross"]
     loop = c["ceiling2"]["contrasts"]["referent-loop__vs__cross-loop"]
-    c3 = j("ceiling3/numbers.json")["primary_H18b_self_strong_minus_cross_P"]
+    c3all = j("ceiling3/numbers.json")
+    c3 = c3all["primary_H18b_self_strong_minus_cross_P"]
+    c3fp = c3all["H18b_C_false_positives"]
     c4 = json.loads(C4.read_text(encoding="utf-8"))
     rer = j("rerate/numbers.json")
     h3 = j("clarify/h3.json")["primary_clarified_minus_original"]
@@ -92,6 +94,10 @@ def main() -> int:
          ci100(gain["cluster_ci95"], 2), "bar 1.0, not met"),
         ("Same-vendor stronger $-$ cross, recall", f"{c3['n']} defect", pts(c3["difference_points"]),
          ci(*c3["cluster_ci95_points"]), "preregistered"),
+        # C2 requires its operating point beside it wherever it is quoted (review paper1 r1, 7).
+        ("\\quad its false-positive difference", f"{c3fp['n']} correct",
+         pts(c3fp["difference_points"]),
+         ci(*c3fp["cluster_ci95_points"]), "prereg.; 3.3\\% v 16.0\\%"),
         ("Rulebook rule $-$ shipped, recall", f"{c4['primary_H20a_crossR_minus_cross_P']['n']} defect",
          pts(c4["primary_H20a_crossR_minus_cross_P"]["difference_points"]),
          ci(*c4["primary_H20a_crossR_minus_cross_P"]["cluster_ci95_points"]), "preregistered"),
@@ -110,22 +116,24 @@ def main() -> int:
          ci(*pa["fp_C"]["cluster_ci95"]), "exploratory"),
         ("Undetermined, sheet groups", "121 entries, 110 instances", pts(g["diff_points"]),
          ci(*g["cluster_ci95"]), "registered method"),
-        ("\\quad disjoint instances", f"{dj['missed'][1]} against {dj['caught'][1]}",
+        ("\\quad one definition of caught", f"{dj['missed'][1]} against {dj['caught'][1]}",
          pts(dj["diff_points"]), ci(*dj["cluster_ci95"]), "post hoc"),
-        ("Undetermined share of the residual", f"{res57['count']} of {res57['n']}; {k32} of {n32}",
-         f"{pct(res57['share'])}; {pct(100 * k32 / n32)}", "---", "post hoc"),
+        ("Undetermined share, 3-family residual", f"{res57['count']} of {res57['n']}",
+         pct(res57["share"]), ci(*res57["cluster_ci"], sign=False), "post hoc"),
+        ("\\quad 6-family residual", f"{k32} of {n32}", pct(100 * k32 / n32), "---",
+         "post hoc, pending"),
         ("Clarified $-$ original, diagnosis", f"{h3['n']} selected, {h3['n_problems']} problems",
-         pts(h3["points"]), ci(*h3["cluster_ci95"]), "preregistered"),
+         pts(h3["points"]), ci(*h3["cluster_ci95"]), "one-signed; exact $p$ .0625"),
     ]
     out = [
         r"\begin{table*}[t]", r"\caption{Every primary quantity this paper quotes, with the "
         r"population it is measured on and the label its source report gives it. Values are "
         r"percentages or percentage points. Intervals are 95\% problem-cluster percentile "
-        r"bootstraps unless the label names another method; see \S\ref{sec:stats} for their "
-        r"measured coverage, which is near nominal at these rates and anticonservative below "
-        r"about $0.10$. Every row is read from a committed record by "
+        r"bootstraps unless the label names another method. The coverage simulation of "
+        r"\S\ref{sec:stats} measures single-rate intervals only; the contrasts and the "
+        r"category-conditioned shares have no measured coverage. Every row is read from a committed record by "
         r"\texttt{figures/make\_table1.py}.}",
-        r"\label{tab:primary}", r"\centering", r"\small",
+        r"\label{tab:primary}", r"\centering", r"\footnotesize\setlength{\tabcolsep}{4pt}",
         r"\begin{tabular}{@{}llrll@{}}", r"\toprule",
         r"quantity & population & value & interval & label \\", r"\midrule",
     ]

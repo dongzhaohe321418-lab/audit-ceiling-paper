@@ -42,17 +42,19 @@ run by an interpreter), varying one factor at a time on 110 defective and 150 co
 Eight independent readings of a shipped cross-vendor auditor reach 30.0\% union recall $[20.0,
 40.7]$ at 16.0\% false positives, and the eighth still adds 1.9 points: returns diminish, with no
 plateau shown. A stronger same-vendor model moves recall by $-26.4$ points $[-37.3, -15.6]$, a
-preregistered primary, but the sign reverses under a weaker severity rule, so we read it as
-calibration and sampling, not auditing ability. One added rulebook sentence moves flags by $+26.8$
-points on an exploratory arm and does not measurably move hidden-suite pass rate. Of 57 defects no
-reading flagged, two raters, one an author, judge 44 to be failures the specification never
-determined; a model with no audit role labels 38 of them so. Adding a behavioural rule to the specification with the code held fixed raised
-adjudicated diagnosis from 0 to 9 of 32 selected instances, against 0 under a placebo edit, but
-only where the added rule agreed with the hidden suite. A recall figure is therefore a property of
-auditor, rulebook, decision rule and benchmark together, and is not portable without its
-false-positive rate. Every study that made model calls was preregistered, and the two unregistered analyses are named; each report is
-marked by whether it passed independent cross-vendor review, and the reviews are archived beside
-the records.
+preregistered primary, while flagging 3.3\% of correct code against 16.0\%; the sign reverses under
+a weaker severity rule, so the contrast depends on the counting rule and is not a measure of
+auditing ability. One added rulebook sentence moves flags by $+26.8$ points $[13.6, 40.4]$ on an
+exploratory arm, at $+12.5$ points on correct code, and does not measurably move hidden-suite pass
+rate. Of 57 defects no reading flagged, two raters, one an author, judge 44 to be failures the
+specification never determined; a model with no audit role, asked a narrower question, labels 38
+undetermined. Adding a behavioural rule to the specification with the code held fixed raised
+adjudicated diagnosis from 0 to 9 of 32 selected instances, against 0 under a placebo edit, only
+where the added rule agreed with the hidden suite; the exact cluster test gives $p = 0.06$. A
+recall figure is therefore a property of auditor, rulebook, decision rule and benchmark together,
+and is not portable without its false-positive rate. Every study that made model calls was
+preregistered and the two unregistered analyses are named; each report is marked by whether it
+passed independent cross-vendor review, and the reviews are archived beside the records.
 \end{abstract}
 
 \input{sections/introduction}
@@ -72,8 +74,9 @@ not decided by an executable suite.
 suites encode a reference implementation's behaviour, including behaviour its prose never fixed.
 In the intervention study reported in \S\ref{sec:inreview}, a generator shown an instance's
 failing inputs inferred a behavioural rule that \emph{contradicted} the hidden oracle on 23 of
-32 instances. That is a property of the benchmarks, not of the generator, and it bounds what any
-recall figure measured this way can mean.
+32 instances. The study cannot say whether that reflects the specifications or the generator's
+inference from inputs alone; either way it bounds what any recall figure measured this way can
+mean.
 
 \textbf{Interval coverage, measured and imperfect.} The primary intervals are percentile
 bootstraps over problem clusters. Simulated under the design's own cluster profiles (400
@@ -85,9 +88,10 @@ constructions in this programme were found by review to cover $0.416$ and $0.075
 was claimed.
 
 \textbf{The validation instrument shares the failure mode under study.} Reports were checked by a
-language model, which is what this paper measures a ceiling on. Studies cleared review at rounds
-4, 6, 7, 9, 10 and 11, so a single pass has low recall; no measurement ever moved, so on
-recomputation it is strong and on interpretation weak; and withholding our conclusions from one
+language model, which is what this paper measures a ceiling on. Studies cleared review at between
+three and twenty-one rounds, with the round before the last always returning substantive
+findings; measurements moved on review in three studies, and elsewhere the refusals concerned
+interpretation, where the instrument is weakest; and withholding our conclusions from one
 pass produced six substantive findings that six briefed passes had missed. The defect class it
 leaves open is the one that looks right to a language model, and we do not know what remains in
 it.
@@ -113,15 +117,17 @@ report of every study the paper draws on; every registered study's preregistrati
 amendments; every independent review of those reports, verbatim and including
 refusals; and the derived records --- counts, labels, hashes and intervals --- that the figures
 and Table~\ref{tab:primary} are drawn from. A single command, \texttt{reproduce.sh},
-regenerates Figures 1--3 and Table~\ref{tab:primary} from those records with no model calls, no
-network access and no path outside the checkout, and checks that the regenerated table is
-identical to the one printed here; it was run from a fresh clone to establish that. The
+regenerates Figures 1--3 and Table~\ref{tab:primary} from those records, refreshes the copies
+the manuscript compiles, and checks that the regenerated table is identical to the one printed
+here, with no model calls, no network access and no path outside the checkout; it was run from
+a fresh clone with the home directory unavailable to establish that. The
 repository's \texttt{README} maps each claim to its report, its reviews and its records. The
 corpora are HumanEval (MIT) and HumanEval+ and MBPP+ (Apache-2.0), which permit
-redistribution. What a replication cannot do from the repository alone is regenerate the
-records themselves: that requires re-running the studies against the same model endpoints,
-whose outputs are not deterministic, and the auditor harness, which lives in a separate
-repository named in the provenance file. The repository is private until the paper is
+redistribution. What a replication cannot do from this repository alone is regenerate the
+records themselves. With the archive of raw readings, which is kept separately, they regenerate
+deterministically through the analysis code in the auditor harness, a separate repository named
+in the provenance file; without it, only by re-running the studies against model endpoints whose
+outputs are not deterministic. The repository is private until the paper is
 released.
 
 \bibliography{paper}

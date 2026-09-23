@@ -5,7 +5,9 @@
 Every result in this paper is measured on one substrate: HumanEval+ and MBPP+ (EvalPlus),
 Python functions whose median task is 41 words of prose and 6 lines of reference code, each with
 an executable hidden test suite, so every stratum, recall denominator and false-positive
-population is decided by an interpreter and no model judges any outcome. The benchmark's base
+population is decided by an interpreter and no model judges a recall or false-positive
+outcome. The one outcome defined by adjudication, correct diagnosis in the clarification study,
+is judged jointly by an author and a model, and is labelled so where it appears. The benchmark's base
 suite is shown to the generator as the \emph{visible} suite and its plus suite is held back as
 the \emph{hidden} one. A second substrate, the standard-library half of BigCodeBench, was built
 and audited and closed without a quotable number, when its preregistered criterion was not met
@@ -53,8 +55,10 @@ Four auditor routes appear below. The \textbf{shipped cross-vendor} auditor is
 \texttt{gpt-5.6-terra}; the \textbf{same-vendor} auditor is \texttt{claude-haiku-4-5}, the
 generator's own family and size; the \textbf{stronger same-vendor} auditor is
 \texttt{claude-sonnet-4.6}; and a third family, \texttt{gpt-6-astra} at high reasoning, is read
-at $K=4$. Prompts, the
-auditor's constitution and every capability card are in the repository.
+at $K=4$. The auditor's constitution, its prompt
+builder and every route's capability card are in the auditor harness, a separate repository,
+at the commit named in the provenance file, whose per-reading records carry the hash of every
+prompt actually sent.
 
 The routes are \textbf{not sampled alike}, and this bounds every cross-family union-of-$K$
 contrast in the paper. The cross-vendor route's capability card does not permit a sampling
@@ -80,7 +84,9 @@ clusters (10{,}000 resamples, seeds fixed in each preregistration), with the Wil
 printed beside it and marked as too narrow. Paired contrasts carry an exact McNemar test and a
 cluster-level sign-flip permutation test; where every discordant pair points one way the
 percentile bootstrap's bound at zero is an artefact and an exact unconditional interval is quoted
-instead. A saturation curve is summarised by a constrained exponential fit, and the fitted
+instead --- with one exception: the clarification study's registration fixed the bootstrap for a
+contrast that turned out one-signed, so its interval is reported as registered and read beside
+its exact cluster test (\S\ref{sec:inreview}). A saturation curve is summarised by a constrained exponential fit, and the fitted
 asymptote is quoted only when the preregistered flattening bar is met; otherwise it is labelled an
 extrapolation and the raw union at $K_{\max}$ is the number quoted. Counts of five or fewer are
 quoted as counts. Multiplicity is handled as a single Bonferroni family per study over every
@@ -138,7 +144,8 @@ Each study that made model calls was preregistered before its first one, fixing 
 hypotheses, primary outcome, intervals, kill conditions, budget and stopping rule ---
 \textbf{with two exceptions this paper reports rather than elides}. First, the severity sweep of
 \S\ref{sec:auditor} re-grades findings already archived, makes no model calls, and was never
-registered: every figure it produces is post hoc, and it tests nothing. An earlier version of
+registered: every figure it produces is post hoc and exploratory, and none is a confirmatory
+test. An earlier version of
 this paragraph named only the second exception. Second, the analysis behind
 \S\ref{sec:inreview}'s third-rating result was registered a day \emph{after} its contrast had
 been computed and committed, in a document that claimed the opposite; that document is withdrawn
@@ -162,29 +169,29 @@ clarification study's manipulation-check rater for the same reason, yet kept it 
 second adjudicator and its reviewer; the standard was applied unevenly within one study, and not
 applied to the review at all until a pre-submission referee pointed it out. Reviews are archived verbatim, including those that
 refused approval, and several studies needed many rounds: on one day five reports were refused
-at once, and clearing those five took thirty-one further rounds. \emph{No measurement moved in
-any of them.} What moved was what the reports claimed about their measurements --- and in most
-of the later refusals the object of the refusal was a repair written to satisfy the previous
+at once, and clearing those five took thirty-one further rounds. What moved, in most of them,
+was what the reports claimed about their measurements --- and in most of the later refusals the object of the refusal was a repair written to satisfy the previous
 round, not the study it repaired. We state that because it is the most transferable thing this
 process produced: a fix written to satisfy a reviewer is itself an unreviewed claim.
 
 \textbf{The reviewer is a language model, and this paper is about the ceiling on language
 models reading code they did not write.} That applies to our own instrument, and the round
 counts are the evidence: the studies here cleared review at rounds \textbf{3, 4, 6, 7, 9, 10 and
-11}, and in every case the round before the last still returned substantive findings. A single
-pass with high recall would clear a report in one round or two. So \emph{quotable at round
-$N$} means a report survived $N$ passes, not that it was verified, and the marks in this paper
+11}, and in every case the round before the last still returned substantive findings. Some of those
+findings were defects introduced by the repairs between rounds, so the counts do not estimate a
+single pass's recall; they show that no report cleared in fewer than three. \emph{Quotable at
+round $N$} means a report survived $N$ passes, not that it was verified, and the marks in this paper
 should be read as a filter of unknown recall rather than as proof.
 
-Two things sharpen that. First, the split: across the first six studies
-of \S\ref{sec:inreview}, \emph{no measurement moved}, though the scope matters and two
-counterexamples sit at its edge. The clarification study's second review moved its primary
+Two things sharpen that. First, the split. Measurements did move on review: the severity
+sweep's first review found its loader misreading one family's draws and another's population,
+and every cross-family figure was recomputed; the clarification study's second review moved its primary
 from 9 of 31 to 9 of 32 instances and its contrast from $+29.0$ to $+28.1$ points, by finding
 an instance wrongly excluded; and a label count inside a reviewed report was 71 where its data
-say 67. Both are measurements that moved on review, and an earlier version of this sentence
-said none ever had. The reviewers reproduced rates, intervals, subset enumerations and
-seeds independently and found no arithmetic error, and every refusal was about what the prose
-claimed of arithmetic already confirmed. On recomputation the instrument is strong; on
+say 67. An earlier version of this sentence said measurements never moved, and a later one
+confined the exceptions to one study; both were wrong. Once a figure's inputs were right, the
+reviewers reproduced rates, intervals, subset enumerations and seeds independently and found no
+arithmetic error, and most refusals were about what the prose claimed. On recomputation the instrument is strong; on
 interpretation it is weak, and the two should not be quoted as one assurance. Second, the class
 of defect this leaves open is the one that looks right to a language model. The clarification
 study audited the wrong program for 384 readings --- a per-problem field used where a
@@ -213,5 +220,5 @@ properly rather than as a result about blinding, and the first round of every re
 one is dispatched with the conclusions withheld from the prompt \emph{and} from every artefact
 it names.
 
-Every study drawn on here has completed that review. One further study was re-run twice, closed
-without a quotable number, and appears nowhere in this paper except in this sentence.
+Every study drawn on here has completed that review. One further study was re-run twice and closed
+without a quotable number; the paper names it only to say what it no longer supports.

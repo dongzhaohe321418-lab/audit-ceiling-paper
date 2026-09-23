@@ -2,8 +2,8 @@
 The claims this paper defends, each with its interval and its label, are listed in
 \texttt{CLAIMS.md}. A claim enters that file only after its report has passed an independent
 review by a model from a different vendor with access to the raw records. Every section below draws only on
-reports that have passed such a review. Section~\ref{sec:inreview} reports four studies whose
-reviews took between four and eleven rounds each to reach that point, and states what each of
+reports that have passed such a review. Section~\ref{sec:inreview} reports seven studies whose
+reviews took between three and eleven rounds each to reach that point, and states what each of
 them does and does not license; none of them is load-bearing for
 \S\ref{sec:repeat}--\S\ref{sec:residual}.
 Rates carry the 95\% problem-cluster percentile bootstrap as the primary interval, with the Wilson
@@ -95,9 +95,10 @@ findings graded BLOCKER --- an exploratory rule, not preregistered --- the stron
 59.1\% [47.3, 70.6] on the defect population at 34.0\% [26.5, 41.7] on correct code, against the
 shipped auditor's 34.5\% [23.6, 45.5] at 19.3\% [12.8, 26.3]. The ratio of those two rates --- a derived
 point ratio we carry no interval for --- is 1.74 and 1.79 respectively, so nothing here shows one
-family buying more recall per false positive than the other. The stronger model writes down
-more of what is wrong and grades less of it as blocking. The $-26.4$ is a fact about severity
-calibration.
+family buying more recall per false positive than the other. Under any-finding grading the stronger
+model's findings cover more instances and under the BLOCKER rule fewer, so the $-26.4$ depends on
+the counting rule. That does not show why the families' findings differ, or that any finding
+identifies the hidden failure.
 
 Third, the two families are not sampled alike. The shipped cross-vendor route's capability card
 does not permit a temperature, so no sampling parameter is sent and the route varies between
@@ -111,8 +112,11 @@ was permitted to grow. We regard this as the most serious limitation of the cont
 
 A third family argues the other way and belongs beside the headline. A high-reasoning model of the
 cross-vendor family reaches 32.7\% [20.7, 45.0] union recall at four readings while flagging
-10.7\% [5.9, 16.1] of correct code, dominating the shipped auditor on both axes at half the
-readings. So the evidence does not support ``a stronger model is a worse auditor''. It supports
+10.7\% [5.9, 16.1] of correct code, against the shipped auditor's 30.0\% at 16.0\% with eight.
+Paired on the same instances, neither advantage is established together with the other: at a
+common four readings it leads on recall, $+11.5$ $[+2.9, +21.3]$, with no false-positive
+difference, and against the shipped auditor's full eight it leads on false positives, $-5.3$
+$[-10.3, -0.7]$ unadjusted, but not on recall, $+2.7$ $[-6.5, +13.0]$ (\S\ref{sec:inreview}). So the evidence does not support ``a stronger model is a worse auditor''. It supports
 the narrower statement that this particular same-vendor model, at this severity calibration and
 sampled at temperature $0$, blocks far less.
 
@@ -133,7 +137,11 @@ attempted the second substrate, not something that study settled in either direc
 \includegraphics[width=0.46\textwidth]{fig2_sweep}
 \caption{\textbf{Union recall is a property of the decision rule, not only of the auditor.}
 Each point is one auditor family re-graded under one of four decision rules on the same archived
-readings, with problem-cluster 95\% intervals on both axes; no new model calls were made. The
+readings, with problem-cluster 95\% intervals on both axes; no new model calls were made.
+\textbf{The families are read at different depths}: \texttt{cross}, \texttt{self} and
+\texttt{self-strong} at every one of their eight readings, \texttt{astra} and
+\texttt{self-frontier} at their four, so the figure places each family at its full archived
+depth and is not an equal-depth comparison; the common-depth contrasts are in Table~\ref{tab:primary}. The
 dotted guides join a family's four points and are \emph{not} a measured curve --- only the four
 points exist. Two things the accompanying table cannot show: the families do not lie on one
 frontier, and \texttt{self-strong} has no reachable point between 3.3\% and 34.0\% false
@@ -223,14 +231,17 @@ defective, in twelve MBPP tasks named in a paper written for another purpose, ou
 paper's own ``incomplete'' category draws. That check is one-sided by construction: it can support
 agreement where an outsider looked, and can bound nothing about the rate.
 
-\textbf{A rater that audited nothing gives a smaller majority.} One of the two raters above is
-\texttt{gpt-6-astra}, whose own misses help define the residual. A model with no audit role
-anywhere in this programme, \texttt{gpt-5.6-luna}, later rated the same 57 instances under a
-different, three-option rubric on a sheet showing at most three failing inputs
-(\S\ref{sec:inreview}): it labels \textbf{38 of 57 undetermined} (66.7\%), 13 determined and 6
-cannot-tell. That is a majority, and it is ten points below the two raters' 77.2\%; given the
-same rater's agreement with itself of 7 in 11 on repeated items, we read it as support for
-\emph{most} and not for the larger figure.
+\textbf{A rater that audited nothing, asked a different question.} One of the two raters above
+is \texttt{gpt-6-astra}, whose own misses help define the residual. A model with no audit role
+anywhere in this programme, \texttt{gpt-5.6-luna}, later rated the same 57 instances, post hoc,
+under a different rubric --- whether the prose determines an answer at all, on a sheet showing
+at most three failing inputs and never the expected values (\S\ref{sec:inreview}). It labels
+\textbf{38 of 57 undetermined}, 13 determined and 6 cannot-tell. The two figures measure
+different constructs: the earlier category also admits prose that determines an answer the
+oracle contradicts, which this rubric does not count as undetermined, so 38 is not a corrected
+estimate of 44. What they share is that a participating and a non-participating rater both put a
+majority of the residual on the undetermined side, and the second agreed with itself on only 7
+of 11 repeated items.
 
 
 \begin{figure*}[t]
@@ -398,11 +409,18 @@ original, the clarified and a same-length placebo specification, four readings e
 counts as diagnosed only if both adjudicators judged some finding to state the behaviour the
 hidden suite expects. Diagnosis rose from \textbf{0 of 32 to 9 of 32} under clarification and
 stayed at 0 of 32 under placebo, \textbf{+28.1 points}, problem-cluster 95\% interval
-[+7.7, +51.4], which meets the registered criterion. The nine sit on five problems: the
-cluster sign-flip test the registration prefers gives $p = 0.060$ (exactly $2/2^5$ on
+[+7.7, +51.4], which meets the registered criterion; the registered secondary, on the 23
+instances both earlier raters called undetermined, is 8 of 23 against 0 of 23, $+34.8$
+$[+10.0, +60.9]$. \textbf{That criterion carried little information here.} Every discordant pair
+points one way, so no bootstrap resample can fall below zero, and one misses all five problems
+that carry a success with probability about $0.003$: the interval's exclusion of zero was close
+to guaranteed once the discordance was one-signed, which is the case \S\ref{sec:stats} says to
+read from an exact test instead. The registration kept the bootstrap and we report it as
+registered, but the informative figure is the cluster sign-flip test the registration prefers:
+the nine sit on five problems, and it gives $p = 0.060$ (exactly $2/2^5 = 0.0625$ on
 enumeration), against $0.0039$ for a McNemar test that counts nine independent pieces of
-evidence where five exist, so the interval criterion is met and the preferred test is not
-significant at 0.05. Two limits are part of the result. \emph{The inferred rule contradicts the
+evidence where five exist. It is not significant at 0.05. The registered naming-rate secondary
+was never computed. Two further limits are part of the result. \emph{The inferred rule contradicts the
 hidden suite entirely on 23 of the 32 instances and partly on 2}, and diagnosis was 0 of 23
 where it contradicted against 9 of 9 elsewhere; that split is measured rather than assigned, and
 it means what moved diagnosis was specification text that agreed with the oracle, not the
@@ -418,8 +436,13 @@ instances. It does not establish that underdetermination caused the original mis
 \textbf{What the refusals were about.} These seven studies cleared review at rounds 3, 4, 6, 7,
 9, 10 and 11, fifty rounds in all; an earlier version said forty-four, which counted four of
 the studies only from their first refusal. Most of those rounds ended in a refusal of the
-\emph{repair} rather than of the measurement. No measurement moved in
-the first six; in the seventh, review moved the primary by one instance and three classification rows (\S\ref{sec:methods-review}); every figure above reproduced independently at every round it was checked. The recurring failure was a check or a sentence that claimed more than it
+\emph{repair} rather than of the measurement. Measurements moved on
+review in three of the seven: the sweep's first review found its loader reading one family's
+draws 4 to 8 as 1 to 5 and another's population from a partial draw, and every cross-family
+figure was recomputed; a label count in the third rating's report was 71 where its data say 67;
+and the clarification study's primary moved by one instance and three classification rows
+(\S\ref{sec:methods-review}). Every figure above reproduced independently at every round after
+its last repair. The recurring failure was a check or a sentence that claimed more than it
 delivered: a binding that protected one sentence of a withdrawal spread across six; the same
 binding rewritten to protect all six, with two of them truncated before the words that carried
 their meaning; a check that stripped HTML comments and called the result what a reader sees; and

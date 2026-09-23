@@ -53,3 +53,25 @@ with an independent implementation and every one matched. R1 verified five studi
 recomputed the Bonferroni threshold, the survival probabilities, the exchange rate and every
 percentage-point difference in the results. **The measurements are not in dispute; the sentences
 built on them were.**
+
+## Whole-manuscript review, round 1 (`codex-review-paper1`, gpt-6-astra, at `306bd8d`): NOT SUBMITTABLE
+
+Every finding was checked against the records before anything moved; all fifteen held.
+
+| # | finding | action |
+|---|---|---|
+| 1 | 43/68, 25/32, 78.1% and the coverage cells entered `tex/` without admission | `reports/RESULTS-DERIVED.md` written; listed as pending in `CLAIMS.md`; put to round 2 for a ruling, removed if refused |
+| 2 | related work kept study 23's "direction is substrate-dependent" | rewritten as open; forbidden pattern added |
+| 3 | P3 called "not conditioned on being missed"; oracle contradictions attributed to the benchmarks; "no model judges any outcome" | all three corrected |
+| 4 | "writes down more of what is wrong", "a fact about severity calibration" | replaced by rule-dependence only; abstract likewise |
+| 5 | "no measurement moved" false (sweep r1, P1 71→67, P3) | corrected in methods, results, Limitations; an unverified "no measurement moved" about five other studies removed rather than kept |
+| 6 | `astra` "beats both" / "dominating on both axes" | replaced by the paired contrasts |
+| 7 | abstract and Table 1 dropped mandatory qualifications | C2 operating point, C3 interval and cost, C13 exact p in the abstract; C2 false-positive row and 44/57 interval in Table 1 |
+| 8 | one-signed exception unstated; coverage claim too broad in Table 1 caption | exception stated in §2.3; caption narrowed to single-rate intervals. **Found on the way:** P3's bootstrap criterion was close to guaranteed by construction (one-signed discordance, p ≈ 0.003 of a resample below zero); stated in results and C13 |
+| 9 | Figure 2 hides unequal depths | caption states K per family |
+| 10 | review archive incomplete; methods promised harness assets | early rounds of 3b and testgen-val mirrored; methods now says where the assets live (publishing product source is the owner's decision) |
+| 11 | 38/57 read as a smaller estimate of the same quantity | rewritten as a different construct |
+| 12 | P3 secondary and naming omission missing | both added |
+| 13 | stale review-status statements; "four to eleven rounds" excluded ceiling 1's 21 | corrected in intro, results, methods |
+| 14 | "tests nothing" overcorrected | "exploratory, none confirmatory" |
+| 15 | reproduce.sh wrote to /tmp, did not refresh tex/ copies; record regeneration overstated | fixed; coverage record verified to regenerate byte-identically |

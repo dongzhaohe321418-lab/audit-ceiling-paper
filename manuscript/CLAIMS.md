@@ -272,7 +272,10 @@ misses.** The registered secondary (Amendment 2): **8/23 against 0/23, +34.8** [
 
 **Five limits are part of the claim.** First, **the nine successes sit on five problems**; the
 cluster test has five informative signs and is not significant at 0.05, though the registered
-bootstrap criterion is met — both must be stated together. Second, **the clarifier saw failing
+bootstrap criterion is met — both must be stated together. *Added 2026-09-23:* every discordant
+pair points one way, so no bootstrap resample falls below zero and one misses all five
+success-bearing problems with probability about 0.003; the criterion was close to guaranteed by
+construction, and the exact cluster test (0.0625) is the informative figure. Second, **the clarifier saw failing
 inputs without expected values, and its added rule contradicts the oracle entirely on 23 of 32
 instances and partly on 2**; diagnosis was 6/6 where the addition agreed, 1/1 where it broadened
 a precondition, 2/2 where it partly agreed, 0/23 where it contradicted. That split is
@@ -307,6 +310,15 @@ of "most" misses**, and the words "causes" or "explains" may not be used of it.
   what a finding says, not what a model could see; the distinction is stated wherever those
   rates appear.
 * Any asymptote quoted without the word extrapolation where the flattening bar was not met.
+* *"The same-vendor contrast's direction is substrate-dependent."* Study 23 licenses nothing;
+  its clean contrast was +6.9 [−4.9, +18.6]. (Review paper1 r1, finding 2.)
+* *"`astra` beats both on recall and false positives."* It does not beat `self-strong` on false
+  positives, and no paired contrast establishes both advantages over `cross` at once. (Finding 6.)
+* *"No measurement moved on review."* The sweep's, P1's and P3's did. (Finding 5.)
+* *"The stronger model writes down more of what is wrong"* or *"−26.4 is a fact about severity
+  calibration."* The sweep shows rule-dependence, not cause or recognition. (Finding 4.)
+* *"The clarification study is not conditioned on being missed."* Its population was selected
+  for being missed. (Finding 3.)
 
 ## Under review, and already changing the claims above
 
@@ -521,6 +533,8 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | P1 (third rating) | — | **QUOTABLE at round 6, 2026-09-22.** Moved to the admitted claims as C12 |
 | P3 (clarification) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C13. Rounds 1 and 2 refused it (manipulation misdescribed; 3 of 32 classification rows wrong) |
 | R1-M3 cross-tab (post hoc) | per-instance agreement of a non-participating rater with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
+| derived: six-family residual composition | 43 of 68 consensus-undetermined flagged by some family; 25 of 32 = 78.1% of the six-family residual undetermined (`reports/RESULTS-DERIVED.md` §1) | in `tex/` **before** admission — found by review paper1 r1; submitted to review round 2; removed if refused |
+| derived: bootstrap coverage table | fourteen single-rate coverage cells (`reports/RESULTS-DERIVED.md` §2) | same status |
 
 ## Rule
 
