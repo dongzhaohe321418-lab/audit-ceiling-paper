@@ -99,8 +99,8 @@ def figure1(c1, s2):
     fig.legend(handles, labels, loc="lower center", ncol=2, frameon=False,
                fontsize=6.5, bbox_to_anchor=(0.5, -0.12), handlelength=2.2, columnspacing=1.4)
     fig.tight_layout()
-    fig.savefig(OUT / "fig1_saturation.pdf", bbox_inches="tight")
-    fig.savefig(OUT / "fig1_saturation.png", dpi=400, bbox_inches="tight")
+    fig.savefig(OUT / "fig1_saturation.pdf", bbox_inches="tight", metadata={"CreationDate": None})
+    fig.savefig(OUT / "fig1_saturation.png", dpi=400, bbox_inches="tight", metadata={"Software": None})
     plt.close(fig)
 
 

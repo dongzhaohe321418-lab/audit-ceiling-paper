@@ -79,7 +79,7 @@ def main() -> int:
                   loc="upper center", bbox_to_anchor=(0.5, -0.155), ncol=4, frameon=False,
                   handlelength=1.0, fontsize=5.2, columnspacing=1.0,
                   title="decision rule", title_fontsize=5.2)
-        fig.savefig(OUT, bbox_inches="tight")
+        fig.savefig(OUT, bbox_inches="tight", metadata={"CreationDate": None})
     print(f"wrote {OUT}  ({len(rows)} points from {REC.name})")
     return 0
 

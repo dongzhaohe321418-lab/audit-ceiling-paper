@@ -94,7 +94,7 @@ def main() -> int:
                   handletextpad=0.4)
         bx.set_ylim(0, 14.6)
         bx.text(-0.30, 1.04, "b", transform=bx.transAxes, fontweight="bold", fontsize=7)
-        fig.savefig(OUT, bbox_inches="tight")
+        fig.savefig(OUT, bbox_inches="tight", metadata={"CreationDate": None})
     print(f"wrote {OUT}: panel a {len(readings)} readings; panel b {binary}/{len(pairs)}, "
           f"{three}/{len(pairs)}, {free_ag}/{len(free)}")
     return 0

@@ -7,8 +7,13 @@ cd "$(dirname "$0")"
 python3 figures/src/make_figures.py
 python3 figures/make_fig2_sweep.py
 python3 figures/make_fig3_residual.py
-# the paper compiles copies under tex/; refresh them from what was just drawn
-cp figures/fig1_saturation.pdf figures/fig2_sweep.pdf figures/fig3_residual.pdf tex/
+# The paper compiles copies under tex/. Figures are written without a creation date, so a
+# faithful regeneration is byte-identical to the copy the paper was built with; check that
+# before refreshing the copies.
+for f in fig1_saturation fig2_sweep fig3_residual; do
+  if cmp -s figures/$f.pdf tex/$f.pdf; then echo "$f: identical to tex/$f.pdf"
+  else echo "$f: DIFFERS from tex/$f.pdf"; exit 1; fi
+done
 T=figures/.table1.regenerated
 python3 figures/make_table1.py > "$T" 2>/dev/null
 if cmp -s "$T" tex/table1.tex; then echo "table 1: identical to tex/table1.tex"
