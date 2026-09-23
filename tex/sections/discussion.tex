@@ -2,150 +2,154 @@
 \label{sec:discussion}
 \subsection{What a union-recall number means}
 
-The caution this subsection argued --- that a union-recall figure is contingent on the rate it
-costs, so recall quoted without its false-positive rate is not portable --- rested on a second
-substrate that was re-run twice and closed without a quotable number
-(\S\ref{sec:inreview}). We state the caution as a
-methodological point rather than as a measured result, because the argument for it does not need
-our second substrate: recall and false positives move together with any severity threshold, and a
-critic can be tuned to any recall by blocking more. What our records still support directly is the
-narrower version of it on the substrate we report, where the same auditor at two severity rules sits at
-two different operating points (\S\ref{sec:auditor}), and where the shipped auditor's 30.0\%
-[20.0, 40.7] recall is quoted only beside the 16.0\% [10.1, 22.3] it cost.
+A union-recall figure depends on the false-positive rate it cost, so recall quoted without that
+rate cannot be carried to another setting. We make this as a methodological point. The measured
+support we tried to give it came from a second substrate that was run three times and closed
+without a quotable number (\S\ref{sec:inreview}). The point needs no second substrate:
+recall and false positives move together with any severity threshold, and a critic can be tuned
+to any recall by blocking more. Our records support a narrower version on the substrate we
+report. The same auditor at two severity rules sits at two different operating points
+(\S\ref{sec:auditor}), and the shipped auditor's 30.0\% [20.0, 40.7] recall is quoted only beside
+the 16.0\% [10.1, 22.3] it cost.
 
-The cleaner experiment for the general claim is a severity sweep within one substrate. Our
-sweep re-grades archived findings at four decision rules and shows each family's recall and
-false-positive rate moving with the rule (Figure~\ref{fig:sweep}); its deterministic rules
-do not place the families at a common operating point. A randomised mixture of two archived
-rules could reach one in expectation without new model calls, but that would be a new post-hoc
-policy needing its own uncertainty analysis, and we have not built it. Comparing two substrates
-was never that experiment: they differ in
+The cleaner experiment for the general claim is a severity sweep within one substrate. Our sweep
+re-grades archived findings at four decision rules and shows each family's recall and
+false-positive rate moving with the rule (Figure~\ref{fig:sweep}). Its rules are deterministic
+and do not place the families at a common operating point. A randomised mixture of two archived
+rules could reach one in expectation without new model calls, but it would be a new post-hoc
+policy needing its own uncertainty analysis, and we have not built it. Two substrates differ in
 specification length, solution length, problem population, defect distribution and suite
-construction at once.
+construction all at once, so comparing them could never have isolated the operating point.
 
 \subsection{Repeated reading buys nothing where the verdict does not vary}
 
-Union-of-$K$ is the instrument this paper uses to find a ceiling, and it is worth saying plainly
-what it cannot measure. Part of that needs no experiment at all: a union over readings that do not
-differ cannot grow, so a union-of-$K$ curve is flat for a route that returns the same verdict
-however often it is asked. That is arithmetic, not a finding.
+Union-of-$K$ is the instrument this paper uses to look for a ceiling, and part of what it cannot
+measure follows from arithmetic alone. A union over readings that do not differ cannot grow, so
+the curve is flat for any route that returns the same verdict however often it is asked.
 
-The empirical illustration we had for it came from the second substrate, which closed without
-a quotable number (\S\ref{sec:inreview}), so we no longer offer one. What survives is the design fact
-behind it, which our own records do establish: the same-vendor routes are sent temperature $0$
-while the cross-vendor route is sent no sampling parameter at all (\S\ref{sec:auditor}), and over
-$K = 1$ to $8$ the first family's union gains 3.0 points against the second's 19.3. How much of
-that difference is sampling and how much is the operating point, we cannot say, because no
-temperature-matched arm was run. We report it as a confound on our own contrasts rather than as a
-result about auditors.
+Our records establish the design fact that makes this matter here. The same-vendor routes are sent
+temperature $0$, while the cross-vendor route is sent no sampling parameter
+(\S\ref{sec:auditor}). From $K = 1$ to $8$ the first family's union gains 3.0 points and the
+second's gains 19.3. No temperature-matched arm was run, so we cannot say how much of that gap is
+sampling and how much is the operating point. We treat it as a confound on our own contrasts.
 
-What follows for best-of-K, union-of-K or panel aggregation over critics is only the arithmetic:
-a route whose verdict does not vary between readings gains nothing by being read again. We
-measured per-instance flag counts, not any distance to a decision boundary, and ran no panel
-aggregation, so we offer no law for how much a varying route gains. Nor is the diminishing shape
-itself evidence of a ceiling: exact subset averaging makes each reading's marginal gain no
-larger than the last by construction, and what the curves measure is the size of those gains.
+For best-of-K, union-of-K or panel aggregation over critics, what follows is the arithmetic: a
+route whose verdict does not vary between readings gains nothing by being read again. We measured
+per-instance flag counts, not any distance to a decision boundary, and ran no panel aggregation,
+so we offer no law for how much a varying route gains. The diminishing shape of the curves is not
+itself evidence of a ceiling either. Exact subset averaging makes each reading's marginal gain no
+larger than the last by construction, and the curves measure the size of those gains.
 
 \subsection{What the ceiling is made of}
 
-We do not rank these contributions: they were measured on different populations, depths and
-rules. Two of them are on the same scale. Eight readings of one auditor buy
-19.3 points of union recall, and twenty readings across three families leave 51.8\% [40.0, 63.3]
-of the defect population untouched --- the complement of the pooled 48.2\% [36.7, 60.0], which those twenty readings buy at 36.0\%
-false positives on correct code. Changing which model reads moves the same quantity --- union recall at $K=8$
-over the same 110 instances --- by 26.4 points, more than repetition's 19.3, though a same-size
-same-vendor substitution moved it by only 12.7, and \S\ref{sec:auditor} gives three reasons not
-to read that as auditing ability. Changing one sentence of the rulebook moves flags by 26.8 points,
-but on 56 instances at one reading, and we do not place that number on the same scale as the other
-two.
+We do not rank these contributions, because they were measured on different populations, depths
+and rules. Two of them share a scale. Eight readings of one auditor buy 19.3 points of union
+recall. Twenty readings across three families buy a pooled 48.2\% [36.7, 60.0] at 36.0\% false
+positives on correct code, and leave the complement, 51.8\% [40.0, 63.3] of the defect
+population, untouched. Changing which model reads moves the same quantity (union recall at $K=8$
+over the same 110 instances) by 26.4 points, more than repetition's 19.3. A same-size same-vendor
+substitution moved it by only 12.7, and \S\ref{sec:auditor} gives three reasons not to read either
+number as auditing ability. Changing one sentence of the rulebook moves flags by 26.8 points, on
+56 instances at one reading, which is not the scale of the other two.
 
-A fourth contribution is not the auditor's at all, and we can only describe it post hoc. Under a
+A fourth contribution is not the auditor's at all, and we can describe it only post hoc. Under a
 rule that asks whether the specification's prose determines the hidden suite's expected value, 44
-of the 57 never-flagged defects fail that test. We attempted a constructed population where the prose
-does determine the answer; review established that no filter in it enforces that property, and
-what it licenses is descriptive only (\S\ref{sec:inreview}). The association between never being flagged and never being determined is
-empirical, not definitional --- selecting the missed instances does not fix their labels, and
-against caught instances the third rater's post-hoc contrast is $+23.3$ points $[+2.0, +43.6]$,
-from a rater that agreed with itself on only 7 of 11 repeated items and an interval conditional
-on its recorded labels --- but selection and confounding prevent a causal reading, so it is an observation about where
-the misses sit and not an estimate of how much the benchmark contributes. One intervention changes the specification instead of conditioning on it
-(\S\ref{sec:inreview}): adding a behavioural rule to the prose moved diagnosis on 9 of 32 such
-instances, all of them where the added rule agreed with the hidden suite and none of the 23
-where it contradicted it. It is the first evidence here that manipulates the specification instead of
-conditioning on it, though only within a population selected for having been missed and called
-undetermined, and it cannot separate a specification that settles the question from one that
-settles it correctly.
+of the 57 never-flagged defects fail. We tried to build a population where the prose does
+determine the answer. Review established that no filter in it enforces that property, so it
+licenses description only (\S\ref{sec:inreview}).
 
-The constructed population carries a limitation we measured rather than assumed, and a second
-one that review established. A frontier model separates its edits from natural ones at 96.7\%
-on the items it answered, between 79.9\% and 97.3\% once the items it would not classify are
-counted at either extreme --- \emph{by a feature it does not identify}, since the two arms
-share no problem and the model is one of the two that gated the population. And the construction
-does not enforce specification-determinedness at all, so it licenses \emph{no} bound on the
-measured ceiling. We had written that it did. It does not.
+The association between never being flagged and never being determined is empirical. Selecting
+the missed instances does not fix their labels, and against caught instances the third rater's
+post-hoc contrast is $+23.3$ points $[+2.0, +43.6]$. That rater agreed with itself on only 7 of
+11 repeated items, and the interval is conditional on its recorded labels. Selection and
+confounding rule out a causal reading, so the contrast locates the misses and does not estimate
+how much the benchmark contributes.
+
+One intervention changes the specification instead of conditioning on it
+(\S\ref{sec:inreview}). Adding a behavioural rule to the prose moved diagnosis on 9 of 32 such
+instances, all of them where the added rule agreed with the hidden suite and none of the 23 where
+it contradicted it. This is the only evidence here that manipulates the specification. Its
+population was selected for having been missed and called undetermined, and it cannot separate a
+specification that settles the question from one that settles it correctly.
+
+The constructed population has two further limitations, one measured and one found in review. A
+frontier model separates its edits from natural ones at 96.7\% on the items it answered, and
+between 79.9\% and 97.3\% once the items it would not classify are counted at either extreme. It
+does so \emph{by a feature it does not identify}: the two arms share no problem, and the model is
+one of the two that gated the population. And because the construction does not enforce
+specification-determinedness, it licenses \emph{no} bound on the measured ceiling.
 
 \subsection{Flagging is not naming}
 
 An audit that blocks an increment for the wrong reason has still blocked it, and a recall number
-counts that as a catch. With the finding texts kept for one reading of the shipped auditor and
-adjudicated blind by two raters, the auditor returned a finding on 9 of 110 defective instances
+counts that as a catch. For one reading of the shipped auditor the finding texts were kept and
+adjudicated blind by two raters. The auditor returned a finding on 9 of 110 defective instances
 and asserted the actual failing behaviour on 5 to 7 of them, depending on how the two raters are
-combined. The raters agreed at $\kappa$ = 0.391, which we report beside the rate it produces, because a
-moderate agreement is part of what the rate is worth. That study's preregistered kill condition
-fired on this result, and \S\ref{sec:inreview} states its headline in the form the kill requires.
-The figure is a property of one reading and is not a naming rate for the eight-reading union;
-establishing that would take adjudicating eight readings' texts, which were not archived.
+combined. The raters agreed at $\kappa$ = 0.391. We report that beside the rate because a moderate
+agreement is part of what the rate is worth. That study's preregistered kill condition fired on
+this result, and \S\ref{sec:inreview} states its headline in the form the kill requires. The
+figure describes one reading. It is not a naming rate for the eight-reading union, which would
+need the texts of all eight readings, and those were not archived.
 
 \subsection{Limits}
 \label{sec:limits}
 
-The confound we would fix first is that auditor families are not sampled alike: one route is sent
-temperature $0$ and the other no sampling parameter at all, which bounds how far one union can
-grow before any difference in ability is measured. Every cross-family union-of-K contrast here
-inherits it. Second, no auditor is compared with another at a matched false-positive rate; our sweep
-re-grades archived findings at four deterministic decision rules, under which one family has no
-point between 3.3\% and 34.0\% false positives, and we built no randomised policy between
-them, so the paper cannot say whether the families differ once brought to the same operating point. Third, the primary intervals are
-problem-cluster percentile bootstraps over 56 clusters; a simulation of an analogous single-rate
-interval (600 resamples rather than 10{,}000, tested rates only) covers near nominally at the
-headlines' rates and anticonservatively below about $0.10$ (\S\ref{sec:stats}), and for the paired contrasts and conditional shares it is
-unmeasured, and no sample size was justified in advance by a detectable-effect
-calculation. Fourth, the substrate is short, self-contained Python functions with executable
-hidden tests, so nothing here measures auditing a change to a large program with no oracle, and
-both of its benchmarks are old enough that memorisation cannot be ruled out. Fifth, the
-generator is a single model, so the defect population is one model's failure
-mode. Sixth, the residual rubric's raters were two models, one of them the agent that wrote the
-rubric and was
-not blind to the earlier labels; one external label set agrees with them across eleven overlapping
-tasks. Seventh, our attempt to build a population of
-specification-determined defects did not enforce the property, and its edits are separable from
-natural code at 96.7\% of the items it answered --- 79.9--97.3\% once unanswered items are
-counted at either extreme --- by something the probe does not identify. Each of
-these is recorded in the study that carries it, together with the number it would change.
+\begin{enumerate}\itemsep1pt
+\item \textbf{Sampling differs between families.} One route is sent temperature $0$ and the other
+  no sampling parameter, which bounds how far one union can grow before any difference in ability
+  is measured. Every cross-family union-of-K contrast here inherits this, and it is the confound we
+  would fix first.
+\item \textbf{No matched operating point.} No auditor is compared with another at a matched
+  false-positive rate. Our sweep re-grades archived findings at four deterministic decision
+  rules, under which one family has no point between 3.3\% and 34.0\% false positives. We built
+  no randomised policy between them, so the paper cannot say whether the families differ at the
+  same operating point.
+\item \textbf{Interval coverage.} The primary intervals are problem-cluster percentile
+  bootstraps over 56 clusters. A simulation of an analogous single-rate interval (600 resamples
+  rather than 10{,}000, tested rates only) covers near nominally at the headlines' rates and
+  anticonservatively below about $0.10$ (\S\ref{sec:stats}). For the paired contrasts and
+  conditional shares coverage is unmeasured, and no sample size was justified in advance by a
+  detectable-effect calculation.
+\item \textbf{Substrate.} The substrate is short, self-contained Python functions with executable
+  hidden tests, so nothing here measures auditing a change to a large program with no oracle.
+  Both benchmarks are old enough that memorisation cannot be ruled out.
+\item \textbf{One generator.} The defect population is one model's failure mode.
+\item \textbf{Raters.} The residual rubric's raters were two models, one of them the agent that
+  wrote the rubric, which was not blind to the earlier labels. One external label set agrees with
+  them across eleven overlapping tasks.
+\item \textbf{The constructed population.} It did not enforce specification-determinedness, and
+  its edits are separable from natural code at 96.7\% of the items the probe answered
+  (79.9--97.3\% once unanswered items are counted at either extreme) by something the probe does
+  not identify.
+\end{enumerate}
+Each limit is recorded in the study that carries it, together with the number it would change.
 
 \subsection{What we would do next}
 
-The severity sweep we ran re-grades archived findings under four rules and shows the auditor
-contrast is rule-dependent (\S\ref{sec:auditor}); it cannot reach a matched operating point for
-every family, because re-grading only moves a cut through findings already produced, and one
-family has no point under the four deterministic rules between 3.3\% and 34.0\% false positives. Re-asking rather than
-re-grading --- instructing each family at graded severity and reading afresh --- is the
-experiment this paper most needs, since it can place the families at a common
-false-positive rate and decide whether the auditor contrast survives there. Replicating the cross-family arms with the
-sampling parameters matched would remove the confound above, and extending the cross-vendor family
-past eight readings would turn a statement about our budget into a statement about a curve. We have run a first version of the experiment we most wanted --- hold the code and the visible
-tests fixed and vary only the specification (\S\ref{sec:inreview}) --- and it left two gaps that
-decide what it means. Its clarifier inferred the missing rule from failing inputs and was wrong
-on most instances, so the rule's correctness was measured rather than manipulated; writing the
-rule from the oracle for some instances and a deliberately wrong rule of matched length for
-others would separate a specification that settles the question from one that settles it
-correctly. And its manipulation check did not show the placebo inert; a placebo rated no more
-determining than the original would. Both are cheap, because the code, the tests and the
-adjudication rubric already exist. Beyond
-that: adjudicating more than one reading of the shipped auditor would let a naming rate be compared
-with a union flag rate at the same K; a second generator would show whether the residual's
-character is a property of the benchmark or of one model's failures; a population of natural
-defects independently known to be specification-determined would separate the injected population's
-artificiality from the property it was built to isolate; and a substrate whose ground truth is not
-a hidden test suite would test the assumption every ceiling here rests on, which is that a test
-suite asked the right question.
+The sweep re-grades archived findings under four rules and shows that the auditor contrast
+depends on the rule (\S\ref{sec:auditor}). Re-grading only moves a cut through findings already
+produced, so it cannot bring every family to a matched operating point: one family has no point
+under the four deterministic rules between 3.3\% and 34.0\% false positives. The experiment this
+paper most needs is to re-ask, instructing each family at graded severity and reading afresh,
+which can place the families at a common false-positive rate and decide whether the auditor
+contrast survives there. Matching the sampling parameters across families would remove the
+confound above, and reading the cross-vendor family past eight times would turn a statement about
+our budget into one about a curve.
+
+We ran a first version of the experiment we most wanted, holding the code and the visible tests
+fixed and varying only the specification (\S\ref{sec:inreview}). Two gaps remain, and they decide
+what it means. The clarifier inferred the missing rule from failing inputs and was wrong on most
+instances, so the rule's correctness was measured, not manipulated. Writing the rule from the
+oracle for some instances, and a deliberately wrong rule of matched length for others, would
+separate a specification that settles the question from one that settles it correctly. Its
+manipulation check also did not show the placebo inert, and a placebo rated no more determining
+than the original would. Both are cheap, because the code, the tests and the adjudication rubric
+already exist.
+
+Beyond those: adjudicating more than one reading of the shipped auditor would let a naming rate be
+compared with a union flag rate at the same K. A second generator would show whether the
+residual's character belongs to the benchmark or to one model's failures. A population of natural
+defects independently known to be specification-determined would separate the injected
+population's artificiality from the property it was built to isolate. And a substrate whose ground
+truth is not a hidden test suite would test the assumption every ceiling here rests on, that a
+test suite asked the right question.
