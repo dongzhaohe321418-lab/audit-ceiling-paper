@@ -107,7 +107,7 @@ def main() -> int:
         ("Rulebook rule, flags", f"{fl['P']['n']} loop defect", pts(100 * fl["P"]["delta"]),
          ci100(fl["P"]["ci95"], sign=True), "exploratory"),
         ("\\quad its cost on correct code", f"{fl['C']['n']} loop correct", pts(100 * fl["C"]["delta"]),
-         ci100(fl["C"]["exact_unconditional_ci95"], sign=True), "exact unconditional"),
+         ci100(fl["C"]["exact_unconditional_ci95"], sign=True), "unconditional, approx."),
         ("\\quad isolating contrast, pass rate", f"{loop['n']} loop, {loop['n_clusters']} problems",
          pts(100 * loop["delta"]), ci100(loop["ci95"], sign=True), "registered, failed"),
         ("\\texttt{astra} $-$ cross, common $K=4$", "110 defect, 56 problems",

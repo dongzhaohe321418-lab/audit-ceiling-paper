@@ -45,12 +45,13 @@ plateau shown. A stronger same-vendor model moves recall by $-26.4$ points $[-37
 preregistered primary, while flagging 3.3\% of correct code against 16.0\%; the sign reverses under
 a weaker severity rule, so the contrast depends on the counting rule and is not a measure of
 auditing ability. One added rulebook sentence moves flags by $+26.8$ points $[13.6, 40.4]$ on an
-exploratory arm, at $+12.5$ points on correct code, and does not measurably move hidden-suite pass
-rate. Of 57 defects no reading flagged, two raters, one an author, judge 44 to be failures the
+exploratory arm, at $+12.5$ points $[-3.6, +26.8]$ on correct code, and does not measurably move
+hidden-suite pass rate. Of 57 defects no reading flagged, two raters, one an author, judge 44 to be failures the
 specification never determined; a model with no audit role, asked a narrower question, labels 38
 undetermined. Adding a behavioural rule to the specification with the code held fixed raised
-adjudicated diagnosis from 0 to 9 of 32 selected instances, against 0 under a placebo edit, only
-where the added rule agreed with the hidden suite; the exact cluster test gives $p = 0.06$. A
+adjudicated diagnosis from 0 to 9 of 32 selected instances ($+28.1$ points $[7.7, 51.4]$), against 0
+under a placebo edit, only where the added rule agreed with the hidden suite; the exact cluster
+test gives $p = 0.06$. A
 recall figure is therefore a property of auditor, rulebook, decision rule and benchmark together,
 and is not portable without its false-positive rate. Every study that made model calls was
 preregistered and the two unregistered analyses are named; each report is marked by whether it
@@ -117,9 +118,8 @@ report of every study the paper draws on; every registered study's preregistrati
 amendments; every independent review of those reports, verbatim and including
 refusals; and the derived records --- counts, labels, hashes and intervals --- that the figures
 and Table~\ref{tab:primary} are drawn from. A single command, \texttt{reproduce.sh},
-regenerates Figures 1--3 and Table~\ref{tab:primary} from those records, refreshes the copies
-the manuscript compiles, and checks that the regenerated table is identical to the one printed
-here, with no model calls, no network access and no path outside the checkout; it was run from
+regenerates Figures 1--3 and Table~\ref{tab:primary} from those records and checks that each
+is byte-identical to the copy the manuscript compiles, with no model calls, no network access and no path outside the checkout; it was run from
 a fresh clone with the home directory unavailable to establish that. The
 repository's \texttt{README} maps each claim to its report, its reviews and its records. The
 corpora are HumanEval (MIT) and HumanEval+ and MBPP+ (Apache-2.0), which permit

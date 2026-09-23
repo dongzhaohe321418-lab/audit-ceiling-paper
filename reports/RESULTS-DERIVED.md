@@ -3,14 +3,17 @@
 Written 2026-09-23 because the first whole-manuscript review (`reviews/cross-vendor/codex-review-paper1/report-r1.md`,
 finding 1) found three numbers in `tex/` that entered without passing through the ledger's
 admission rule. Each is a computation over records already reviewed; the computation itself was
-not. They stay out of the admitted claims until a review of **this** report ends quotable. All
+not. They stayed out of the admitted claims until a review of **this** report ended quotable, which
+round 2 of the manuscript review did for both sections (`codex-review-paper1/report-r2.md`),
+with the two corrections now made below. All
 are **post hoc** and registered nowhere.
 
 ## 1. The residual's composition at six families
 
 **Inputs, both reviewed.** Study 20's `H20d_residual` (`records/code/ceiling4/numbers.json`,
 C9): after six families and 40 readings (`cross` 8, `self` 8, `astra` 4, `self-strong` 8,
-`self-frontier` 4, `cross-R` 8) the never-flagged set is **32 of 110** instances on 56 problems.
+`self-frontier` 4, `cross-R` 8) the never-flagged set is **32 of the 110** defective instances (which come from 56 problems);
+the 32 themselves span **20 problems**.
 Study 21's labels (`records/code/rerate/`, C4): each rated instance's `L1` and `L2` label.
 
 **Computation.** `six_family_residual()` in `figures/make_table1.py`, run by `reproduce.sh`.
@@ -40,7 +43,8 @@ stable in a population sense.
 record `records/coverage_simulation.json`. Two designs with the strata's actual cluster profiles
 (110 instances in 56 problems; 150 in 143), within-problem concordance 0.5, seven true rates;
 each cell is the share of 400 simulated datasets whose 600-resample percentile problem-cluster
-interval covers the true rate. Monte Carlo standard error about 0.011.
+interval covers the true rate. Monte Carlo standard error about 0.011 near 95% coverage and
+about 0.020 at the 0.80 cell.
 
 **What it licenses.** Coverage of **single-rate** intervals under that correlation model:
 near nominal (0.93–0.97) at true rates of 0.10 and above, 0.80 at 0.03 on the 56-cluster

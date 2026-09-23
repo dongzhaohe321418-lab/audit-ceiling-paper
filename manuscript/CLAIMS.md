@@ -39,7 +39,9 @@ model is a worse auditor"**. Three qualifications travel with it and none may be
   [26.5, 41.7] on C, against the shipped auditor's **34.5%** [23.6, 45.5] at **19.3%**
   [12.8, 26.3]; the ratio of those rates is 1.74 against 1.79, a derived point ratio
   carrying no interval and therefore supporting no claim that the families differ on it. The
-  contrast is evidence about **severity calibration**, not auditing ability.
+  contrast depends on the counting rule; it is not evidence about auditing ability, and it does
+  not show why the families' findings differ (*"severity calibration" withdrawn 2026-09-23,
+  review paper1 r2*).
 * **The routes are not sampled alike.** The cross-vendor route sends no sampling parameter; the
   same-vendor routes send temperature 0 and are near-deterministic. Over K = 1 to 8 the first
   gains 19.3 points of union and the second gains 3.0. **At K = 1 the gap is −10.1, not −26.4.**
@@ -47,8 +49,9 @@ model is a worse auditor"**. Three qualifications travel with it and none may be
   disclose it.
 
 A counterexample must be reported beside C2: `astra` (gpt-6-astra, high reasoning) reaches
-**32.7%** [20.7, 45.0] union recall at K = 4 at **10.7%** [5.9, 16.1] false positives,
-dominating the shipped auditor on both axes at half the readings. Evidence: study 18
+**32.7%** [20.7, 45.0] union recall at K = 4 at **10.7%** [5.9, 16.1] false positives, against
+the shipped auditor's 30.0% at 16.0% with eight; paired, no contrast establishes both advantages
+at once (*"dominating on both axes" withdrawn 2026-09-23, review paper1 r2*). Evidence: study 18
 (`RESULTS-CEILING3.md`, quotable at round 7, merged), Tables 1, 2 and 4.
 
 **C3 — What the auditor is told to look for moves what it writes down, on a small arm, at a
@@ -272,10 +275,12 @@ misses.** The registered secondary (Amendment 2): **8/23 against 0/23, +34.8** [
 
 **Five limits are part of the claim.** First, **the nine successes sit on five problems**; the
 cluster test has five informative signs and is not significant at 0.05, though the registered
-bootstrap criterion is met — both must be stated together. *Added 2026-09-23:* every discordant
-pair points one way, so no bootstrap resample falls below zero and one misses all five
-success-bearing problems with probability about 0.003; the criterion was close to guaranteed by
-construction, and the exact cluster test (0.0625) is the informative figure. Second, **the clarifier saw failing
+bootstrap criterion is met — both must be stated together. *Added 2026-09-23, corrected by review paper1 r2:* every discordant pair points one way, so no
+resample falls below zero; given the five observed success-bearing problems, a resample is
+exactly zero with probability (14/19)^19 ≈ 0.003 (27 of 10,000 in the registered run). The
+interval's exclusion of zero therefore adds little beyond the five observed clusters — it is
+conditional on them, not guaranteed by one-signedness alone — and the exact cluster test
+(0.0625) is the informative figure: suggestive, not significant, not evidence of no effect. Second, **the clarifier saw failing
 inputs without expected values, and its added rule contradicts the oracle entirely on 23 of 32
 instances and partly on 2**; diagnosis was 6/6 where the addition agreed, 1/1 where it broadened
 a precondition, 2/2 where it partly agreed, 0/23 where it contradicted. That split is
@@ -285,6 +290,21 @@ of ambiguity alone. Third, the manipulation check's clarified-against-placebo co
 Fourth, **`L1` is the author and `L2` is `gpt-6-astra`, the model that reviewed this study** — so the review checked labels its own model co-produced; κ = 0.85 on 84/91 measures agreement, not accuracy. Fifth, the
 registered naming-rate secondary was never computed. **This does not license C4's causal reading
 of "most" misses**, and the words "causes" or "explains" may not be used of it.
+
+**C14 — Being consensus-undetermined is not sufficient for being missed, and the residual keeps
+its composition as it shrinks.** Of the 68 instances study 21's two raters both call
+undetermined, **43 are flagged** by some reading of six families at forty readings; the
+never-flagged set falls from 57 to 32 (study 20, C9), and its undetermined share is **44 of 57
+= 77.2%** at three families and **25 of 32 = 78.1%** at six. Post hoc; the 32 are a subset of the
+57, so the closeness is a description and not a test of stability; no interval for 25 of 32.
+Evidence: `reports/RESULTS-DERIVED.md` §1, *quotable* at manuscript review round 2, 2026-09-23.
+
+**C15 — Single-rate bootstrap coverage, measured.** Under the two strata's cluster profiles and an
+assumed within-problem correlation of 0.5, the percentile problem-cluster interval for a single
+rate covers **0.93–0.97** at true rates of 0.10 and above and **0.80** at 0.03 on the 56-cluster
+stratum (400 replicates, Monte Carlo SE about 0.01–0.02). It says nothing about paired contrasts
+or conditional shares, whose coverage is unmeasured. Evidence: `reports/RESULTS-DERIVED.md` §2,
+*quotable* at manuscript review round 2.
 
 ## Claims the evidence does not support, and which must not appear
 
@@ -532,9 +552,8 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | P2 (severity sweep) | — | **QUOTABLE at round 7, 2026-09-22.** Moved to the admitted claims as C11 |
 | P1 (third rating) | — | **QUOTABLE at round 6, 2026-09-22.** Moved to the admitted claims as C12 |
 | P3 (clarification) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C13. Rounds 1 and 2 refused it (manipulation misdescribed; 3 of 32 classification rows wrong) |
+| derived (residual composition; coverage) | — | **QUOTABLE at manuscript review round 2, 2026-09-23.** Moved to the admitted claims as C14 and C15 |
 | R1-M3 cross-tab (post hoc) | per-instance agreement of a non-participating rater with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
-| derived: six-family residual composition | 43 of 68 consensus-undetermined flagged by some family; 25 of 32 = 78.1% of the six-family residual undetermined (`reports/RESULTS-DERIVED.md` §1) | in `tex/` **before** admission — found by review paper1 r1; submitted to review round 2; removed if refused |
-| derived: bootstrap coverage table | fourteen single-rate coverage cells (`reports/RESULTS-DERIVED.md` §2) | same status |
 
 ## Rule
 

@@ -75,3 +75,20 @@ Every finding was checked against the records before anything moved; all fifteen
 | 13 | stale review-status statements; "four to eleven rounds" excluded ceiling 1's 21 | corrected in intro, results, methods |
 | 14 | "tests nothing" overcorrected | "exploratory, none confirmatory" |
 | 15 | reproduce.sh wrote to /tmp, did not refresh tex/ copies; record regeneration overstated | fixed; coverage record verified to regenerate byte-identically |
+
+## Whole-manuscript review, round 2 (at `93615fd`): NOT SUBMITTABLE — `RESULTS-DERIVED.md` quotable
+
+Round 1's findings 3, 5, 9, 10, 11, 13, 14 ruled fixed; 2, 4, 6, 7, 8, 12, 15 partly. Both sections
+of `RESULTS-DERIVED.md` ruled **quotable** → admitted as **C14** and **C15**. Eight new findings,
+all verified before acting:
+
+| # | finding | action |
+|---|---|---|
+| 1 | "two-thirds of the headline is how much each union was permitted to grow" allocates cause; related work called the route contrast self-preference; the closing paragraph said recall moves with specification determinacy | allocation removed; self-preference disclaimed; closing paragraph now separates what moves recall from what misses are associated with |
+| 2 | coverage stated for all primary intervals; "exact unconditional" unqualified | coverage limited to single rates in results and discussion; the unconditional interval described as grid-approximated and unclustered in results, methods and Table 1 |
+| 3 | the ledger kept "severity calibration" and "dominating on both axes"; results said "no false-positive difference" for −0.3 [−3.8, +3.4] | ledger C2 corrected; "unresolved difference" |
+| 4 | **our own new sentence overstated**: 0.003 is the probability of a resample being exactly zero, not below it, and the near-guarantee is conditional on five observed success-bearing problems | rewritten conditionally in results and C13; the reviewer's 27 zero resamples in 10,000 reproduced independently before use |
+| 5 | the secondary's population misdescribed | now: where study 21's consensus and L3 agree |
+| 6 | abstract dropped the cost interval and P3's interval | both added (1867 characters) |
+| 7 | the flattening bar's depth dependence was stated backwards | corrected, with the curve's own increments (2.9 at step 4, 1.9 at step 8) |
+| 8 | "refreshes the copies" was false | "checks each is byte-identical" |

@@ -8,9 +8,11 @@ them does and does not license; none of them is load-bearing for
 \S\ref{sec:repeat}--\S\ref{sec:residual}.
 Rates carry the 95\% problem-cluster percentile bootstrap as the primary interval, with the Wilson
 interval beside it where the source report gives one, because problems recur across generation
-batches and an interval that treats instances as independent is too narrow. That bootstrap's coverage
-under this clustered design is measured in \S\ref{sec:stats}: near nominal at the rates the
-headlines sit at, and anticonservative below a true rate of about $0.10$.
+batches and an interval that treats instances as independent is too narrow. For single rates, that
+bootstrap's coverage under this clustered design is measured in \S\ref{sec:stats} --- near
+nominal at the rates the headlines sit at and anticonservative below a true rate of about
+$0.10$ --- under an assumed within-problem correlation; the paired contrasts and
+category-conditioned shares have no measured coverage.
 
 Sixteen comparisons were computed in the study that carries the primary contrasts, under one
 Bonferroni family with a threshold of $0.00313$. \textbf{That correction is applied to $p$
@@ -44,9 +46,10 @@ should be read as a statement about these 17 instances rather than about a popul
 puts the asymptote at 31.5\%, but on our own registered criterion that figure is an extrapolation
 and the raw union at eight readings is the number to quote. What the data support is diminishing
 returns at the budget we could afford, not saturation: at 1.9 points per reading the curve was
-still climbing when we stopped. That bar is also a function of where a family was stopped, so
-families run only to $K = 4$ meet it more easily than families run to $K = 8$, and a curve that
-meets it at a small $K_{\max}$ is making a weaker statement than one that meets it at a large one.
+still climbing when we stopped. That bar is also a function of where a family was stopped: exact subset-averaged increments do
+not grow with $K$ --- this curve's is 2.9 points at the fourth reading and 1.9 at the eighth ---
+so a fixed bar is harder to meet at $K = 4$ than at $K = 8$, and meeting it at either says
+little by itself about where the curve ends.
 Twenty readings pooled across three auditor families reach 48.2\% [36.7, 60.0]. \textbf{Those twenty readings are not twenty opportunities.} The pool is eight cross-vendor, eight same-vendor and four \texttt{astra} readings, and the same-vendor route gains \textbf{1.8 points} from its first reading to its eighth against the cross-vendor route's 19.3, because it is sent temperature $0$ and returns nearly the same verdict each time. Counting that route as roughly one reading puts the depth nearer thirteen than twenty --- a heuristic, not an estimate --- and the pooled figure should be read as a union over three routes rather than over twenty independent looks.
 
 The price is measured on the same footing. Union false positives on 150 correct increments reach
@@ -106,16 +109,17 @@ readings; the same-vendor route permits one and the layer sends temperature $0$,
 near-deterministic. A union over near-deterministic readings cannot grow, and the two unions are
 therefore not equally free to rise. They do not: over $K = 1$ to $8$ the cross-vendor family gains
 19.3 points and the same-vendor family gains 3.0. At one reading the gap between them is $-10.1$
-points, not $-26.4$; roughly two-thirds of the headline is the difference in how much each union
-was permitted to grow. We regard this as the most serious limitation of the contrast, and
+points, not $-26.4$; the rest accumulates as the two unions grow at different rates, and because
+model and sampling differ together, the design cannot say how much of that difference in growth
+is the sampling and how much the model. We regard this as the most serious limitation of the contrast, and
 \S\ref{sec:limits} records what would be needed to remove it.
 
 A third family argues the other way and belongs beside the headline. A high-reasoning model of the
 cross-vendor family reaches 32.7\% [20.7, 45.0] union recall at four readings while flagging
 10.7\% [5.9, 16.1] of correct code, against the shipped auditor's 30.0\% at 16.0\% with eight.
 Paired on the same instances, neither advantage is established together with the other: at a
-common four readings it leads on recall, $+11.5$ $[+2.9, +21.3]$, with no false-positive
-difference, and against the shipped auditor's full eight it leads on false positives, $-5.3$
+common four readings it leads on recall, $+11.5$ $[+2.9, +21.3]$, with an unresolved
+false-positive difference of $-0.3$ $[-3.8, +3.4]$, and against the shipped auditor's full eight it leads on false positives, $-5.3$
 $[-10.3, -0.7]$ unadjusted, but not on recall, $+2.7$ $[-6.5, +13.0]$ (\S\ref{sec:inreview}). So the evidence does not support ``a stronger model is a worse auditor''. It supports
 the narrower statement that this particular same-vendor model, at this severity calibration and
 sampled at temperature $0$, blocks far less.
@@ -171,7 +175,9 @@ are different quantities on different populations.
 Two costs travel with it, and the first is weaker than an earlier version of this paper said.
 On correct code the same rule moved flags by $+12.50$ points. **Every discordant pair points the
 same way** (7 against 0), so by the rule stated in \S\ref{sec:stats} the percentile bootstrap's
-bound at zero is an artefact and the admissible interval is the exact unconditional one, which
+bound at zero is an artefact and the admissible interval is the unconditional one --- computed
+with a grid-approximated nuisance supremum and ignoring clustering, so approximately rather than
+guaranteed exact --- which
 is $[-3.6, +26.8]$ and \textbf{does not exclude zero}; its exact McNemar $p$ is $0.0156$ against
 that study's Bonferroni threshold of $0.003125$. Earlier versions of this paper quoted the
 forbidden bootstrap interval $[5.17, 21.82]$ in four places, including the abstract. The
@@ -410,12 +416,14 @@ counts as diagnosed only if both adjudicators judged some finding to state the b
 hidden suite expects. Diagnosis rose from \textbf{0 of 32 to 9 of 32} under clarification and
 stayed at 0 of 32 under placebo, \textbf{+28.1 points}, problem-cluster 95\% interval
 [+7.7, +51.4], which meets the registered criterion; the registered secondary, on the 23
-instances both earlier raters called undetermined, is 8 of 23 against 0 of 23, $+34.8$
-$[+10.0, +60.9]$. \textbf{That criterion carried little information here.} Every discordant pair
-points one way, so no bootstrap resample can fall below zero, and one misses all five problems
-that carry a success with probability about $0.003$: the interval's exclusion of zero was close
-to guaranteed once the discordance was one-signed, which is the case \S\ref{sec:stats} says to
-read from an exact test instead. The registration kept the bootstrap and we report it as
+instances where study 21's consensus and the third rater's label agree, is 8 of 23 against 0 of 23, $+34.8$
+$[+10.0, +60.9]$. \textbf{Given the observed data, that criterion added little.} Every discordant pair
+points one way, so no bootstrap resample can fall below zero, and with successes on five of 19
+problems a resample is exactly zero only when it misses all five, with probability
+$(14/19)^{19} \approx 0.003$; the registered run has 27 such resamples in 10{,}000. Once five
+success-bearing problems are observed, the interval's exclusion of zero adds little to them ---
+with one such problem it would not have excluded zero --- and \S\ref{sec:stats} says to read a
+one-signed contrast from an exact test instead. The registration kept the bootstrap and we report it as
 registered, but the informative figure is the cluster sign-flip test the registration prefers:
 the nine sit on five problems, and it gives $p = 0.060$ (exactly $2/2^5 = 0.0625$ on
 enumeration), against $0.0039$ for a McNemar test that counts nine independent pieces of
@@ -459,7 +467,9 @@ claims.
 \subsection{What follows for a recall number}
 
 Taken together, the results above say an audit recall figure is a joint property of the auditor
-and its material. It moves with which model reads, with what the rulebook tells it to look for,
-and with whether the benchmark's hidden suite asks a question the specification answers. It also
-moves with the severity threshold at which a finding becomes a block, and with how the route is
-sampled, neither of which is usually reported.
+and its material. It moves with which route reads --- model and sampling together, which this
+design does not separate --- with what the rulebook tells it to look for, and with the severity
+threshold at which a finding becomes a block, the last of which is rarely reported. What it
+misses is associated with whether the hidden suite asks a question the specification answers:
+observed in the residual, and in a specification-edit contrast on selected instances, not
+isolated as a cause.
