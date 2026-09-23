@@ -49,8 +49,10 @@ positives on correct code, and leave the complement, 51.8\% [40.0, 63.3] of the 
 population, untouched. Changing which model reads moves the same quantity (union recall at $K=8$
 over the same 110 instances) by 26.4 points, more than repetition's 19.3. A same-size same-vendor
 substitution moved it by only 12.7, and \S\ref{sec:auditor} gives three reasons not to read either
-number as auditing ability. Changing one sentence of the rulebook moves flags by 26.8 points, on
-56 instances at one reading, which is not the scale of the other two.
+number as auditing ability. Changing one sentence of the rulebook moves flags by 26.8 points
+[13.6, 40.4], an exploratory contrast on 56 instances at one reading, at $+12.5$ points on correct
+code ([$-3.6$, $+26.8$]) and with no established effect on hidden-suite outcomes; it is not on the
+scale of the other two.
 
 A fourth contribution is not the auditor's at all, and we can describe it only post hoc. Under a
 rule that asks whether the specification's prose determines the hidden suite's expected value, 44
@@ -124,15 +126,17 @@ not every flag. Without such reading, a false-positive rate can measure the eval
 \begin{enumerate}\itemsep1pt
 \item \textbf{Sampling differs between families.} One route is sent temperature $0$ and the other
   no sampling parameter, which bounds how far one union can grow before any difference in ability
-  is measured. Every cross-family union-of-K contrast here inherits this, and it is the confound we
-  would fix first.
+  is measured. Every cross-family union-of-K contrast on general-purpose code inherits this,
+  and it is the confound we would fix first. In the science studies the same-vendor route runs at
+  its default sampling through a command-line route, a different asymmetry.
 \item \textbf{No matched operating point.} No auditor is compared with another at a matched
   false-positive rate. Our sweep re-grades archived findings at four deterministic decision
   rules, under which one family has no point between 3.3\% and 34.0\% false positives. We built
   no randomised policy between them, so the paper cannot say whether the families differ at the
   same operating point.
-\item \textbf{Interval coverage.} The primary intervals are problem-cluster percentile
-  bootstraps over 56 clusters. A simulation of an analogous single-rate interval (600 resamples
+\item \textbf{Interval coverage.} The primary general-code intervals are problem-cluster
+  percentile bootstraps over 56 clusters (the science studies' have their own cluster counts, and the
+  data study resamples items within dataset). A simulation of an analogous single-rate interval (600 resamples
   rather than 10{,}000, tested rates only) covers near nominally at the headlines' rates and
   anticonservatively below about $0.10$ (\S\ref{sec:stats}). For the paired contrasts and
   conditional shares coverage is unmeasured, and no sample size was justified in advance by a

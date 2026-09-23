@@ -4,3 +4,5 @@ paper.log
 tex/*.fls
 tex/*.fdb_latexmk
 arxiv/
+tex/paper_submission.*
+!tex/paper_submission.tex

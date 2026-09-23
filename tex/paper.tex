@@ -6,8 +6,13 @@
 \usepackage{hyperref}
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
-% arXiv preprint: shows authors, drops the "under review" banner.
+% arXiv preprint by default: shows authors, drops the "under review" banner. The anonymous ICML
+% submission build (paper_submission.tex) defines \ANON before loading this file.
+\ifdefined\ANON
+\usepackage{icml2026}
+\else
 \usepackage[preprint]{icml2026}
+\fi
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -62,6 +67,18 @@ unregistered analyses are named, and every report quoted passed independent cros
 \input{sections/ai4s}
 \input{sections/discussion}
 \input{sections/related}
+
+\section*{Impact Statement}
+This paper measures how well automated auditors of model-written code, results and data work, so its
+main consequence is for how much such auditors should be trusted. The measurements argue against two
+kinds of over-trust: a recall figure quoted without its false-positive rate and task framing, and a
+deterministic provenance check read as a guarantee that a result is right, when it verifies only that
+artefacts agree with each other. If adopted, the practices we argue for (reading every flag on items
+built as clean, reporting operating points, pairing a model reader with executed checks) raise the
+cost of audits but reduce false assurance in scientific and engineering work. A risk is that
+published limits are used to game an auditor, for example by fabricating results consistently; we
+report that weakness because a user of such systems needs to know it. All data are public benchmarks
+and datasets under permissive licences, and no human subjects were involved.
 
 \bibliography{paper}
 \bibliographystyle{icml2026}
