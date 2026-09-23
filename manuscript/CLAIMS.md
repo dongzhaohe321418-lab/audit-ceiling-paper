@@ -370,7 +370,12 @@ ledger plus recorded extraction replies; failed attempts are not in the record).
 * *"The clarification study is not conditioned on being missed."* Its population was selected
   for being missed. (Finding 3.)
 
-## Under review, and already changing the claims above
+## [Historical] Under review, and already changing the claims above
+
+> **Historical record.** This section was written while the studies it names were under review and
+> is kept as it was. Its interpretations are superseded wherever they differ from the admitted claims
+> above and the must-not-appear list; its counts stand. (Marked 2026-09-23, manuscript review round 13.)
+
 
 These three have reported and are in independent review. None may enter the manuscript until a
 review ends quotable, but two of them bear directly on claims C1 and C4 and are recorded here so
@@ -463,7 +468,12 @@ made it substrate-dependent includes zero, so the ledger gains nothing here, and
 repeated reading buys coverage in proportion to how much of the population sits near the
 auditor's decision boundary is not licensed by this study either.
 
-## First cross-vendor reviews, 2026-09-15: all five studies came back NOT QUOTABLE
+## [Historical] First cross-vendor reviews, 2026-09-15: all five studies came back NOT QUOTABLE
+
+> **Historical record.** This section was written while the studies it names were under review and
+> is kept as it was. Its interpretations are superseded wherever they differ from the admitted claims
+> above and the must-not-appear list; its counts stand. (Marked 2026-09-23, manuscript review round 13.)
+
 
 Studies 22, 23, 20, 19 and 17 were all reviewed on the day the allowance returned. **None was
 approved.** Two of the five were refused for a defect introduced by a previous round's *repair*
@@ -532,7 +542,12 @@ comparison, is withdrawn and its files deleted** so nothing can plot void data. 
 numbers stay in the *in review* section pending the re-analysis its reviews require. The hard
 blocker below stands.
 
-## Second reviews, 2026-09-20: all four came back NOT QUOTABLE, three for the repair
+## [Historical] Second reviews, 2026-09-20: all four came back NOT QUOTABLE, three for the repair
+
+> **Historical record.** This section was written while the studies it names were under review and
+> is kept as it was. Its interpretations are superseded wherever they differ from the admitted claims
+> above and the must-not-appear list; its counts stand. (Marked 2026-09-23, manuscript review round 13.)
+
 
 Studies 17, 19, 20 and 22 were re-reviewed on the fixes made after 2026-09-15. **None was
 approved, and in three of the four the reason was the repair rather than the measurement.** The
@@ -640,12 +655,19 @@ and C10 licenses description only.
 
 **What the five refusals of 2026-09-15 cost to clear: thirty-one further review rounds, and in
 most of them the refusal was about a repair rather than a measurement.** No measurement moved in
-any of the four studies. What moved was what the reports claimed about them.
+any of the four studies. What moved was what the reports claimed about them. *(Historical, and unverified for those four: the paper no longer makes this claim.)*
 
 **Study 23 discharges its half of that blocker by the second route, and the record says which.**
 Its third run closed on 2026-09-19 without a quotable number, so there is no review to wait for.
 Nothing of it remains to delete: the manuscript's only mention of substrate 2 is the Methods
 sentence defining what it is, and `tex/` carries none of its figures or rates. The blocker now
-stands on studies 17, 19, 20 and 22.
+stands on studies 17, 19, 20 and 22. *(Historical: that blocker was discharged when those four
+studies passed review, 2026-09-20/21.)*
+
+**Current status, 2026-09-23.** Every claim the manuscript quotes is admitted above (C1–C16),
+each from a report that passed independent cross-vendor review; study 23 closed without a
+quotable number and is named only to say what it no longer supports. The whole manuscript passed
+its thirteenth cross-vendor review round as **submittable** (`reviews/cross-vendor/codex-review-paper1/report-r13.md`),
+with the reviewer's own-family conflict stated there.
 
 The rule as stated above remains the rule for admitted claims.

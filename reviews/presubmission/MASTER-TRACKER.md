@@ -213,3 +213,18 @@ All round-11 findings ruled fixed; no regressions.
 |---|---|---|
 | R12-1 | introduction and methods said every departure was a numbered amendment committed in advance; P4's narrower leak check and weaker spend guards were disclosed afterwards, not amended | planned amendments distinguished from deviations disclosed afterwards, in both places |
 | R12-2 | C9 attributed the observed 56→32 residual to the ZIBB secondary, and gave 23/24 without saying it used the withdrawn rubric | attributed to the observed H20d union; the rubric named |
+
+## Whole-manuscript review, round 13 (at `8a5b2aa`): **SUBMITTABLE**
+
+Both round-12 findings ruled fixed; no regressions; derived §3 remains quotable; the reviewer's
+fresh referee reading found no remaining scientific blocker. One nonblocking note:
+
+| # | finding | action |
+|---|---|---|
+| R13-1 | the claims ledger's older narrative sections read as current, and its final status paragraph placed a blocker on studies already admitted | three sections marked **[Historical]** with a banner saying their interpretations are superseded and their counts stand; the status paragraph replaced by the current state. This repair is to the ledger only and has not been re-reviewed |
+
+The reviewer's standing caveat applies to every round: it is `gpt-6-astra`, a measured family, one
+of the clarification study's adjudicators and the programme's reviewer, so its judgments on that
+family's ranking and adjudication are not independent-family validation. Its closing assessment
+also names the paper's remaining risk plainly: the contribution is narrow and descriptive, with
+breadth and novelty risks for a top venue.
