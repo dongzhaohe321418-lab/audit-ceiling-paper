@@ -32,7 +32,7 @@ reason. **Open** — requires work not yet done.
 | R3-M3 | The repository does not contain what the Reproducibility section claims | **Partly resolved** | `479f36e` states the corpus-licence constraint; the inventory and the runnable code path are **open** |
 | R3-M4 | "Every study was preregistered" has a documented counterexample | **Resolved** | `b46542d`; the exception is named in the abstract, introduction and methods |
 | R3-M5 | "No measurement ever moved" is false | **Resolved** | `5e2ca54`; two counterexamples named |
-| R3-M6 | The manuscript carries a framing its own ledger has corrected | **Resolved** | §3.4 and `CLAIMS.md` C12 now agree; Figure 3 panel labels **open** |
+| R3-M6 | The manuscript carries a framing its own ledger has corrected | **Resolved** | §3.4 and `CLAIMS.md` C12 now agree; Figure 3 panels relabelled by definition and registration status, caption aligned |
 | R3-M7 | Five review-status statements stale or contradictory; 44 against 47 rounds | **Resolved** | `5e2ca54`; count corrected to 47 with its convention |
 
 ## Where the referees agree

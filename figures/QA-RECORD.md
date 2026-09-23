@@ -47,3 +47,11 @@ an overlap of two pieces of information, and it is accepted rather than suppress
   second sentence that they are guides and that only four points exist. Figure 3's panel labels
   still use the superseded word "disjoint" for what the ledger now calls a definitional overlap,
   which a referee flagged and which is **open**.
+
+## 2026-09-23 — Figure 3 relabelled (R3-M6), and a collision the relabel exposed
+
+Panel a's labels said "disjoint instances", the superseded framing in which the 11 shared
+instances were clerical duplicates. They now name the definition ("one definition of caught")
+and the registration status of each reading. Re-rendering at 300 dpi showed the bottom row's
+value label (+54.2) sitting below the axis on the tick labels: the automatic y-limit left no room
+under the last row. The limit is now set explicitly. Inspected once after the fix; no overlap.
