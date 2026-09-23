@@ -226,12 +226,12 @@ draws from it is stated under that constraint.}
 \label{fig:residual}
 \end{figure*}
 
-\subsection{Six studies, and what they license after between four and eleven review rounds each}
+\subsection{Seven studies, and what they license after between three and eleven review rounds each}
 \label{sec:inreview}
 
 Four further studies had reported when this paper was first written, and all four were refused
 quotation by their independent reviews on the same day. They have since passed, after between
-four and eleven rounds each. Two more have since reported and passed, at seven rounds and six. We report them here rather than folding them into the sections
+four and eleven rounds each. Three more have since reported and passed, at seven rounds, six and three. We report them here rather than folding them into the sections
 above because three of the four are narrow or negative results whose limits are part of the
 claim, and because the shape of the refusals is itself a finding about this method.
 
@@ -349,8 +349,9 @@ instances had been rated by a model and by an author. A third model re-rated the
 after we rebuilt it on mechanically recovered witnesses --- necessary because its control arm
 had been \emph{unanswerable}: 42 of 53 caught entries carried no failing-input evidence and all
 42 drew \texttt{cannot-tell}. The share labelled \emph{undetermined} is 43 of 68 against 23 of
-53, \textbf{+19.8 points} [+1.2, +38.1]; those two groups are not two populations, since 11
-instances sit in both arms, and removing the duplicates gives $+23.3$ points $[+2.0, +43.6]$ ---
+53, \textbf{+19.8 points} [+1.2, +38.1]; those two groups are not two populations, because
+they define \emph{caught} differently and 11 instances fall in both, and removing those 11 from
+the missed group gives $+23.3$ points $[+2.0, +43.6]$ ---
 \emph{post hoc}, and larger, so the overlap had understated it. The limit is part of the result:
 on those 11 instances, shown with identical text and identical evidence, \textbf{the rater
 agreed with itself on 7 of 11} on this binary outcome and 5 of 11 on the full label, where the
@@ -360,11 +361,38 @@ Separately, the \emph{unrepaired} sheet scored $+54.2$ points $[+38.5, +69.5]$ -
 repaired contrast, in the direction that flatters the hypothesis --- which is evidence about
 sheets and not about specifications, and which a preregistered inconclusiveness gate catches.
 
-\textbf{What the refusals were about.} These six studies cleared review at rounds 4, 6, 7, 9,
-10 and 11, forty-seven rounds in all; an earlier version said forty-four, which counted four of
+\textbf{Adding the rule the specification never settled moves diagnosis, where the rule is the
+oracle's.} The contrast above conditions on the specification; this study changes it. The
+population is the 44 never-flagged instances that both earlier raters called
+specification-undetermined; for the 32 on 19 problems that passed the generation gates, a model
+shown the failing \emph{inputs}, but never their expected values, wrote one behavioural rule
+into the prose, and an auditor re-read the same code and the same visible tests under the
+original, the clarified and a same-length placebo specification, four readings each. An instance
+counts as diagnosed only if both adjudicators judged some finding to state the behaviour the
+hidden suite expects. Diagnosis rose from \textbf{0 of 32 to 9 of 32} under clarification and
+stayed at 0 of 32 under placebo, \textbf{+28.1 points}, problem-cluster 95\% interval
+[+7.7, +51.4], which meets the registered criterion. The nine sit on five problems: the
+cluster sign-flip test the registration prefers gives $p = 0.060$ (exactly $2/2^5$ on
+enumeration), against $0.0039$ for a McNemar test that counts nine independent pieces of
+evidence where five exist, so the interval criterion is met and the preferred test is not
+significant at 0.05. Two limits are part of the result. \emph{The inferred rule contradicts the
+hidden suite entirely on 23 of the 32 instances and partly on 2}, and diagnosis was 0 of 23
+where it contradicted against 9 of 9 elsewhere; that split is measured rather than assigned, and
+it means what moved diagnosis was specification text that agreed with the oracle, not the
+resolution of an ambiguity as such. And a separate model rated the clarified prose more
+determining than the original by $+28.1$ points $[+2.6, +54.3]$ but than the placebo by
+$+18.8$ $[-9.4, +45.2]$, so whether the placebo was inert as a specification is unresolved here.
+One adjudicator is an author and the other is \texttt{gpt-6-astra}, the model that also
+reviewed this study (\S\ref{sec:methods-review}); they agreed on 84 of 91 items,
+$\kappa = 0.85$, which is agreement and not accuracy. The study supports a specification-edit contrast on these selected
+instances. It does not establish that underdetermination caused the original misses, and
+\S\ref{sec:residual} is not strengthened into that claim by it.
+
+\textbf{What the refusals were about.} These seven studies cleared review at rounds 3, 4, 6, 7,
+9, 10 and 11, fifty rounds in all; an earlier version said forty-four, which counted four of
 the studies only from their first refusal. Most of those rounds ended in a refusal of the
 \emph{repair} rather than of the measurement. No measurement moved in
-any of them; every figure above reproduced independently at every round it was checked. The recurring failure was a check or a sentence that claimed more than it
+the first six; in the seventh, review moved the primary by one instance and three classification rows (\S\ref{sec:methods-review}); every figure above reproduced independently at every round it was checked. The recurring failure was a check or a sentence that claimed more than it
 delivered: a binding that protected one sentence of a withdrawal spread across six; the same
 binding rewritten to protect all six, with two of them truncated before the words that carried
 their meaning; a check that stripped HTML comments and called the result what a reader sees; and

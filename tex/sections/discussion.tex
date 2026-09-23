@@ -55,7 +55,12 @@ does determine the answer; review established that no filter in it enforces that
 what it licenses is descriptive only (\S\ref{sec:inreview}). The association between never being flagged and never being determined is
 partly definitional, because the residual is defined by conditioning on never being flagged, so
 this is an observation about where the misses sit and not an estimate of how much the benchmark
-contributes.
+contributes. One intervention changes the specification instead of conditioning on it
+(\S\ref{sec:inreview}): adding a behavioural rule to the prose moved diagnosis on 9 of 32 such
+instances, all of them where the added rule agreed with the hidden suite and none of the 23
+where it contradicted it. That is the first evidence here that is not conditioned on being
+missed, and it cannot separate a specification that settles the question from one that settles
+it correctly.
 
 The constructed population carries a limitation we measured rather than assumed, and a second
 one that review established. A frontier model separates its edits from natural ones at 96.7\%
@@ -101,20 +106,23 @@ these is recorded in the study that carries it, together with the number it woul
 
 \subsection{What we would do next}
 
-A severity-threshold sweep within one substrate, producing a recall--false-positive curve for each
-auditor family, is the experiment this paper most needs and the cheapest of these to run, because
-the findings are already archived and only the grading rule changes. It would decide whether the
-auditor contrast survives at a matched operating point. Replicating the cross-family arms with the
+The severity sweep we ran re-grades archived findings under four rules and shows the auditor
+contrast is rule-dependent (\S\ref{sec:auditor}); it cannot reach a matched operating point for
+every family, because re-grading only moves a cut through findings already produced, and one
+family has no reachable point between 3.3\% and 34.0\% false positives. Re-asking rather than
+re-grading --- instructing each family at graded severity and reading afresh --- is the
+experiment this paper most needs, since only that can place the families at a common
+false-positive rate and decide whether the auditor contrast survives there. Replicating the cross-family arms with the
 sampling parameters matched would remove the confound above, and extending the cross-vendor family
-past eight readings would turn a statement about our budget into a statement about a curve. Then the experiment we would most like to have run: hold the code and the visible tests fixed and
-vary only the specification. For an instance that fails its hidden suite, add to the prose the
-behavioural rule it never settled --- how ties break, what an empty input returns --- without
-showing the failing case, and compare against a placebo edit of similar length that resolves
-nothing. If correct diagnosis rises under clarification and not under the placebo, the
-specification's incompleteness is doing causal work; if it does not, our third result is a
-correlation between two properties of hard instances. That design tests the claim in a way neither
-the post-hoc re-rating nor the injected population can, because it manipulates the specification
-instead of conditioning on it and it does not disturb the code. Beyond
+past eight readings would turn a statement about our budget into a statement about a curve. We have run a first version of the experiment we most wanted --- hold the code and the visible
+tests fixed and vary only the specification (\S\ref{sec:inreview}) --- and it left two gaps that
+decide what it means. Its clarifier inferred the missing rule from failing inputs and was wrong
+on most instances, so the rule's correctness was measured rather than manipulated; writing the
+rule from the oracle for some instances and a deliberately wrong rule of matched length for
+others would separate a specification that settles the question from one that settles it
+correctly. And its manipulation check did not show the placebo inert; a placebo rated no more
+determining than the original would. Both are cheap, because the code, the tests and the
+adjudication rubric already exist. Beyond
 that: adjudicating more than one reading of the shipped auditor would let a naming rate be compared
 with a union flag rate at the same K; a second generator would show whether the residual's
 character is a property of the benchmark or of one model's failures; a population of natural

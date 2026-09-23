@@ -208,8 +208,9 @@ any defect. Evidence: P2 (`RESULTS-SWEEP.md`, *quotable* at review round 7, 2026
 
 **What may be quoted, at the stated depth and not otherwise.** At the common depth K = 4,
 `astra` exceeds `cross` on union recall over stratum P by **+11.5 points** [+2.9, +21.3],
-averaged over all 70 four-draw subsets on each side, paired over the same instances and
-clustered by problem; the paired false-positive difference is **-0.3 points** [-3.8, +3.4]. On
+`cross` averaged over all C(8,4) = 70 four-draw subsets and `astra`, which has exactly four
+readings, a single realisation (an earlier version said 70 on each side), paired over the same
+instances and clustered by problem; the paired false-positive difference is **-0.3 points** [-3.8, +3.4]. On
 `cross`'s complete eight-draw ladder the same contrast is **+2.7 points** [-6.5, +13.0] with a
 false-positive difference of **-5.3 points** [-10.3, -0.7] — **the complete-ladder comparison
 establishes lower false positives, not higher recall.** The observed false-positive rates at
@@ -251,6 +252,32 @@ sheets, not about specifications**, it does not isolate presentation from a fres
 the registered one-third `cannot-tell` gate fires on it — the broken arm was 79.2% — so it could
 not have authorised proceeding under the positive branch.
 
+
+**C13 — Adding a behavioural rule to the specification, with the code and visible tests held
+fixed, raised jointly adjudicated diagnosis from none to nine of 32 selected instances; a
+same-length placebo raised none. The additions that raised it were the ones the oracle agrees
+with.** Evidence: P3 (`RESULTS-CLARIFY.md`, *quotable* at review round 3, 2026-09-23, reviewed at
+`c63ac66`; residual corrections in harness `4fee74f`; κ regenerable from `records/clarify/agreement.json`).
+
+**What may be quoted, with its scope** — the reviewer's reader sentence, not exceeded: on 32
+selected instances across 19 problems, jointly adjudicated diagnosis rose from **0/32 to 9/32**
+under the added specifications, versus **0/32** under placebo (**+28.1 points**, problem-cluster
+bootstrap 95% interval **[+7.7, +51.4]**; cluster sign-flip **p = 0.0602**, exact enumeration
+0.0625), **without establishing that specification underdetermination caused the original
+misses.** The registered secondary (Amendment 2): **8/23 against 0/23, +34.8** [+10.0, +60.9].
+
+**Five limits are part of the claim.** First, **the nine successes sit on five problems**; the
+cluster test has five informative signs and is not significant at 0.05, though the registered
+bootstrap criterion is met — both must be stated together. Second, **the clarifier saw failing
+inputs without expected values, and its added rule contradicts the oracle entirely on 23 of 32
+instances and partly on 2**; diagnosis was 6/6 where the addition agreed, 1/1 where it broadened
+a precondition, 2/2 where it partly agreed, 0/23 where it contradicted. That split is
+**measured, not assigned**, and it makes this a specification-edit contrast, not a manipulation
+of ambiguity alone. Third, the manipulation check's clarified-against-placebo contrast is
+**+18.8 [−9.4, +45.2] — unresolved here**, beside +28.1 [+2.6, +54.3] against the original.
+Fourth, **`L1` is the author and `L2` is `gpt-6-astra`, the model that reviewed this study** — so the review checked labels its own model co-produced; κ = 0.85 on 84/91 measures agreement, not accuracy. Fifth, the
+registered naming-rate secondary was never computed. **This does not license C4's causal reading
+of "most" misses**, and the words "causes" or "explains" may not be used of it.
 
 ## Claims the evidence does not support, and which must not appear
 
@@ -488,7 +515,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | 23 (substrate 2) | nothing — Amendment 8's criterion was not met, so the study licenses no claim | third run complete 2026-09-19, 5 of 6 reversals reproduced; **closed without a quotable number**, no fourth run authorised |
 | P2 (severity sweep) | — | **QUOTABLE at round 7, 2026-09-22.** Moved to the admitted claims as C11 |
 | P1 (third rating) | — | **QUOTABLE at round 6, 2026-09-22.** Moved to the admitted claims as C12 |
-| P3 (clarification) | **nothing yet — refused twice** | H3 holds on its registered criterion at **32 instances/19 problems**: original 0/32, clarified **9/32**, placebo 0/32, **+28.1 points** [+7.7, +51.4]; registered secondary **8/23 vs 0/23**, +34.8 [+10.0, +60.9]. **Round 1 refused it** because the manipulation is not what the report said — the clarifier sees failing inputs without expected values and its added rule **contradicts the oracle on 23 of 32 instances**. **Round 2 refused the repair**, finding 3 of the 32 classification rows wrong. Corrected: additions agreeing with the oracle were diagnosed 6/6, contradicting ones 0/23 — an association **measured, not assigned**. The cluster sign-flip the registration prefers is **0.0602**. Not quotable; licenses nothing |
+| P3 (clarification) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C13. Rounds 1 and 2 refused it (manipulation misdescribed; 3 of 32 classification rows wrong) |
 
 ## Rule
 
@@ -531,6 +558,7 @@ record says by which route each went:
 | 22 (injection) | review | final descriptively at round 9 → **C10** |
 | P2 (severity sweep) | review | quotable at round 7 → **C11** |
 | P1 (third rating) | review | quotable at round 6 → **C12** |
+| P3 (clarification) | review | quotable at round 3 → **C13** |
 | 23 (substrate 2) | removal | closed without a quotable number; nothing of it was in `tex/` |
 
 **The shipping condition in point 3 above is therefore met.** That does not mean the manuscript

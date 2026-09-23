@@ -120,6 +120,7 @@ package, so each is readable at the point where it is used, and none depends on 
 version.
 
 \subsection{Preregistration and independent review}
+\label{sec:methods-review}
 
 Each study was preregistered before its first model call, fixing its population, hypotheses,
 primary outcome, intervals, kill conditions, budget and stopping rule --- \textbf{with one
@@ -135,13 +136,16 @@ could favour the hypothesis. Each report was then reviewed by a model from a dif
 read access to the raw records, asked to re-run the analysis, recompute the intervals
 independently, and check every sentence against the records. \textbf{That reviewer is
 \texttt{gpt-6-astra}, which is also one of the auditor families measured in \S\ref{sec:auditor}
-and one of the two raters behind \S\ref{sec:residual}'s labels.} For most claims this is a
+and one of the two raters behind \S\ref{sec:residual}'s labels, and one of the two
+adjudicators whose joint labels define the clarification study's outcome.} For most claims this is a
 cross-vendor check on work the reviewer had no part in. \textbf{For the claims that rank
 \texttt{astra} against the other families it is not: there the reviewer is the subject}, and
-those comparisons should be read as self-assessed until a model that audited nothing in this
-programme has checked them. This project's own P3 Amendment 10 disqualified the same model as a
-rater for the same reason, and the standard was not applied here until a pre-submission referee
-pointed it out. Reviews are archived verbatim, including those that
+those comparisons, and the clarification study's adjudication, should be read as
+self-assessed until a model that audited nothing in this
+programme has checked them. This project's own P3 Amendment 10 disqualified the same model as the
+clarification study's manipulation-check rater for the same reason, yet kept it as that study's
+second adjudicator and its reviewer; the standard was applied unevenly within one study, and not
+applied to the review at all until a pre-submission referee pointed it out. Reviews are archived verbatim, including those that
 refused approval, and several studies needed many rounds: on one day five reports were refused
 at once, and clearing those five took thirty-one further rounds. \emph{No measurement moved in
 any of them.} What moved was what the reports claimed about their measurements --- and in most
@@ -151,15 +155,15 @@ process produced: a fix written to satisfy a reviewer is itself an unreviewed cl
 
 \textbf{The reviewer is a language model, and this paper is about the ceiling on language
 models reading code they did not write.} That applies to our own instrument, and the round
-counts are the evidence: the studies here cleared review at rounds \textbf{4, 6, 7, 9, 10 and
+counts are the evidence: the studies here cleared review at rounds \textbf{3, 4, 6, 7, 9, 10 and
 11}, and in every case the round before the last still returned substantive findings. A single
 pass with high recall would clear a report in one round or two. So \emph{quotable at round
 $N$} means a report survived $N$ passes, not that it was verified, and the marks in this paper
 should be read as a filter of unknown recall rather than as proof.
 
-Two things sharpen that. First, the split: across the six studies
+Two things sharpen that. First, the split: across the first six studies
 of \S\ref{sec:inreview}, \emph{no measurement moved}, though the scope matters and two
-counterexamples sit just outside it. The clarification study's second review moved its primary
+counterexamples sit at its edge. The clarification study's second review moved its primary
 from 9 of 31 to 9 of 32 instances and its contrast from $+29.0$ to $+28.1$ points, by finding
 an instance wrongly excluded; and a label count inside a reviewed report was 71 where its data
 say 67. Both are measurements that moved on review, and an earlier version of this sentence
