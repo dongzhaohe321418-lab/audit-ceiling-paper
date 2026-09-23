@@ -1,0 +1,27 @@
+\begin{table}[t]
+\caption{Every primary quantity this paper quotes, with the population it is measured on and the label its source report gives it. Intervals are 95\% problem-cluster percentile bootstraps unless stated; see \S\ref{sec:stats} for their measured coverage, which is near nominal at these rates and anticonservative below about $0.10$. Generated from the committed records.}
+\label{tab:primary}
+\centering
+\small
+\begin{tabular}{@{}llrll@{}}
+\toprule
+quantity & population & value & interval & label \\
+\midrule
+Union recall, shipped route, $K=8$ & 110 defect, 56 problems & 30.0\% & $[20.0, 40.7]$ & preregistered \\
+Union false positives, shipped, $K=8$ & 150 correct, 143 problems & 16.0\% & $[10.1, 22.3]$ & preregistered \\
+Pooled union, 3 routes & 110 defect & 48.2\% & $[36.7, 60.0]$ & preregistered \\
+Gain from the eighth reading & 110 defect & $+1.93$ & $[1.14, 2.78]$ & bar 1.0, not met \\
+Same-vendor stronger $-$ cross, recall & 110 defect & $-26.4$ & $[-37.3, -15.6]$ & preregistered \\
+Rulebook rule $-$ shipped, recall & 110 defect & $+30.9$ & $[19.1, 43.1]$ & preregistered \\
+\quad its false-positive cost & 150 correct & $+20.7$ & $[12.8, 28.8]$ & preregistered \\
+Rulebook rule, flags & 56 loop instances & $+26.8$ & $[13.6, 40.4]$ & exploratory \\
+\quad its cost on correct code & 56 loop instances & $+12.5$ & $[-3.6, +26.8]$ & exact unconditional \\
+\quad isolating contrast, pass rate & 56 loop instances & $+5.4$ & $[-0.9, +12.1]$ & registered, failed \\
+\texttt{astra} $-$ cross, common $K=4$ & 110 defect, 56 problems & $+11.5$ & $[+2.9, +21.3]$ & exploratory \\
+\quad its false-positive difference & 150 correct & $-0.3$ & $[-3.8, +3.4]$ & exploratory \\
+Undetermined, sheet groups & 121 entries, 110 instances & $+19.8$ & $[+1.2, +38.1]$ & registered method \\
+\quad disjoint instances & 57 against 53 & $+23.3$ & $[+2.0, +43.6]$ & post hoc \\
+Undetermined share of the residual & 44 of 57; 25 of 32 & 77.2\%; 78.1\% & --- & post hoc \\
+\bottomrule
+\end{tabular}
+\end{table}

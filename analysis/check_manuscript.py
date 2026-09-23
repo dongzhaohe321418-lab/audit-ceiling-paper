@@ -27,7 +27,13 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SECTIONS = sorted((ROOT / "tex" / "sections").glob("*.tex"))
+#: Every .tex the manuscript actually compiles, not only the ones under `sections/`. A generated
+#: table lived at `tex/table1.tex` and the checker reported its label as undefined -- the
+#: checker's blind spot, not the paper's error. Anything `\input` from the body counts.
+SECTIONS = sorted((ROOT / "tex" / "sections").glob("*.tex")) + [
+    f for f in sorted((ROOT / "tex").glob("*.tex"))
+    if f.name not in {"paper.tex"} and f.is_file()
+]
 
 #: Sentences CLAIMS.md's "must not appear" list forbids, as patterns a reader would recognise
 #: rather than as the numbers behind them.
