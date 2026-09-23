@@ -60,24 +60,22 @@ self-consistent errors, the same wrong answer produced again, that degrade the d
 Tan et al.\ evaluate \citep{tan2025consistent}. Our records hold indices, not assertions, so they
 do not show that the recurring errors are the same one.
 
-\textbf{Auditing scientific work.} Language models are already asked to check science at several
-levels. On manuscripts, SPOT finds that no model exceeds 21.1\% recall or 6.1\% precision on
-errors serious enough for errata or retraction, and that repeated runs rarely rediscover the same
-errors \citep{son2025spot}. SciCoQA asks models to find discrepancies between a paper and its code,
-and the best detect 46.7\% of real ones \citep{baumgartner2026scicoqa}. Closest to our setting,
-\citet{luo2025pitfalls} have an LLM auditor inspect AI-scientist projects for methodological
-pitfalls, labelled by hand, and report both true- and false-positive rates; giving the auditor the
-run logs and code raises detection well above reading the paper alone. scicode-lint targets
-methodology bugs such as leakage in scientific Python, with precision partly judged by a model \citep{samsonau2026scicodelint}. On data, agents that clean deliberately
-corrupted tables find row-level errors and miss errors that span rows
-\citep{bendinelli2025cleaning}. And a deterministic verifier shows that simulation code can run and
-still solve the wrong equations \citep{song2026moose}. SciCode, on which our code study builds,
-supplies scientist-written numeric tests \citep{tian2024scicode}, and reproduction benchmarks such
-as CORE-Bench ask agents to recover reported results from a paper's code and data
-\citep{siegel2024corebench}. We found no prior measurement of
-an LLM auditor's recall \emph{and} false-positive rate against an executed oracle on scientific
-code, results or data, across vendors and repeated readings, set beside the deterministic checks a
-shipped system would run on the same artefacts. Section~\ref{sec:ai4s} makes that measurement.
+\textbf{Auditing scientific work.} On manuscripts, no model exceeds 21.1\% recall or 6.1\% precision
+on errata-grade errors and repeated runs rarely rediscover the same errors \citep{son2025spot}; the
+best models detect 46.7\% of real paper--code discrepancies \citep{baumgartner2026scicoqa}. An LLM
+auditor of AI-scientist projects detects hand-labelled pitfalls far better with logs and code than
+with the paper alone \citep{luo2025pitfalls}; pattern-based linting targets methodology bugs in
+scientific Python \citep{samsonau2026scicodelint}; cleaning agents find row-level errors in corrupted
+tables and miss errors spanning rows \citep{bendinelli2025cleaning}; and simulation code can run and
+still solve the wrong equations \citep{song2026moose}. SciCode supplies scientist-written tests
+\citep{tian2024scicode}, and an expert audit of it found many specifications and tests that reject
+correct solutions \citep{hu2026scicodeverified}; reproduction benchmarks ask agents to recover
+reported results \citep{siegel2024corebench}. On constructed statistical workflows, LLM reviewers
+detect planted flaws almost always but flag 17--50\% of correct scripts \citep{chelate2026replicationtrap},
+and Luo et al.\ already report both true- and false-positive rates. Scientific auditing and paired
+operating points are therefore not new. What we add is this measurement programme applied to
+scientific code, and the comparison of the LLM tier with deterministic verification on reported
+results and data, which we did not find in prior work.
 
 \textbf{Who audits whom.} That an evaluator should not be the model under evaluation is supported
 by measurements of self-preference in LLM judges against verifiable ground truth

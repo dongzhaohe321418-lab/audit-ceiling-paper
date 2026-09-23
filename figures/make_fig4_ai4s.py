@@ -54,14 +54,14 @@ def bars(ax, groups: list[str], series: list[tuple[str, list[tuple[int, int]], t
         ax.errorbar(xs, ys, yerr=[lo, hi], fmt="none", ecolor="0.25", elinewidth=0.5,
                     capsize=0.9, zorder=3)
     ax.set_xticks(range(len(groups)))
-    ax.set_xticklabels(groups, fontsize=5.4)
+    ax.set_xticklabels(groups, fontsize=6.2)
     ax.tick_params(axis="x", length=0)
     ax.set_ylim(0, 124)
     ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.set_ylabel("items flagged (%)")
     ax.axvline(0.5, color="0.6", lw=0.5, ls=":", zorder=1)
-    ax.set_title(title, fontsize=7, loc="left")
-    ax.legend(fontsize=5.8, frameon=False, loc="upper center", ncol=len(series),
+    ax.set_title(title, fontsize=7.5, loc="left")
+    ax.legend(fontsize=6.4, frameon=False, loc="upper center", ncol=len(series),
               handlelength=1.0, columnspacing=0.8, borderaxespad=0.2)
 
 
@@ -72,8 +72,7 @@ def count(cell: dict) -> tuple[int, int]:
 def panel_data(ax, r: dict) -> None:
     v, c = r["validator"], r["families"]["cross"]
     faults = ["F1", "F2", "F3", "F4", "F5", "F6", "F7"]
-    names = ["clean", "unit\nmix", "neg.", "dup.\nrows", "shuf.\ntarget",
-             "swap\ncols", "$-999$", "round"]
+    names = ["clean", "units", "neg.", "dup.", "shuf.", "swap", "sent.", "round"]
     ser = []
     for label, src, colour in (("validator", v, DET), ("auditor", c["by_k"]["4"], LLM),
                                ("union", c["union_with_validator"], THIRD)):
@@ -112,8 +111,8 @@ def panel_code(ax, r: dict) -> None:
     ax.set_xticks(ks)
     ax.set_ylim(0, 124)
     ax.set_yticks([0, 20, 40, 60, 80, 100])
-    ax.set_title("(a) scientific code", fontsize=7, loc="left")
-    ax.legend(fontsize=5.2, frameon=False, loc="upper center", ncol=2, handlelength=1.6,
+    ax.set_title("(a) scientific code", fontsize=7.5, loc="left")
+    ax.legend(fontsize=6.2, frameon=False, loc="upper center", ncol=2, handlelength=1.6,
               columnspacing=0.8, borderaxespad=0.2)
 
 
@@ -126,7 +125,7 @@ def main() -> int:
         print("no admitted AI4S record; nothing drawn")
         return 0
     with plt.style.context(["science", "nature", "no-latex"]):
-        fig, axes = plt.subplots(1, len(panels), figsize=(min(6.75, 2.45 * len(panels) + 0.3), 2.3),
+        fig, axes = plt.subplots(1, len(panels), figsize=(min(6.75, 2.45 * len(panels) + 0.3), 2.55),
                                  squeeze=False)
         for ax, (name, fn) in zip(axes[0], panels):
             fn(ax, json.loads((REC / name).read_text(encoding="utf-8")))

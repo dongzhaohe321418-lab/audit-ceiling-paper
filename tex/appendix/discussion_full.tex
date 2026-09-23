@@ -93,35 +93,30 @@ need the texts of all eight readings, and those were not archived.
 
 \subsection{What the science studies add}
 
-The science studies give the design rule of CrossAudit's science profile (the
-model names evidence, code verifies it) an empirical reading, and a boundary. On results
-(\S\ref{sec:ai4s-results}), number$\to$source verified every inconsistency between a report, its
-results file and its log, and it could not see a result that was wrong consistently. The model, by
-recomputing, flagged 23 of 25 such fabrications, 21 with a sound finding. On data
-(\S\ref{sec:ai4s-data}), a validator written from the card caught what a rule can state (negative
-masses, sentinels, duplicates, lost precision) and missed what needs reading across columns and
-units, which the model caught in 18 of the 28 such items the validator missed, at a clean-item cost
-of four remarks about a sparse card. In both, the deterministic tier flagged none of the clean items and
-the model tier carried the errors. On data the union of the two was better than either part; on
-results the model's flags already contained the profile's, whose findings its prompt carried.
+They give the science profile's design rule (the model names
+evidence, code verifies it) an empirical reading and a boundary. On results, number$\to$source
+flagged every inconsistency between a report, its results file and its log, and could not see a
+result that was wrong consistently; the model flagged 23 of 25 such fabrications, 21 with a sound
+finding about the fault (post hoc). On data, a validator written from the card flagged what a rule can
+state and missed what needs reading across columns and units; the model flagged 18 of the 28 such
+items the validator missed with a finding about the fault (post hoc).
+Where both tiers ran, the deterministic one flagged no clean item and the model carried the errors;
+on data the union was better than either part, and on results the model's flags already contained
+the profile's, whose findings its prompt carried. Neither study shows that the model tier scales: the
+artefacts were small, the model's fabrication findings are hand calculations (several wrong), and it
+missed every fault that needs comparison across many rows. A model reading is a useful second tier
+where the artefact fits in the reader's working memory, not a substitute for executing the code or
+computing over the data.
 
-What neither study shows is that the model tier scales. Both used small artefacts: outputs of at
-most ten numbers, tables of 120 rows. The model's fabrication findings are hand calculations,
-several of them wrong, and it missed every fault that needs comparison across many rows (shuffled
-targets, duplicated rows). A model reading is a useful second tier where the artefact fits in the
-reader's working memory, and it is not a substitute for executing the code or computing over the
-data.
-
-A second observation cost us more than it gave. In all three studies the auditor flagged defects in
-our own construction: a card and file that named a column differently, a file placed outside the
-audited scope, a report that claimed a run no file performed, a provenance sentence that was false
-for inputs passed as literals, a unit label that contradicted the code's own documentation, and a
-task that named the whole problem when only one step was delivered.
-Each was a correct flag on an item we had built as clean. We caught two in pilots, one when every
-verdict came back as an escalation, and the rest only by reading every flag on a clean item, which
-the registrations required. An evaluation of an auditor has to establish that its
-clean items are clean by the auditor's standard, not only by the benchmark's, or its false-positive
-rate measures the evaluator.
+\textbf{Clean items must be clean by the auditor's standard.} In the results and data studies the
+auditor flagged defects in our own construction: a card and file that named a column differently, a
+file outside the audited scope, a report claiming a run no file performed, a provenance sentence false
+for inputs passed as literals, and a unit label contradicting the code's documentation. Each was a
+correct flag on an item we had built as clean. We caught two in pilots, one when every verdict came
+back as an escalation, and the rest by reading every flag on a clean item, which the registrations
+required. In the code study the task we wrote named the whole problem when one step was delivered,
+and a sample of the auditor's flags on correct code objected to exactly that; there we read a sample,
+not every flag. Without such reading, a false-positive rate can measure the evaluator.
 
 \subsection{Limits}
 \label{sec:limits}

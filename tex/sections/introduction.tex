@@ -19,7 +19,7 @@ role of the specification is a post hoc association.
 shipped cross-vendor auditor reach 30.0\% union recall [20.0, 40.7] on defective code at 16.0\%
 [10.1, 22.3] on correct code, and the eighth reading still adds 1.9 points, so returns diminish
 without a plateau. A stronger same-vendor model, sampled differently, moves recall by $-26.4$
-points [$-37.3$, $-15.6$] while flagging 3.3\% of correct code against 16.0\%, and the contrast
+points [$-37.3$, $-15.6$] while flagging 3.3\% [0.7, 6.7] of correct code against 16.0\%, and the contrast
 reverses sign under a weaker severity rule. One added rulebook sentence moves flags by $+26.8$ points
 [13.6, 40.4] on an exploratory arm, at $+12.5$ points on correct code (an interval,
 [$-3.6$, $+26.8$], that does not exclude zero), without measurably moving outcomes. Of 57 defects no
@@ -44,15 +44,18 @@ on correct code from 68.7\% to 36.0\% and its recall from 87.7\% to 72.8\%, on t
   union recall always reported beside the false-positive rate it cost: controlled changes to the
   number of readings and the rulebook, route comparisons that change model and sampling together,
   re-grading under decision rules, and a post hoc association with what the specification determines.
-\item Evidence that no single factor fixes the limit on general-purpose code: each of these moves it,
-  and a recall figure without its operating point does not transfer.
+\item Evidence that no single factor fixes the limit on general-purpose code: the number of
+  readings, the rulebook, the route and the decision rule each move it, and what is missed is
+  associated (post hoc, not isolated as a cause) with what the specification leaves undetermined; a
+  recall figure without its operating point does not transfer.
 \item Operating points of an LLM auditor on scientific code, and comparisons of the LLM tier with
   deterministic verification on reported results (the shipped provenance checks and re-execution) and
   data (a documentation-derived validator), against executed or constructed ground truth. The tiers
   flag different faults, and each fails where the other does not.
-\item A methodological finding: in all three science studies the auditor flagged defects in our own
-  construction of items meant to be clean, so an evaluation of an auditor must establish that its
-  clean items are clean by the auditor's standard, or its false-positive rate measures the evaluator.
+\item A methodological finding: in the results and data studies, reading every flag on a clean item
+  showed the auditor flagging real defects in our own construction of those items, so an evaluation of
+  an auditor must establish that its clean items are clean by the auditor's standard, or its
+  false-positive rate can measure the evaluator.
 \end{itemize}
 
 \textbf{Preregistration and review.} Every study that made model calls was preregistered before its

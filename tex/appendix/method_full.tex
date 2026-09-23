@@ -3,7 +3,7 @@
 
 \subsection{Substrate, population and ground truth}
 
-Every result in this paper is measured on one substrate: HumanEval+ and MBPP+ (EvalPlus),
+Every general-code result (Section~\ref{sec:ceiling} and Appendix~\ref{sec:results}) is measured on one substrate: HumanEval+ and MBPP+ (EvalPlus),
 Python functions whose median task is 41 words of prose and 6 lines of reference code, each with
 an executable hidden test suite. Every stratum, recall denominator and false-positive population
 is therefore decided by an interpreter, and no model judges a recall or false-positive outcome.
@@ -131,7 +131,7 @@ intervention did nothing. This work once inferred equal cost from an interval co
 withdrew the inference on review. Where a hypothesis fails its registered criterion we say it
 failed, not that the effect is absent.
 
-All analysis is plain Python 3.13 using only the standard library (\texttt{random},
+All analysis of the general-code studies is plain Python 3.13 using only the standard library (\texttt{random},
 \texttt{math}, \texttt{itertools}, \texttt{csv} and \texttt{json}). The bootstrap, the exact
 McNemar test, the cluster sign-flip permutation and the exact subset enumeration behind every
 union-at-$K$ figure are implemented in the repository rather than called from a numerical package,
@@ -159,8 +159,11 @@ the repository and the analysis is registered nowhere. Its method was fixed in a
 earlier amendment, but the disjoint reading, the abstention-excluded secondary and the
 broken-sheet comparison were not.
 
-Planned departures are numbered amendments committed before the step they govern, each recording
-what was known at the time. Deviations discovered only afterwards, such as a leak check or a spend
+Planned departures are numbered amendments, each recording what was known at the time, and in the
+general-code studies each was committed before the step it governs. In the science studies two were
+not: A4S-3's Amendment 1 was committed together with the rebuilt items it governs, and A4S-2's
+Amendment 2 after the two pilot readings it already governed. Both are recorded as errata in the
+registrations (Appendix~\ref{sec:repro}). Deviations discovered only afterwards, such as a leak check or a spend
 guard implemented more narrowly than registered, are disclosed in the report and are not
 amendments. Where an amendment followed an interim observation, the results say so and argue
 whether the change could favour the hypothesis.
