@@ -2,8 +2,8 @@
 
     python figures/src/make_figures.py
 
-Every number is read from a `numbers.json` written by a study's own report script; nothing is
-retyped here. Run from the paper repository root with the harness worktrees present.
+Every number is read from a `numbers.json` written by a study's own report script and mirrored
+into records/code/; nothing is retyped here. Runs from a clean checkout.
 """
 
 from __future__ import annotations
@@ -16,10 +16,10 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import scienceplots  # noqa: F401  registers the styles
 
-# Durable worktrees. These were under the session scratchpad until 2026-09-16, when that
-# directory was reclaimed mid-session and took this script's inputs with it (and, separately,
-# study 20's L2 adjudication artefacts, which are gone for good). Inputs live in ~/Documents now.
-W = Path.home() / "Documents/Crossaudit/review-worktrees"
+# Inputs are read from this repository's own mirror of the records (records/code/, provenance
+# in records/PROVENANCE.md), so the figure regenerates from a clean checkout (R3-M3). It read a
+# harness review worktree under ~/Documents until 2026-09-23.
+REPO = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parents[1]
 STYLE = ["science", "nature", "no-latex"]
 
@@ -28,16 +28,10 @@ CROSS, SELF, INJ, TWIN = "#4477AA", "#EE6677", "#228833", "#BBBBBB"
 
 
 def load():
-    c1 = json.loads((W / "wt-inject/benchmarks/code/records/ceiling/numbers.json")
+    c1 = json.loads((REPO / "records/code/ceiling/numbers.json")
                     .read_text())["ceiling1"]["families"]
-    # figure2 (substrate 2) and figure3 (injection) are withdrawn, so their records are read
-    # only if they are present; a missing one is no longer an error.
-    def opt(rel):
-        path = W / rel
-        return json.loads(path.read_text()) if path.exists() else None
-    s2 = opt("wt-sub2/benchmarks/code/records/substrate2/numbers.json")
-    inj = opt("wt-inject/benchmarks/code/records/inject/numbers.json")
-    return c1, s2, inj
+    # figure2 (substrate 2) and figure3 (injection) are withdrawn; their records are not read.
+    return c1, None, None
 
 
 def pct(ax):
@@ -50,15 +44,15 @@ def figure1(c1, s2):
     ks = range(1, 9)
     panels = [
         (axes[0], "Defective increments (recall)",
-         [("Substrate 1, cross-vendor", c1["cross"]["P"]["curve"], CROSS, "-", "o",
+         [("cross-vendor (shipped)", c1["cross"]["P"]["curve"], CROSS, "-", "o",
            c1["cross"]["P"]["curve_ci95"]),
-          ("Substrate 1, same-vendor", c1["self"]["P"]["curve"], SELF, "-", "s",
+          ("same-vendor, temperature 0", c1["self"]["P"]["curve"], SELF, "-", "s",
            c1["self"]["P"]["curve_ci95"]),
 ]),
         (axes[1], "Correct increments (false positives)",
-         [("Substrate 1, cross-vendor", c1["cross"]["C"]["curve"], CROSS, "-", "o",
+         [("cross-vendor (shipped)", c1["cross"]["C"]["curve"], CROSS, "-", "o",
            c1["cross"]["C"]["curve_ci95"]),
-          ("Substrate 1, same-vendor", c1["self"]["C"]["curve"], SELF, "-", "s",
+          ("same-vendor, temperature 0", c1["self"]["C"]["curve"], SELF, "-", "s",
            c1["self"]["C"]["curve_ci95"]),
 ]),
     ]
@@ -77,21 +71,28 @@ def figure1(c1, s2):
         # the interval strip is fenced off so it cannot be read as data at K = 8.5
         ax.axvline(8.25, color="0.75", linewidth=0.6)
         # on the fence itself, rotated: no interval bar can reach this column
-        ax.text(8.38, 0.5, "95% CI at $K=8$", fontsize=5.8, color="0.35", ha="center",
+        ax.text(8.38, 0.505, "95% CI at $K=8$", fontsize=5.8, color="0.35", ha="center",
                 va="center", rotation=90)
         ax.set_xlabel("Independent readings $K$")
         ax.set_title(title, fontsize=7.5, pad=4)
         ax.set_xlim(0.8, 10.3)
-        ax.set_ylim(0, 1.0)
+        ax.set_ylim(0, 0.6)
         ax.set_xticks(list(ks))
         ax.xaxis.set_minor_locator(mticker.NullLocator())
         pct(ax)
     axes[0].set_ylabel("Union rate")
     for ax, tag in zip(axes, "ab"):
         ax.text(-0.16, 1.02, f"({tag})", transform=ax.transAxes, fontsize=8, va="bottom")
-    # the flat series is flat because the verdict is identical, not because the curve is smooth
-    axes[0].annotate("identical verdict on all 250 instances", xy=(4.5, 0.88),
-                     xytext=(4.5, 0.775), fontsize=5.8, color=SELF, ha="center",
+    # Until 2026-09-23 this read "identical verdict on all 250 instances" and pointed at empty
+    # space: 250 was substrate 2's count and its curve had been withdrawn beneath the label. On
+    # this substrate the same-vendor verdict varies across readings on a few instances, counted
+    # here from the record rather than typed.
+    def varying(s):
+        return sum(v for k, v in c1["self"][s]["counts_k"].items() if k not in ("0", "8"))
+    n_p = sum(c1["self"]["P"]["counts_k"].values())
+    axes[0].annotate(f"verdict varies across readings\non {varying('P')} of {n_p} instances",
+                     xy=(6.0, c1["self"]["P"]["curve"][5]), xytext=(5.6, 0.07), fontsize=5.8,
+                     color=SELF, ha="center",
                      arrowprops=dict(arrowstyle="-", color=SELF, linewidth=0.6, shrinkB=1))
     # One legend for both panels, placed outside so no curve is covered.
     handles, labels = axes[0].get_legend_handles_labels()
