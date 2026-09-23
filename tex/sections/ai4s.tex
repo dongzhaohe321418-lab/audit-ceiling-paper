@@ -1,24 +1,107 @@
 \section{Auditing AI for science}
 \label{sec:ai4s}
 
-% Act 4. Designs below are the registered ones; results enter only through manuscript/CLAIMS.md
-% after cross-vendor review. Nothing in this section is a claim yet.
+% Act 4. Designs are the registered ones with their amendments. Results enter only through
+% manuscript/CLAIMS.md after cross-vendor review; the RESULTS placeholders below are not claims.
 
 Acts 2 and 3 measured the model tier on short general-purpose functions. A scientist would hand
 an auditor three different jobs: check the code that computes a result, check that a reported
 result follows from that code, and check the data an analysis starts from. We ran one
 preregistered study per job, each with ground truth that no model supplies. Scientific code
-(\S\ref{sec:ai4s-code}) is judged by scientists' numeric tests, results (\S\ref{sec:ai4s-results}) by
-re-execution, and data (\S\ref{sec:ai4s-data}) by the faults we injected.
+(\S\ref{sec:ai4s-code}) is judged by scientists' numeric tests, results (\S\ref{sec:ai4s-results})
+by re-execution, and data (\S\ref{sec:ai4s-data}) by the faults we injected. Every item in all
+three is audited through the product's own audit call with its shipped rulebook, and the same
+flag rule holds throughout: an item is flagged when the model grades any finding BLOCKER.
 
 \subsection{Scientific code}
 \label{sec:ai4s-code}
-% A4S-1: SciCode; scientists' numeric tests as the oracle; cross and self at K = 8.
+
+\textbf{Substrate.} SciCode \citep{tian2024scicode} decomposes 80 research problems from 16
+subfields into 338 steps, each a function with numeric tests written by scientists. Its targets
+are released separately from the code, which lets the tests act as a hidden oracle. On the
+benchmark's development split, the gold code passes 48 of 50 steps in our environment; the two
+steps whose gold fails here are excluded, as are the three the official harness skips.
+
+\textbf{Population.} The generator of Acts 2 and 3 wrote every step in SciCode's own protocol,
+three samples per step, each sample building on its own earlier steps. A candidate is
+\emph{correct} if it passes the step's tests and \emph{defective} if it fails or times out. A step
+enters either stratum only if at least one sample passes it, so a failure counts only where this
+environment has shown the step can be passed. This yields 81 defective instances from 30 problems
+and 374 correct ones, from which 150 (53 problems) were drawn by seed.
+
+\textbf{What differs from Act 2.} SciCode has no visible and hidden split, and we did not invent
+one. The auditor sees the problem, the step, its background, the function header, the allowed
+dependencies and the candidate, and no tests of any kind. The shipped cross-vendor auditor and the
+generator's own model each read every instance eight times. The generator's model is reached
+through a command-line route rather than the API; the route adds a short fixed context and uses
+default sampling, so this study's same-vendor family is not temperature-0, unlike Act 2's.
+
+\textbf{Residual.} Defective instances flagged by no reading of either family are rated on a
+blind sheet under Act 3's question adapted to science: do the step's prose and background
+determine the value the test expects, including tolerance, units, conventions and numerical
+method. The raters are the agent that ran the study and a model that audits nothing here.
+
+% RESULTS: union recall and false positives at K = 8 (cross, self), ladder, paired contrast (H3),
+% residual consensus share (H2), after review.
 
 \subsection{Scientific results}
 \label{sec:ai4s-results}
-% A4S-2: results increments from A4S-1's correct instances; LLM vs science profile vs re-execution.
+
+\textbf{Items.} Each correct SciCode instance whose output on one seeded test case is a real
+scalar or a real array of at most ten elements becomes a small results increment: the program, the
+test's inputs, a script that runs one on the other and writes a run log, a \texttt{results.json}
+citing each value's log line, metadata declaring every input at a revision, and a one-paragraph
+report whose numbers carry the product's number$\to$source annotations. Seventy-four of the 150
+correct instances qualify, from 36 problems. Each yields one clean item and one faulty item. The
+faulty item carries one of seven faults, assigned in rotation by seed. Five are \emph{reporting}
+faults, where the artefacts disagree with each other or with the log the code wrote: a $\times
+10^{3}$ scale slip, a sign flip, a value from another test case, a 5\% relative error, and a
+transposed digit pair in the report alone. Two are \emph{fabrications}, where the scale slip or the
+5\% error is written consistently into the log, the results and the report, so that every artefact
+agrees with every other and none agrees with the code.
+
+\textbf{Three auditors.} The LLM auditor reads the increment four times, with the project's checks
+set to the shipped \texttt{science} profile. The model's prompt includes the deterministic
+result, as it does in the product, so on reporting faults the model has seen the deterministic
+finding. The deterministic profile's own verdict comes from the same call. Re-execution runs the
+program on the inputs and compares the output with the reported values.
+
+\textbf{Gate.} Before any model call, every clean item had to pass the science profile with no
+BLOCKER and re-execute to its reported value; all 74 did when first built. A two-reading pilot then
+found an instrument defect: no file in the item performed the run the report described, and the
+auditor blocked on that, correctly. We added the run script, discarded the pilot readings, and
+added a third condition to the gate, that each clean item's run script reproduce its run log byte
+for byte. All 74 passed all three conditions with no repair.
+
+% RESULTS: recall by fault type for LLM, DCL, re-execution and the unions; clean false positives;
+% the fabrication rows are the point of the study.
 
 \subsection{Scientific data}
 \label{sec:ai4s-data}
-% A4S-3: four UCI CC BY 4.0 datasets, seven fault types; LLM vs a validator written from the card.
+
+\textbf{Substrate.} Four physical-science tables from the UCI repository, each under CC BY 4.0:
+concrete compressive strength \citep{yeh1998concrete}, airfoil self-noise
+\citep{brooks1989airfoil}, combined-cycle power-plant output \citep{tufekci2014ccpp}, and
+superconductor critical temperature \citep{hamidieh2018superconductor}. Exact duplicate rows and
+physically impossible rows (relative humidity above 100\%) were removed from each pool before any
+item was drawn.
+
+\textbf{Items.} Each item is 120 rows sampled from one pool with a data card that gives every
+column's meaning and unit and, where the source states one, its range. There are 35 clean items
+per dataset and five per dataset for each of seven faults: mixed units in 20\% of one column's
+rows, three negated values of a non-negative quantity, 12 duplicated rows, the target shuffled
+among 30\% of rows, two columns with disjoint ranges swapped, a $-999$ sentinel in 5\% of one
+column's cells, and a continuous column rounded to integers.
+
+\textbf{Auditors.} Both model families read each item four times, with the dataset as the
+deliverable and the card as its documentation. The comparison is a deterministic validator written
+from the card alone and frozen before any item was built: declared ranges, non-negativity,
+duplicates, sentinels and integer-valued continuous columns. By construction it catches the
+negations, duplicates, sentinels and rounding. It sees mixed units or swapped columns only when
+they push a value below zero or out of a declared range, and a shuffled target not at all. The question is whether the model catches
+what the validator cannot. Two instrument defects were found and fixed by amendment before the
+readings reported here: the card and file named one column differently, and the files first sat
+outside the audited scope, so the product had told the model there was nothing to audit.
+
+% RESULTS: union recall by fault at K = 4 for both families; clean false positives; LLM-only
+% catches; localisation; after review.
