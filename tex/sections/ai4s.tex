@@ -1,0 +1,24 @@
+\section{Auditing AI for science}
+\label{sec:ai4s}
+
+% Act 4. Designs below are the registered ones; results enter only through manuscript/CLAIMS.md
+% after cross-vendor review. Nothing in this section is a claim yet.
+
+Acts 2 and 3 measured the model tier on short general-purpose functions. A scientist would hand
+an auditor three different jobs: check the code that computes a result, check that a reported
+result follows from that code, and check the data an analysis starts from. We ran one
+preregistered study per job, each with ground truth that no model supplies. Scientific code
+(\S\ref{sec:ai4s-code}) is judged by scientists' numeric tests, results (\S\ref{sec:ai4s-results}) by
+re-execution, and data (\S\ref{sec:ai4s-data}) by the faults we injected.
+
+\subsection{Scientific code}
+\label{sec:ai4s-code}
+% A4S-1: SciCode; scientists' numeric tests as the oracle; cross and self at K = 8.
+
+\subsection{Scientific results}
+\label{sec:ai4s-results}
+% A4S-2: results increments from A4S-1's correct instances; LLM vs science profile vs re-execution.
+
+\subsection{Scientific data}
+\label{sec:ai4s-data}
+% A4S-3: four UCI CC BY 4.0 datasets, seven fault types; LLM vs a validator written from the card.
