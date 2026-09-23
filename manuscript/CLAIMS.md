@@ -26,8 +26,10 @@ wording corrected 2026-09-23, review paper1 r5*). Pooling twenty draws across al
 the shipped route's 16.0% (the price is `reports/RESULTS-DERIVED.md` §3, *quotable* at manuscript review round 6).
 Evidence: ceiling 1 (`RESULTS-CEILING.md`, quotable at review round 21).
 
-**C2 — Which auditor model reads moves union recall more than how many times it reads, at a
-severity threshold and a sampling configuration that are not matched across families.**
+**C2 — Replacing the auditor with a stronger same-vendor model moved union recall at K = 8 by
+more than repetition gained, at a severity threshold and a sampling configuration that are not
+matched across families** (*a general ranking of auditor over repetition was withdrawn
+2026-09-23, review paper1 r11: a same-size substitution moved it by only −12.7*).
 Replacing the auditor with a stronger same-vendor model moves union recall at K = 8 by
 **−26.4 points**, cluster [−37.3, −15.6] (4 of 110 against 33 of 110; 3 instances flagged by the
 new family only, 32 by the shipped auditor only; exact McNemar p = 4.2 × 10⁻⁷, cluster sign-flip
@@ -328,7 +330,8 @@ per finding, 3 / 47 / 20 of 70. The interval includes zero, so the registered re
 **Limits that travel with it:** D does not show a specification violation and A does not show a
 finding wrong; "true positive" and "false alarm" may not be used of any class; the extractor saw
 specifications and docstrings containing expected outputs, though not the reference or the hidden
-tests; the registered spend guards were not fully implemented (total spend $4.28). Evidence: P4
+tests; the registered spend guards were not fully implemented (accounted spend $4.28: the audit
+ledger plus recorded extraction replies; failed attempts are not in the record). Evidence: P4
 (`reports/RESULTS-FPADJ.md`, *quotable* at review round 3, 2026-09-23; harness `2d20b9f`).
 
 ## Claims the evidence does not support, and which must not appear

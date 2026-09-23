@@ -192,3 +192,15 @@ R9-1 fixed in the passages changed but not in Table 1; R9-2 fixed; no regression
 Also in this revision: **P4 enters as C16** (quotable at its round 3), closing R1-M9, with a
 paragraph in §3.5 at the reviewer's reader sentence and a Table 1 row; study and round counts
 updated to eight studies and 53 rounds.
+
+## Whole-manuscript review, round 11 (at `3a94625`): NOT SUBMITTABLE — two moderate, two minor
+
+R10-1 and R10-2 fixed; no regressions; P4's §3.5 paragraph follows its reader sentence apart from
+one attribution; counts (8 studies, 53 rounds) confirmed.
+
+| # | finding | action |
+|---|---|---|
+| R11-1 | "Repetition is the smallest of the contributions" and C2's general ranking — contrasts on different scopes; a same-size substitution moved recall only −12.7 | ranking withdrawn in discussion, introduction and C2; only 26.4 vs 19.3 compared, beside the −12.7 |
+| R11-2 | the P4 table row lost "on extracted inputs" and the 9 unresolved | caption carries both, read from the record |
+| R11-3 | C16 said "total spend $4.28", which P4's review had withdrawn | "accounted spend", with what is missing |
+| R11-4 | P4's opening credited suite incompleteness to the residual result | stated as a possibility |
