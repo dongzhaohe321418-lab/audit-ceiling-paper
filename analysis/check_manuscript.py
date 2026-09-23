@@ -123,6 +123,13 @@ def main() -> int:
         if "forbidden" not in body[max(0, m.start() - 80):m.start()]:
             failures.append(f"forbidden interval quoted: ...{body[max(0, m.start() - 80):m.end() + 10]}...")
 
+    # The pooled recall never without its own price (review paper1 r5): 48.2% came beside the
+    # shipped route's 16.0% for four rounds.
+    for m in re.finditer(r"48\.2\\?%", body):
+        near = body[max(0, m.start() - 300): m.end() + 300]
+        if "36.0" not in near and "forbidden" not in near:
+            failures.append(f"pooled recall without its false-positive rate: ...{body[m.start()-60:m.end()+60]}...")
+
     # Every asymptote must be qualified where the flattening bar was not met.
     for m in re.finditer(r"asymptote", body, flags=re.I):
         near = body[max(0, m.start() - 220) : m.end() + 280]

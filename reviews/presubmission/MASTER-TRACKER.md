@@ -123,3 +123,16 @@ two about outside papers were checked against the papers themselves before actin
 | R4-5 | heading still said luna "audited nothing" | "a rater outside the residual's families" |
 | R4-6 | two p values without their paired test | both added from the record (1.0e-5; 0.0156 both) |
 | R4-7 | SWR-Bench's aggregation (a synthesising model call) equated with a Boolean union (confirmed at source) | distinguished |
+
+## Whole-manuscript review, round 5 (at `365c8f2`): NOT SUBMITTABLE
+
+R4-1, 3, 5, 6, 7 ruled fixed; 2 and 4 partly. Six findings, all verified before acting:
+
+| # | finding | action |
+|---|---|---|
+| R5-1 | **the pooled 48.2% recall was quoted beside the shipped route's 16.0%; its own price is 54/150 = 36.0%** | reproduced from the caches (harness `ce8f43d`, `pooled_union.py`); added to intro, results, discussion, Table 1, C1; written up as `RESULTS-DERIVED.md` §3 for a round-6 ruling; the checker now fails any 48.2% without 36.0% nearby — and caught one more in the discussion on its first run |
+| R5-2 | simulated coverage still assigned to reported intervals | reworded as evidence of potential undercoverage for analogous intervals, at true rates |
+| R5-3 | the generated-test rate presented as user-facing while 58 of 107 applications are on visible-failing candidates | population stated; the post-hoc visible-passing rates (18.2%, 23.3%) given beside |
+| R5-4 | problem recurrence promoted to a self-consistent-error mechanism | "compatible with", with the indices-not-assertions limit |
+| R5-5 | C7 still said the paid rules "do not beat" the comparator | corrected |
+| R5-6 | C1 still had the depth dependence reversed | corrected with the curve's increments |

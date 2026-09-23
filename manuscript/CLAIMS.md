@@ -18,10 +18,13 @@ gain is **1.93 points, cluster [1.14, 2.78], against the preregistered flattenin
 so **the bar was not met**: the constrained fit's 31.5% asymptote is an extrapolation, the raw
 union at K = 8 is the number to quote, and **the word "saturates" may not be used of this
 curve**. What is licensed is diminishing returns at the budget reached. The bar is also a
-function of where a family was stopped, so a curve meeting it at K_max = 4 makes a weaker
-statement than one meeting it at K_max = 8, and that must be said wherever families run to
-different K are compared. Pooling twenty draws across all three auditor families reaches
-**48.2%** [36.7, 60.0]. Evidence: ceiling 1 (`RESULTS-CEILING.md`, quotable at review round 21).
+function of where a family was stopped: exact subset-averaged increments do not grow with K
+(2.89 points at step 4, 1.93 at step 8 on this curve), so a fixed bar is harder to meet at
+K_max = 4 than at 8, and meeting it at either says little about an asymptote (*reversed
+wording corrected 2026-09-23, review paper1 r5*). Pooling twenty draws across all three auditor families reaches
+**48.2%** [36.7, 60.0], **at 54/150 = 36.0% [28.2, 44.2] false positives** — its own price, never
+the shipped route's 16.0% (the price is `reports/RESULTS-DERIVED.md` §3, pending review round 6).
+Evidence: ceiling 1 (`RESULTS-CEILING.md`, quotable at review round 21).
 
 **C2 — Which auditor model reads moves union recall more than how many times it reads, at a
 severity threshold and a sampling configuration that are not matched across families.**
@@ -190,8 +193,11 @@ candidate. On this frozen substrate neither paid rule reached the preregistered 
 threshold: the retained wrong-test rates are **12.2%** (Wilson 7.0–20.6; cluster 3.6–22.6) for
 majority-over-draws and **14.9%** for any-draw, against a preregistered limit of **2%**, and
 each retained 5 and 6 of the 7 validated-only P instances against a floor of 5 of 7. **H17 is
-killed on the rate**, and the paid rules do not beat the free within-draw comparator, which
-retains wrong tests at 12.8%. A 2.4% floor on the brief's original unique-test quantity holds
+killed on the rate**, and neither paid rule is shown to improve on the free within-draw
+comparator (12.8%): the better one keeps the same wrong applications plus four correct ones, an
+advantage the study cannot resolve (*"do not beat" withdrawn 2026-09-23, review paper1 r5*).
+The registered population includes candidates failing their visible tests (58 of 107
+applications); on visible-passing candidates only, post hoc: 18.2% and 23.3%. A 2.4% floor on the brief's original unique-test quantity holds
 because 29 of the 45 wrong tests never fail on any candidate at all. Evidence: study 17
 (`RESULTS-TESTGEN-VAL.md`, quotable at review round 11, 2026-09-20).
 
@@ -556,6 +562,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | P1 (third rating) | — | **QUOTABLE at round 6, 2026-09-22.** Moved to the admitted claims as C12 |
 | P3 (clarification) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C13. Rounds 1 and 2 refused it (manipulation misdescribed; 3 of 32 classification rows wrong) |
 | derived (residual composition; coverage) | — | **QUOTABLE at manuscript review round 2, 2026-09-23.** Moved to the admitted claims as C14 and C15 |
+| derived: pooled union's false positives | 54/150 = 36.0% [28.2, 44.2] (`RESULTS-DERIVED.md` §3) | in `tex/` beside the pooled recall because the operating-point rule requires it; put to review round 6, removed with the pooled recall if refused |
 | R1-M3 cross-tab (post hoc) | per-instance agreement of a rater outside the residual's families (luna; `cheap-cross` in the explore study) with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
 
 ## Rule

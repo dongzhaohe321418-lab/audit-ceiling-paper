@@ -50,3 +50,28 @@ about 0.020 at the 0.80 cell.
 near nominal (0.93–0.97) at the tested true rates 0.10, 0.16, 0.30, 0.48 and 0.60, 0.80 at 0.03 on the 56-cluster
 stratum. It says nothing about the paired contrasts or category-conditioned shares in Table 1,
 and the concordance of 0.5 is an assumption, not an estimate.
+
+## 3. The pooled union's false-positive rate
+
+**Why.** The paper quoted the pooled three-family recall, **53/110 = 48.2%**, beside the shipped
+route's **16.0%**, which is eight readings of one route. The paper's rule is that a union recall
+appears only beside the false-positive rate *it* cost. Manuscript review round 5 recomputed the
+pooled union on the correct stratum.
+
+**Computation.** `benchmarks/code/ceiling/pooled_union.py` in the harness (commit `ce8f43d`),
+record mirrored at `records/code/ceiling/pooled_union.json`: the Boolean union of `cross` d1–8,
+`self` d1–8 and `astra` d1–4, each asserted complete on all 260 instances, with ceiling 1's own
+`clustered_rate` and seed 20260908, 10,000 resamples.
+
+| stratum | union | cluster 95% |
+|---|---|---|
+| defective (P) | 53/110 = 48.2% | [36.4, 59.8] |
+| correct (C) | **54/150 = 36.0%** | **[28.2, 44.2]** |
+
+The paper keeps the reviewed interval [36.7, 60.0] for the recall, which comes from study 21's
+record at seed 20260924; the [36.4, 59.8] here is the same quantity at ceiling 1's seed and is
+not quoted.
+
+**What it licenses.** Pooling twenty readings of three routes buys 48.2% recall at 36.0% false
+positives, more than twice the shipped route's price. It does not license a comparison of
+pooling against any single route at a matched operating point.

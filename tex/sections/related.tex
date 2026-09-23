@@ -54,12 +54,13 @@ without a reference by agreement, through self-consistency, dual execution, or m
 suites \citep{taherkhani2026consistency, xu2025consensus}. Both measure what survives the filter against a ground-truth implementation --- 84--91\% of retained
 tests valid in one \citep{taherkhani2026consistency}, 0.89--0.93 oracle correctness in the other
 \citep{xu2025consensus}. Our measurement differs in unit and in bar: the share of wrong tests
-among retained \emph{failing test--candidate applications}, which is what reaches a user as a
-false alarm, against a preregistered 2\% threshold. On a frozen set of canonical-failing tests,
-corroboration across independent generations does not reach it, because wrong tests
-recur by problem (\S\ref{sec:inreview}). This is the concrete case of a general result: self-consistent errors are
-exactly the class that every detection method they evaluate struggles to detect
-\citep{tan2025consistent}.
+among retained \emph{failing test--candidate applications}, against a preregistered 2\%
+threshold, over a frozen set of generated tests and candidates that includes candidates already
+failing their visible tests. Corroboration across independent generations does not reach it
+(\S\ref{sec:inreview}), and wrong tests recur by problem. That recurrence is compatible with
+the self-consistent errors every detection method struggles with \citep{tan2025consistent} ---
+the same wrong answer produced again --- but our records hold indices, not assertions, so they
+do not show that the recurring errors are the same one.
 
 \textbf{Who audits whom.} That an evaluator should not be the model under evaluation is supported
 by measurements of self-preference in LLM judges against verifiable ground truth

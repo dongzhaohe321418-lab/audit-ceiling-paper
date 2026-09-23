@@ -65,6 +65,7 @@ def main() -> int:
     c3fp = c3all["H18b_C_false_positives"]
     c4 = json.loads(C4.read_text(encoding="utf-8"))
     rer = j("rerate/numbers.json")
+    pu = j("ceiling/pooled_union.json")
     h3 = j("clarify/h3.json")["primary_clarified_minus_original"]
     pa = sw["paired_astra_minus_cross"]["subset_averaged_K4"]
     g, dj = r3["sheet_groups_NOT_missed_vs_caught"], r3["disjoint_instances_57_vs_53"]
@@ -90,6 +91,9 @@ def main() -> int:
          pct(100 * Cc["rate"]), ci100(Cc["cluster_ci95"]), "preregistered"),
         ("Pooled union, 3 routes", f"{pool['P']} defect", pct(pool["union_recall_registered"]),
          ci(*pool["union_recall_registered_cluster_ci"], sign=False), "preregistered"),
+        # Its own price, never the shipped route's (review paper1 r5).
+        ("\\quad its false positives", f"{pu['C']['n']} correct", pct(100 * pu["C"]["rate"]),
+         ci100(pu["C"]["cluster_ci95"]), "derived (pending)"),
         ("Gain from the eighth reading", f"{gain['n']} defect", pts(100 * gain["rate"], 2),
          ci100(gain["cluster_ci95"], 2), "bar 1.0, not met"),
         ("Same-vendor stronger $-$ cross, recall", f"{c3['n']} defect", pts(c3["difference_points"]),
