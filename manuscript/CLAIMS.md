@@ -118,7 +118,7 @@ from zero (R2-M4), and the route is sent temperature 0, so this is a direction u
 sampling, not a ranking.* Evidence: ceiling 1.
 
 **C8 — The referent rule moves a second vendor's family as it moved the shipped auditor, and
-the grading rule does not.** On `self-strong` (Sonnet 4.6) at four readings, the referent rule
+the grading rule shows no demonstrated BLOCKER-recall improvement.** On `self-strong` (Sonnet 4.6) at four readings, the referent rule
 raises BLOCKER union recall by **+20.9 points**, problem-cluster [+10.8, +31.8], at a
 false-positive cost on C of **+8.0 points** [+3.4, +12.7]. The grading rule shows **no
 demonstrated recall improvement**: +0.9 points [−1.8, +4.5], and H19a fails its registered
@@ -198,7 +198,9 @@ comparator (12.8%): the better one keeps the same wrong applications plus four c
 advantage the study cannot resolve (*"do not beat" withdrawn 2026-09-23, review paper1 r5*).
 The registered population includes candidates failing their visible tests (58 of 107
 applications); on visible-passing candidates only, post hoc: 6/33 = 18.2% [0.0, 44.8] and 10/43 = 23.3%
-[6.8, 47.1] — the first contains zero and 2%, so no failure on that population is established. A 2.4% floor on the brief's original unique-test quantity holds
+[6.8, 47.1] — A's leaves its relation to 2% unresolved; B's unadjusted interval lies wholly above
+2%, exploratory evidence of exceeding it; neither is a preregistered test on that population
+(*an earlier version let A's interval dismiss both, review paper1 r7*). A 2.4% floor on the brief's original unique-test quantity holds
 because 29 of the 45 wrong tests never fail on any candidate at all. Evidence: study 17
 (`RESULTS-TESTGEN-VAL.md`, quotable at review round 11, 2026-09-20).
 

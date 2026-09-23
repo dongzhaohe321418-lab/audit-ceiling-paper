@@ -28,10 +28,11 @@ that the curve is read here as a measurement of a ceiling, reported beside the f
 it costs, and tested against a registered flattening bar that it fails --- which is why we report
 diminishing returns rather than a limit.
 
-\textbf{Self-assessment.} That models are poor judges of their own output is established from two
-directions: self-correction without external feedback does not reliably improve reasoning and can
-degrade it \citep{huang2024selfcorrect}, and models prefer their own generations when used as
-judges \citep{chen2025selfpreference}. Our same-vendor and self-audit arms are the code-audit case
+\textbf{Self-assessment.} Two lines of work bear on a model judging its own output: self-correction
+without external feedback does not reliably improve reasoning and can degrade it
+\citep{huang2024selfcorrect}, and models used as judges prefer their own generations, mostly
+legitimately --- stronger generators are better judges --- but harmfully on the instances they
+themselves get wrong \citep{chen2025selfpreference}. Our same-vendor and self-audit arms are the code-audit case
 of that literature, and we read our null there as consistent with it rather than as new. What our
 arms add is the false-positive rate beside the recall. We also reported that the direction
 reverses on a second substrate; that claim is withdrawn with the study it came from

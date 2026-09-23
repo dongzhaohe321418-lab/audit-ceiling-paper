@@ -149,3 +149,14 @@ R5-1, 3, 4, 5, 6 ruled fixed; R5-2 partly. `RESULTS-DERIVED.md` §3 (pooled 54/1
 | R6-3 | the post-hoc visible-passing rates lacked denominators and intervals | 6/33 [0.0, 44.8], 10/43 [6.8, 47.1]; the first contains zero and 2% |
 | R6-4 | §3 attributed the quoted recall interval to study 21 at seed 20260924 | it is ceiling 1's residual interval at `BOOT_SEED + 4` = 20260912 (checked in code) |
 | R6-5 | "every detection method" overgeneralised Tan et al. | "the methods Tan et al. evaluate" |
+
+## Whole-manuscript review, round 7 (at `87c8db7`): NOT SUBMITTABLE — three minor findings
+
+All round-6 findings ruled fixed; the coverage issue carried since R1-8 ruled **closed**; derived
+§3 re-ruled quotable. Three findings, all verified (Chen et al. checked at source):
+
+| # | finding | action |
+|---|---|---|
+| R7-1 | our R6-3 repair let rule A's inconclusive interval dismiss rule B's, whose interval lies wholly above 2% | both stated separately; neither a preregistered test on that population |
+| R7-2 | C8's heading asserted the grading rule has no effect | "no demonstrated BLOCKER-recall improvement" |
+| R7-3 | related work said models are "poor judges of their own output" | Chen et al.'s conditional finding: mostly legitimate preference, harmful on instances they get wrong |
