@@ -89,6 +89,9 @@ FORBIDDEN = {
     # Review paper1 r9: the rulebook contrast is recall at K = 1, not "not recall".
     "rulebook contrast denied to be recall":
         r"counts flags, not\s+union recall",
+    # L1 was Claude, the agent that ran the programme, not a human (found 2026-09-23).
+    "L1 described as a human author":
+        r"one an author|by an author|an author and|human judgement|was the author, who",
     "luna called roleless":
         r"no audit role",
     # Review paper1 r3: the post-hoc oracle-agreement split read as a mechanism.

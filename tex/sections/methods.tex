@@ -7,7 +7,7 @@ Python functions whose median task is 41 words of prose and 6 lines of reference
 an executable hidden test suite, so every stratum, recall denominator and false-positive
 population is decided by an interpreter and no model judges a recall or false-positive
 outcome. The one outcome defined by adjudication, correct diagnosis in the clarification study,
-is judged jointly by an author and a model, and is labelled so where it appears. The benchmark's base
+is judged jointly by two models, and is labelled so where it appears. The benchmark's base
 suite is shown to the generator as the \emph{visible} suite and its plus suite is held back as
 the \emph{hidden} one. A second substrate, the standard-library half of BigCodeBench, was built
 and audited and closed without a quotable number, when its preregistered criterion was not met
@@ -143,6 +143,14 @@ version.
 
 \subsection{Preregistration and independent review}
 \label{sec:methods-review}
+
+\textbf{Who did what.} The studies were designed, run, analysed and written up by an AI research
+agent, Claude (Anthropic; \texttt{claude-opus-5} and \texttt{claude-fable-5-1}, working in
+Claude Code), under the direction of the author, who is responsible for the work. Wherever a
+rating or adjudication below is attributed to \texttt{L1}, the rater was that agent. It wrote
+the rubrics, knew the hypotheses and the earlier labels, and is from the same vendor as the
+generator. \textbf{No human rated or adjudicated anything in this paper.} Every report was then
+reviewed by a second model, \texttt{gpt-6-astra}, as described below.
 
 Each study that made model calls was preregistered before its first one, fixing its population,
 hypotheses, primary outcome, intervals, kill conditions, budget and stopping rule ---

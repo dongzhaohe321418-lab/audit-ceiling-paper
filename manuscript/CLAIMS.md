@@ -9,6 +9,13 @@ The interval convention throughout: a rate carries the 95% problem-cluster perce
 bootstrap as its primary interval, with the Wilson interval beside it where the report gives
 one; Wilson ignores the clustering that arises because most problems contribute two instances.
 
+> **Who "L1" is — corrected 2026-09-23.** Every rating and adjudication attributed below or in the
+> reports to "L1" or "the author" was made by Claude (`claude-opus-5`, `claude-fable-5-1`), the AI
+> research agent that designed and ran this programme under the author's direction — confirmed
+> from the session transcripts, in which the agent wrote the L1 label files. No human rated or
+> adjudicated anything. "The author" in these entries means that agent; the paper now says so
+> (§2 "Who did what"), and "human judgement" or "an author" as a rater may not appear.
+
 ## Admitted claims
 
 **C1 — Returns to repeated independent reading diminish well short of complete.** The shipped
@@ -360,6 +367,7 @@ ledger plus recorded extraction replies; failed attempts are not in the record).
   what a finding says, not what a model could see; the distinction is stated wherever those
   rates appear.
 * Any asymptote quoted without the word extrapolation where the flattening bar was not met.
+* *"One an author", "the author rated", "human judgement"* of any L1 label. L1 was the AI agent.
 * *"The same-vendor contrast's direction is substrate-dependent."* Study 23 licenses nothing;
   its clean contrast was +6.9 [−4.9, +18.6]. (Review paper1 r1, finding 2.)
 * *"`astra` beats both on recall and false positives."* It does not beat `self-strong` on false
