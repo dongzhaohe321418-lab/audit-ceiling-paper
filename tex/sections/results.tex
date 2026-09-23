@@ -104,6 +104,22 @@ either (\S\ref{sec:inreview}). The figure above is therefore a measurement on th
 and whether it is a property of same-vendor auditing is open --- which is what it was before we
 attempted the second substrate, not something that study settled in either direction.
 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.46\textwidth]{fig2_sweep}
+\caption{\textbf{Flag coverage is a property of the decision rule, not only of the auditor.}
+Each point is one auditor family re-graded under one of four decision rules on the same archived
+readings, with problem-cluster 95\% intervals on both axes; no new model calls were made. The
+dotted guides join a family's four points and are \emph{not} a measured curve --- only the four
+points exist. Two things the accompanying table cannot show: the families do not lie on one
+frontier, and \texttt{self-strong} has no reachable point between 3.3\% and 34.0\% false
+positives, which is exactly where a comparison matched to the cross-vendor auditor would sit,
+so its ranking there is bracketed rather than measured. Nothing in this figure assesses finding
+\emph{content}; a flag is not a diagnosis.}
+\label{fig:sweep}
+\end{figure}
+
 \subsection{One rulebook sentence moves flags, and does not measurably move outcomes}
 \label{sec:rulebook}
 
@@ -163,6 +179,25 @@ defective, in twelve MBPP tasks named in a paper written for another purpose, ou
 9 of the 11 that fall inside our defect population, with both disagreements on the boundary that
 paper's own ``incomplete'' category draws. That check is one-sided by construction: it can support
 agreement where an outsider looked, and can bound nothing about the rate.
+
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth]{fig3_residual}
+\caption{\textbf{The residual contrast, printed beside the instrument that produced it.}
+\textbf{a}, The share of instances a rater judged specification-undetermined, missed group minus
+caught group, under each reading, with problem-cluster 95\% intervals. The two sheet groups use
+different definitions of \emph{caught} and share eleven instances, so the disjoint readings are
+the ones that compare populations; both are \emph{post hoc}. The red point is the same rater on
+the same sheet before its control arm was rebuilt, when 42 of 53 caught entries carried no
+failing-input evidence and all 42 drew \texttt{cannot-tell}: an unanswerable control arm did not
+produce noise, it produced a larger contrast pointing the way the hypothesis points, and a
+preregistered abstention gate is what excluded it. \textbf{b}, The same rater's agreement with
+itself on the eleven instances the sheet carries twice, with identical text and identical
+evidence. \textbf{The contrast in a is read off the instrument in b}, and the claim this paper
+draws from it is stated under that constraint.}
+\label{fig:residual}
+\end{figure*}
 
 \subsection{Six studies, forty-four review rounds, and what they license}
 \label{sec:inreview}
