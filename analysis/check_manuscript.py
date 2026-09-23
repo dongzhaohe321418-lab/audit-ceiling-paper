@@ -83,9 +83,14 @@ def main() -> int:
                          near, flags=re.I):
             failures.append(f"asymptote without its qualification: ...{near[200:320].strip()}...")
 
+    # A number split by an insertion: "reach 48. <inserted text> looks.2% [36.7, 60.0]". The
+    # fragment glued onto a word is what survives; it read cleanly enough to pass two builds.
+    for m in re.finditer(r"[a-z]{2}\.[0-9]", body):
+        failures.append(f"number fragment glued to a word: ...{body[max(0, m.start() - 40):m.end() + 30]}...")
+
     # Every label is referenced, and every reference has a label.
-    labels = set(re.findall(r"\\label\{([a-z]+:[a-z0-9]+)\}", body))
-    refs = set(re.findall(r"\\ref\{([a-z]+:[a-z0-9]+)\}", body))
+    labels = set(re.findall(r"\\label\{([a-z]+:[a-z0-9-]+)\}", body))
+    refs = set(re.findall(r"\\ref\{([a-z]+:[a-z0-9-]+)\}", body))
     for missing in sorted(refs - labels):
         failures.append(f"reference to a label that does not exist: {missing}")
     for orphan in sorted(labels - refs):
