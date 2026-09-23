@@ -66,6 +66,7 @@ def main() -> int:
     c4 = json.loads(C4.read_text(encoding="utf-8"))
     rer = j("rerate/numbers.json")
     pu = j("ceiling/pooled_union.json")
+    fa = j("fpadj/adjudication.json")
     h3 = j("clarify/h3.json")["primary_clarified_minus_original"]
     pa = sw["paired_astra_minus_cross"]["subset_averaged_K4"]
     g, dj = r3["sheet_groups_NOT_missed_vs_caught"], r3["disjoint_instances_57_vs_53"]
@@ -126,6 +127,8 @@ def main() -> int:
          pct(res57["share"]), ci(*res57["cluster_ci"], sign=False), "post hoc"),
         ("\\quad 6-family residual", f"{k32} of {n32}", pct(100 * k32 / n32), "---",
          "post hoc (C14)"),
+        ("Correct-code flags, reference disagrees", f"{fa['flagged_instances']} flagged",
+         pct(fa["D_share_pct"]), ci(*fa["D_cluster_ci95"], sign=False), "preregistered (C16)"),
         ("Clarified $-$ original, diagnosis", f"{h3['n']} selected, {h3['n_problems']} problems",
          pts(h3["points"]), ci(*h3["cluster_ci95"]), "one-signed; exact $p$ .0625"),
     ]
@@ -135,7 +138,8 @@ def main() -> int:
         r"percentages or percentage points. Intervals are 95\% problem-cluster percentile "
         r"bootstraps unless the label names another method. The coverage simulation of "
         r"\S\ref{sec:stats} measures single-rate intervals only; the contrasts and the "
-        r"category-conditioned shares have no measured coverage. Every row is read from a committed record by "
+        r"category-conditioned shares have no measured coverage. The two third-rater rows rest on "
+        r"labels from a rater that agreed with itself on 7 of 11 repeated items (6 problems).  Every row is read from a committed record by "
         r"\texttt{figures/make\_table1.py}.}",
         r"\label{tab:primary}", r"\centering", r"\footnotesize\setlength{\tabcolsep}{4pt}",
         r"\begin{tabular}{@{}llrll@{}}", r"\toprule",

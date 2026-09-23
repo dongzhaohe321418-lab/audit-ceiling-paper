@@ -29,6 +29,7 @@ the command printed in `reproduce.sh`.
 | C11 | P2 | `RESULTS-SWEEP.md` | `reviews/cross-vendor/codex-review-sweep1/` | `threshold_sweep.json` |
 | C12 | P1 | `RESULTS-RATE3.md` | `reviews/cross-vendor/codex-review-rate3/` | `rate3/analysis.json` |
 | C13 | P3 | `RESULTS-CLARIFY.md` | `reviews/cross-vendor/codex-review-clarify1/` | `clarify/` |
+| C16 | P4 | `RESULTS-FPADJ.md` | `reviews/cross-vendor/codex-review-fpadj1/` | `fpadj/adjudication.json` |
 | none | study 23, closed | `RESULTS-SUBSTRATE2.md` | `reviews/cross-vendor/codex-review-sub2r1/` | — |
 
 "Not mirrored" means the paper quotes that claim's numbers in prose but no figure or table

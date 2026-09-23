@@ -319,6 +319,18 @@ does not validate the 10,000-resample interpolating implementation the analyses 
 or conditional shares, whose coverage is unmeasured. Evidence: `reports/RESULTS-DERIVED.md` §2,
 *quotable* at manuscript review round 2.
 
+**C16 — At this resolution, the shipped route's flags on test-passing code are not shown to point
+at behaviour the benchmark's reference contradicts.** Re-reading the 150 correct instances at
+K = 8 with finding texts kept, 20 were flagged (13.3% [7.9, 19.2]). Of those, **2 of 20** disagree
+with the reference on an extracted input the hidden suite does not exercise (**10.0%,
+problem-cluster [0.0, 26.3]**), 9 agree on every extracted input, and 9 yielded no valid input;
+per finding, 3 / 47 / 20 of 70. The interval includes zero, so the registered reading applies.
+**Limits that travel with it:** D does not show a specification violation and A does not show a
+finding wrong; "true positive" and "false alarm" may not be used of any class; the extractor saw
+specifications and docstrings containing expected outputs, though not the reference or the hidden
+tests; the registered spend guards were not fully implemented (total spend $4.28). Evidence: P4
+(`reports/RESULTS-FPADJ.md`, *quotable* at review round 3, 2026-09-23; harness `2d20b9f`).
+
 ## Claims the evidence does not support, and which must not appear
 
 * *"The ceiling is set by unexercised edges."* Withdrawn by C4. The paper's earlier claim (2)
@@ -567,6 +579,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | P3 (clarification) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C13. Rounds 1 and 2 refused it (manipulation misdescribed; 3 of 32 classification rows wrong) |
 | derived (residual composition; coverage) | — | **QUOTABLE at manuscript review round 2, 2026-09-23.** Moved to the admitted claims as C14 and C15 |
 | derived: pooled union's false positives | — | **QUOTABLE at manuscript review round 6, 2026-09-23.** Carried in C1 |
+| P4 (flags on correct code) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C16 |
 | R1-M3 cross-tab (post hoc) | per-instance agreement of a rater outside the residual's families (luna; `cheap-cross` in the explore study) with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
 
 ## Rule

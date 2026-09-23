@@ -19,7 +19,7 @@ reason. **Open** — requires work not yet done.
 | R1-M6 | "Cross-vendor" is confounded with "OpenAI model"; no mirror arm | **Declined for now, disclosed** | Running the mirror is a new generation ladder plus two audit ladders; recorded as an unidentified axis |
 | R1-M7 | Every primary interval is of unverified coverage and the simulation costs nothing | **Partly resolved** | R2-M3's measurement supersedes it; see below |
 | R1-M8 | Bonferroni family membership is never stated per p-value | **Resolved** | `1e3860c`: results §3 states each p value's family — §3.3 in the ceiling study's 16-member family (0.003125); §3.2 is study 18's single primary with no family; P3's are uncorrected beside an interval-registered primary |
-| R1-M9 | False-positive rates are quoted as prices without adjudication | **Open** | |
+| R1-M9 | False-positive rates are quoted as prices without adjudication | **Resolved by a new study** | P4, preregistered (harness `37ae487`), quotable at round 3 → C16: of 20 flagged correct instances, 2 disagree with the reference on extracted inputs, 10.0% [0.0, 26.3]; 9 yield no valid input; the registered null reading applies. In §3.5 and Table 1 |
 | R2-M1 | The abstract quotes the interval the paper's own rule forbids | **Resolved** | `54a5802`; all four sites now carry the exact unconditional [−3.6, +26.8], which contains zero |
 | R2-M2 | "Falls monotonically" is contradicted by its own source table | **Resolved** | `54a5802`; the ladder 1.67–1.68 is printed |
 | R2-M3 | The coverage statement reinstates a range the source report withdrew | **Resolved** | `b46542d` measured coverage table replaced the range; `1e3860c` removes a stale results sentence that still said coverage was unvalidated |
@@ -179,3 +179,16 @@ All round-8 findings ruled fixed; no regressions; derived §3 remains quotable.
 |---|---|---|
 | R9-1 | the abstract and discussion quoted the third rater's 38/57 and +23.3 without its binding 7-of-11 self-agreement | carried in both; the abstract trimmed elsewhere to stay under arXiv's limit (1873 characters with markup) |
 | R9-2 | the rulebook contrast was said to count "flags, not union recall"; on the defect stratum it is recall at K = 1 | corrected in results and C3; the population, depth and exploratory limits kept |
+
+## Whole-manuscript review, round 10 (at `fbeaf9f`): NOT SUBMITTABLE — one moderate, one minor
+
+R9-1 fixed in the passages changed but not in Table 1; R9-2 fixed; no regressions.
+
+| # | finding | action |
+|---|---|---|
+| R10-1 | Table 1 still quoted the third-rater contrasts without the 7-of-11 agreement | added to the caption through the generator |
+| R10-2 | the probe's 79.9–97.3% completion bounds were written as a confidence interval | named as bounds over unanswered items |
+
+Also in this revision: **P4 enters as C16** (quotable at its round 3), closing R1-M9, with a
+paragraph in §3.5 at the reviewer's reader sentence and a Table 1 row; study and round counts
+updated to eight studies and 53 rounds.

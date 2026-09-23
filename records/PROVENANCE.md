@@ -62,3 +62,7 @@ Every source was a clean checkout at the commit named.
 
 The code-study corpora (HumanEval MIT; HumanEval+, MBPP+, BigCodeBench Apache-2.0) permit
 redistribution, so these records may carry test inputs. Scanned for credentials before commit.
+
+| records/code/fpadj/{adjudication,extraction_audit,sensitivity_nonliteral}.json | harness `benchmarks/code/records/fpadj/` | `2d20b9f` |
+| reports/RESULTS-FPADJ.md | harness `benchmarks/code/` | `2d20b9f` |
+| plan/studies/fpadj-PREREGISTRATION.md | harness `benchmarks/code/fpadj/` (with Amendment 1) | `2d20b9f` |

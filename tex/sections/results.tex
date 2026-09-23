@@ -2,7 +2,7 @@
 The claims this paper defends, each with its interval and its label, are listed in
 \texttt{CLAIMS.md}. A claim enters that file only after its report has passed an independent
 review by a model from a different vendor with access to the raw records. Every section below draws only on
-reports that have passed such a review. Section~\ref{sec:inreview} reports seven studies whose
+reports that have passed such a review. Section~\ref{sec:inreview} reports eight studies whose
 reviews took between three and eleven rounds each to reach that point, and states what each of
 them does and does not license; none of them is load-bearing for
 \S\ref{sec:repeat}--\S\ref{sec:residual}.
@@ -277,12 +277,12 @@ draws from it is stated under that constraint.}
 \label{fig:residual}
 \end{figure*}
 
-\subsection{Seven studies, and what they license after between three and eleven review rounds each}
+\subsection{Eight studies, and what they license after between three and eleven review rounds each}
 \label{sec:inreview}
 
 Four further studies had reported when this paper was first written, and all four were refused
 quotation by their independent reviews on the same day. They have since passed, after between
-four and eleven rounds each. Three more have since reported and passed, at seven rounds, six and three. We report them here rather than folding them into the sections
+four and eleven rounds each. Four more have since reported and passed, at seven rounds, six, three and three. We report them here rather than folding them into the sections
 above because three of the four are narrow or negative results whose limits are part of the
 claim, and because the shape of the refusals is itself a finding about this method.
 
@@ -459,11 +459,25 @@ $\kappa = 0.85$, which is agreement and not accuracy. The study supports a speci
 instances. It does not establish that underdetermination caused the original misses, and
 \S\ref{sec:residual} is not strengthened into that claim by it.
 
-\textbf{What the refusals were about.} These seven studies cleared review at rounds 3, 4, 6, 7,
-9, 10 and 11, fifty rounds in all; an earlier version said forty-four, which counted four of
+\textbf{What a flag on correct code points at.} The false-positive rates above count flags on code
+that passes its hidden suite, and the paper's own residual result says such suites can leave
+behaviour unexercised, so a flag there need not be a false alarm. A preregistered study re-read
+the 150 correct instances with the shipped route at eight readings, keeping the finding texts
+ceiling 1 had discarded; 20 were flagged ($13.3\%$ $[7.9, 19.2]$, a fresh sample of the route's
+$16.0\%$). A model given each finding, but not the reference solution or the hidden tests,
+extracted the concrete inputs it names, and candidate and reference were run on them. \textbf{Two
+of the 20 disagreed with the reference} on an extracted input the hidden suite does not exercise
+($10.0\%$, problem-cluster $[0.0, 26.3]$); on nine they agreed, and nine yielded no valid input.
+Because the interval includes zero, the registered reading is that at this resolution there is no
+evidence that this route's flags on test-passing code identify reference disagreements. No class
+licenses the words ``true positive'' or ``false alarm'': a disagreement does not show that the
+specification was violated, and agreement on an extracted input does not show a finding wrong.
+
+\textbf{What the refusals were about.} These eight studies cleared review at rounds 3, 3, 4, 6,
+7, 9, 10 and 11, fifty-three rounds in all; an earlier version said forty-four, which counted four of
 the studies only from their first refusal. Most of those rounds ended in a refusal of the
 \emph{repair} rather than of the measurement. Measurements moved on
-review in three of the seven: the sweep's first review found its loader reading one family's
+review in three of the eight: the sweep's first review found its loader reading one family's
 draws 4 to 8 as 1 to 5 and another's population from a partial draw, and every cross-family
 figure was recomputed; a label count in the third rating's report was 71 where its data say 67;
 and the clarification study's primary moved by one instance and three classification rows
