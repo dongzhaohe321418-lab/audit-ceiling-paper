@@ -213,7 +213,7 @@ the next action; it costs no model calls.
 
 The sheet was rebuilt on mechanical witness evidence for both arms (`rate3/rebuild_sheet.py`),
 and `gpt-5.6-luna` rated it again. The control arm is answerable now: `cannot-tell` falls from
-79.2% to 9.4%, and 71 of the 121 labels changed.
+79.2% to 9.4%, and **67** of the 121 labels changed (46 in the caught group, 21 in the missed group; an earlier version said 71, which the CSVs do not support).
 
 | group | n | `undetermined` | Wilson | `cannot-tell` |
 |---|---:|---:|---|---:|
@@ -227,17 +227,23 @@ threshold.
 **So the first registered branch fires: the premise stands on evidence independent of the
 author, and P3 starts without waiting for P1.** That is applied as registered.
 
-**And the size should be read plainly.** Study 21's contrast, on L1 the author plus
-`gpt-6-astra`, was +31.9 points [9.6, 53.4]. This is **+19.8 [+1.2, +38.1]** — about six-tenths
-of it, with a lower bound close to zero. The premise survives removing the author; the effect it
-survives at is smaller than the study that first reported it suggested. No stricter bar is
+**And the size should be read plainly, but not as a ratio.** Study 21's contrast, on `L1` the
+author plus `gpt-6-astra`, was +31.9 points [9.6, 53.4]; this is **+19.8 [+1.2, +38.1]**, with a
+lower bound close to zero. *An earlier version called that "about six-tenths of it" and read the
+shortfall as the author's contribution. It is not comparable in that way, and a review told
+nothing of our conclusions said so:* study 21's contrast is **57 against 53** instances and this
+one is **68 against 53**, **and** the instrument changed — six categories with expected and
+actual values, against three options with failing inputs and no expected values. Two of the
+three things that could move the number moved at once, so no part of the difference is
+attributable to removing the author. What the reading supports is that the premise survives
+removing the author at an effect whose lower bound is close to zero. No stricter bar is
 imposed here after the fact, because the rule was written before the number existed and inventing
 one now is the failure this programme has made repeatedly.
 
 **What this does not settle.** One model rater is not a human rating. P1 remains worth doing on
 the rebuilt sheet and is not cancelled: it would say whether a human reading the same mechanical
 evidence agrees, which is a different question from whether the premise survives a change of
-rater. Six items needed a per-item retry after a batch returned nothing; one of those
+rater. One batch of six items was retried after returning nothing — the committed runner retries a whole batch, not an item, and an earlier version of this sentence described a per-item retry the code does not implement; one of those
 (`H080`) took three attempts. Nothing else was re-asked.
 
 ## Amendment 2 — a registered secondary population, 2026-09-21, before the first P3 call
