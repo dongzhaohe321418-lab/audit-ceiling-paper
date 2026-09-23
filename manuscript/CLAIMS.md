@@ -365,6 +365,26 @@ default sampling. Evidence: A4S-3 (`reports/RESULTS-AI4S-DATA.md`, *quotable* at
 2026-09-24, gpt-6-astra; harness `6c4bdbb`, branch `study/ai4s-code`, not yet merged into the
 integration branch, like P3 and P4).
 
+**C18 — Checking that reported numbers trace to their sources does not catch a consistently
+fabricated result; an auditor that recomputes from the code does, mostly.** 74 correct SciCode
+instances (36 problems), each made into a clean and a faulty results increment (program, inputs,
+run script, run log, `results.json`, report with number→source annotations). The shipped
+`science` profile flags **all 49 reporting faults** (artefacts disagree with each other or the log)
+and **none of the 25 fabrications** (a ×10³ slip or a 5% error written consistently into log,
+results and report), and no clean item. The LLM auditor at K = 4 flags **23 of 25 fabrications**
+under the registered rule, **21 with a sound, fault-specific finding (post hoc)**; re-execution
+with `np.allclose` defaults flags every fault except four whose outputs are near zero, where the
+default absolute tolerance absorbs the change. Paired on faulty items, LLM against profile: 23
+discordant, all one way (exact McNemar p = 2.4 × 10⁻⁷; problem-level sign-flip, post hoc,
+p = 3.8 × 10⁻⁶). The LLM flags **12 of 74 clean items**: 8 correctly identify defects in our
+construction (a provenance sentence false where the benchmark passes inputs as call literals; a
+`dimensionless` label contradicting a documented unit), 4 rest on wrong calculations.
+**Limits that travel with it:** on the reporting faults the model saw the profile's findings, so
+its rate there is of the combined workflow; one benchmark, one test case per instance, outputs of
+at most ten numbers, two synthetic fabrication types, one model at default sampling. Evidence:
+A4S-2 (`reports/RESULTS-AI4S-RESULTS.md`, *quotable* at review round 3, 2026-09-24, gpt-6-astra;
+harness `e3baa55`, branch `study/ai4s-results`, not yet merged into the integration branch).
+
 ## Claims the evidence does not support, and which must not appear
 
 * *"The ceiling is set by unexercised edges."* Withdrawn by C4. The paper's earlier claim (2)
@@ -631,6 +651,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | derived: pooled union's false positives | — | **QUOTABLE at manuscript review round 6, 2026-09-23.** Carried in C1 |
 | P4 (flags on correct code) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C16 |
 | A4S-3 (scientific data) | — | **QUOTABLE at round 5, 2026-09-24.** Moved to the admitted claims as C17. Rounds 1–4 refused it (documentation flags counted as detections; clean-flag labelling; delivery disputes counted as refuted) |
+| A4S-2 (scientific results) | — | **QUOTABLE at round 3, 2026-09-24.** Moved to the admitted claims as C18. Rounds 1–2 refused it (flags counted as detections; unit inventory; one leftover sentence) |
 | R1-M3 cross-tab (post hoc) | per-instance agreement of a rater outside the residual's families (luna; `cheap-cross` in the explore study) with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
 
 ## Rule

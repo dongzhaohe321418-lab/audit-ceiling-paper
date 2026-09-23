@@ -28,6 +28,9 @@ ROOT = Path(__file__).resolve().parents[1]
 REC = ROOT / "records/ai4s"
 OUT = Path(__file__).resolve().parent / "fig4_ai4s.pdf"
 COL = plt.cm.tab10.colors
+#: One meaning per colour across panels: the deterministic tier, the LLM auditor, and the third
+#: series (re-execution in (b), the union in (c)).
+DET, LLM, THIRD = COL[0], COL[1], COL[2]
 
 
 def cp(k: int, n: int) -> tuple[float, float]:
@@ -36,9 +39,9 @@ def cp(k: int, n: int) -> tuple[float, float]:
     return 100 * lo, 100 * hi
 
 
-def bars(ax, groups: list[str], series: list[tuple[str, list[tuple[int, int]]]], title: str):
+def bars(ax, groups: list[str], series: list[tuple[str, list[tuple[int, int]], tuple]], title: str):
     width = 0.8 / len(series)
-    for si, (label, cells) in enumerate(series):
+    for si, (label, cells, colour) in enumerate(series):
         xs = [gi + (si - (len(series) - 1) / 2) * width for gi in range(len(groups))]
         ys, lo, hi = [], [], []
         for k, n in cells:
@@ -47,7 +50,7 @@ def bars(ax, groups: list[str], series: list[tuple[str, list[tuple[int, int]]]],
             ys.append(p)
             lo.append(p - a)
             hi.append(b - p)
-        ax.bar(xs, ys, width * 0.92, color=COL[si], label=label, zorder=2)
+        ax.bar(xs, ys, width * 0.92, color=colour, label=label, zorder=2)
         ax.errorbar(xs, ys, yerr=[lo, hi], fmt="none", ecolor="0.25", elinewidth=0.5,
                     capsize=0.9, zorder=3)
     ax.set_xticks(range(len(groups)))
@@ -70,11 +73,12 @@ def panel_data(ax, r: dict) -> None:
     v, c = r["validator"], r["families"]["cross"]
     faults = ["F1", "F2", "F3", "F4", "F5", "F6", "F7"]
     names = ["clean", "mixed\nunits", "negated\nvalues", "dup.\nrows", "shuffled\ntarget",
-             "swapped\ncols", "$-999$\nsentinel", "rounded\nto int"]
+             "swap\ncols", "$-999$\nsentinel", "rounded\nto int"]
     ser = []
-    for label, src in (("validator", v), ("auditor ($K{=}4$)", c["by_k"]["4"]),
-                       ("union", c["union_with_validator"])):
-        ser.append((label, [count(src["clean_fp"])] + [count(src["by_fault"][f]) for f in faults]))
+    for label, src, colour in (("validator", v, DET), ("auditor ($K{=}4$)", c["by_k"]["4"], LLM),
+                               ("union", c["union_with_validator"], THIRD)):
+        ser.append((label, [count(src["clean_fp"])] + [count(src["by_fault"][f]) for f in faults],
+                    colour))
     bars(ax, names, ser, "(c) scientific data")
 
 
@@ -89,17 +93,17 @@ def panel_results(ax, r: dict) -> None:
         return [(round(src["clean_fp"]["flagged"]), src["clean_fp"]["n"])] + \
                [(round(src["by_fault"][f]["flagged"]), src["by_fault"][f]["n"]) for f in faults]
 
-    bars(ax, names, [("auditor ($K{=}4$)", cells("llm_k4")), ("science profile", cells("dcl")),
-                     ("re-execution", cells("reexec"))], "(b) scientific results")
+    bars(ax, names, [("science profile", cells("dcl"), DET), ("auditor ($K{=}4$)", cells("llm_k4"), LLM),
+                     ("re-execution", cells("reexec"), THIRD)], "(b) scientific results")
 
 
 def panel_code(ax, r: dict) -> None:
     ks = list(range(1, 9))
     for fi, fam in enumerate(("cross", "self")):
         f = r["families"][fam]
-        ax.plot(ks, f["recall_curve_pct"], "-o", ms=2.5, lw=0.8, color=COL[fi],
+        ax.plot(ks, f["recall_curve_pct"], "-o", ms=2.5, lw=0.8, color=(LLM, COL[4])[fi],
                 label=f"{fam}: defective")
-        ax.plot(ks, f["false_positive_curve_pct"], "--s", ms=2.2, lw=0.8, color=COL[fi],
+        ax.plot(ks, f["false_positive_curve_pct"], "--s", ms=2.2, lw=0.8, color=(LLM, COL[4])[fi],
                 alpha=0.7, label=f"{fam}: correct")
     ax.set_xlabel("readings $K$")
     ax.set_ylabel("union flag rate (%)")

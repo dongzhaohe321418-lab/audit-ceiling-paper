@@ -73,19 +73,40 @@ auditor blocked on that, correctly. We added the run script, discarded the pilot
 added a third condition to the gate, that each clean item's run script reproduce its run log byte
 for byte. All 74 passed all three conditions with no repair.
 
-% RESULTS: recall by fault type for LLM, DCL, re-execution and the unions; clean false positives;
-% the fabrication rows are the point of the study.
+\textbf{Results.} The deterministic profile does exactly what it was built for (Figure~\ref{fig:ai4s}b).
+It flags all 49 reporting faults, because the log, the results and the report no longer agree and
+number$\to$source says where, and none of the 25 fabrications, because in those everything agrees
+with everything else. It flags no clean item. The LLM auditor flags 23 of the 25 fabrications at
+four readings, 21 of them with a sound finding about the fault (post hoc). Those findings work the
+result out from the code and inputs, for example evaluating a KL divergence of two small
+distributions to 1 where the report says 1000. The other two rest on calculations that are
+themselves wrong. Paired on the faulty items, all 23 discordant items go the LLM's way (exact
+McNemar $p = 2.4\times10^{-7}$; a problem-level sign-flip test, post hoc, gives $3.8\times10^{-6}$).
+On the reporting faults its rate is of the combined workflow, since its prompt carried the
+profile's findings. Re-execution flags every fault except four whose outputs are within
+\texttt{np.allclose}'s default absolute tolerance of zero; two of those outputs are floating-point
+zeros.
 
-% One panel is admitted so far; this becomes figure* at full width when all three are.
-\begin{figure}[t]
+The LLM also flags 12 of the 74 clean items, and 8 of those flags are right. In 9 instances the
+benchmark passes the test's inputs inside the call itself, so the report's sentence that the
+program ran ``on the inputs in \texttt{inputs.py}'' was false; 7 of those clean items were flagged
+for it. Two of four outputs whose unit the solution documents were flagged for our
+\texttt{dimensionless} label. The remaining 4 flags rest on wrong calculations or, in one case, on
+a syntax error that is not there. On this evidence a provenance chain and a reader that recomputes
+are complements: the first is exact about agreement and blind to consistent error, and the second
+sees consistent error but is sometimes wrong itself.
+
+\begin{figure*}[t]
   \centering
-  \includegraphics[width=\columnwidth]{fig4_ai4s}
-  \caption{Scientific data: items flagged by the card-derived validator, the shipped auditor at four
-  readings, and their union, by fault type; the leftmost group is clean items. Bars carry exact
+  \includegraphics[width=0.72\textwidth]{fig4_ai4s}
+  \caption{What each tier flags, by fault type; the leftmost group in each panel is clean items.
+  Blue is the deterministic tier and orange the LLM auditor in both panels. (b) Scientific results:
+  the \texttt{science} profile, the LLM auditor at four readings, and re-execution (green). (c) Scientific data: the card-derived validator, the
+  shipped auditor at four readings, and their union (green). Bars carry exact
   binomial 95\% intervals on the item counts (supplementary; they ignore clustering by dataset).
   Registered flag rule: any model BLOCKER in the union of readings.}
   \label{fig:ai4s}
-\end{figure}
+\end{figure*}
 
 \subsection{Scientific data}
 \label{sec:ai4s-data}
@@ -114,7 +135,7 @@ what the validator cannot. Two instrument defects were found and fixed by amendm
 readings reported here: the card and file named one column differently, and the files first sat
 outside the audited scope, so the product had told the model there was nothing to audit.
 
-\textbf{Results.} The two tiers catch different faults (Figure~\ref{fig:ai4s}). The validator flags
+\textbf{Results.} The two tiers catch different faults (Figure~\ref{fig:ai4s}c). The validator flags
 92 of 140 faulty items (65.7\% [57.9, 73.6]) and no clean item. The shipped auditor flags 65 of 140
 (46.4\% [38.6, 54.3]) at 4 of 140 clean items (2.9\% [0.7, 5.7]), and their union flags 112 of 140
 (80.0\% [73.6, 86.4]) at the same 4. (These intervals resample items within dataset; four datasets
