@@ -13,13 +13,13 @@
 \usepackage{amssymb}
 \usepackage[capitalize,noabbrev]{cleveref}
 
-\icmltitlerunning{What sets the ceiling on automated code audit}
+\icmltitlerunning{What moves the ceiling on automated code audit}
 
 \begin{document}
 
 \twocolumn[
-\icmltitle{What Sets the Ceiling on Automated Code Audit:\\
-           the Auditor, its Rulebook, or the Specification?}
+\icmltitle{What Moves the Ceiling on Automated Code Audit:\\
+           the Auditor, its Rulebook and the Specification, Measured One at a Time}
 
 \begin{icmlauthorlist}
 \icmlauthor{Zhaohe Dong}{ind}
@@ -36,12 +36,13 @@
 \printAffiliationsAndNotice{}
 
 \begin{abstract}
-An automated auditor reads code it did not write and decides whether to block it. We ask what sets
+An automated auditor reads code it did not write and decides whether to block it. We ask what moves
 the limit on how much it catches, against ground truth no model supplies: hidden test suites
-executed by an interpreter. Holding the auditor, its instructions and its ground truth fixed, and
-varying one thing at a time, we find the limit is set jointly by which model reads, what its
+executed by an interpreter. Holding the code and its ground truth fixed and varying one thing at a
+time, we find the limit moves with how often the auditor reads, which model reads, what its
 rulebook tells it to look for, and whether the benchmark's hidden suite asks a question the
-specification answers.
+specification answers. Because each was varied alone, we report how far each moves it and do not
+apportion the limit among them.
 
 Returns to repeated reading diminish well short of complete. Eight independent readings of the
 shipped cross-vendor auditor reach $30.0\%$ union recall on defective increments $[20.0, 40.7]$,

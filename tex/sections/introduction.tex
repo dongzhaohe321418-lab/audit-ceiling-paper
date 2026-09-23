@@ -2,8 +2,8 @@
 An automated auditor reads code it did not write and says whether to block it. We ask how much
 such an auditor catches, and what decides the limit.
 
-That question decomposes. A reviewer's score on a benchmark
-mixes at least four things together: whether the model can see a defect, whether it judges the
+That question has parts, though our design measures each one and does not apportion between
+them. A reviewer's score on a benchmark mixes at least four things together: whether the model can see a defect, whether it judges the
 defect worth blocking on, whether the benchmark's hidden tests define the behaviour it would have
 to see, and how many times it is allowed to look. Work on code-review and critic models improves
 the first two and reports the aggregate gain. We hold the auditor, its instructions and its ground

@@ -197,7 +197,7 @@ reproduced unchanged since round 1.
 population rise to **16.0%** [10.1, 22.3] at K = 8 for the cross-vendor auditor; the recall
 bought per false-positive point is 1.68. Evidence: ceiling 1.
 
-**C11 — Measured flag coverage is rule-dependent, and C2's magnitude belongs to C2's rule.**
+**C11 — Measured union recall is rule-dependent, and C2's magnitude belongs to C2's rule.**
 The severity sweep re-grades findings already archived by ceiling 1 and study 18 under four
 decision rules, with **no model calls**. C2's -26.4 points is specific to its **preregistered**
 flag, "≥ 1 BLOCKER finding" — ceiling 1's registration fixes it and study 18 inherits it — and
