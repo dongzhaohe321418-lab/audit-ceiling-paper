@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parent.parent
 #: `paper.tex` was excluded until 2026-09-23, and it holds the abstract and the Limitations
 #: section: the forbidden-claims check never read the most-quoted paragraph of the paper. Every
 #: file is scanned now; `paper.tex` only `\input`s the others, so nothing is read twice.
-SECTIONS = sorted((ROOT / "tex" / "sections").glob("*.tex")) + [
+SECTIONS = sorted((ROOT / "tex" / "sections").glob("*.tex")) + sorted((ROOT / "tex" / "appendix").glob("*.tex")) + [
     f for f in sorted((ROOT / "tex").glob("*.tex")) if f.is_file()
 ]
 

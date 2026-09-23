@@ -1,0 +1,51 @@
+\section{Limitations in full}
+\label{sec:limitations-full}
+\textbf{Substrate.} Acts 2 and 3 measure function-level Python tasks from two code benchmarks, and
+Act 4 one scientific-code benchmark, small results artefacts built from it, and four tabular
+datasets with synthetic faults. Nothing here establishes that the same ceiling, or the same
+explanations, hold for another language, for repository-scale changes, for code whose correctness is
+not decided by an executable suite, or for scientific artefacts larger than a model can read whole.
+The science studies' faults are synthetic, one generator wrote every program, and each study used
+one auditor model at its default sampling.
+
+\textbf{The ground truth is a test suite, and a test suite is not a specification.} Hidden
+suites encode a reference implementation's behaviour, including behaviour its prose never fixed.
+In the intervention study reported in \S\ref{sec:inreview}, a generator shown an instance's
+failing inputs inferred a behavioural rule that \emph{contradicted} the hidden oracle on 23 of
+32 instances. The study cannot say whether that reflects the specifications or the generator's
+inference from inputs alone; either way it bounds what any recall figure measured this way can
+mean.
+
+\textbf{Interval coverage, measured only in part.} The primary intervals are percentile
+bootstraps over problem clusters. For a \emph{single rate} only, simulated under the design's
+own cluster profiles and an assumed within-problem correlation, with 600 resamples rather than
+the 10{,}000 the analyses use (400 replicates; Monte Carlo standard error 0.01--0.02), a nominal
+$95\%$ interval covers between $0.93$ and $0.97$ at the tested true rates from $0.10$ to $0.60$, and $0.80$ at a rate of $0.03$ on the
+56-cluster stratum (\S\ref{sec:stats}), which suggests that small-rate intervals may be narrower
+than they claim. Two earlier interval constructions in this programme were found by review to cover $0.416$ and $0.075$ where $0.95$
+was claimed.
+
+\textbf{The validation instrument shares the failure mode under study.} Reports were checked by a
+language model, which is what this paper measures a ceiling on. Studies cleared review at between
+three and twenty-one rounds, with the round before the last always returning substantive
+findings. Measurements moved on review in three studies; elsewhere the refusals concerned
+interpretation, where the instrument is weakest. Withholding our conclusions from one pass
+produced six substantive findings that six briefed passes had missed. The defect class it
+leaves open is the one that looks right to a language model, and we do not know what remains in
+it.
+
+\textbf{The reviewer is one of the measured families.} \texttt{gpt-6-astra} reviewed every
+report in this programme and is also an auditor route whose ranking against the others the paper
+reports. For claims about \texttt{astra}'s relative performance the validation is a
+self-assessment, and those comparisons should be treated as bracketed until a model that audited
+nothing here has checked them.
+
+\textbf{No human rater.} Every rating and adjudication in this work was made by a model, one of
+them the agent that designed the studies and wrote the rubrics (\S\ref{sec:methods-review}). A
+third model rating does not discharge that, and the design that asks for an outside human rater
+has not been run.
+
+\textbf{Budget.} Reading depth $K$, the number of arms, and the size of every intervention
+population were set by cost rather than by a power calculation, and no sample size was justified
+in advance by a minimum-detectable-effect argument.
+

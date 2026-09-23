@@ -1,91 +1,42 @@
 \section{Related work}
 
-\textbf{Critics that read code.} Trained critic models write natural-language critiques of
-model-written code and catch more bugs than unaided humans \citep{mcaleese2024critics}. That work
-evaluates on both deliberately inserted and naturally occurring bugs. On code containing natural
-model errors its critiques are preferred to human critiques in 63\% of cases, and it surfaces
-errors in training data previously rated flawless. It also reports that critics hallucinate bugs,
-and that a human--model team hallucinates less than the model alone. The natural-defect setting
-and the precision cost of a louder critic are therefore already its territory, and we claim
-neither. Its reported quantity is a preference or a per-critique comparison. What we add on this
-axis is narrow: the union of repeated independent readings as an instrument for locating a limit,
-ground truth supplied by an interpreter, and the false-positive rate carried beside every recall
-figure. Aggregating several review passes is known to help. On 1{,}000 verified pull requests,
-multi-review aggregation raises F1 by up to 43.67\% \citep{zeng2025swrbench}. The motivation is
-shared with our union-of-$K$, but there an additional model call synthesises the sampled reviews,
-while our union counts an instance whenever any reading flags it, so the two estimate different
-things.
+\textbf{Critics and repeated reading.} Trained critic models catch more bugs in model-written code
+than unaided humans and hallucinate some \citep{mcaleese2024critics}; aggregating several review
+passes raises review F1 on real pull requests \citep{zeng2025swrbench}; and coverage under repeated
+sampling rises steeply and then flattens \citep{brown2024monkeys}. The natural-defect setting, the
+precision cost of a louder critic and the shape of the repeated-sampling curve are therefore known.
+What we add is narrow on this axis: the union of independent readings as an instrument for locating
+a limit, ground truth supplied by an interpreter, and the false-positive rate beside every recall
+figure.
 
-\textbf{Repeated sampling and coverage.} Coverage, the fraction of problems solved by at least one
-of $K$ samples, rises steeply and then flattens. This is an established regularity of repeated
-sampling, reported over four orders of magnitude of $K$ and fitted by a power law
-\citep{brown2024monkeys}. Our union-of-$K$ is that quantity with a flag rule in place of a
-correctness check, so \S\ref{sec:repeat} re-measures a known shape, and at $K \le 8$ our budget is
-small beside theirs. What is ours is the reading: the curve is taken as a measurement of a
-ceiling, reported beside the false-positive rate it costs, and tested against a registered
-flattening bar that it fails, which is why we report diminishing returns and no limit.
+\textbf{Who audits whom.} Self-correction without external feedback does not reliably improve
+reasoning \citep{huang2024selfcorrect}, and model judges prefer their own generations, harmfully on
+instances they get wrong \citep{chen2025selfpreference}. Our same-vendor arms are the code-audit case
+of that literature; because routes differ in model, operating point and sampling, we report their
+contrasts as contrasts between routes, not as self-preference.
 
-\textbf{Self-assessment.} Two lines of work bear on a model judging its own output. Self-correction
-without external feedback does not reliably improve reasoning and can degrade it
-\citep{huang2024selfcorrect}. Models used as judges prefer their own generations, mostly
-legitimately, since stronger generators are better judges, but harmfully on the instances they
-themselves get wrong \citep{chen2025selfpreference}. Our same-vendor and self-audit arms are the
-code-audit case of that literature, and we read our null there as consistent with it. What our
-arms add is the false-positive rate beside the recall.
+\textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites
+\citep{liu2023evalplus}; models collapse onto one reading of an underspecified task, and twelve MBPP
+tasks were named as such by hand \citep{richter2026collapse}. Generated tests err mostly in the
+expected value \citep{xiong2023testing}, and generated oracles tend to capture what a program does
+rather than what was intended \citep{konstantinou2024oracles}. Our claim is the auditing counterpart:
+where the prose does not fix the value, a recall number computed against that suite measures the
+benchmark as much as the auditor. Consensus filters for generated tests
+\citep{taherkhani2026consistency, xu2025consensus} and self-consistent errors \citep{tan2025consistent}
+bear on one of our appendix studies (Appendix~\ref{sec:related-full}).
 
-\textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites and
-reported defects in the original reference solutions \citep{liu2023evalplus}; its code carries
-bespoke oracles for tasks where differential testing against the reference did not apply.
-\citet{richter2026collapse} show that models collapse onto a single incorrect reading of an
-underspecified task, and name twelve MBPP tasks they identified by hand. Eleven fall inside our
-defect population, and our raters, who labelled them before that paper was fetched, agree on nine.
-On the test-generation side, the dominant error in generated tests is a wrong expected value
-rather than an invalid input \citep{xiong2023testing}, and generated oracles tend to capture what
-a program does rather than what was intended \citep{konstantinou2024oracles}. Our claim is the
-auditing counterpart: where the prose does not fix the value, a recall number computed against
-that suite measures the benchmark as much as the auditor.
+\textbf{Auditing scientific work.} On manuscripts, no model exceeds 21.1\% recall or 6.1\% precision
+on errata-grade errors and repeated runs rarely rediscover the same errors \citep{son2025spot}; the
+best models detect 46.7\% of real paper--code discrepancies \citep{baumgartner2026scicoqa}. An LLM
+auditor of AI-scientist projects detects hand-labelled pitfalls far better with logs and code than
+with the paper alone \citep{luo2025pitfalls}; pattern-based linting targets methodology bugs in
+scientific Python \citep{samsonau2026scicodelint}; cleaning agents find row-level errors in corrupted
+tables and miss errors spanning rows \citep{bendinelli2025cleaning}; and simulation code can run and
+still solve the wrong equations \citep{song2026moose}. SciCode supplies scientist-written tests
+\citep{tian2024scicode}, and reproduction benchmarks ask agents to recover reported results
+\citep{siegel2024corebench}. We found no prior measurement of an LLM auditor's recall \emph{and}
+false-positive rate against executed or constructed ground truth on scientific code, results and data,
+set beside the deterministic checks a shipped system runs on the same artefacts.
 
-\textbf{Consensus as a substitute for ground truth.} Several systems validate generated tests
-without a reference by agreement, through self-consistency, dual execution, or multi-agent
-discussion for {JUnit} suites \citep{taherkhani2026consistency, xu2025consensus}. Both measure what
-survives the filter against a ground-truth implementation: 84--91\% of retained tests valid in one
-\citep{taherkhani2026consistency}, 0.89--0.93 oracle correctness in the other
-\citep{xu2025consensus}. Our measurement differs in unit and in bar. It is the share of wrong tests
-among retained \emph{failing test--candidate applications}, against a preregistered 2\%
-threshold, over a frozen set of generated tests and candidates that includes candidates already
-failing their visible tests. Corroboration across independent generations does not reach it
-(\S\ref{sec:inreview}), and wrong tests recur by problem. That recurrence is compatible with the
-self-consistent errors, the same wrong answer produced again, that degrade the detection methods
-Tan et al.\ evaluate \citep{tan2025consistent}. Our records hold indices, not assertions, so they
-do not show that the recurring errors are the same one.
-
-\textbf{Auditing scientific work.} Language models are already asked to check science at several
-levels. On manuscripts, SPOT finds that no model exceeds 21.1\% recall or 6.1\% precision on
-errors serious enough for errata or retraction, and that repeated runs rarely rediscover the same
-errors \citep{son2025spot}. SciCoQA asks models to find discrepancies between a paper and its code,
-and the best detect 46.7\% of real ones \citep{baumgartner2026scicoqa}. Closest to our setting,
-\citet{luo2025pitfalls} have an LLM auditor inspect AI-scientist projects for methodological
-pitfalls, labelled by hand, and report both true- and false-positive rates; giving the auditor the
-run logs and code raises detection well above reading the paper alone. scicode-lint targets
-methodology bugs such as leakage in scientific Python, with precision partly judged by a model \citep{samsonau2026scicodelint}. On data, agents that clean deliberately
-corrupted tables find row-level errors and miss errors that span rows
-\citep{bendinelli2025cleaning}. And a deterministic verifier shows that simulation code can run and
-still solve the wrong equations \citep{song2026moose}. SciCode, on which our code study builds,
-supplies scientist-written numeric tests \citep{tian2024scicode}, and reproduction benchmarks such
-as CORE-Bench ask agents to recover reported results from a paper's code and data
-\citep{siegel2024corebench}. We found no prior measurement of
-an LLM auditor's recall \emph{and} false-positive rate against an executed oracle on scientific
-code, results or data, across vendors and repeated readings, set beside the deterministic checks a
-shipped system would run on the same artefacts. Section~\ref{sec:ai4s} makes that measurement.
-
-\textbf{Who audits whom.} That an evaluator should not be the model under evaluation is supported
-by measurements of self-preference in LLM judges against verifiable ground truth
-\citep{chen2025selfpreference}. We do not measure self-preference. A frozen generator's code
-audited by routes that differ in model, operating point and sampling cannot separate preference
-from performance, so we report the same-vendor contrast as a contrast between routes, on one
-substrate.
-
-\textbf{Preregistration.} Preregistering an evaluation protocol is beginning to appear in machine
-learning, both as a protocol for experiments with agents \citep{vaccaro2026prereg} and as a defence
-against tuning prompts, decoding parameters or output format until a desired result appears
-\citep{thomas2026phacking}. We count our use of it as method, not contribution.
+\textbf{Preregistration} of evaluation protocols is beginning to appear in machine learning
+\citep{vaccaro2026prereg, thomas2026phacking}; we count our use of it as method, not contribution.

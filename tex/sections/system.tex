@@ -7,7 +7,7 @@ the product's own audit call; the exception, \texttt{gpt-6-astra}, receives the 
 bytes through a direct call. We describe it first because
 its design fixes what the later sections can and cannot vary. We state its structure only here
 and quote no measurement of it. Its limits are the subject of
-Sections~\ref{sec:results} onward.
+Section~\ref{sec:ceiling} onward.
 
 \textbf{Separation of roles.} A generator model writes an increment (a set of files) into a Git
 repository. An auditor model then reads the committed bytes and returns findings, each graded
@@ -15,7 +15,7 @@ BLOCKER or ADVISORY. The auditor must come from a different vendor than the gene
 refuses to run when the configuration names the same vendor for both roles, and when the
 generator's vendor is not declared, the receipt records that independence could not be asserted.
 The same-vendor arms below run that second way, on purpose. The premise is that a model
-reviewing its own vendor's output is an interested reader. The product takes that premise as given, and Section~\ref{sec:results} puts
+reviewing its own vendor's output is an interested reader. The product takes that premise as given, and Section~\ref{sec:ceiling} puts
 one consequence of it to the test: whether a same-vendor auditor catches more or less.
 
 \textbf{Two tiers of evidence.} Before the auditor reads anything, a deterministic check layer
@@ -53,7 +53,7 @@ recomputes the digest from the recorded evidence, so a receipt can be checked by
 not trust the operator.
 
 \textbf{What the rest of the paper measures.} Acts 2 and 3
-(Sections~\ref{sec:method}--\ref{sec:discussion}) measure the model tier on its own. There,
+(Section~\ref{sec:ceiling}, with Appendices~\ref{sec:method} and~\ref{sec:results}) measure the model tier on its own. There,
 an increment counts as flagged when the auditor grades any finding BLOCKER, and the general check
 pack runs as in the product but decides no recall or false-positive outcome. The model tier is the
 part of the system whose limit is least known, since a deterministic check catches exactly what it

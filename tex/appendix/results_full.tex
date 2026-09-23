@@ -1,4 +1,4 @@
-\section{Results}
+\section{Results on general-purpose code in full}
 \label{sec:results}
 The claims this paper defends, each with its interval and its label, are listed in
 \texttt{CLAIMS.md}. A claim enters that file only after its report has passed an independent
@@ -29,7 +29,6 @@ registered on its interval, and no correction was registered for them. Where a $
 below, the exact McNemar value and the cluster-level sign-flip permutation value are both given,
 because instances within a problem are not independent and only the second respects that.
 
-\input{table1}
 
 Table~\ref{tab:primary} collects every primary quantity below with its population and its label;
 the prose gives each one where it is used.
@@ -76,21 +75,7 @@ ratio runs 1.67, 1.63, 1.64, 1.65, 1.66, 1.67, 1.68. It falls once and then rise
 reading on this route buys recall at a slightly improving price. The ratio is a quotient of two
 measured rates and carries no interval of its own.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{fig1_saturation.pdf}
-\caption{\textbf{Returns to repeated reading diminish short of complete.} Union rate against the
-number of independent readings $K$, for two auditor families. (a) Recall on defective increments;
-(b) false positives on correct increments. Bars at the right of each panel give the 95\%
-problem-cluster bootstrap interval of each series at $K=8$, dodged in $x$ so overlapping intervals
-stay separable. The cross-vendor curve does not meet the preregistered flattening bar (its
-last-step gain is 1.93 points [1.14, 2.78] against a bar of 1.0) and is not described as
-saturating. The same-vendor curve meets it, at 0.23 points, but that route is sent temperature
-$0$ and its verdict varies across readings on only 3 of 110 defective instances under this
-configuration, so its flatness is not evidence of exhausted headroom; whether it reflects the
-sampling or the model is not separated here (\S\ref{sec:auditor}).}
-\label{fig:saturation}
-\end{figure*}
+
 
 \subsection{Which model reads, and under which severity rule}
 \label{sec:auditor}
