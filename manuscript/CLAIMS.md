@@ -343,6 +343,28 @@ tests; the registered spend guards were not fully implemented (accounted spend $
 ledger plus recorded extraction replies; failed attempts are not in the record). Evidence: P4
 (`reports/RESULTS-FPADJ.md`, *quotable* at review round 3, 2026-09-23; harness `2d20b9f`).
 
+**C17 — On scientific data, the shipped auditor and a documentation-derived validator catch
+different faults, and together catch more than either.** Four CC BY 4.0 physical-science tables,
+280 items of 120 rows (140 clean; 140 with one of seven synthetic faults, 20 each), four readings
+per item. Registered flag rule (any model BLOCKER): the frozen validator flags **92/140 (65.7%)**
+of faulty items [57.9, 73.6] at **0/140** clean; the shipped cross-vendor auditor **65/140 (46.4%)**
+[38.6, 54.3] at **4/140 (2.9%)** [0.7, 5.7]; their union **112/140 (80.0%)** [73.6, 86.4] at
+**4/140**. (Intervals: bootstrap over items within dataset; four datasets are too few for a
+cluster bootstrap, so between-dataset variation is in no interval.) Of the 20 faulty items the
+auditor flags and the validator misses, **18 carry a finding about the injected fault** (9 mixed
+units, 9 swapped columns; **post hoc**); the other 2, and the 4 clean flags, are complaints about
+the airfoil card's column descriptions. It flagged **no shuffled target and no duplicated rows
+(0/20 each)** and is weaker than the validator on every fault the validator was written for. The
+generator's own model through the CLI route flags **67/140 (47.9%)** of clean items, and for at
+least **48** of those 67 one finding states a row count, field count, missing column or truncation
+the file contradicts (**post hoc lower bound**; 12 more dispute that the file was delivered).
+**Limits that travel with it:** synthetic faults on four tables; the validator omits one range the
+concrete README states (with it, 93/140) and uses a spec list of continuous columns the card does
+not state; float-conversion tails mark some mixed-unit cells in two tables; one route per family,
+default sampling. Evidence: A4S-3 (`reports/RESULTS-AI4S-DATA.md`, *quotable* at review round 5,
+2026-09-24, gpt-6-astra; harness `6c4bdbb`, branch `study/ai4s-code`, not yet merged into the
+integration branch, like P3 and P4).
+
 ## Claims the evidence does not support, and which must not appear
 
 * *"The ceiling is set by unexercised edges."* Withdrawn by C4. The paper's earlier claim (2)
@@ -608,6 +630,7 @@ have caught what the reviewer found. The tests were not weak; they were not run.
 | derived (residual composition; coverage) | — | **QUOTABLE at manuscript review round 2, 2026-09-23.** Moved to the admitted claims as C14 and C15 |
 | derived: pooled union's false positives | — | **QUOTABLE at manuscript review round 6, 2026-09-23.** Carried in C1 |
 | P4 (flags on correct code) | — | **QUOTABLE at round 3, 2026-09-23.** Moved to the admitted claims as C16 |
+| A4S-3 (scientific data) | — | **QUOTABLE at round 5, 2026-09-24.** Moved to the admitted claims as C17. Rounds 1–4 refused it (documentation flags counted as detections; clean-flag labelling; delivery disputes counted as refuted) |
 | R1-M3 cross-tab (post hoc) | per-instance agreement of a rater outside the residual's families (luna; `cheap-cross` in the explore study) with study 21's pair on the residual: L3 agrees on **30 of the 44** the pair called undetermined and calls 13 determined (`records/rate3/residual_crosstab.json`, harness `8119866`) | computed 2026-09-23, **never reviewed**; only L3's marginal 38/57, which RATE3's reviewed disjoint reading already carries, is in `tex/` |
 
 ## Rule
