@@ -229,20 +229,15 @@ of 53 caught entries carried no failing input class and all 42 drew `cannot-tell
 
 **What may be quoted, with its scope.** On the sheet's two groups — the reading the method
 registered in P3's Amendment 1 — the share labelled `undetermined` is **43/68 = 63.2% against
-23/53 = 43.4%, +19.8 points** [+1.2, +38.1]. **Those two groups are not two populations**: 11
-instances sit in both arms, because the 68-entry missed sheet is 57 residual instances plus 11
-caught ones. Removing the duplicated instances' missed-arm copies — **post hoc**, registered
-nowhere — gives **38/57 against 23/53, +23.3 points** [+2.0, +43.6]. The overlap *understated*
+23/53 = 43.4%, +19.8 points** [+1.2, +38.1]. **Those two groups are not two populations, and the overlap is definitional rather than clerical**: they use different definitions of "caught". The 68-entry group is ceiling 1's residual — 57 instances no family flagged, plus 11 flagged only by the third family — while the 53-entry group is what *some draw of any family* flagged, so those 11 are where the two definitions disagree. Removing their missed-group copies — **post hoc**, registered nowhere — gives **38/57 against 23/53, +23.3 points** [+2.0, +43.6]. The overlap *understated*
 the contrast.
 
-**Three limits are part of the claim, and the first is binding.** On the 11 instances carried in
+**Four limits are part of the claim, and the first is binding.** On the 11 instances carried in
 both arms, with identical specification text and identical witness display, **the rater agreed
 with itself on 7 of 11 on this binary outcome (6 problems), 5 of 11 on the full three-option
 label (6 problems), and 5 of 7 among the abstention-free pairs (4 problems)** — where study 21's
 two raters each agreed 11 of 11 on the same instances under a different instrument. Second,
-every interval's lower end is within five points of zero. Third, **this is a model, not the
-human from outside the project that P1 exists to obtain**, and `L1` — the author — rated all 121
-entries, so for every instance the programme holds a re-test rather than an independent review.
+every interval's lower end is within five points of zero. Third, **this is a model, not the human from outside the project that P1 exists to obtain**; `L1` — the author — rated all 121 entries, which prevents `L1` validating `L1` but does not make a fresh rater's judgement of the same material non-independent. Fourth, found by a conclusion-suppressed review after six briefed rounds had passed over it: **the sheet displays at most three failing inputs while 81 of the 121 entries have more recorded**, and eleven have none, so a label certifies what the prose determines *on the inputs shown* rather than across an instance's hidden failures.
 
 **Not a claim, and recorded to stop it becoming one.** The same rater scored the *unrepaired*
 sheet at +54.2 points [+38.5, +69.5], 2.7 times the repaired contrast and in the direction that
