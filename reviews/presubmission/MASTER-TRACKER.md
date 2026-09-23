@@ -108,3 +108,18 @@ scope. Seven findings, all verified, plus one of ours:
 | R3-6 | Bonferroni stated as universal; one p value missing its sign-flip | per-study policy stated; 0.146 / 0.183 |
 | R3-7 | Table 1 still said "pending" for C14 | "post hoc (C14)" |
 | ours | **"a model with no audit role anywhere" for gpt-5.6-luna was false** — it was `cheap-cross` in the explore study and read these same instances | corrected in results, abstract, tracker, CLAIMS and P4's Amendment 1; forbidden pattern added |
+
+## Whole-manuscript review, round 4 (at `77dbade`): NOT SUBMITTABLE
+
+R3-1, 3, 4, 7 ruled fixed; 2, 5, 6 partly. C14 and C15 keep their admission. Seven findings; the
+two about outside papers were checked against the papers themselves before acting.
+
+| # | finding | action |
+|---|---|---|
+| R4-1 | related work said neither consensus-validation paper measures how many wrong assertions survive the filter — **false**: ConVerTest reports retained-suite precision 84–91% against ground truth; CANDOR reports oracle correctness 0.894–0.930 (both confirmed at source) | rewritten: both measure it; ours differs in unit (retained failing test–candidate applications) and bar (registered 2%) |
+| R4-2 | simulation coverage still attributed directly to production intervals and to an estimate rather than a true rate | "simulations of an analogous interval ... at a true rate of 0.03"; discussion scoped; derived report scoped to tested rates |
+| R4-3 | sampling asserted as the cause of the flat route in results, the Figure 1 caption, and a discussion heading | all three now say the design does not separate sampling from model |
+| R4-4 | "neither beats the free comparator" — not established either way | "neither is shown to improve on it", with the small observed advantage |
+| R4-5 | heading still said luna "audited nothing" | "a rater outside the residual's families" |
+| R4-6 | two p values without their paired test | both added from the record (1.0e-5; 0.0156 both) |
+| R4-7 | SWR-Bench's aggregation (a synthesising model call) equated with a Boolean union (confirmed at source) | distinguished |

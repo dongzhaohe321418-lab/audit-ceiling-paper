@@ -14,9 +14,9 @@ critics, and it separates tampered from natural bugs. What we add on this axis i
 union of repeated independent readings as an instrument for locating a limit, ground truth
 supplied by an interpreter rather than by preference, and the false-positive rate carried beside
 every recall figure. Aggregating several review passes is known to help: multi-review aggregation
-on 1{,}000 verified pull requests raises F1 by up to 43.67\% \citep{zeng2025swrbench}. That is
-the same mechanical move as our union-of-$K$, used as a method rather than as an instrument for
-finding a limit.
+on 1{,}000 verified pull requests raises F1 by up to 43.67\% \citep{zeng2025swrbench}. The motivation is shared with our union-of-$K$, but the operation is not: there
+an additional model call synthesises the sampled reviews, while our union counts an instance
+whenever any reading flags it, and the two estimate different things.
 
 \textbf{Repeated sampling and coverage.} That coverage --- the fraction of problems solved by at
 least one of $K$ samples --- rises steeply and then flattens is an established regularity of
@@ -51,9 +51,12 @@ that suite measures the benchmark as much as the auditor.
 
 \textbf{Consensus as a substitute for ground truth.} Several systems validate generated tests
 without a reference by agreement, through self-consistency, dual execution, or multi-agent discussion for {JUnit}
-suites \citep{taherkhani2026consistency, xu2025consensus}. In neither paper could we find the quantity that decides whether such
-a filter can be trusted: how many wrong assertions survive it. We measure it on a frozen set of canonical-failing tests and find that corroboration
-across independent generations does not reach our preregistered threshold, because wrong tests
+suites \citep{taherkhani2026consistency, xu2025consensus}. Both measure what survives the filter against a ground-truth implementation --- 84--91\% of retained
+tests valid in one \citep{taherkhani2026consistency}, 0.89--0.93 oracle correctness in the other
+\citep{xu2025consensus}. Our measurement differs in unit and in bar: the share of wrong tests
+among retained \emph{failing test--candidate applications}, which is what reaches a user as a
+false alarm, against a preregistered 2\% threshold. On a frozen set of canonical-failing tests,
+corroboration across independent generations does not reach it, because wrong tests
 recur by problem (\S\ref{sec:inreview}). This is the concrete case of a general result: self-consistent errors are
 exactly the class that every detection method they evaluate struggles to detect
 \citep{tan2025consistent}.

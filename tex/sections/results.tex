@@ -50,7 +50,7 @@ still climbing when we stopped. That bar is also a function of where a family wa
 not grow with $K$ --- this curve's is 2.9 points at the fourth reading and 1.9 at the eighth ---
 so a fixed bar is harder to meet at $K = 4$ than at $K = 8$, and meeting it at either says
 little by itself about where the curve ends.
-Twenty readings pooled across three auditor families reach 48.2\% [36.7, 60.0]. \textbf{Those twenty readings are not twenty opportunities.} The pool is eight cross-vendor, eight same-vendor and four \texttt{astra} readings, and the same-vendor route gains \textbf{1.8 points} from its first reading to its eighth against the cross-vendor route's 19.3, because it is sent temperature $0$ and returns nearly the same verdict each time. Counting that route as roughly one reading puts the depth nearer thirteen than twenty --- a heuristic, not an estimate --- and the pooled figure should be read as a union over three routes rather than over twenty independent looks.
+Twenty readings pooled across three auditor families reach 48.2\% [36.7, 60.0]. \textbf{Those twenty readings are not twenty opportunities.} The pool is eight cross-vendor, eight same-vendor and four \texttt{astra} readings, and the same-vendor route gains \textbf{1.8 points} from its first reading to its eighth against the cross-vendor route's 19.3; it is sent temperature $0$ and returns nearly the same verdict each time, though how much of that is the temperature and how much the model this design cannot say. Counting that route as roughly one reading puts the depth nearer thirteen than twenty --- a heuristic, not an estimate --- and the pooled figure should be read as a union over three routes rather than over twenty independent looks.
 
 The price is measured on the same footing. Union false positives on 150 correct increments reach
 16.0\% [10.1, 22.3] at eight readings. The recall bought per point of false positive ---
@@ -69,8 +69,8 @@ overlapping intervals stay separable. The cross-vendor curve does not meet the p
 flattening bar --- its last-step gain is 1.93 points [1.14, 2.78] against a bar of 1.0 --- and is
 not described as saturating. The same-vendor curve meets it, at 0.23 points, but that route is
 sent temperature $0$ and its verdict varies across readings on only 3 of 110 defective
-instances, so its flatness is a property of how it is sampled and not evidence of exhausted
-headroom (\S\ref{sec:auditor}). An earlier version of this caption said neither curve met the
+instances under this configuration, so its flatness is not evidence of exhausted headroom;
+whether it reflects the sampling or the model is not separated here (\S\ref{sec:auditor}). An earlier version of this caption said neither curve met the
 bar, and the figure carried an annotation left over from the withdrawn second substrate. A second substrate was plotted here until 2026-09-15; it was re-run twice and
 closed without a quotable number (\S\ref{sec:inreview}).}
 \label{fig:saturation}
@@ -89,8 +89,8 @@ and none of them favourable to reading it as a statement about auditing ability.
 First, the two auditors are not at the same operating point, which is the comparison this paper
 elsewhere warns against. The stronger model flags correct code at 3.3\% --- 5 of 150, a count the
 statistics section says to quote as a count --- whose bootstrap interval [0.7, 6.7] sits in the
-range where that interval covers about $0.89$ rather than $0.95$, so it is narrower than it
-claims. Against the
+range where simulations of an analogous interval cover about $0.89$ at a true rate of $0.03$
+rather than $0.95$, so it is likely narrower than it claims. Against the
 shipped auditor's 16.0\% [10.1, 22.3]. It blocks less of everything.
 
 Second, the sign reverses under a weaker severity rule (Figure~\ref{fig:sweep}). Counting any finding rather than only
@@ -178,11 +178,12 @@ same way** (7 against 0), so by the rule stated in \S\ref{sec:stats} the percent
 bound at zero is an artefact and the admissible interval is the unconditional one --- computed
 with a grid-approximated nuisance supremum and ignoring clustering, so approximately rather than
 guaranteed exact --- which
-is $[-3.6, +26.8]$ and \textbf{does not exclude zero}; its exact McNemar $p$ is $0.0156$ against
+is $[-3.6, +26.8]$ and \textbf{does not exclude zero}; its exact McNemar and cluster sign-flip $p$ are both $0.0156$, against
 that study's Bonferroni threshold of $0.003125$. Earlier versions of this paper quoted the
 forbidden bootstrap interval $[5.17, 21.82]$ in four places, including the abstract. The
 directed statement the records support is the pooled one, where 23 discordant pairs point one
-way and 1 the other at $p = 3.0\times10^{-6}$: the sentence makes the auditor louder overall.
+way and 1 the other, exact McNemar $p = 3.0\times10^{-6}$ and cluster sign-flip
+$p = 1.0\times10^{-5}$: the sentence makes the auditor louder overall.
 On the correct stratum alone the cost is $+12.50$ points with an interval that contains zero. And on the contrast that actually
 isolates the rule --- the referent arm against the cross-vendor arm on hidden-suite pass rate after
 one revision, over both strata, 112 instances on 96 problems --- the effect is $+5.36$ points,
@@ -238,7 +239,7 @@ defective, in twelve MBPP tasks named in a paper written for another purpose, ou
 paper's own ``incomplete'' category draws. That check is one-sided by construction: it can support
 agreement where an outsider looked, and can bound nothing about the rate.
 
-\textbf{A rater that audited nothing, asked a different question.} One of the two raters above
+\textbf{A rater outside the residual's families, asked a different question.} One of the two raters above
 is \texttt{gpt-6-astra}, whose own misses help define the residual. A model that is not one of the
 families defining it, \texttt{gpt-5.6-luna} --- which read these instances only as a secondary audit
 route in an earlier architecture study --- later rated the same 57 instances, post hoc,
@@ -322,8 +323,9 @@ review that flagged them and the repair.
 fails on the dataset's canonical solution --- is not reliably recognised by asking whether
 further independent generation draws also fail on the same candidate. Neither paid rule reaches
 the preregistered threshold: retained wrong-test rates are \textbf{12.2\%} (Wilson 7.0--20.6;
-cluster 3.6--22.6) and \textbf{14.9\%} against a limit of \textbf{2\%}, and neither beats the
-free within-draw comparator at 12.8\%. A floor of 2.4\% holds on the original unique-test
+cluster 3.6--22.6) and \textbf{14.9\%} against a limit of \textbf{2\%}, and neither is shown to
+improve on the free within-draw comparator at 12.8\%: the better paid rule keeps the same wrong
+applications plus four correct ones, a small observed advantage the study cannot resolve. A floor of 2.4\% holds on the original unique-test
 quantity because 29 of the 45 wrong tests never fail on any candidate at all. The claim is
 negative and substrate-bound: these rules do not validate generated tests here, not that
 generated tests cannot be validated.

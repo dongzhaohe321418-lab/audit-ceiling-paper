@@ -72,6 +72,15 @@ FORBIDDEN = {
     "the sweep read as recognition or cause":
         r"writes down\s+more of what is wrong|fact about severity\s+calibration",
     # gpt-5.6-luna was cheap-cross in the explore study; written as roleless on 2026-09-23.
+    # Review paper1 r4: prior work misrepresented; luna's heading; comparator superiority.
+    "consensus-validation work said to omit residual error":
+        r"in neither paper could we find",
+    "SWR-Bench aggregation equated with union":
+        r"same mechanical move",
+    "luna said to have audited nothing":
+        r"rater that audited nothing",
+    "comparator superiority asserted":
+        r"neither beats the\s+free",
     "luna called roleless":
         r"no audit role",
     # Review paper1 r3: the post-hoc oracle-agreement split read as a mechanism.

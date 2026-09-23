@@ -47,6 +47,6 @@ interval covers the true rate. Monte Carlo standard error about 0.011 near 95% c
 about 0.020 at the 0.80 cell.
 
 **What it licenses.** Coverage of **single-rate** intervals under that correlation model:
-near nominal (0.93–0.97) at true rates of 0.10 and above, 0.80 at 0.03 on the 56-cluster
+near nominal (0.93–0.97) at the tested true rates 0.10, 0.16, 0.30, 0.48 and 0.60, 0.80 at 0.03 on the 56-cluster
 stratum. It says nothing about the paired contrasts or category-conditioned shares in Table 1,
 and the concordance of 0.5 is an assumption, not an estimate.

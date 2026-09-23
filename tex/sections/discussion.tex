@@ -20,7 +20,7 @@ was never that experiment: they differ in
 specification length, solution length, problem population, defect distribution and suite
 construction at once.
 
-\subsection{Repeated reading buys coverage only where the decision is marginal}
+\subsection{Repeated reading buys nothing where the verdict does not vary}
 
 Union-of-$K$ is the instrument this paper uses to find a ceiling, and it is worth saying plainly
 what it cannot measure. Part of that needs no experiment at all: a union over readings that do not
@@ -99,9 +99,9 @@ inherits it. Second, no auditor is compared with another at a matched false-posi
 re-grades archived findings at four decision rules, which cannot move a family to a point its
 findings do not reach --- one has none between 3.3\% and 34.0\% false positives --- so the paper
 cannot say whether the families differ once brought to the same operating point. Third, the primary intervals are
-problem-cluster percentile bootstraps over 56 clusters; for single rates we measured their
-coverage by simulation, near nominal at the headlines' rates and anticonservative below about
-$0.10$ (\S\ref{sec:stats}), and for the paired contrasts and conditional shares it is
+problem-cluster percentile bootstraps over 56 clusters; a simulation of an analogous single-rate
+interval (600 resamples rather than 10{,}000, tested rates only) covers near nominally at the
+headlines' rates and anticonservatively below about $0.10$ (\S\ref{sec:stats}), and for the paired contrasts and conditional shares it is
 unmeasured, and no sample size was justified in advance by a detectable-effect
 calculation. Fourth, the substrate is short, self-contained Python functions with executable
 hidden tests, so nothing here measures auditing a change to a large program with no oracle, and
