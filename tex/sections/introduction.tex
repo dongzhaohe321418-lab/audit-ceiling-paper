@@ -1,6 +1,11 @@
 \section{Introduction}
-An automated auditor reads code it did not write and says whether to block it. We ask how much
-such an auditor catches, and what decides the limit.
+When a model writes code, reports a result or prepares a dataset, someone has to check it, and
+increasingly that someone is another model. CrossAudit, the system every measurement here passes
+through (\S\ref{sec:system}), is built on two rules for doing that. The model that audits must come
+from a different vendor than the model that wrote the work, and what a deterministic check can verify
+is verified by code, not by a model's opinion. An automated auditor of this kind reads work it did not
+write and says whether to block it. We ask how much it catches, what decides the limit, and whether
+the arrangement helps where checking matters most, in science.
 
 A reviewer's score on a benchmark mixes at least four things: whether the model can see a defect,
 whether it judges the defect worth blocking on, whether the benchmark's hidden tests define the
@@ -61,10 +66,19 @@ specifications, and it closed without a quotable number after three runs
 (\S\ref{sec:inreview}): across three extractions of the same protocol, whether the two
 substrates' false-positive intervals meet came out apart, overlapping, and apart again.
 
-The paper follows that order. Section~\ref{sec:system} describes the system every reading passes
-through. Sections~\ref{sec:method} and~\ref{sec:results} measure its model tier's limit and what
-moves it. Section~\ref{sec:ai4s} asks whether the same setups help where they would matter most,
-in checking scientific code, results and data.
+Then we take the same system into science (\S\ref{sec:ai4s}), with one preregistered study for
+each job a scientist would hand an auditor, and ground truth no model supplies. On reported results,
+the deterministic check that every number traces to its source caught every inconsistency among a
+report, its results file and its run log, and none of 25 results that were wrong consistently in all
+three. The model auditor, recomputing from the code, flagged 23 of those 25 (21 with a sound finding,
+post hoc). On data, a validator written from the dataset's documentation and the shipped auditor
+caught different faults, 92 and 65 of 140, and together 112, at the auditor's 2.9\% flag rate on
+clean data. Neither tier replaces the other: the deterministic one had no false positives and could
+not see consistent error, while the model saw some of it and made mistakes of its own.
+
+The paper follows that order. Section~\ref{sec:system} describes the system. Sections~\ref{sec:method}
+and~\ref{sec:results} measure its model tier's limit on general-purpose code and what moves it.
+Section~\ref{sec:ai4s} tests the two tiers on scientific code, results and data.
 
 \subsection{Preregistration and review}
 
