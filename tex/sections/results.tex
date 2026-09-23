@@ -31,7 +31,7 @@ returns at the budget we could afford, not saturation: at 1.9 points per reading
 still climbing when we stopped. That bar is also a function of where a family was stopped, so
 families run only to $K = 4$ meet it more easily than families run to $K = 8$, and a curve that
 meets it at a small $K_{\max}$ is making a weaker statement than one that meets it at a large one.
-Twenty readings pooled across three auditor families reach 48.2\% [36.7, 60.0].
+Twenty readings pooled across three auditor families reach 48. \textbf{Those twenty readings are not twenty opportunities.} The pool is eight cross-vendor, eight same-vendor and four \texttt{astra} readings, and the same-vendor route gains \textbf{1.8 points} from its first reading to its eighth against the cross-vendor route's 19.3, because it is sent temperature $0$ and returns nearly the same verdict each time. The effective depth is closer to thirteen, and the pooled figure should be read as a union over three routes rather than over twenty independent looks.2\% [36.7, 60.0].
 
 The price is measured on the same footing. Union false positives on 150 correct increments reach
 16.0\% [10.1, 22.3] at eight readings. The recall bought per point of false positive ---
@@ -157,12 +157,24 @@ that a flag is not a catch, that distinction applies to our own intervention fir
 \subsection{Most of what the auditor missed is failure the specification never determined}
 \label{sec:residual}
 
-Fifty-seven of the 110 defective instances were flagged by no reading of any family. That is a
+Fifty-seven of the 110 defective instances were flagged by no reading of the three families
+read at that point. That is a
 statement about twenty readings, not about detectability: if an instance is caught with
 probability $p$ on each independent reading, twenty readings miss it with probability
 $(1-p)^{20}$, which is still $98\%$ at $p = 0.001$ and $36\%$ at $p = 0.05$. Never flagged here
 therefore does not mean never flaggable, and we use the residual as a population to characterise
 rather than as a set of defects shown to be invisible.
+
+\textbf{It is not never flaggable, and we can put a number on that.} Reading six families at
+forty readings, including the same auditor under a rulebook with one sentence added, shrinks the
+never-flagged set from 57 to \textbf{32 of 110}, and \textbf{43 of the 68 instances both raters
+call specification-undetermined are flagged by some reading of some family}. Being undetermined
+is not sufficient for being missed. What does not move is the composition: the undetermined
+share of the never-flagged set is \textbf{44 of 57}, $77.2\%$, at three families and twenty
+readings, and \textbf{25 of 32}, $78.1\%$, at six families and forty readings. The residual
+loses nearly half its members and keeps its shape. \emph{An earlier version of this section
+reported only the 57 and described it as flagged by no reading of any family, which was true of
+three families and false of the six this programme measured; a pre-submission referee found it.}
 
 The first classification of that residual asked whether the visible tests exercised the failing
 input before it asked anything else. It called 46 of 57 unexercised edges, and an earlier draft of this paper
@@ -232,10 +244,17 @@ review rounds passed over the opposite error, in which the report called that in
 \emph{narrower} than defect assertion --- the direction that makes a quantity look more
 conservative than it is.
 
-\textbf{Higher flag coverage at eight readings is not a higher ceiling.} On the defect
-population the same rule takes union flag coverage from 33 of 110 to \textbf{67 of 110},
-\textbf{+30.9 points} [19.1, 43.1], at \textbf{+20.7 points} [12.8, 28.8] of false positives,
-with a single-draw rate of 23.6\% [17.1, 30.3] that fails the product bar on all eight draws.
+\textbf{A measured 60.9\% is not a higher ceiling, and it is the same estimator as the
+30.0\%.} On the defect population the same rule takes union recall --- the identical quantity,
+blocked by at least one BLOCKER, unioned over eight readings --- from 33 of 110 to \textbf{67
+of 110 = 60.9\%} [48.6, 72.5], \textbf{+30.9 points} [19.1, 43.1], at \textbf{+20.7 points}
+[12.8, 28.8] of false positives, with a single-draw rate of 23.6\% [17.1, 30.3] that fails the
+product bar on all eight draws. \emph{Earlier versions of this paper called 33 of 110 union
+recall and 67 of 110 flag coverage, and a pre-submission referee observed that the name tracked
+which number suited the framing.} One name is used here for one estimator, and
+The caution that a flag is not a catch attaches to both equally.
+What separates them is not their status as measurements but their price: 36.7\% [28.5, 44.8]
+false positives against 16.0\%, which is why the shipped route is the shipped route.
 The fitted asymptotes differ by $+27.1$ points [10.9, 39.0] and \emph{that does not establish a
 higher ceiling}: the cross-vendor arm never flattened, so one of the two terms is an
 extrapolation; heterogeneous low-probability detection imitates a ceiling at this budget, since
@@ -301,7 +320,13 @@ own rule --- which \emph{was} preregistered, as ``$\geq 1$ BLOCKER finding'' ---
 of changing what counts, and it identifies nothing about why the families produced different
 findings or different severities. At a common depth of four readings, \texttt{astra} exceeds the
 cross-vendor auditor on union recall over the defect stratum by \textbf{+11.5 points} [+2.9,
-+21.3], averaged over all 70 four-draw subsets on each side and paired within instance, with a
++21.3], paired within instance. \textbf{The two sides are not averaged alike}: the cross-vendor
+arm has eight readings and is averaged over all $\binom{8}{4}=70$ four-draw subsets, while
+\texttt{astra} has exactly four, so $\binom{4}{4}=1$ and its estimate is a single realisation
+with none of its reading-selection variance averaged out. An earlier version of this paper said
+70 subsets on each side; the source report has it right and the manuscript lost it. The contrast
+should be read knowing that one arm's luck in four draws is fully in the number and the other's
+is not, with a
 false-positive difference of $-0.3$ points $[-3.8, +3.4]$. On the cross-vendor auditor's
 complete eight-draw ladder the same contrast is $+2.7$ points $[-6.5, +13.0]$ with a
 false-positive difference of \textbf{$-5.3$ points} $[-10.3, -0.7]$: that comparison establishes
