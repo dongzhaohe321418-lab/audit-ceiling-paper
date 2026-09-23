@@ -36,7 +36,7 @@ Twenty readings pooled across three auditor families reach 48.2\% [36.7, 60.0].
 The price is measured on the same footing. Union false positives on 150 correct increments reach
 16.0\% [10.1, 22.3] at eight readings. The recall bought per point of false positive ---
 recall gained over one reading divided by false positives gained over one reading --- is
-\textbf{1.68} at eight, and falls monotonically as readings accumulate. It is a ratio of two
+\textbf{1.68} at eight, and it does not worsen as readings accumulate: the ladder is 1.67, 1.63, 1.64, 1.65, 1.66, 1.67, 1.68 from $K=2$ to $K=8$. An earlier version of this paper said it falls monotonically; the source table contradicts that --- the ratio falls once and then rises, so repeated reading on this route buys recall at a slightly improving price, not a worsening one. It is a ratio of two
 measured rates and carries no interval of its own.
 
 \begin{figure*}[t]
@@ -137,8 +137,16 @@ rather than flag contrasts. For those reasons we do not compare its magnitude wi
 the $+19.3$ of the preceding sections, which are union recall at $K=8$ over 110 instances. They
 are different quantities on different populations.
 
-Two costs travel with it. On correct code the same rule moved flags by $+12.50$ points [5.17,
-21.82], so the sentence makes the auditor louder on both strata. And on the contrast that actually
+Two costs travel with it, and the first is weaker than an earlier version of this paper said.
+On correct code the same rule moved flags by $+12.50$ points. **Every discordant pair points the
+same way** (7 against 0), so by the rule stated in \S\ref{sec:stats} the percentile bootstrap's
+bound at zero is an artefact and the admissible interval is the exact unconditional one, which
+is $[-3.6, +26.8]$ and \textbf{does not exclude zero}; its exact McNemar $p$ is $0.0156$ against
+that study's Bonferroni threshold of $0.003125$. Earlier versions of this paper quoted the
+forbidden bootstrap interval $[5.17, 21.82]$ in four places, including the abstract. The
+directed statement the records support is the pooled one, where 23 discordant pairs point one
+way and 1 the other at $p = 3.0\times10^{-6}$: the sentence makes the auditor louder overall.
+On the correct stratum alone the cost is $+12.50$ points with an interval that contains zero. And on the contrast that actually
 isolates the rule --- the referent arm against the cross-vendor arm on hidden-suite pass rate after
 one revision --- the effect is $+5.36$ points, cluster $[-0.89, +12.07]$, $p = 0.146$, which does
 not exclude zero. The rule demonstrably moves what the auditor writes down. Whether that converts

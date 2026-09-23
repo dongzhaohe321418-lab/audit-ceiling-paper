@@ -66,8 +66,13 @@ travels with the number wherever it appears. Three further restrictions travel w
   and it is **one reading**, because every loop arm revises once, not a union over eight.
   **+26.8 may therefore not be compared in magnitude with −26.4 or +19.3**, and the phrase "the
   largest effect we measure" is withdrawn.
-* **It has a false-positive cost.** The same rule moved flags on correct code by **+12.50 points**
-  [5.17, 21.82]. The recall-side figure may not appear without it.
+* **It has a false-positive cost, and the cost's interval contains zero.** The same rule moved
+  flags on correct code by **+12.50 points**. Every discordant pair points one way (7 against 0),
+  so the percentile bootstrap's bound at zero is an artefact of the method; the admissible exact
+  unconditional interval is **[−3.6, +26.8]**, and the exact McNemar p is 0.0156 against this
+  study's Bonferroni threshold of 0.003125. **This entry previously quoted [5.17, 21.82]**, the
+  interval the programme's own rule forbids for a one-signed discordance. The recall-side figure
+  may not appear without the cost, and the cost may not be quoted as excluding zero.
 * **It did not measurably move outcomes.** On the contrast that isolates the rule —
   referent-loop against cross-loop on hidden-suite pass after one revision — the effect is
   **+5.36 points, cluster [−0.89, +12.07], p = 0.146**, which does not exclude zero. Since this
