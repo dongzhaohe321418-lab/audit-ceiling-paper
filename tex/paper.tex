@@ -96,6 +96,42 @@ verbatim beside the results they judge.
 \input{sections/discussion}
 \input{sections/related}
 
+
+\section*{Limitations}
+\textbf{Substrate.} Every measurement here is on function-level Python tasks from two code
+benchmarks. Nothing in this paper establishes that the same ceiling, or the same explanation for
+it, holds for another language, for repository-scale changes, or for code whose correctness is
+not decided by an executable suite.
+
+\textbf{The ground truth is a test suite, and a test suite is not a specification.} Hidden
+suites encode a reference implementation's behaviour, including behaviour its prose never fixed.
+In the intervention study reported in \S\ref{sec:inreview}, a generator shown an instance's
+failing inputs inferred a behavioural rule that \emph{contradicted} the hidden oracle on 23 of
+32 instances. That is a property of the benchmarks, not of the generator, and it bounds what any
+recall figure measured this way can mean.
+
+\textbf{Intervals of unverified coverage.} The primary intervals are percentile bootstraps over
+problem clusters whose coverage under this design has not been validated; in simulation the
+construction under-covers by roughly 2 to 5 points. Two earlier constructions in this programme
+were found by review to cover $0.416$ and $0.075$ where $0.95$ was claimed. We state coverage as
+unverified rather than assume it.
+
+\textbf{The validation instrument shares the failure mode under study.} Reports were checked by a
+language model, which is what this paper measures a ceiling on. Studies cleared review at rounds
+4, 6, 7, 9, 10 and 11, so a single pass has low recall; no measurement ever moved, so on
+recomputation it is strong and on interpretation weak; and withholding our conclusions from one
+pass produced six substantive findings that six briefed passes had missed. The defect class it
+leaves open is the one that looks right to a language model, and we do not know what remains in
+it.
+
+\textbf{No rater from outside the project.} Every human judgement in this work is the first
+author's. A third model rating does not discharge that, and the design that asks for an outside
+human has not been run.
+
+\textbf{Budget.} Reading depth $K$, the number of arms, and the size of every intervention
+population were set by cost rather than by a power calculation, and no sample size was justified
+in advance by a minimum-detectable-effect argument.
+
 \section*{Reproducibility and claims}
 The claims this paper is willing to defend, each with the interval and the label its source report
 gives it, are listed in \texttt{CLAIMS.md} in the repository at
@@ -105,8 +141,14 @@ independent review is archived there verbatim, including the reviews that refuse
 repository also carries the auditor's constitution, the exact prompts for the auditor, the
 generator and each rating rubric, the capability card of every route with its sampling parameters,
 the frozen instance manifests with their hashes, and the analysis code that produces every number
-and figure below from those records. The repository is private while four of the studies are in
-review and is released with the paper.
+and figure below from those records. What the repository cannot carry is the raw run
+directories themselves. They contain model outputs derived from corpora under a
+non-commercial, no-redistribution licence, so what is published is every derived record --
+scores, counts, hashes, labels, prompts and manifests -- and not the bytes they were derived
+from. A replication therefore reproduces every number in this paper from the committed records,
+and reproduces the records themselves only by re-running the studies against the same corpora.
+The repository is private while the remaining study is in review and is released with the
+paper.
 
 \bibliography{paper}
 \bibliographystyle{icml2026}
