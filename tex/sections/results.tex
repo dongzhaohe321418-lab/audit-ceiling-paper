@@ -69,7 +69,7 @@ First, the two auditors are not at the same operating point, which is the compar
 elsewhere warns against. The stronger model flags correct code at 3.3\% [0.7, 6.7] against the
 shipped auditor's 16.0\% [10.1, 22.3]. It blocks less of everything.
 
-Second, the sign reverses under a weaker severity rule. Counting any finding rather than only
+Second, the sign reverses under a weaker severity rule (Figure~\ref{fig:sweep}). Counting any finding rather than only
 findings graded BLOCKER --- an exploratory rule, not preregistered --- the stronger model reaches
 59.1\% [47.3, 70.6] on the defect population at 34.0\% [26.5, 41.7] on correct code, against the
 shipped auditor's 34.5\% [23.6, 45.5] at 19.3\% [12.8, 26.3]. The ratio of those two rates --- a derived
@@ -199,7 +199,7 @@ draws from it is stated under that constraint.}
 \label{fig:residual}
 \end{figure*}
 
-\subsection{Six studies, forty-four review rounds, and what they license}
+\subsection{Six studies, and what they license after between four and eleven review rounds each}
 \label{sec:inreview}
 
 Four further studies had reported when this paper was first written, and all four were refused
@@ -314,14 +314,16 @@ instances sit in both arms, and removing the duplicates gives $+23.3$ points $[+
 \emph{post hoc}, and larger, so the overlap had understated it. The limit is part of the result:
 on those 11 instances, shown with identical text and identical evidence, \textbf{the rater
 agreed with itself on 7 of 11} on this binary outcome and 5 of 11 on the full label, where the
-earlier study's two raters each agreed 11 of 11. Every interval's lower end lies within five
+earlier study's two raters each agreed 11 of 11 (Figure~\ref{fig:residual}). Every interval's lower end lies within five
 points of zero, and this remains a model rather than the outside human the design asks for.
 Separately, the \emph{unrepaired} sheet scored $+54.2$ points $[+38.5, +69.5]$ --- 2.7 times the
 repaired contrast, in the direction that flatters the hypothesis --- which is evidence about
 sheets and not about specifications, and which a preregistered inconclusiveness gate catches.
 
-\textbf{What the refusals were about.} Of the forty-four rounds these six studies took, most
-ended in a refusal of the \emph{repair} rather than of the measurement. No measurement moved in
+\textbf{What the refusals were about.} These six studies cleared review at rounds 4, 6, 7, 9,
+10 and 11, forty-seven rounds in all; an earlier version said forty-four, which counted four of
+the studies only from their first refusal. Most of those rounds ended in a refusal of the
+\emph{repair} rather than of the measurement. No measurement moved in
 any of them; every figure above reproduced independently at every round it was checked. The recurring failure was a check or a sentence that claimed more than it
 delivered: a binding that protected one sentence of a withdrawal spread across six; the same
 binding rewritten to protect all six, with two of them truncated before the words that carried

@@ -1,6 +1,16 @@
 # Does telling the reviewer our conclusion change what it finds?
 
-**Result: yes, and not in our favour.** One dispatch, 2026-09-23.
+> **WITHDRAWN AS AN EXPERIMENT, 2026-09-23, by a mock referee who checked the prompt.**
+> The prompt's own text withheld every figure. **Its binding-artefact list then named
+> `plan/P1-ANALYSIS-REGISTRATION.md` and `manuscript/CLAIMS.md`, both of which state those
+> figures**, the second being the ledger entry for the result under review. The blinding was
+> never enforced. The agreement result below establishes nothing and is withdrawn; the six
+> disagreement findings stand as findings about the report, not as evidence about blinding.
+> The design was also not preregistered and has no matched briefed control, so it is n = 1,
+> uncontrolled, exploratory.
+
+**Original text follows, uncorrected, because a withdrawal that hides what it withdraws is
+worse than the error.** One dispatch, 2026-09-23.
 
 ## The design
 

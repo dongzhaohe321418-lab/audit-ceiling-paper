@@ -103,9 +103,17 @@ Each study was preregistered before its first model call, fixing its population,
 primary outcome, intervals, kill conditions, budget and stopping rule. Departures are numbered
 amendments committed before the step they govern, each recording what was known at the time; where
 an amendment followed an interim observation, the results say so and argue whether the change
-could favour the hypothesis. Each report was then reviewed by a model from a different vendor with
+could favour the hypothesis. Each report was then reviewed by a model from a different vendor to the generator, with
 read access to the raw records, asked to re-run the analysis, recompute the intervals
-independently, and check every sentence against the records. Reviews are archived verbatim, including those that
+independently, and check every sentence against the records. \textbf{That reviewer is
+\texttt{gpt-6-astra}, which is also one of the auditor families measured in \S\ref{sec:auditor}
+and one of the two raters behind \S\ref{sec:residual}'s labels.} For most claims this is a
+cross-vendor check on work the reviewer had no part in. \textbf{For the claims that rank
+\texttt{astra} against the other families it is not: there the reviewer is the subject}, and
+those comparisons should be read as self-assessed until a model that audited nothing in this
+programme has checked them. This project's own P3 Amendment 10 disqualified the same model as a
+rater for the same reason, and the standard was not applied here until a pre-submission referee
+pointed it out. Reviews are archived verbatim, including those that
 refused approval, and several studies needed many rounds: on one day five reports were refused
 at once, and clearing those five took thirty-one further rounds. \emph{No measurement moved in
 any of them.} What moved was what the reports claimed about their measurements --- and in most
@@ -121,8 +129,13 @@ pass with high recall would clear a report in one round or two. So \emph{quotabl
 $N$} means a report survived $N$ passes, not that it was verified, and the marks in this paper
 should be read as a filter of unknown recall rather than as proof.
 
-Two things sharpen that. First, the split: across every round of every study, \emph{no
-measurement ever moved}. The reviewers reproduced rates, intervals, subset enumerations and
+Two things sharpen that. First, the split: across the six studies
+of \S\ref{sec:inreview}, \emph{no measurement moved}, though the scope matters and two
+counterexamples sit just outside it. The clarification study's second review moved its primary
+from 9 of 31 to 9 of 32 instances and its contrast from $+29.0$ to $+28.1$ points, by finding
+an instance wrongly excluded; and a label count inside a reviewed report was 71 where its data
+say 67. Both are measurements that moved on review, and an earlier version of this sentence
+said none ever had. The reviewers reproduced rates, intervals, subset enumerations and
 seeds independently and found no arithmetic error, and every refusal was about what the prose
 claimed of arithmetic already confirmed. On recomputation the instrument is strong; on
 interpretation it is weak, and the two should not be quoted as one assurance. Second, the class
@@ -135,21 +148,23 @@ hidden suite was said to reject. Neither the gates nor a reviewer found it, and 
 what else of that kind remains.
 
 \textbf{Every review prompt in this programme stated the claimed result before the reviewer
-began, and we tested what that cost.} One report that had been declared quotable at round 6,
-after five refusals and unchanged since, was reviewed once more under a prompt that supplied the
-artefacts, the question and the verification list but \emph{withheld every figure, every
-population description and every prior verdict}, and asked for an independent computation
-first. The verdict agreed, and all six contrasts reproduced at a seed and resample count the
-reviewer chose before reading ours. \textbf{Six substantive findings did not agree}: among them
-that the report's two groups were not one population with duplicate rows but two different
-definitions of \emph{caught}; that its rating sheet displays at most three failing inputs while
-81 of its 121 entries have more recorded; that a count of changed labels was 71 where the data
-say 67; and that one comparison we drew was uninterpretable because two of its three terms had
-changed together. Six briefed rounds on the same file had found none of them. \textbf{Telling a
-reviewer what we claim appears to narrow what it examines}, so the first round of every review
-after this one is dispatched with the conclusions withheld. We report this because a paper
-measuring a ceiling on automated auditing, which then audits itself, owes the reader the one
-check of its own instrument it had not run.
+began.} We attempted to test what that costs, and the attempt failed in a way worth reporting.
+One report, quotable at round 6 after five refusals and unchanged since, was dispatched again
+under a prompt whose own text withheld every figure and every prior verdict and asked for an
+independent computation first. \textbf{That prompt's list of binding artefacts then named two
+files that state those figures}, one of them the claims-ledger entry for the result under
+review. The blinding was not enforced, so the agreement between that pass and the briefed one
+establishes nothing, and we draw no inference from it. What the pass did return is a
+\emph{disagreement count}: six substantive findings that six briefed rounds on the same file had
+not produced, among them that the report's two groups were two different definitions of
+\emph{caught} rather than one population with duplicate rows, that its rating sheet displays at
+most three failing inputs while 81 of its 121 entries have more recorded, and that a count of
+changed labels was 71 where the data say 67. **That count is $n=1$, uncontrolled and
+unregistered**: a seventh round might have found new things under any prompt, and no
+matched briefed round was run against the same file. We report it as a reason to test blinding
+properly rather than as a result about blinding, and the first round of every review after this
+one is dispatched with the conclusions withheld from the prompt \emph{and} from every artefact
+it names.
 
 Every study drawn on here has completed that review. One further study was re-run twice, closed
 without a quotable number, and appears nowhere in this paper except in this sentence.

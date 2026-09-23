@@ -257,8 +257,16 @@ not have authorised proceeding under the positive branch.
   author. Study 22 was built to test it prospectively and **failed to**: its construction never
   enforced specification-determinedness (Amendment 7), so no prospective test exists. The split
   may be described only as a post-hoc observation, with its label, until one does.
-* *"CrossAudit finds most defects."* No configuration measured here exceeds 48.2% union recall,
-  and that figure pools twenty readings across three families.
+* *"CrossAudit finds most defects."* The **shipped** configuration reaches 30.0% union recall at
+  eight readings, and pooling twenty readings across three families reaches 48.2%. **This line
+  previously said no configuration measured here exceeds 48.2%, and that was false.** Study 20
+  measured `cross-R` — the same auditor under a constitution with one sentence added — at
+  **67 of 110 = 60.9%** [48.6, 72.5] union BLOCKER recall at eight readings, on the same
+  instances under the same rule, and its own report calls that column union recall. What it does
+  not reach is a shippable operating point: it costs **36.7%** [28.5, 44.8] false positives on
+  correct code against the shipped route's 16.0%. The honest statement is that no configuration
+  measured here finds most defects **at a false-positive rate anyone would ship**, and the
+  price, not the recall, is the reason.
 * *"The auditor cannot see these defects."* The naming and recognition adjudications measure
   what a finding says, not what a model could see; the distinction is stated wherever those
   rates appear.
