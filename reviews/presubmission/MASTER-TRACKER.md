@@ -204,3 +204,12 @@ one attribution; counts (8 studies, 53 rounds) confirmed.
 | R11-2 | the P4 table row lost "on extracted inputs" and the 9 unresolved | caption carries both, read from the record |
 | R11-3 | C16 said "total spend $4.28", which P4's review had withdrawn | "accounted spend", with what is missing |
 | R11-4 | P4's opening credited suite incompleteness to the residual result | stated as a possibility |
+
+## Whole-manuscript review, round 12 (at `fafd1e4`): NOT SUBMITTABLE — one moderate, one minor
+
+All round-11 findings ruled fixed; no regressions.
+
+| # | finding | action |
+|---|---|---|
+| R12-1 | introduction and methods said every departure was a numbered amendment committed in advance; P4's narrower leak check and weaker spend guards were disclosed afterwards, not amended | planned amendments distinguished from deviations disclosed afterwards, in both places |
+| R12-2 | C9 attributed the observed 56→32 residual to the ZIBB secondary, and gave 23/24 without saying it used the withdrawn rubric | attributed to the observed H20d union; the rubric named |

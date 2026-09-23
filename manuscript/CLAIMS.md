@@ -142,8 +142,10 @@ defect assertion, the flattering direction — before round 9 caught it.
 not established.** On the defect population the rule takes union recall from 33 of 110 to
 **67 of 110**: **+30.9 points**, problem-cluster [19.1, 43.1], discordance 38 against 4. The
 false-positive price is **+20.7 points** [12.8, 28.8], and its single-draw rate of 23.6%
-[17.1, 30.3] fails the product bar on all eight draws. Under the ZIBB secondary the residual
-falls 56 to 32, 23 of the 24 leaving being unexercised edges. Evidence: study 20
+[17.1, 30.3] fails the product bar on all eight draws. The observed union residual (H20d) falls
+from 56 to 32 when `cross-R` is added to the five routes already measured; under ceiling 1's
+original classification, since withdrawn for a revised entailment rubric, 23 of the 24 leaving
+were unexercised edges (*attributed to ZIBB until 2026-09-23, review paper1 r12*). Evidence: study 20
 (`RESULTS-CEILING4.md`, quotable at review round 4, 2026-09-20).
 
 **Three limits are part of the claim, not caveats on it.** H20b's fitted-asymptote difference of
