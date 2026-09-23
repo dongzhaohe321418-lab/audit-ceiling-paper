@@ -11,9 +11,8 @@ the committed records. One of those literals carried a wrong population (the pas
 pools both strata, 112 instances on 96 problems, and the row said 56). Every row now reads a
 record, and the script fails if a record is missing a field rather than falling back to text.
 
-Records outside this harness checkout: study 20 (ceiling 4) lives in its own review worktree,
-and the six-family residual is recomputed here from study 21's labels and study 20's residual
-list, because no committed record held 25 of 32.
+The six-family residual is recomputed here from study 21's labels and study 20's residual list,
+because no committed record held 25 of 32.
 
     python3 figures/make_table1.py > tex/table1.tex
 """
@@ -24,9 +23,10 @@ import json
 import sys
 from pathlib import Path
 
-H = Path.home() / "Documents/Crossaudit"
-R = H / "crossaudit_integ/benchmarks/code/records"
-C4 = H / "review-worktrees/wt-ceiling4/benchmarks/code/records/ceiling4/numbers.json"
+# This repository's mirror of the records (records/PROVENANCE.md names each source commit), so
+# the table regenerates from a clean checkout. It read ~/Documents paths until 2026-09-23.
+R = Path(__file__).resolve().parents[1] / "records/code"
+C4 = R / "ceiling4/numbers.json"
 
 
 def j(p): return json.loads((R / p).read_text(encoding="utf-8"))

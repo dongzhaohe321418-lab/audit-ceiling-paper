@@ -22,9 +22,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import scienceplots  # noqa: F401
 
-ROOT = Path.home() / "Documents/Crossaudit/crossaudit_integ/benchmarks/code"
-REC = ROOT / "records/rate3/analysis.json"
-SHEET_KEY = Path.home() / "Desktop/CrossAudit-审计天花板/人类评分任务/_items.json"
+REC = Path(__file__).resolve().parents[1] / "records/code/rate3/analysis.json"
 OUT = Path(__file__).resolve().parent / "fig3_residual.pdf"
 
 
@@ -44,17 +42,13 @@ def main() -> int:
     los = [r[1]["diff_points"] - r[1]["cluster_ci95"][0] for r in readings]
     his = [r[1]["cluster_ci95"][1] - r[1]["diff_points"] for r in readings]
 
-    items = json.loads(SHEET_KEY.read_text(encoding="utf-8"))
-    lab = {r["rate_id"]: r["label"]
-           for r in csv.DictReader((ROOT / "records/rate3/L3.csv").open(encoding="utf-8"))}
-    dup = defaultdict(list)
-    for it in items:
-        dup[it["instance"]].append(it["rate_id"])
-    pairs = [v for v in dup.values() if len(v) > 1]
-    three = sum(1 for v in pairs if len({lab[i] for i in v}) == 1)
-    binary = sum(1 for v in pairs if len({lab[i] == "undetermined" for i in v}) == 1)
-    free = [v for v in pairs if all(lab[i] != "cannot-tell" for i in v)]
-    free_ag = sum(1 for v in free if len({lab[i] for i in v}) == 1)
+    # The eleven repeated pairs are in the record itself; this read a sheet key from the
+    # Desktop until 2026-09-23 (R3-M3). Each pair is (label on arm 1, label on arm 2).
+    pairs = [tuple(v) for v in d["within_pass_consistency"]["pairs"].values()]
+    three = sum(1 for a, b in pairs if a == b)
+    binary = sum(1 for a, b in pairs if (a == "undetermined") == (b == "undetermined"))
+    free = [(a, b) for a, b in pairs if "cannot-tell" not in (a, b)]
+    free_ag = sum(1 for a, b in free if a == b)
 
     with plt.style.context(["science", "nature", "no-latex"]):
         fig, (ax, bx) = plt.subplots(1, 2, figsize=(7.0, 2.35),

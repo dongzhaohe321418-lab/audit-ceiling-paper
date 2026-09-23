@@ -1,0 +1,50 @@
+You are an INDEPENDENT REVIEWER from a different vendor. SECOND review of `RESULTS-RATE3.md` on branch `fusion/evidence-authority` at `ec4502a` (the worktree you are in). Do not modify any file.
+
+**What this is.** The paper's plan asks P1 for a *human from outside the project* to re-rate, blind, whether a specification's prose determines what the hidden test expects — because the existing +22.4-point missed-against-caught contrast was rated by a model (`gpt-6-astra` as L2) and by the author (L1), and so supports the *direction* of claim C4 rather than its *independence*. No outside human has been recruited. What was run instead is a third **model** rating, `L3` = `gpt-6-astra`, on a sheet that was rebuilt today.
+
+**No model calls are needed to check this.** The ratings are committed CSVs; the analysis is arithmetic over them. If any figure here would require a new call, the report is wrong about its own provenance.
+
+**Claimed.** Primary: items labelled `undetermined`, missed 43/68 = 63.2% against caught 23/53 = 43.4%, difference **+19.8 points**, problem-cluster percentile bootstrap [+1.5, +38.2], 10,000 resamples, seed 20260922, `cannot-tell` counted in the denominator and not the numerator. Secondary excluding `cannot-tell`: +22.6 [+2.1, +42.6]. Exploratory: the *unanswerable* version of the same sheet, rated by the same model earlier the same day, gives **+54.2 points** [+38.8, +69.8] — 2.7x the repaired contrast, in the direction that flatters C4 — because 42 of 53 caught items were rated `cannot-tell` there against 5 here.
+
+**The analysis was registered before it was run, with the ratings already collected.** `plan/P1-ANALYSIS-REGISTRATION.md` in the paper repo says so in its first paragraph and states what was and was not seen beforehand. Judge whether that registration is honest about its own weakness, and whether the analysis actually follows it — in particular the `cannot-tell` rule, which was fixed before the arms' rates were computed and which moves the headline by 2.7 points.
+
+**Binding.** `benchmarks/code/RESULTS-RATE3.md`, `benchmarks/code/rate3/analyse.py`, `benchmarks/code/rate3/rebuild_sheet.py`, `benchmarks/code/records/rate3/{L3.csv,L3-broken-sheet.csv,analysis.json}`, the sheet key at `~/Desktop/CrossAudit-审计天花板/人类评分任务/_items.json`, `benchmarks/code/RESULTS-RERATE.md` for the six-category comparator, `plan/P1-ANALYSIS-REGISTRATION.md` and `manuscript/CLAIMS.md` in `~/Documents/Crossaudit/audit-ceiling-paper`.
+
+**Verify, at least:** (1) every rate and interval, recomputed independently from the CSVs and the key, with the stated seed and resample count, and whether the clustering is on the right unit; (2) whether the primary's `cannot-tell` treatment is defensible or merely convenient, given that it is the treatment under which the contrast is *smaller*; (3) whether the report is right that the six-category rating and the three-option rubric are different instruments, and whether it anywhere leans on the closeness of +22.4 to +22.6 after saying that closeness is worth nothing; (4) the exploratory broken-sheet reading — whether "evidence about sheets, not about specifications" is the correct scope, and whether any sentence smuggles it back as evidence about specifications; (5) whether the rebuilt sheet is genuinely symmetric between arms, since the repair added failing inputs to both and an asymmetric repair would manufacture the contrast it measures; (6) whether the report's refusal to claim independence is carried through every sentence, or whether some sentence quietly claims it back.
+
+**Two standing hazards in this programme, stated so you can look for them.** First, a fix written to satisfy a reviewer is itself an unreviewed claim: of thirty-eight review rounds cleared this month, most ended in refusing a repair rather than a measurement — and in the report next door, two successive repairs of one paragraph each introduced a new false statement about another study's work. Second, **several repairs erred toward modesty and were wrong for it**: overstating a limitation is not the safe direction. This report states many limits; check whether any is larger than the truth as well as whether any is smaller.
+
+Tooling: `~/Documents/Crossaudit/crossaudit_integ/.venv/bin/python` with `PYTHONPATH=src`. Do not modify any file. End with "quotable / not quotable" and the single most important reason; if quotable, one reader sentence.
+
+
+## What changed since the first review
+
+All three blocking findings were real, and I verified each against the records before acting.
+
+1. **Arm overlap.** 121 entries, 110 unique instances, 11 in both arms — confirmed from the key.
+   The missed-against-caught headline is **withdrawn, not adjusted**. The disjoint reading
+   (38/57 against 23/53, +23.3 points [+2.4, +44.0]) reproduces your figure and is labelled a
+   post-hoc diagnostic. The report states that the overlap *understated* the contrast, so the
+   error was not in the modest direction it might appear to be.
+2. **Chronology.** Confirmed: `b0719cd` at 16:32:20 already carried 43/68, 23/53, +19.8, seed
+   20260921; the registration was committed at 17:31:09. **The registration is withdrawn in
+   full**, and the report now says the cannot-tell rule and interval method were chosen with the
+   result in view. Check whether any sentence still leans on a discipline the process lacked.
+3. **Rater identity.** Confirmed: `third_rater.py` sets `gpt-5.6-luna`, and P3's preregistration
+   chose luna *to avoid* `gpt-6-astra`. Corrected throughout.
+
+Also corrected: "the mechanism is entirely in the caught arm" (21 missed-side labels changed;
+the *rate* moved +35.85 against +1.47, and that is what is now claimed); the exploratory reading
+is now a descriptive association rather than a general law; Wilson intervals added; L1 rated all
+121 entries rather than 57; `rebuild_sheet.py`'s docstring corrected on the five timeouts and
+two unrecovered inputs.
+
+Two things I did not change, and you should test. The `cannot-tell`-in-denominator rule stays
+primary, now defended on its merits rather than on a registration — judge that defence. And the
+H003/H117 escaped-`\n` rendering defect you found is **not** repaired, because repairing it
+would change the sheet after it was rated; it is a known defect of the rated artefact. Say if
+that is the wrong call.
+
+Read adversarially. The previous version's arithmetic was right and everything around it was
+wrong, so weight the prose, the population claims and the provenance at least as heavily as the
+numbers.

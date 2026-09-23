@@ -103,9 +103,12 @@ the paper. Note also that comparing the 68-instance sheet with the flagged sheet
 points and is wrong: that sheet is 57 residual plus 11 flagged instances, so it contains part of
 the group it is compared with.
 
-**C5 — A same-vendor auditor is worse than a cross-vendor one on the same instances.** Raw
-union difference at K = 8 on the defect population: **−12.7 points** [−25.0, −0.9]. Evidence:
-ceiling 1.
+**C5 — At K = 8 the same-vendor route's union recall is lower than the cross-vendor route's on
+the same instances.** Raw union difference on the defect population: **−12.7 points**
+[−25.0, −0.9]. *Retitled 2026-09-23: it said the same-vendor auditor "is worse", which is the
+auditing-ability reading C2 forbids; the interval is unadjusted with its upper end 0.9 points
+from zero (R2-M4), and the route is sent temperature 0, so this is a direction under that
+sampling, not a ranking.* Evidence: ceiling 1.
 
 **C8 — The referent rule moves a second vendor's family as it moved the shipped auditor, and
 the grading rule does not.** On `self-strong` (Sonnet 4.6) at four readings, the referent rule
@@ -125,8 +128,8 @@ disclaim the requirement are counted in. It is **3 of 110** under the shipped co
 review rounds passed over the opposite error — the report called the instrument *narrower* than
 defect assertion, the flattering direction — before round 9 caught it.
 
-**C9 — The referent rule raises union FLAG COVERAGE at K = 8; whether it raises the ceiling is
-not established.** On the defect population the rule takes union flag coverage from 33 of 110 to
+**C9 — The referent rule raises union recall at K = 8; whether it raises the ceiling is
+not established.** On the defect population the rule takes union recall from 33 of 110 to
 **67 of 110**: **+30.9 points**, problem-cluster [19.1, 43.1], discordance 38 against 4. The
 false-positive price is **+20.7 points** [12.8, 28.8], and its single-draw rate of 23.6%
 [17.1, 30.3] fails the product bar on all eight draws. Under the ZIBB secondary the residual

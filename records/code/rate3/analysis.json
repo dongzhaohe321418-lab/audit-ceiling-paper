@@ -1,0 +1,255 @@
+{
+  "cannot_tell_counts": {
+    "broken": 47,
+    "rebuilt": 12
+  },
+  "disjoint_instances_57_vs_53": {
+    "caught": [
+      23,
+      53
+    ],
+    "caught_pct": 43.39622641509434,
+    "caught_wilson": [
+      30.950396559750292,
+      56.73464857239271
+    ],
+    "cluster_ci95": [
+      1.9521506023492097,
+      43.59035326086956
+    ],
+    "diff_points": 23.27044025157233,
+    "missed": [
+      38,
+      57
+    ],
+    "missed_pct": 66.66666666666667,
+    "missed_wilson": [
+      53.72251158005143,
+      77.50619392484926
+    ],
+    "n_boot_ok": 10000,
+    "n_problems": 56
+  },
+  "exploratory_broken_sheet": {
+    "caught": [
+      4,
+      53
+    ],
+    "caught_pct": 7.547169811320755,
+    "caught_wilson": [
+      2.97395550869467,
+      17.858477483653225
+    ],
+    "cluster_ci95": [
+      38.534036739913965,
+      69.54187086498406
+    ],
+    "diff_points": 54.217536071032185,
+    "missed": [
+      42,
+      68
+    ],
+    "missed_pct": 61.76470588235294,
+    "missed_wilson": [
+      49.880712452221424,
+      72.39055021789457
+    ],
+    "n_boot_ok": 10000,
+    "n_problems": 56
+  },
+  "exploratory_broken_sheet_DISJOINT": {
+    "caught": [
+      4,
+      53
+    ],
+    "caught_pct": 7.547169811320755,
+    "caught_wilson": [
+      2.97395550869467,
+      17.858477483653225
+    ],
+    "cluster_ci95": [
+      38.49283918494609,
+      74.5922890022161
+    ],
+    "diff_points": 57.36511089043363,
+    "missed": [
+      37,
+      57
+    ],
+    "missed_pct": 64.91228070175438,
+    "missed_wilson": [
+      51.9418953556502,
+      75.99957799083991
+    ],
+    "n_boot_ok": 10000,
+    "n_problems": 56
+  },
+  "labels_changed_between_sheets": 67,
+  "labels_changed_by_arm": {
+    "caught": 46,
+    "missed": 21
+  },
+  "n_boot": 10000,
+  "rater": "gpt-5.6-luna (L3), per rate3/third_rater.py -- a MODEL, not the outside human P1 asks for, and deliberately NOT gpt-6-astra, which was study 21's L2",
+  "registered_inconclusive_gate": {
+    "broken_passes": false,
+    "cannot_tell_share_pct": {
+      "broken_caught": 79.24528301886792,
+      "broken_missed": 7.352941176470588,
+      "rebuilt_caught": 9.433962264150944,
+      "rebuilt_missed": 10.294117647058824
+    },
+    "rebuilt_passes": true,
+    "rule": "Amendment 1 (d5919b9): inconclusive if either group exceeds one third `cannot-tell`"
+  },
+  "secondary_cannot_tell_excluded_DISJOINT": {
+    "caught": [
+      23,
+      48
+    ],
+    "caught_pct": 47.916666666666664,
+    "caught_wilson": [
+      34.47131617695162,
+      61.6707676966572
+    ],
+    "cluster_ci95": [
+      4.778250395903037,
+      48.41290726817043
+    ],
+    "diff_points": 26.59313725490197,
+    "missed": [
+      38,
+      51
+    ],
+    "missed_pct": 74.50980392156863,
+    "missed_wilson": [
+      61.13171816155626,
+      84.4542318434177
+    ],
+    "n_boot_ok": 10000,
+    "n_problems": 52
+  },
+  "secondary_cannot_tell_excluded_OVERLAPPING": {
+    "caught": [
+      23,
+      48
+    ],
+    "caught_pct": 47.916666666666664,
+    "caught_wilson": [
+      34.47131617695162,
+      61.6707676966572
+    ],
+    "cluster_ci95": [
+      2.3800505050505087,
+      42.72237809471852
+    ],
+    "diff_points": 22.575136612021858,
+    "missed": [
+      43,
+      61
+    ],
+    "missed_pct": 70.49180327868852,
+    "missed_wilson": [
+      58.11059794277964,
+      80.44498124172395
+    ],
+    "n_boot_ok": 10000,
+    "n_problems": 53
+  },
+  "seed": 20260921,
+  "sheet_groups_NOT_missed_vs_caught": {
+    "caught": [
+      23,
+      53
+    ],
+    "caught_pct": 43.39622641509434,
+    "caught_wilson": [
+      30.950396559750292,
+      56.73464857239271
+    ],
+    "cluster_ci95": [
+      1.162028027719443,
+      38.11070238319814
+    ],
+    "diff_points": 19.83906770255272,
+    "missed": [
+      43,
+      68
+    ],
+    "missed_pct": 63.23529411764706,
+    "missed_wilson": [
+      51.35563563911616,
+      73.69953486476433
+    ],
+    "n_boot_ok": 10000,
+    "n_problems": 56
+  },
+  "six_category_comparator": {
+    "caught": [
+      24,
+      53
+    ],
+    "diff_points": 22.364039955604888,
+    "missed": [
+      46,
+      68
+    ],
+    "note": "a DIFFERENT instrument: ambiguous-oracle among six options, not a three-option determinacy rubric. Reported beside, not as a replication."
+  },
+  "undetermined_rate_shift_points_by_arm": {
+    "caught": 35.84905660377358,
+    "missed": 1.4705882352941178
+  },
+  "within_pass_consistency": {
+    "n_agreeing": 5,
+    "n_pairs": 11,
+    "note": "the 11 instances carried in both arms: identical specification text, identical witness display, rated twice in the same pass",
+    "pairs": {
+      "b1:HumanEval/154": [
+        "cannot-tell",
+        "undetermined"
+      ],
+      "b1:Mbpp/119": [
+        "determined",
+        "undetermined"
+      ],
+      "b1:Mbpp/244": [
+        "determined",
+        "undetermined"
+      ],
+      "b1:Mbpp/300": [
+        "cannot-tell",
+        "determined"
+      ],
+      "b1:Mbpp/589": [
+        "undetermined",
+        "undetermined"
+      ],
+      "b2:HumanEval/154": [
+        "undetermined",
+        "cannot-tell"
+      ],
+      "b2:Mbpp/119": [
+        "undetermined",
+        "undetermined"
+      ],
+      "b2:Mbpp/244": [
+        "determined",
+        "determined"
+      ],
+      "b2:Mbpp/300": [
+        "determined",
+        "cannot-tell"
+      ],
+      "b2:Mbpp/589": [
+        "undetermined",
+        "undetermined"
+      ],
+      "b2:Mbpp/739": [
+        "determined",
+        "determined"
+      ]
+    },
+    "specification_text_identical_in_every_pair": true
+  }
+}

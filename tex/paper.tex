@@ -50,7 +50,7 @@ determined. Adding a behavioural rule to the specification with the code held fi
 adjudicated diagnosis from 0 to 9 of 32 selected instances, against 0 under a placebo edit, but
 only where the added rule agreed with the hidden suite. A recall figure is therefore a property of
 auditor, rulebook, decision rule and benchmark together, and is not portable without its
-false-positive rate. Every study was preregistered, with one named exception; each report is
+false-positive rate. Every study that made model calls was preregistered, and the two unregistered analyses are named; each report is
 marked by whether it passed independent cross-vendor review, and the reviews are archived beside
 the records.
 \end{abstract}
@@ -107,22 +107,22 @@ population were set by cost rather than by a power calculation, and no sample si
 in advance by a minimum-detectable-effect argument.
 
 \section*{Reproducibility and claims}
-The claims this paper is willing to defend, each with the interval and the label its source report
-gives it, are listed in \texttt{CLAIMS.md} in the repository at
-\url{https://github.com/dongzhaohe321418-lab/audit-ceiling-paper}, together with the claims the
-evidence does not support. Every preregistration, every numbered amendment, every report and every
-independent review is archived there verbatim, including the reviews that refused approval. The
-repository also carries the auditor's constitution, the exact prompts for the auditor, the
-generator and each rating rubric, the capability card of every route with its sampling parameters,
-the frozen instance manifests with their hashes, and the analysis code that produces every number
-and figure below from those records. What the repository cannot carry is the raw run
-directories themselves. They contain model outputs derived from corpora under a
-non-commercial, no-redistribution licence, so what is published is every derived record --
-scores, counts, hashes, labels, prompts and manifests -- and not the bytes they were derived
-from. A replication therefore reproduces every number in this paper from the committed records,
-and reproduces the records themselves only by re-running the studies against the same corpora.
-The repository is private while the remaining study is in review and is released with the
-paper.
+The repository at \url{https://github.com/dongzhaohe321418-lab/audit-ceiling-paper} carries the
+claims ledger (\texttt{CLAIMS.md}), with the claims the evidence does not support; the results
+report of every study the paper draws on; every registered study's preregistration and numbered
+amendments; every independent review of those reports, verbatim and including
+refusals; and the derived records --- counts, labels, hashes and intervals --- that the figures
+and Table~\ref{tab:primary} are drawn from. A single command, \texttt{reproduce.sh},
+regenerates Figures 1--3 and Table~\ref{tab:primary} from those records with no model calls, no
+network access and no path outside the checkout, and checks that the regenerated table is
+identical to the one printed here; it was run from a fresh clone to establish that. The
+repository's \texttt{README} maps each claim to its report, its reviews and its records. The
+corpora are HumanEval (MIT) and HumanEval+ and MBPP+ (Apache-2.0), which permit
+redistribution. What a replication cannot do from the repository alone is regenerate the
+records themselves: that requires re-running the studies against the same model endpoints,
+whose outputs are not deterministic, and the auditor harness, which lives in a separate
+repository named in the provenance file. The repository is private until the paper is
+released.
 
 \bibliography{paper}
 \bibliographystyle{icml2026}

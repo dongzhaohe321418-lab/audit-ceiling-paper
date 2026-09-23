@@ -17,7 +17,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import scienceplots  # noqa: F401  — registers the styles
 
-REC = Path.home() / "Documents/Crossaudit/crossaudit_integ/benchmarks/code/records/threshold_sweep.json"
+REC = Path(__file__).resolve().parents[1] / "records/code/threshold_sweep.json"
 OUT = Path(__file__).resolve().parent / "fig2_sweep.pdf"
 
 RULE_MARKER = {

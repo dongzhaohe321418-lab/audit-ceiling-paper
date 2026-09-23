@@ -37,3 +37,28 @@ prompt, passage, or model output text is present.
 **records** were mirrored at. They differ whenever the standard was updated
 after the records were mirrored, or the reverse. Each study's own
 `manifest.json` remains the authority for the commit it was produced at.
+
+## Mirror added 2026-09-23 (R3-M3: the paper must regenerate from a clean checkout)
+
+Every source was a clean checkout at the commit named.
+
+| here | source | commit |
+|---|---|---|
+| records/code/ceiling/numbers.json | harness `benchmarks/code/records/ceiling/` | `e510057` |
+| records/code/ceiling3/numbers.json | harness `benchmarks/code/records/ceiling3/` | `e510057` |
+| records/code/ceiling4/numbers.json | study/ceiling4 worktree `benchmarks/code/records/ceiling4/` | `05b433f` |
+| records/code/rerate/ (numbers, keys, L1/L2 labels) | harness `benchmarks/code/records/rerate/` | `e510057` |
+| records/code/rate3/analysis.json | harness `benchmarks/code/records/rate3/` | `e510057` |
+| records/code/clarify/ (h3, manipulation check, agreement, classification, population) | harness `benchmarks/code/records/clarify/` | `e510057` |
+| records/code/threshold_sweep.json | harness `benchmarks/code/records/` | `e510057` |
+| reports/RESULTS-{CEILING,CEILING3,RERATE,RATE3,CLARIFY,SWEEP}.md | harness `benchmarks/code/` | `e510057` |
+| reports/RESULTS-CEILING3B.md | wt-ceiling3b | `92e0bc7` |
+| reports/RESULTS-CEILING4.md | wt-ceiling4 | `05b433f` |
+| reports/RESULTS-INJECT.md | wt-inject | `a39eeaa` |
+| reports/RESULTS-SUBSTRATE2.md | wt-sub2 | `7d7fb2c` |
+| reports/RESULTS-TESTGEN-VAL.md | wt-testval | `036f2dc` |
+| reviews/harness/ | harness `benchmarks/reviews/`, paper-study files only | `e510057` |
+| reviews/cross-vendor/<queue>/ | `codex-review-queue/<queue>/` prompts, reports and model, not in any repository before | 2026-09-23 |
+
+The code-study corpora (HumanEval MIT; HumanEval+, MBPP+, BigCodeBench Apache-2.0) permit
+redistribution, so these records may carry test inputs. Scanned for credentials before commit.
