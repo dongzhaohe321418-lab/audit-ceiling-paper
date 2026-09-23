@@ -90,32 +90,32 @@ def main() -> int:
          pct(100 * P["rate"]), ci100(P["cluster_ci95"]), "preregistered"),
         ("Union false positives, shipped, $K=8$", f"{Cc['n']} correct, {Cc['n_problems']} problems",
          pct(100 * Cc["rate"]), ci100(Cc["cluster_ci95"]), "preregistered"),
-        ("Pooled union, 3 routes", f"{pool['P']} defect", pct(pool["union_recall_registered"]),
+        ("Pooled union, 3 families", f"{pool['P']} defect", pct(pool["union_recall_registered"]),
          ci(*pool["union_recall_registered_cluster_ci"], sign=False), "preregistered"),
         # Its own price, never the shipped route's (review paper1 r5).
         ("\\quad its false positives", f"{pu['C']['n']} correct", pct(100 * pu["C"]["rate"]),
-         ci100(pu["C"]["cluster_ci95"]), "derived (C1)"),
+         ci100(pu["C"]["cluster_ci95"]), "derived"),
         ("Gain from the eighth reading", f"{gain['n']} defect", pts(100 * gain["rate"], 2),
          ci100(gain["cluster_ci95"], 2), "bar 1.0, not met"),
-        ("Same-vendor stronger $-$ cross, recall", f"{c3['n']} defect", pts(c3["difference_points"]),
+        ("Same-vendor stronger $-$ shipped, recall", f"{c3['n']} defect", pts(c3["difference_points"]),
          ci(*c3["cluster_ci95_points"]), "preregistered"),
         # C2 requires its operating point beside it wherever it is quoted (review paper1 r1, 7).
         ("\\quad its false-positive difference", f"{c3fp['n']} correct",
          pts(c3fp["difference_points"]),
-         ci(*c3fp["cluster_ci95_points"]), "prereg.; 3.3\\% v 16.0\\%"),
+         ci(*c3fp["cluster_ci95_points"]), "prereg.; 3.3\\% vs 16.0\\%"),
         ("Rulebook rule $-$ shipped, recall", f"{c4['primary_H20a_crossR_minus_cross_P']['n']} defect",
          pts(c4["primary_H20a_crossR_minus_cross_P"]["difference_points"]),
          ci(*c4["primary_H20a_crossR_minus_cross_P"]["cluster_ci95_points"]), "preregistered"),
         ("\\quad its false-positive cost", f"{c4['H20c_C_false_positives']['n']} correct",
          pts(c4["H20c_C_false_positives"]["difference_points"]),
          ci(*c4["H20c_C_false_positives"]["cluster_ci95_points"]), "preregistered"),
-        ("Rulebook rule, flags", f"{fl['P']['n']} loop defect", pts(100 * fl["P"]["delta"]),
+        ("Rulebook rule, flags", f"{fl['P']['n']} one-revision defect", pts(100 * fl["P"]["delta"]),
          ci100(fl["P"]["ci95"], sign=True), "exploratory"),
-        ("\\quad its cost on correct code", f"{fl['C']['n']} loop correct", pts(100 * fl["C"]["delta"]),
+        ("\\quad its cost on correct code", f"{fl['C']['n']} one-revision correct", pts(100 * fl["C"]["delta"]),
          ci100(fl["C"]["exact_unconditional_ci95"], sign=True), "unconditional, approx."),
-        ("\\quad isolating contrast, pass rate", f"{loop['n']} loop, {loop['n_clusters']} problems",
+        ("\\quad isolating contrast, pass rate", f"{loop['n']} one-revision, {loop['n_clusters']} problems",
          pts(100 * loop["delta"]), ci100(loop["ci95"], sign=True), "registered, failed"),
-        ("\\texttt{astra} $-$ cross, common $K=4$", "110 defect, 56 problems",
+        ("\\texttt{astra} $-$ shipped, common $K=4$", "110 defect, 56 problems",
          pts(pa["recall_P"]["points"]), ci(*pa["recall_P"]["cluster_ci95"]), "exploratory"),
         ("\\quad its false-positive difference", "150 correct", pts(pa["fp_C"]["points"]),
          ci(*pa["fp_C"]["cluster_ci95"]), "exploratory"),
@@ -125,16 +125,16 @@ def main() -> int:
          pts(dj["diff_points"]), ci(*dj["cluster_ci95"]), "post hoc"),
         ("Undetermined share, 3-family residual", f"{res57['count']} of {res57['n']}",
          pct(res57["share"]), ci(*res57["cluster_ci"], sign=False), "post hoc"),
-        ("\\quad 6-family residual", f"{k32} of {n32}", pct(100 * k32 / n32), "---",
-         "post hoc (C14)"),
+        ("\\quad 6-family residual", f"{k32} of {n32}", pct(100 * k32 / n32), "n/a",
+         "post hoc"),
         ("Correct-code flags, reference disagrees", f"{fa['classes']['D']} of {fa['flagged_instances']} flagged",
-         pct(fa["D_share_pct"]), ci(*fa["D_cluster_ci95"], sign=False), "preregistered (C16)"),
+         pct(fa["D_share_pct"]), ci(*fa["D_cluster_ci95"], sign=False), "preregistered"),
         ("Clarified $-$ original, diagnosis", f"{h3['n']} selected, {h3['n_problems']} problems",
-         pts(h3["points"]), ci(*h3["cluster_ci95"]), "one-signed; exact $p$ .0625"),
+         pts(h3["points"]), ci(*h3["cluster_ci95"]), "one-signed; exact $p = 0.0625$"),
     ]
     out = [
-        r"\begin{table*}[t]", r"\caption{Selected primary quantities of the general-code studies (Section~\ref{sec:ceiling} and Appendix~\ref{sec:results}), with the "
-        r"population it is measured on and the label its source report gives it. Values are "
+        r"\begin{table*}[t]", r"\caption{Selected quantities of the general-code studies (Section~\ref{sec:ceiling} and Appendix~\ref{sec:results}), with the "
+        r"population each is measured on and the label its source report gives it. Values are "
         r"percentages or percentage points. Intervals are 95\% problem-cluster percentile "
         r"bootstraps unless the label names another method. The coverage simulation of "
         r"\S\ref{sec:stats} measures single-rate intervals only; the contrasts and the "
@@ -143,7 +143,7 @@ def main() -> int:
         r"The correct-code row counts disagreement on inputs extracted from the findings; of the "
         f"{fa['flagged_instances']} flagged instances, {fa['classes']['A']} agreed on every extracted "
         f"input and {fa['classes']['N']} yielded no valid input, "
-        r"which can be neither confirmed nor refuted.  Every row is read from a committed record by "
+        r"which can be neither confirmed nor refuted. Every row is read from a committed record by "
         r"\texttt{figures/make\_table1.py}.}",
         r"\label{tab:primary}", r"\centering", r"\footnotesize\setlength{\tabcolsep}{4pt}",
         r"\begin{tabular}{@{}llrll@{}}", r"\toprule",

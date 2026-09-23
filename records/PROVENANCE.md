@@ -66,3 +66,18 @@ redistribution, so these records may carry test inputs. Scanned for credentials 
 | records/code/fpadj/{adjudication,extraction_audit,sensitivity_nonliteral}.json | harness `benchmarks/code/records/fpadj/` | `2d20b9f` |
 | reports/RESULTS-FPADJ.md | harness `benchmarks/code/` | `2d20b9f` |
 | plan/studies/fpadj-PREREGISTRATION.md | harness `benchmarks/code/fpadj/` (with Amendment 1) | `2d20b9f` |
+
+## Science studies (records/ai4s)
+
+Mirrored from `dongzhaohe321418-lab/crossaudit-harness`, `benchmarks/code/records/ai4s/`, at the
+commits each study's report became quotable (the reports in `reports/RESULTS-AI4S-*.md` are
+byte-identical copies from the same commits):
+
+| here | harness branch | commit | study |
+|---|---|---|---|
+| records/ai4s/data_*.json | study/ai4s-code | 6c4bdbb | A4S-3, scientific data |
+| records/ai4s/results_*.json | study/ai4s-results | e3baa55 | A4S-2, scientific results |
+| records/ai4s/strata.json, code_*.json, residual* | study/ai4s-codeaudit | cb3b8d9 | A4S-1 and A4S-1b, scientific code |
+
+Raw readings are in the local run archive (`~/Documents/Crossaudit/ai4s/runs/`); the residual
+rating sheets quote SciCode (Apache-2.0) and stay there, with the L1 hash files.

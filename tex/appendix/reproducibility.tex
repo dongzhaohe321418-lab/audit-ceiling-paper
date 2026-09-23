@@ -2,10 +2,11 @@
 \label{sec:repro}
 \ifdefined\ANON An anonymised repository (link withheld for review) carries the{} \else
 The repository at \url{https://github.com/dongzhaohe321418-lab/audit-ceiling-paper} carries the{} \fi
-claims ledger (\texttt{CLAIMS.md}), with the claims the evidence does not support; the results
+claims ledger (\texttt{manuscript/CLAIMS.md}), with the claims the evidence does not support; the results
 report of every study the paper draws on; every registered study's preregistration and numbered
-amendments (the science studies' under \texttt{plan/studies/ai4s/}, with their errata); every independent review of those reports, verbatim and including
-refusals; and the derived records (counts, labels, hashes and intervals) that the figures
+amendments (the science studies' under \texttt{plan/studies/ai4s/}, where the data and results
+registrations carry errata); every independent review of those reports, verbatim and including
+refusals; and the derived records (counts, rater labels, hashes and intervals) that the figures
 and Table~\ref{tab:primary} are drawn from. A single command, \texttt{reproduce.sh},
 regenerates Figures 1--4 and Table~\ref{tab:primary} from those records and checks that each
 is byte-identical to the copy the manuscript compiles, with no model calls, no network access and no path outside the checkout; it was run from
@@ -16,6 +17,5 @@ datasets (CC BY 4.0), which permit redistribution. What a replication cannot do 
 records themselves. With the archive of raw readings, which is kept separately, they regenerate
 deterministically through the analysis code in the auditor harness, a separate repository named
 in the provenance file; without it, only by re-running the studies against model endpoints whose
-outputs are not deterministic. The repository is private until the paper is
-released.
+outputs are not deterministic.
 

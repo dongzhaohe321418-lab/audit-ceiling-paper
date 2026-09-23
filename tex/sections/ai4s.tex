@@ -11,13 +11,13 @@ gates, amendments and full results are in Appendix~\ref{sec:ai4s-full}.
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{fig4_ai4s}
-  \caption{What each tier flags. (a) Scientific code: the shipped auditor's union flag rate against
+  \caption{\textbf{What each tier flags.} (a) Scientific code: the shipped auditor's union flag rate against
   the number of readings, on defective (orange) and correct (grey) instances, in arm A, whose task gave
   the whole problem (dashed), and arm B, whose task was reframed around the step (solid). (b) Scientific
   results and (c) scientific data, by fault type, with clean items leftmost: the deterministic tier
-  (blue: the \texttt{science} profile in b, the card-derived validator in c), the LLM auditor at four
+  (blue: the \texttt{science} profile in b, the documentation-derived validator in c), the model auditor at four
   readings (orange), and re-execution (b) or the union of the two (c) in green. In (c): mixed units,
-  negated values, duplicated rows, shuffled target, swapped columns, $-999$ sentinel, rounding. The LLM's flag is any
+  negated values, duplicated rows, shuffled target, swapped columns, $-999$ sentinel, rounding. The model auditor's flag is any
   model BLOCKER in the union of readings; the profile's is a hard failure, the validator's any fired
   check, re-execution's a value outside \texttt{np.allclose} defaults. Bars carry exact binomial 95\%
   intervals on the item counts (supplementary; they ignore clustering).}
@@ -47,8 +47,9 @@ paired change of $-32.7$ points [$-42.8$, $-22.4$], and recall fell to 72.8\% [5
 points [$-28.6$, $-2.7$], though the cluster sign-flip test for that recall change gives
 $p = 0.0625$. The change is the whole reframing (the step named, the problem description moved last
 and marked as context, earlier functions exempted), and the arms ran in sequence. The generator's own
-model flagged 46.9 points less of the defective instances than the shipped auditor in each arm
-([$-63.0$, $-30.7$] and [$-61.5$, $-34.4$]; a route comparison), at 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] on correct code.
+model's recall was 46.9 points lower than the shipped auditor's in each arm ([$-63.0$, $-30.7$] and
+[$-61.5$, $-34.4$]; a route comparison), and it flagged 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] of
+correct code, respectively.
 At one reading in the reframed arm the shipped auditor flags 61.7\% [47.9, 75.9] of defective against
 19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. A read sample of 20 of its flags
 on correct code ranges from real divergences between code and step text to contradictions inside the
@@ -56,8 +57,9 @@ benchmark's own instructions and tests too weak to separate outputs; which flags
 not established. An independent expert audit of SciCode's test problems found self-contradictory
 specifications, non-reproducible gold answers and over-tight tolerances that reject correct solutions
 \citep{hu2026scicodeverified}, so some instances labelled defective here may be correct code the
-benchmark rejects. Few defects escaped all sixteen readings (7 and 19 in the two arms); most were
-rated consensus-undetermined by the prose, but the registered test that this share exceeds the
+benchmark rejects. Of the 81 defective instances, 7 and 19 escaped all sixteen readings of
+the two families in the two arms; both raters judged most of them (4 of 7, 13 of 19) undetermined by
+the prose, but the registered test that this share exceeds the
 general-code residual's 77.2\% is killed in both arms by its own interval rule.
 
 \subsection{Scientific results}
@@ -69,20 +71,20 @@ inputs, a script that runs one on the other and writes a run log, a \texttt{resu
 value's log line, and a report whose numbers carry the product's number$\to$source annotations. Each
 yields a clean item and a faulty one. Five fault types are \emph{reporting} faults, where the
 artefacts disagree with each other or with the log; two are \emph{fabrications}, a $\times10^3$ slip
-or a 5\% error written consistently into log, results and report. The LLM auditor reads each item
-four times with the shipped \texttt{science} profile on, the profile's own verdict comes from the
-same call, and re-execution compares the output with the report (Appendix~\ref{sec:ai4s-results-full}).
+or a 5\% error written consistently into log, results and report. The model auditor reads each item
+four times with the shipped \texttt{science} profile on; the profile's own verdict comes from the
+same call; and re-execution compares the output with the report (Appendix~\ref{sec:ai4s-results-full}).
 
 \textbf{Results.} The deterministic profile flags all 49 reporting faults and none of the 25
 fabrications, because in those everything agrees with everything else (Figure~\ref{fig:ai4s}b). The
-LLM auditor flags 23 of the 25 fabrications, 21 with a sound finding about the fault (post hoc),
+model auditor flags 23 of the 25 fabrications, 21 with a sound finding about the fault (post hoc),
 usually by working the result out from the code, for example evaluating a KL divergence to 1 where
-the report says 1000; the other two rest on wrong calculations. All 23 discordant items go the LLM's
+the report says 1000; the other two rest on wrong calculations. All 23 discordant items go the model's
 way (exact McNemar $p = 2.4\times10^{-7}$). On reporting faults its rate is of the combined workflow,
 since its prompt carried the profile's findings. Re-execution misses four faults whose change
-to a near-zero output falls within \texttt{np.allclose}'s default absolute tolerance. The LLM also flags 12 of 74 clean items; read one by one (post hoc),
+to a near-zero output falls within \texttt{np.allclose}'s default absolute tolerance. The model auditor also flags 12 of 74 clean items. Read one by one (post hoc),
 8 correctly identify defects in our construction (a provenance sentence false where the benchmark
-passes inputs as call literals; a unit label contradicting documented units), 4 rest on wrong
+passes inputs as call literals; a unit label contradicting documented units); 4 rest on wrong
 calculations or a syntax error that is not there.
 
 \subsection{Scientific data}
@@ -92,10 +94,10 @@ calculations or a syntax error that is not there.
 tufekci2014ccpp, hamidieh2018superconductor}; 280 items of 120 rows with a data card giving each
 column's meaning and unit: 140 clean, and 140 carrying one of seven faults (mixed units, negated
 values, duplicated rows, a shuffled target, swapped columns, a $-999$ sentinel, rounding). Both model
-families read each item four times, against a validator written from the card and frozen before any
-item existed (Appendix~\ref{sec:ai4s-data-full}).
+families read each item four times, against a documentation-derived validator written from the card and
+frozen before any item existed (Appendix~\ref{sec:ai4s-data-full}).
 
-\textbf{Results.} The two tiers flag different faulty items (Figure~\ref{fig:ai4s}c). The validator flags
+\textbf{Results.} The two tiers flag overlapping but different faulty items (Figure~\ref{fig:ai4s}c). The validator flags
 92 of 140 faulty items (65.7\% [57.9, 73.6]) and no clean item; the shipped auditor 65 of 140 (46.4\%
 [38.6, 54.3]) at 4 of 140 clean items (2.9\% [0.7, 5.7]); their union 112 (80.0\% [73.6, 86.4]) at the
 same 4. These intervals resample items within dataset; four datasets are too few to resample, so no
@@ -104,7 +106,7 @@ are requests for fuller column descriptions on one card; counting only findings 
 fault (post hoc), the auditor flags 61 and the union 110.
 Of the 20 faulty items the auditor flags and the validator misses, 18 carry a finding about the
 injected fault itself (post hoc), mixed units or swapped columns; in one it argued that three atoms
-spanning a 135\,pm radius range cannot have a mean radius of 1.6\,pm, which is the converted cell.
+spanning a 135\,pm radius range cannot have a mean radius of 1.6\,pm, the injected cell being that value converted to {\aa}ngstr\"oms.
 It flagged no shuffled target and no duplicated rows (0 of 20 each), and did worse than the
 validator on every fault the validator was written for. The generator's own model flags 67 of 140
 clean items, and for at least 48 of those (a post hoc lower bound) one finding states a row count, field count, missing

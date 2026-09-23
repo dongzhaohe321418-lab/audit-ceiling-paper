@@ -3,8 +3,9 @@
 \textbf{Critics and repeated reading.} Trained critic models catch more bugs in model-written code
 than unaided humans and hallucinate some \citep{mcaleese2024critics}; aggregating several review
 passes raises review F1 on real pull requests \citep{zeng2025swrbench}; and coverage under repeated
-sampling rises steeply and then flattens \citep{brown2024monkeys}. The natural-defect setting, the
-precision cost of a louder critic and the shape of the repeated-sampling curve are therefore known.
+sampling grows roughly log-linearly with the number of samples over four orders of magnitude
+\citep{brown2024monkeys}. The natural-defect setting, the
+precision cost of a louder critic and the diminishing returns of repeated sampling are therefore known.
 What we add is narrow on this axis: the union of independent readings as an instrument for locating
 a limit, ground truth supplied by an interpreter, and the false-positive rate beside every recall
 figure.
@@ -37,10 +38,10 @@ still solve the wrong equations \citep{song2026moose}. SciCode supplies scientis
 correct solutions \citep{hu2026scicodeverified}; reproduction benchmarks ask agents to recover
 reported results \citep{siegel2024corebench}. On constructed statistical workflows, LLM reviewers
 detect planted flaws almost always but flag 17--50\% of correct scripts \citep{chelate2026replicationtrap},
-and Luo et al.\ already report both true- and false-positive rates. Scientific auditing and paired
+and \citet{luo2025pitfalls} already report both true- and false-positive rates. Scientific auditing and paired
 operating points are therefore not new. What we add is this measurement programme applied to
-scientific code, and the comparison of the LLM tier with deterministic verification on reported
+scientific code, and the comparison of the model tier with deterministic verification on reported
 results and data, which we did not find in prior work.
 
-\textbf{Preregistration} of evaluation protocols is beginning to appear in machine learning
+\textbf{Preregistration.} Preregistration of evaluation protocols is beginning to appear in machine learning
 \citep{vaccaro2026prereg, thomas2026phacking}; we count our use of it as method, not contribution.

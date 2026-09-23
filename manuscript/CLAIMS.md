@@ -2,7 +2,8 @@
 
 Every sentence the paper is allowed to assert, the evidence for it, and the label it must
 carry. A claim enters this file only when its report has passed an independent cross-vendor
-review that ended "quotable" and has been merged. Nothing here may be restated without its
+review that ended "quotable" and its study branch has been pushed (merging study branches into the
+harness's integration branch is a separate step, recorded per claim). Nothing here may be restated without its
 interval; nothing labelled post hoc or exploratory may be restated without that word.
 
 The interval convention throughout: a rate carries the 95% problem-cluster percentile
@@ -378,7 +379,8 @@ default absolute tolerance absorbs the change. Paired on faulty items, LLM again
 discordant, all one way (exact McNemar p = 2.4 × 10⁻⁷; problem-level sign-flip, post hoc,
 p = 3.8 × 10⁻⁶). The LLM flags **12 of 74 clean items**: 8 correctly identify defects in our
 construction (a provenance sentence false where the benchmark passes inputs as call literals; a
-`dimensionless` label contradicting a documented unit), 4 rest on wrong calculations.
+`dimensionless` label contradicting a documented unit), 3 rest on wrong calculations and 1 on a
+syntax error that is not there.
 **Limits that travel with it:** on the reporting faults the model saw the profile's findings, so
 its rate there is of the combined workflow; one benchmark, one test case per instance, outputs of
 at most ten numbers, two synthetic fabrication types, one model at default sampling. Evidence:
@@ -395,8 +397,8 @@ the task opened with the whole problem's description): the shipped cross-vendor 
 and the problem description given as context; run after A, not randomised): **72.8%** [59.3, 87.3]
 and **36.0%** [26.4, 45.6]. Paired B − A: correct **−32.7 points [−42.8, −22.4]** (McNemar
 p = 5.9 × 10⁻¹²), defective **−14.8 [−28.6, −2.7]** (p = 0.0018; cluster sign-flip p = 0.0625). At
-K = 1 in B: 61.7% against 19.8%. The generator's own model flags 46.9 points less of the defective
-instances in both arms (route comparison). The never-flagged residual is 7 (A) and 19 (B) instances;
+K = 1 in B: 61.7% [47.9, 75.9] against 19.8% [12.9, 27.2]. The generator's own model's recall is 46.9 points lower in both arms
+([−63.0, −30.7] and [−61.5, −34.4]; route comparison). The never-flagged residual is 7 (A) and 19 (B) instances;
 most were rated consensus-undetermined (4/7, 13/19), but the registered H2 rule is **killed** in
 both arms. **Limits that travel with it:** the change is the whole reframing, not one of its parts;
 which flags on correct code point at defects was not established (a read sample includes code that
@@ -738,10 +740,11 @@ sentence defining what it is, and `tex/` carries none of its figures or rates. T
 stands on studies 17, 19, 20 and 22. *(Historical: that blocker was discharged when those four
 studies passed review, 2026-09-20/21.)*
 
-**Current status, 2026-09-23.** Every claim the manuscript quotes is admitted above (C1–C16),
+**Current status, 2026-09-24.** Every claim the manuscript quotes is admitted above (C1–C19),
 each from a report that passed independent cross-vendor review; study 23 closed without a
-quotable number and is named only to say what it no longer supports. The whole manuscript passed
-its thirteenth cross-vendor review round as **submittable** (`reviews/cross-vendor/codex-review-paper1/report-r13.md`),
-with the reviewer's own-family conflict stated there.
+quotable number and is named only to say what it no longer supports. The restructured manuscript
+passed its fourth whole-manuscript review round as **submittable**
+(`reviews/cross-vendor/codex-review-paper2/report-r4.md`; the earlier version's thirteen rounds are in
+`codex-review-paper1/`), with the reviewer's own-family conflict stated there.
 
 The rule as stated above remains the rule for admitted claims.

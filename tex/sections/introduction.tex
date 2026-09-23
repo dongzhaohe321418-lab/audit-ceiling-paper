@@ -1,8 +1,8 @@
 \section{Introduction}
 When a model writes code, reports a result or prepares a dataset, someone has to check it, and
-increasingly that someone is another model. CrossAudit, the system every measurement here passes
-through (\S\ref{sec:system}), is built on two rules for doing that. The model that audits must come
-from a different vendor than the model that wrote the work, and what a deterministic check can verify
+increasingly that someone is another model. CrossAudit, the system every auditor reading here passes
+through (Section~\ref{sec:system}), is built on two rules for doing that. The model that audits must come
+from a different vendor from the model that wrote the work, and what a deterministic check can verify
 is verified by code, not by a model's opinion. An auditor of this kind reads work it did not write
 and says whether to block it. We ask how much it catches, what decides the limit, and whether the
 arrangement helps where checking matters most, in science.
@@ -15,24 +15,24 @@ design allows it, against a truth no model supplies: a hidden test suite execute
 Some contrasts cannot be isolated: changing the reading model also changed its sampling, and the
 role of the specification is a post hoc association.
 
-\textbf{The limit on general-purpose code} (\S\ref{sec:ceiling}). Eight independent readings of the
+\textbf{The limit on general-purpose code} (Section~\ref{sec:ceiling}). Eight independent readings of the
 shipped cross-vendor auditor reach 30.0\% union recall [20.0, 40.7] on defective code at 16.0\%
-[10.1, 22.3] on correct code, and the eighth reading still adds 1.9 points, so returns diminish
+[10.1, 22.3] on correct code, and the eighth reading still adds 1.93 points [1.14, 2.78], so returns diminish
 without a plateau. A stronger same-vendor model, sampled differently, moves recall by $-26.4$
 points [$-37.3$, $-15.6$] while flagging 3.3\% [0.7, 6.7] of correct code against 16.0\%, and the contrast
-reverses sign under a weaker severity rule. One added rulebook sentence moves flags by $+26.8$ points
-[13.6, 40.4] on an exploratory arm, at $+12.5$ points on correct code (an interval,
-[$-3.6$, $+26.8$], that does not exclude zero), without measurably moving outcomes. Of 57 defects no
-reading flagged, two model raters judge 44 to be behaviour the specification never determined (post
-hoc). A recall figure is therefore contingent on auditor route, rulebook, decision rule and benchmark,
+reverses sign under a weaker, exploratory any-finding rule. One added rulebook sentence moves flags at one reading on 56 defective instances by $+26.8$
+points [13.6, 40.4] (an exploratory flag contrast), at $+12.5$ points on correct code (an interval,
+[$-3.6$, $+26.8$], that does not exclude zero), without measurably moving outcomes. Of the 57
+defective instances no reading of the first three auditor families flagged, two model raters judge 44
+(77.2\% [62.1, 91.1], post hoc) to be behaviour the specification never determined. A recall figure is therefore contingent on auditor route, rulebook, decision rule and benchmark,
 and is not portable without its false-positive rate.
 
-\textbf{Auditing science} (\S\ref{sec:ai4s}). We then take the system into science, with one
+\textbf{Auditing science} (Section~\ref{sec:ai4s}). We then take the system into science, with one
 preregistered study for each job a scientist would hand an auditor. On reported results, the
 deterministic check that every number traces to its source flagged all 49 inconsistencies among a
 report, its results file and its run log, and none of 25 results that were wrong consistently in all
 three; the model auditor flagged 23 of those 25, 21 with a sound finding about the fault (post hoc).
-On data, a validator written from the dataset's documentation and the auditor flagged different
+On data, a documentation-derived validator and the auditor flagged overlapping but different
 faulty items, 92 and 65 of 140, and together 112, at the auditor's 2.9\% flag rate on clean data
 (post hoc, counting only findings about the injected fault: 61 and 110). On scientific code with no
 tests shown, reframing the task around the step rather than the whole problem cut the auditor's flags
@@ -48,7 +48,7 @@ on correct code from 68.7\% to 36.0\% and its recall from 87.7\% to 72.8\%, on t
   readings, the rulebook, the route and the decision rule each move it, and what is missed is
   associated (post hoc, not isolated as a cause) with what the specification leaves undetermined; a
   recall figure without its operating point does not transfer.
-\item Operating points of an LLM auditor on scientific code, and comparisons of the LLM tier with
+\item Operating points of the model auditor on scientific code, and comparisons of the model tier with
   deterministic verification on reported results (the shipped provenance checks and re-execution) and
   data (a documentation-derived validator), against executed or constructed ground truth. The tiers
   flag different faults, and each fails where the other does not.
@@ -60,10 +60,11 @@ on correct code from 68.7\% to 36.0\% and its recall from 87.7\% to 72.8\%, on t
 
 \textbf{Preregistration and review.} Every study that made model calls was preregistered before its
 first one, with hypotheses, intervals and stopping rules fixed in advance, and planned departures
-recorded as numbered amendments. Two analyses were not registered in advance, and the paper names
-both (Appendix~\ref{sec:method}). Four preregistered hypotheses were killed by their own rules, and
+recorded as numbered amendments. Two whole analyses were not registered in advance, and the paper names
+both (Appendix~\ref{sec:method}); every other unregistered quantity is labelled post hoc where it
+appears. Four preregistered hypotheses were killed by their own rules, and
 in the science studies one more. Every report was reviewed by a model from a different vendor with
-access to the raw records, at between three and twenty-one rounds each, and the reviews are archived
-verbatim. Section~\ref{sec:discussion} discusses what the measurements mean. The full method, results
+access to the raw records, at between three and twenty-one rounds each (the derived-quantities report within the
+whole-manuscript review), and the reviews are archived verbatim. Section~\ref{sec:discussion} discusses what the measurements mean. The full method, results
 and discussion are in Appendices~\ref{sec:method}--\ref{sec:discussion-full}, and the records, reviews
 and the command that regenerates every figure are described in Appendix~\ref{sec:repro}.

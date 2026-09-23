@@ -1,10 +1,7 @@
 \section{The science studies in full}
 \label{sec:ai4s-full}
 
-% Act 4. Designs are the registered ones with their amendments. Results enter only through
-% manuscript/CLAIMS.md after cross-vendor review; the RESULTS placeholders below are not claims.
-
-Acts 2 and 3 measured the model tier on short general-purpose functions. A scientist would hand
+The general-code studies (Section~\ref{sec:ceiling}) measured the model tier on short general-purpose functions. A scientist would hand
 an auditor three different jobs: check the code that computes a result, check that a reported
 result follows from that code, and check the data an analysis starts from. We ran one
 preregistered study per job, each with ground truth that no model supplies. Scientific code
@@ -22,25 +19,25 @@ are released separately from the code, which lets the tests act as a hidden orac
 benchmark's development split, the gold code passes 48 of 50 steps in our environment; the two
 steps whose gold fails here are excluded, as are the three the official harness skips.
 
-\textbf{Population.} The generator of Acts 2 and 3 wrote every step in SciCode's own protocol,
+\textbf{Population.} The generator of the general-code studies wrote every step in SciCode's own protocol,
 three samples per step, each sample building on its own earlier steps. A candidate is
 \emph{correct} if it passes the step's tests and \emph{defective} if it fails or times out. A step
 enters either stratum only if at least one sample passes it, so a failure counts only where this
 environment has shown the step can be passed. This yields 81 defective instances from 30 problems
 and 374 correct ones, from which 150 (53 problems) were drawn by seed.
 
-\textbf{What differs from Act 2.} SciCode has no visible and hidden split, and we did not invent
+\textbf{What differs from the general-code studies.} SciCode has no visible and hidden split, and we did not invent
 one. The auditor sees the problem, the step, its background, the function header, the allowed
 dependencies and the candidate, and no tests of any kind. The shipped cross-vendor auditor and the
 generator's own model each read every instance eight times. The generator's model is reached
 through a command-line route rather than the API; the route adds a short fixed context and uses
-default sampling, so this study's same-vendor family is not temperature-0, unlike Act 2's.
+default sampling, so this study's same-vendor family is not temperature-0, unlike theirs.
 
 \textbf{Two arms.} After the registered arm's outcomes, a second registered arm changed only the
 task text, naming the step's function as the deliverable; the program bytes are identical.
 
 \textbf{Residual.} Defective instances flagged by no reading of either family are rated on a
-blind sheet under Act 3's question adapted to science: do the step's prose and background
+blind sheet under the general-code residual's question (\S\ref{sec:residual}) adapted to science: do the step's prose and background
 determine the value the test expects, including tolerance, units, conventions and numerical
 method. The raters are the agent that ran the study and a model that audits nothing here.
 
@@ -53,8 +50,9 @@ paired change of $-32.7$ points [$-42.8$, $-22.4$], and recall fell to 72.8\% [5
 points [$-28.6$, $-2.7$], though the cluster sign-flip test for that recall change gives
 $p = 0.0625$. The change is the whole reframing (the step named, the problem description moved last
 and marked as context, earlier functions exempted), and the arms ran in sequence. The generator's own
-model flagged 46.9 points less of the defective instances than the shipped auditor in each arm
-([$-63.0$, $-30.7$] and [$-61.5$, $-34.4$]; a route comparison), at 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] on correct code.
+model's recall was 46.9 points lower than the shipped auditor's in each arm ([$-63.0$, $-30.7$] and
+[$-61.5$, $-34.4$]; a route comparison), and it flagged 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] of
+correct code, respectively.
 At one reading in the reframed arm the shipped auditor flags 61.7\% [47.9, 75.9] of defective against
 19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. A read sample of 20 of its flags
 on correct code ranges from real divergences between code and step text to contradictions inside the
@@ -62,8 +60,9 @@ benchmark's own instructions and tests too weak to separate outputs; which flags
 not established. An independent expert audit of SciCode's test problems found self-contradictory
 specifications, non-reproducible gold answers and over-tight tolerances that reject correct solutions
 \citep{hu2026scicodeverified}, so some instances labelled defective here may be correct code the
-benchmark rejects. Few defects escaped all sixteen readings (7 and 19 in the two arms); most were
-rated consensus-undetermined by the prose, but the registered test that this share exceeds the
+benchmark rejects. Of the 81 defective instances, 7 and 19 escaped all sixteen readings of
+the two families in the two arms; both raters judged most of them (4 of 7, 13 of 19) undetermined by
+the prose, but the registered test that this share exceeds the
 general-code residual's 77.2\% is killed in both arms by its own interval rule.
 
 \subsection{Scientific results}
@@ -111,7 +110,7 @@ profile's findings. Re-execution flags every fault except four whose change to a
 The LLM also flags 12 of the 74 clean items, and on reading each (post hoc) 8 of those flags are right. In 9 instances the
 benchmark passes the test's inputs inside the call itself, so the report's sentence that the
 program ran ``on the inputs in \texttt{inputs.py}'' was false; 7 of those clean items were flagged
-for it. Two of four outputs whose unit the solution documents were flagged for our
+for it. Two of four outputs whose unit the solution documents, one of them also among the seven, were flagged for our
 \texttt{dimensionless} label. The remaining 4 flags rest on wrong calculations or, in one case, on
 a syntax error that is not there. On this evidence a provenance chain and a reader that recomputes
 are complements: the first is exact about agreement and blind to consistent error, and the second
@@ -122,7 +121,7 @@ sees consistent error but is sometimes wrong itself.
 \subsection{Scientific data}
 \label{sec:ai4s-data-full}
 
-\textbf{Substrate.} Four physical-science tables from the UCI repository, each under CC BY 4.0:
+\textbf{Substrate.} We use four physical-science tables from the UCI repository, each under CC BY 4.0:
 concrete compressive strength \citep{yeh1998concrete}, airfoil self-noise
 \citep{brooks1989airfoil}, combined-cycle power-plant output \citep{tufekci2014ccpp}, and
 superconductor critical temperature \citep{hamidieh2018superconductor}. Exact duplicate rows and
@@ -141,12 +140,13 @@ deliverable and the card as its documentation. The comparison is a deterministic
 from the card alone and frozen before any item was built: declared ranges, non-negativity,
 duplicates, sentinels and integer-valued continuous columns. By construction it catches the
 negations, duplicates, sentinels and rounding. It sees mixed units or swapped columns only when
-they push a value below zero or out of a declared range, and a shuffled target not at all. The question is whether the model catches
+they push a value below zero or out of a declared range, or make a continuous column
+integer-valued, and a shuffled target not at all. The question is whether the model catches
 what the validator cannot. Two instrument defects were found and fixed by amendment before the
 readings reported here: the card and file named one column differently, and the files first sat
 outside the audited scope, so the product had told the model there was nothing to audit.
 
-\textbf{Results.} The two tiers flag different faulty items (Figure~\ref{fig:ai4s}c). The validator flags
+\textbf{Results.} The two tiers flag overlapping but different faulty items (Figure~\ref{fig:ai4s}c). The validator flags
 92 of 140 faulty items (65.7\% [57.9, 73.6]) and no clean item. The shipped auditor flags 65 of 140
 (46.4\% [38.6, 54.3]) at 4 of 140 clean items (2.9\% [0.7, 5.7]), and their union flags 112 of 140
 (80.0\% [73.6, 86.4]) at the same 4. (These intervals resample items within dataset; four datasets
@@ -154,8 +154,10 @@ are too few to resample, so no interval here carries between-dataset variation.)
 items the auditor flags and the validator misses, 18 carry a finding about the injected fault
 itself, 9 of them mixed units and 9 swapped columns (post hoc). In one, the auditor reasoned that
 three atoms spanning a 135\,pm radius range cannot have a mean radius of 1.6\,pm, which is the cell
-the fault had converted to ångströms. The other 2, and all 4 flags on clean items, are requests for
-fuller column descriptions on one dataset's card. The auditor flagged no shuffled target and no
+the fault had converted to {\aa}ngstr\"oms. The other 2, and all 4 flags on clean items, are requests for
+fuller column descriptions on one dataset's card; so are 2 more of its faulty-item flags, which the
+validator also caught. Counting only findings about the injected fault (post hoc), the auditor flags
+61 of 140 and the union 110, at no clean item. The auditor flagged no shuffled target and no
 duplicated rows (0 of 20 each), and on every fault the validator was written to catch it did worse
 than the validator. The generator's own model, read through its command-line route, is not a usable
 data auditor here: it flags 67 of 140 clean items, and in at least 48 of those one finding states a

@@ -1,20 +1,20 @@
 \section{The system under study}
 \label{sec:system}
 
-Every measurement in this paper is taken through one shipped system, CrossAudit. Every auditor
+Every auditor reading in this paper is taken through one shipped system, CrossAudit. Every auditor
 prompt is built by the product's own prompt builder, and every family but one is read through
 the product's own audit call; the exception, \texttt{gpt-6-astra}, receives the same prompt
-bytes through a direct call. We describe it first because
+bytes through a direct call. We describe the system first because
 its design fixes what the later sections can and cannot vary. We state its structure only here
 and quote no measurement of it. Its limits are the subject of
 Section~\ref{sec:ceiling} onward.
 
 \textbf{Separation of roles.} A generator model writes an increment (a set of files) into a Git
 repository. An auditor model then reads the committed bytes and returns findings, each graded
-BLOCKER or ADVISORY. The auditor must come from a different vendor than the generator: the audit
+BLOCKER or ADVISORY. The auditor must come from a different vendor from the generator: the audit
 refuses to run when the configuration names the same vendor for both roles, and when the
 generator's vendor is not declared, the receipt records that independence could not be asserted.
-The same-vendor arms below run that second way, on purpose. The premise is that a model
+The same-vendor arms below run with the generator's vendor undeclared, deliberately. The premise is that a model
 reviewing its own vendor's output is an interested reader. The product takes that premise as given, and Section~\ref{sec:ceiling} puts
 one consequence of it to the test: whether a same-vendor auditor catches more or less.
 
@@ -31,14 +31,14 @@ project chooses:
   convergence must meet its own threshold; every input a result depends on is listed, exists and is cited at an exact revision
   (\emph{provenance}); and every number a report states is annotated with the file and quoted span
   it came from, which a check matches against the cited bytes (\emph{number$\to$source}).
-\item \texttt{research}: the general pack plus a citation check under which a report may cite only
+\item \texttt{research}: the general profile's checks plus a citation check under which a report may cite only
   sources it fetched through a governed tool.
 \end{itemize}
-The science profile follows one rule throughout, and the rule is the one Act 4 tests: \emph{the
+The science profile follows one rule throughout, and the rule is the one Section~\ref{sec:ai4s} tests: \emph{the
 model names its evidence, and code verifies it.} A number with no source line, a unit that
 disagrees with its schema or an input that does not exist fails without any model's opinion.
 
-\textbf{Verdicts are computed, not voted.} The verdict is derived by code from the evidence, in a
+\textbf{Computed verdicts.} The verdict is derived by code from the evidence, in a
 fixed order. A failed deterministic check blocks, whatever the model says. A model BLOCKER with
 no deterministic support either blocks or escalates to a person, according to a project setting.
 A blocked increment goes back to the generator for a bounded number of revision rounds, three by
@@ -52,10 +52,10 @@ tier. Every model call is written to a ledger with its prompt hash and cost. A v
 recomputes the digest from the recorded evidence, so a receipt can be checked by someone who does
 not trust the operator.
 
-\textbf{What the rest of the paper measures.} Acts 2 and 3
-(Section~\ref{sec:ceiling}, with Appendices~\ref{sec:method} and~\ref{sec:results}) measure the model tier on its own. There,
-an increment counts as flagged when the auditor grades any finding BLOCKER, and the general check
-pack runs as in the product but decides no recall or false-positive outcome. The model tier is the
+\textbf{What the rest of the paper measures.} Section~\ref{sec:ceiling}, with
+Appendices~\ref{sec:method} and~\ref{sec:results}, measures the model tier on its own. There, an
+increment counts as flagged when the auditor grades any finding BLOCKER, and the general profile's
+checks run as in the product but decides no recall or false-positive outcome. The model tier is the
 part of the system whose limit is least known, since a deterministic check catches exactly what it
 was written to catch. Section~\ref{sec:ai4s} measures the model tier on scientific code, and sets
 it beside deterministic verification on reported results and on data, asking what each flags that the

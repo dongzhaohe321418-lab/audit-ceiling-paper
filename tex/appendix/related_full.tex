@@ -30,9 +30,9 @@ flattening bar that it fails, which is why we report diminishing returns and no 
 without external feedback does not reliably improve reasoning and can degrade it
 \citep{huang2024selfcorrect}. Models used as judges prefer their own generations, mostly
 legitimately, since stronger generators are better judges, but harmfully on the instances they
-themselves get wrong \citep{chen2025selfpreference}. Our same-vendor and self-audit arms are the
-code-audit case of that literature, and we read our null there as consistent with it. What our
-arms add is the false-positive rate beside the recall.
+themselves get wrong \citep{chen2025selfpreference}. Our same-vendor arms are the code-audit case of
+that literature; because routes differ in model, operating point and sampling, we report their
+contrasts as contrasts between routes, with the false-positive rate beside the recall.
 
 \textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites and
 reported defects in the original reference solutions \citep{liu2023evalplus}; its code carries
@@ -57,7 +57,7 @@ threshold, over a frozen set of generated tests and candidates that includes can
 failing their visible tests. Corroboration across independent generations does not reach it
 (\S\ref{sec:inreview}), and wrong tests recur by problem. That recurrence is compatible with the
 self-consistent errors, the same wrong answer produced again, that degrade the detection methods
-Tan et al.\ evaluate \citep{tan2025consistent}. Our records hold indices, not assertions, so they
+\citet{tan2025consistent} evaluate. Our records hold indices, not assertions, so they
 do not show that the recurring errors are the same one.
 
 \textbf{Auditing scientific work.} On manuscripts, no model exceeds 21.1\% recall or 6.1\% precision
