@@ -91,6 +91,37 @@ this result, and \S\ref{sec:inreview} states its headline in the form the kill r
 figure describes one reading. It is not a naming rate for the eight-reading union, which would
 need the texts of all eight readings, and those were not archived.
 
+\subsection{What the science studies add}
+
+The two science studies admitted so far give the design rule of CrossAudit's science profile (the
+model names evidence, code verifies it) an empirical reading, and a boundary. On results
+(\S\ref{sec:ai4s-results}), number$\to$source verified every inconsistency between a report, its
+results file and its log, and it could not see a result that was wrong consistently. The model, by
+recomputing, flagged 23 of 25 such fabrications, 21 with a sound finding. On data
+(\S\ref{sec:ai4s-data}), a validator written from the card caught what a rule can state (negative
+masses, sentinels, duplicates, lost precision) and missed what needs reading across columns and
+units, which the model caught in 18 of the 28 such items the validator missed, at a clean-item cost
+of four remarks about a sparse card. In both, the deterministic tier flagged none of the clean items and
+the model tier carried the errors. On data the union of the two was better than either part; on
+results the model's flags already contained the profile's, whose findings its prompt carried.
+
+What neither study shows is that the model tier scales. Both used small artefacts: outputs of at
+most ten numbers, tables of 120 rows. The model's fabrication findings are hand calculations,
+several of them wrong, and it missed every fault that needs comparison across many rows (shuffled
+targets, duplicated rows). A model reading is a useful second tier where the artefact fits in the
+reader's working memory, and it is not a substitute for executing the code or computing over the
+data.
+
+A second observation cost us more than it gave. In both studies the auditor flagged defects in our
+own construction: a card and file that named a column differently, a file placed outside the
+audited scope, a report that claimed a run no file performed, a provenance sentence that was false
+for inputs passed as literals, and a unit label that contradicted the code's own documentation.
+Each was a correct flag on an item we had built as clean. We caught two in pilots, one when every
+verdict came back as an escalation, and the rest only by reading every flag on a clean item, which
+the registrations required. An evaluation of an auditor has to establish that its
+clean items are clean by the auditor's standard, not only by the benchmark's, or its false-positive
+rate measures the evaluator.
+
 \subsection{Limits}
 \label{sec:limits}
 
