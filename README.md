@@ -62,7 +62,11 @@ experiment, withdrawn because it was not blind (`notes/blinded-review-experiment
 
 ## Licences
 
-The paper's corpora are HumanEval (MIT), HumanEval+ and MBPP+ (Apache-2.0), SciCode
+This repository's own code (`analysis/`, `figures/`, the shell scripts) is MIT-licensed
+(`LICENSE`). The manuscript, preregistrations, reviews and records written for this project are
+CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Third-party corpora keep their own
+licences:
+the paper's corpora are HumanEval (MIT), HumanEval+ and MBPP+ (Apache-2.0), SciCode
 (Apache-2.0), four UCI datasets (CC BY 4.0: concrete, airfoil, combined-cycle power plant,
 superconductivity) and, for the closed study 23, BigCodeBench (Apache-2.0); their test inputs
 appear in some records. The prose
