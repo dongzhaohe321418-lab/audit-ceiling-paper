@@ -29,9 +29,10 @@ and 374 correct ones, from which 150 (53 problems) were drawn by seed.
 \textbf{What differs from the general-code studies.} SciCode has no visible and hidden split, and we did not invent
 one. The auditor sees the problem, the step, its background, the function header, the allowed
 dependencies and the candidate, and no tests of any kind. The shipped cross-vendor auditor and the
-generator's own model each read every instance eight times. The generator's model is reached
-through a command-line route rather than the API; the route adds a short fixed context and uses
-default sampling, so this study's same-vendor family is not temperature-0, unlike theirs.
+generator's own model each read every instance eight times. We reach the generator's model
+through a command-line route rather than the API. The route adds a short fixed context and uses
+default sampling, so this study's same-vendor family is not temperature-0, unlike the one in the
+general-code studies.
 
 \textbf{Two arms.} After the registered arm's outcomes, a second registered arm changed only the
 task text, naming the step's function as the deliverable; the program bytes are identical.
@@ -46,22 +47,22 @@ substantially (Figure~\ref{fig:ai4s}a). With the whole problem as the task, the 
 flagged 87.7\% [72.7, 98.6] of defective and 68.7\% [56.6, 79.7] of correct instances at eight
 readings; some of its objections to correct code were that one step did not implement the whole
 problem. With the task reframed around the step, flags on correct code fell to 36.0\% [26.4, 45.6], a
-paired change of $-32.7$ points [$-42.8$, $-22.4$], and recall fell to 72.8\% [59.3, 87.3], $-14.8$
-points [$-28.6$, $-2.7$], though the cluster sign-flip test for that recall change gives
-$p = 0.0625$. The change is the whole reframing (the step named, the problem description moved last
-and marked as context, earlier functions exempted), and the arms ran in sequence. The generator's own
-model's recall was 46.9 points lower than the shipped auditor's in each arm ([$-63.0$, $-30.7$] and
-[$-61.5$, $-34.4$]; a route comparison), and it flagged 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] of
-correct code, respectively.
+paired change of $-32.7$ points [$-42.8$, $-22.4$]. Recall fell too, to 72.8\% [59.3, 87.3], a
+change of $-14.8$ points [$-28.6$, $-2.7$], though the cluster sign-flip test for that recall change
+gives $p = 0.0625$. The change is the whole reframing (the step named, the problem description moved last
+and marked as context, earlier functions exempted), and the arms ran in sequence. The recall of the
+generator's own model was 46.9 points below the shipped auditor's in each arm ([$-63.0$, $-30.7$] and
+[$-61.5$, $-34.4$]; a route comparison). It flagged 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] of
+correct code in the two arms, respectively.
 At one reading in the reframed arm the shipped auditor flags 61.7\% [47.9, 75.9] of defective against
-19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. A read sample of 20 of its flags
-on correct code ranges from real divergences between code and step text to contradictions inside the
-benchmark's own instructions and tests too weak to separate outputs; which flags point at defects was
-not established. An independent expert audit of SciCode's test problems found self-contradictory
+19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. We read a sample of 20 of its
+flags on correct code. They range from real divergences between code and step text, through
+contradictions inside the benchmark's own instructions, to tests too weak to separate outputs; which
+flags point at defects was not established. An independent expert audit of SciCode's test problems found self-contradictory
 specifications, non-reproducible gold answers and over-tight tolerances that reject correct solutions
 \citep{hu2026scicodeverified}, so some instances labelled defective here may be correct code the
 benchmark rejects. Of the 81 defective instances, 7 and 19 escaped all sixteen readings of
-the two families in the two arms; both raters judged most of them (4 of 7, 13 of 19) undetermined by
+the two families in the two arms. Both raters judged most of them (4 of 7, 13 of 19) undetermined by
 the prose, but the registered test that this share exceeds the
 general-code residual's 77.2\% is killed in both arms by its own interval rule.
 
@@ -94,7 +95,7 @@ auditor blocked on that, correctly. We added the run script, discarded the pilot
 added a third condition to the gate, that each clean item's run script reproduce its run log byte
 for byte. All 74 passed all three conditions with no repair.
 
-\textbf{Results.} The deterministic profile does exactly what it was built for (Figure~\ref{fig:ai4s}b).
+\textbf{Results.} The deterministic profile does what it was built for (Figure~\ref{fig:ai4s}b).
 It flags all 49 reporting faults, because the log, the results and the report no longer agree and
 number$\to$source says where, and none of the 25 fabrications, because in those everything agrees
 with everything else. It flags no clean item. The LLM auditor flags 23 of the 25 fabrications at
@@ -102,16 +103,16 @@ four readings, 21 of them with a sound finding about the fault (post hoc). Those
 result out from the code and inputs, for example evaluating a KL divergence of two small
 distributions to 1 where the report says 1000. The other two rest on calculations that are
 themselves wrong. Paired on the faulty items, all 23 discordant items go the LLM's way (exact
-McNemar $p = 2.4\times10^{-7}$; a problem-level sign-flip test, post hoc, gives $3.8\times10^{-6}$).
+McNemar $p = 2.4\times10^{-7}$). A problem-level sign-flip test, run post hoc, gives $3.8\times10^{-6}$.
 On the reporting faults its rate is of the combined workflow, since its prompt carried the
 profile's findings. Re-execution flags every fault except four whose change to a near-zero output falls within
 \texttt{np.allclose}'s default absolute tolerance; two of those outputs are floating-point zeros.
 
-The LLM also flags 12 of the 74 clean items, and on reading each (post hoc) 8 of those flags are right. In 9 instances the
+The LLM also flags 12 of the 74 clean items. We read each of these flags (post hoc), and 8 are right. In 9 instances the
 benchmark passes the test's inputs inside the call itself, so the report's sentence that the
 program ran ``on the inputs in \texttt{inputs.py}'' was false; 7 of those clean items were flagged
-for it. Two of four outputs whose unit the solution documents, one of them also among the seven, were flagged for our
-\texttt{dimensionless} label. The remaining 4 flags rest on wrong calculations or, in one case, on
+for it. Of four outputs whose unit the solution documents, two were flagged for our
+\texttt{dimensionless} label; one of the two is also among the seven. The remaining 4 flags rest on wrong calculations or, in one case, on
 a syntax error that is not there. On this evidence a provenance chain and a reader that recomputes
 are complements: the first is exact about agreement and blind to consistent error, and the second
 sees consistent error but is sometimes wrong itself.
@@ -149,8 +150,8 @@ outside the audited scope, so the product had told the model there was nothing t
 \textbf{Results.} The two tiers flag overlapping but different faulty items (Figure~\ref{fig:ai4s}c). The validator flags
 92 of 140 faulty items (65.7\% [57.9, 73.6]) and no clean item. The shipped auditor flags 65 of 140
 (46.4\% [38.6, 54.3]) at 4 of 140 clean items (2.9\% [0.7, 5.7]), and their union flags 112 of 140
-(80.0\% [73.6, 86.4]) at the same 4. (These intervals resample items within dataset; four datasets
-are too few to resample, so no interval here carries between-dataset variation.) Of the 20 faulty
+(80.0\% [73.6, 86.4]) at the same 4. These intervals resample items within dataset; four datasets
+are too few to resample, so no interval here carries between-dataset variation. Of the 20 faulty
 items the auditor flags and the validator misses, 18 carry a finding about the injected fault
 itself, 9 of them mixed units and 9 swapped columns (post hoc). In one, the auditor reasoned that
 three atoms spanning a 135\,pm radius range cannot have a mean radius of 1.6\,pm, which is the cell
@@ -158,8 +159,8 @@ the fault had converted to {\aa}ngstr\"oms. The other 2, and all 4 flags on clea
 fuller column descriptions on one dataset's card; so are 2 more of its faulty-item flags, which the
 validator also caught. Counting only findings about the injected fault (post hoc), the auditor flags
 61 of 140 and the union 110, at no clean item. The auditor flagged no shuffled target and no
-duplicated rows (0 of 20 each), and on every fault the validator was written to catch it did worse
-than the validator. The generator's own model, read through its command-line route, is not a usable
+duplicated rows (0 of 20 each), and it did worse than the validator on every fault the validator
+was written to catch. The generator's own model, read through its command-line route, is not a usable
 data auditor here: it flags 67 of 140 clean items, and in at least 48 of those one finding states a
 row count, field count, missing column or truncation that the file contradicts (post hoc lower
 bound).

@@ -22,16 +22,16 @@ of $K$ samples, rises steeply and then flattens. This is an established regulari
 sampling, reported over four orders of magnitude of $K$ and fitted by a power law
 \citep{brown2024monkeys}. Our union-of-$K$ is that quantity with a flag rule in place of a
 correctness check, so \S\ref{sec:repeat} re-measures a known shape, and at $K \le 8$ our budget is
-small beside theirs. What is ours is the reading: the curve is taken as a measurement of a
+small beside theirs. Our contribution is the reading: the curve is taken as a measurement of a
 ceiling, reported beside the false-positive rate it costs, and tested against a registered
 flattening bar that it fails, which is why we report diminishing returns and no limit.
 
-\textbf{Self-assessment.} Two lines of work bear on a model judging its own output. Self-correction
+\textbf{Self-assessment.} Two lines of work concern a model judging its own output. Self-correction
 without external feedback does not reliably improve reasoning and can degrade it
 \citep{huang2024selfcorrect}. Models used as judges prefer their own generations, mostly
 legitimately, since stronger generators are better judges, but harmfully on the instances they
 themselves get wrong \citep{chen2025selfpreference}. Our same-vendor arms are the code-audit case of
-that literature; because routes differ in model, operating point and sampling, we report their
+that literature. Because the routes differ in model, operating point and sampling, we report their
 contrasts as contrasts between routes, with the false-positive rate beside the recall.
 
 \textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites and
@@ -52,9 +52,9 @@ discussion for {JUnit} suites \citep{taherkhani2026consistency, xu2025consensus}
 survives the filter against a ground-truth implementation: 84--91\% of retained tests valid in one
 \citep{taherkhani2026consistency}, 0.89--0.93 oracle correctness in the other
 \citep{xu2025consensus}. Our measurement differs in unit and in bar. It is the share of wrong tests
-among retained \emph{failing test--candidate applications}, against a preregistered 2\%
-threshold, over a frozen set of generated tests and candidates that includes candidates already
-failing their visible tests. Corroboration across independent generations does not reach it
+among retained \emph{failing test--candidate applications}, judged against a preregistered 2\%
+threshold. It is taken over a frozen set of generated tests and candidates, and that set includes
+candidates already failing their visible tests. Corroboration across independent generations does not reach it
 (\S\ref{sec:inreview}), and wrong tests recur by problem. That recurrence is compatible with the
 self-consistent errors, the same wrong answer produced again, that degrade the detection methods
 \citet{tan2025consistent} evaluate. Our records hold indices, not assertions, so they
@@ -64,12 +64,12 @@ do not show that the recurring errors are the same one.
 on errata-grade errors and repeated runs rarely rediscover the same errors \citep{son2025spot}; the
 best models detect 46.7\% of real paper--code discrepancies \citep{baumgartner2026scicoqa}. An LLM
 auditor of AI-scientist projects detects hand-labelled pitfalls far better with logs and code than
-with the paper alone \citep{luo2025pitfalls}; pattern-based linting targets methodology bugs in
-scientific Python \citep{samsonau2026scicodelint}; cleaning agents find row-level errors in corrupted
-tables and miss errors spanning rows \citep{bendinelli2025cleaning}; and simulation code can run and
+with the paper alone \citep{luo2025pitfalls}. Pattern-based linting targets methodology bugs in
+scientific Python \citep{samsonau2026scicodelint}, cleaning agents find row-level errors in corrupted
+tables and miss errors spanning rows \citep{bendinelli2025cleaning}, and simulation code can run and
 still solve the wrong equations \citep{song2026moose}. SciCode supplies scientist-written tests
 \citep{tian2024scicode}, and an expert audit of it found many specifications and tests that reject
-correct solutions \citep{hu2026scicodeverified}; reproduction benchmarks ask agents to recover
+correct solutions \citep{hu2026scicodeverified}. Reproduction benchmarks ask agents to recover
 reported results \citep{siegel2024corebench}. On constructed statistical workflows, LLM reviewers
 detect planted flaws almost always but flag 17--50\% of correct scripts \citep{chelate2026replicationtrap},
 and Luo et al.\ already report both true- and false-positive rates. Scientific auditing and paired
