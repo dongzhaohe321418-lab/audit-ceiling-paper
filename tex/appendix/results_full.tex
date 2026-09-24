@@ -33,6 +33,37 @@ because instances within a problem are not independent and only the second respe
 Table~\ref{tab:primary} (Section~\ref{sec:ceiling}) collects selected primary quantities with their populations and labels;
 the prose gives each one where it is used.
 
+Table~\ref{tab:studymap} lists the general-code studies before their numbers appear: what each read,
+what it changed, what it measured and how its main quantity was registered.
+
+\begin{table*}[t]
+\centering\footnotesize
+\caption{\textbf{Study map, general-purpose code.} Every study reads the same frozen generator's
+candidates (110 defective instances from 56 problems, 150 correct from 143) unless the population
+column says otherwise. ``Route comparison'' marks contrasts that change model and sampling
+together.}
+\label{tab:studymap}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{2.9cm}@{}}
+\toprule
+Study & Population & What varies & Main quantity & Status \\
+\midrule
+Repeated reading (\S\ref{sec:repeat}) & 110 defective, 150 correct & readings $K=1$--8; shipped cross-vendor vs same-vendor route & union BLOCKER recall and false positives & preregistered primary \\
+Stronger routes (\S\ref{sec:auditor}) & as above & two stronger same-vendor models, $K=8$ & union recall at $K=8$ & preregistered primary; route comparison \\
+Decision-rule sweep (\S\ref{sec:inreview}) & archived findings of the two studies above & four grading rules; no model calls & union recall under each rule & not registered \\
+Rulebook revision (\S\ref{sec:rulebook}) & 56 defective (41 problems), one reading & one added rulebook sentence; one revision round & flags; hidden-suite pass after revision & outcome contrasts registered; flag contrasts exploratory \\
+Referent rule, second family (\S\ref{sec:inreview}) & as repeated reading, $K=4$ & the same sentence, and a grading rule, on \texttt{self-strong} & union BLOCKER recall & preregistered \\
+Referent rule at $K=8$ (\S\ref{sec:inreview}) & as repeated reading & the same sentence on the shipped auditor & union recall at $K=8$ & preregistered \\
+Residual rating (\S\ref{sec:residual}) & 57 instances no reading of three families flagged & rubric: does the prose entail the expected value & share rated undetermined & rating registered; association post hoc \\
+Outside rater (\S\ref{sec:inreview}) & 121 residual and flagged entries & a rater outside the residual's families & share undetermined, missed vs caught & not registered (a named exception) \\
+Specification edit (\S\ref{sec:inreview}) & 32 selected residual instances & added rule vs same-length placebo vs original, $K=4$ & jointly adjudicated diagnosis & preregistered \\
+Test validation (\S\ref{sec:inreview}) & frozen generated tests and candidates & two corroboration rules & share of wrong tests retained & preregistered; criterion not met \\
+Injected defects (\S\ref{sec:inreview}) & constructed defects and unmodified twins & injected edit & blocks, $K=8$ & descriptive only \\
+Flags on correct code (\S\ref{sec:inreview}) & 150 correct, $K=8$ & finding texts kept & share contradicting the reference & preregistered \\
+Second substrate (\S\ref{sec:inreview}) & BigCodeBench standard-library half & substrate & --- & closed; nothing reported \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \subsection{Returns to repeated reading diminish short of complete}
 \label{sec:repeat}
 
