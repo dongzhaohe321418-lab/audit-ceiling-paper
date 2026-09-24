@@ -3,15 +3,15 @@
 
 \subsection{Substrate, population and ground truth}
 
-Every general-code result (Section~\ref{sec:ceiling} and Appendix~\ref{sec:results}) is measured on one substrate: HumanEval+ and MBPP+ (EvalPlus),
-Python functions whose median task is 41 words of prose and 6 lines of reference code, each with
-an executable hidden test suite. Every stratum, recall denominator and false-positive population
-is therefore decided by an interpreter, and no model judges a recall or false-positive outcome.
+Every general-code result (Section~\ref{sec:ceiling} and Appendix~\ref{sec:results}) is measured on one substrate: HumanEval+ and MBPP+ (EvalPlus).
+These are Python functions whose median task is 41 words of prose and 6 lines of reference code, each with
+an executable hidden test suite. An interpreter therefore decides every stratum, recall denominator
+and false-positive population, and no model judges a recall or false-positive outcome.
 The one outcome defined by adjudication, correct diagnosis in the clarification study, is judged
 jointly by two models and is labelled so where it appears. The benchmark's base suite is shown to
 the generator as the \emph{visible} suite, and its plus suite is held back as the \emph{hidden}
-one. A second substrate, the standard-library half of BigCodeBench, was built and audited and
-closed without a quotable number when its preregistered criterion was not met on a third run;
+one. We also built and audited a second substrate, the standard-library half of BigCodeBench. It
+closed without a quotable number when its preregistered criterion was not met on a third run, and
 nothing from it is reported here.
 
 \textbf{How the population was built.} The corpus has 542 problems. Two, \texttt{HumanEval/32}
@@ -21,22 +21,22 @@ solutions fail their own hidden suites in this harness, which leaves 540. One fr
 one solution per problem. A candidate that passes the visible suite and fails the hidden one is a
 \emph{defective} instance; one that passes both we call \emph{correct}; one that fails the visible
 suite is discarded from every recall and false-positive population. The defect stratum is small,
-about 10\% of solutions, so under a rule registered before the second pass and depending only on
-execution outcomes, generation was repeated over the same 540 problems until there were at least
-100 defective instances or three passes. It stopped at two: 56 and 54 defective, 455 and 455
-correct, 29 and 31 discarded. An instance is therefore a (pass, problem) pair, and one problem can
-contribute two. Recall is measured on all 110 defective instances, which come from
-56 problems; false positives on 150 of the 910 correct instances, drawn once
-from a fixed seed before any auditor ran, from 143 problems. Seven of the 110 defective instances
+about 10\% of solutions. Under a rule registered before the second pass, and depending only on
+execution outcomes, we therefore repeated generation over the same 540 problems until there were at
+least 100 defective instances or three passes had run. It stopped at two passes: 56 and 54 defective,
+455 and 455 correct, 29 and 31 discarded. An instance is therefore a (pass, problem) pair, and one
+problem can contribute two. Recall is measured on all 110 defective instances, which come from
+56 problems. False positives are measured on 150 of the 910 correct instances, from 143 problems;
+that sample was drawn once from a fixed seed before any auditor ran. Seven of the 110 defective instances
 fail by not terminating rather than by a failed assertion, and the registered population keeps
 them.
 
-Two consequences of these definitions hold throughout. \emph{Correct} means \emph{passes the
+Two consequences of these definitions hold throughout. First, \emph{correct} means \emph{passes the
 hidden suite}. It is a benchmark label produced by an interpreter, not a guarantee that the
 program meets its specification, and a suite can be incomplete or wrong. Since one of this paper's
 results (\S\ref{sec:residual}) is that a specification often fails to determine what the hidden suite asks, we
 cannot treat passing that suite as correctness in the ordinary sense, and a \emph{false positive}
-is likewise a flag on test-passing code rather than a demonstrated mistake by the auditor. And the
+is likewise a flag on test-passing code rather than a demonstrated mistake by the auditor. Second, the
 defect population is not a sample of model-written code: it is the residue that already survived
 the visible tests, which is by construction the harder part. A recall figure here is the fraction
 of that residue an auditor catches, never the fraction of all defects a model writes.
@@ -82,9 +82,9 @@ observations. The bootstrap over problems estimates uncertainty from which tasks
 happens to contain. It does not estimate how much a fresh batch of model calls on the same tasks
 would move the numbers, which would need replicate runs we did not budget for at every arm.
 
-Every rate carries a 95\% percentile bootstrap over whole problem clusters (10{,}000 resamples,
-seeds fixed in each preregistration), with the Wilson interval beside it where the source report gives one,
-marked as too narrow. Paired contrasts carry an exact McNemar test and a cluster-level sign-flip permutation
+Every rate carries a 95\% percentile bootstrap interval over whole problem clusters (10{,}000
+resamples, seeds fixed in each preregistration). Where the source report gives a Wilson interval,
+it appears beside the bootstrap, marked as too narrow. Paired contrasts carry an exact McNemar test and a cluster-level sign-flip permutation
 test. Where every discordant pair points one way, the percentile bootstrap's bound at zero is an
 artefact, and an unconditional interval (grid-approximated, unclustered) is quoted instead. The
 one exception is the clarification study, whose registration fixed the bootstrap for a contrast
@@ -92,18 +92,19 @@ that turned out one-signed; its interval is reported as registered and read besi
 cluster test (\S\ref{sec:inreview}). A saturation curve is summarised by a constrained
 exponential fit, and the fitted asymptote is quoted only when the preregistered flattening bar is
 met; otherwise it is labelled an extrapolation and the raw union at $K_{\max}$ is the number
-quoted. Counts of five or fewer are quoted as counts. Multiplicity is handled per study as each
-registered it: the study carrying the primary contrasts corrects over every comparison it
-computed, a Bonferroni family of sixteen with a threshold of $0.00313$ that two comparisons clear;
-others registered a single primary, and the second-vendor rulebook study reports its twenty further quantities without
-correction.
+quoted. Counts of five or fewer are quoted as counts. Each study handles multiplicity as it
+registered. The study carrying the primary contrasts corrects over every comparison it computed:
+a Bonferroni family of sixteen with a threshold of $0.00313$, which two comparisons clear. Other
+studies registered a single primary, and the second-vendor rulebook study reports its twenty
+further quantities without correction.
 
-We measured interval coverage by simulation rather than assuming it. Under the two strata's
-actual cluster profiles (110 instances in 56 problems, and 150 in 143), with within-problem
-concordance $0.5$, the percentile bootstrap's coverage of a nominal $95\%$ rate interval is as
-follows, over 400 replicates of 600 resamples each. The Monte Carlo standard error is about 0.011
-near 95\% coverage and 0.020 at the lowest cell; the simulation covers single rates only, and uses
-integer-index percentiles where the analyses interpolate (\texttt{analysis/coverage\_simulation.py}).
+We measured interval coverage by simulation rather than assuming it. The simulation uses the two
+strata's actual cluster profiles (110 instances in 56 problems, and 150 in 143) and a
+within-problem concordance of $0.5$, over 400 replicates of 600 resamples each. The table gives the
+percentile bootstrap's coverage of a nominal $95\%$ rate interval. The Monte Carlo standard error
+is about 0.011 near 95\% coverage and 0.020 at the lowest cell. The simulation covers single rates
+only, and it uses integer-index percentiles where the analyses interpolate
+(\texttt{analysis/coverage\_simulation.py}).
 
 \begin{center}\small
 \footnotesize\setlength{\tabcolsep}{2.5pt}
@@ -155,8 +156,8 @@ exceptions. First, the severity sweep of \S\ref{sec:auditor} re-grades findings 
 makes no model calls, and was never registered: every figure it produces is post hoc and
 exploratory, and none is a confirmatory test. Second, the analysis behind
 \S\ref{sec:inreview}'s third-rating result was registered a day \emph{after} its contrast had been
-computed and committed, in a document that claimed the opposite; that document is withdrawn in
-the repository and the analysis is registered nowhere. Its method was fixed in advance by an
+computed and committed, in a document that claimed the opposite. That document is withdrawn in
+the repository, and the analysis is registered nowhere. Its method was fixed in advance by an
 earlier amendment, but the disjoint reading, the abstention-excluded secondary and the
 broken-sheet comparison were not.
 
@@ -169,49 +170,49 @@ guard implemented more narrowly than registered, are disclosed in the report and
 amendments. Where an amendment followed an interim observation, the results say so and argue
 whether the change could favour the hypothesis.
 
-Each report was then reviewed by a model from a different vendor from the generator, with read
-access to the raw records, asked to re-run the analysis, recompute the intervals independently,
-and check every sentence against the records. That reviewer is \texttt{gpt-6-astra},
+Each report was then reviewed by a model from a vendor other than the generator's. The reviewer had
+read access to the raw records and was asked to re-run the analysis, recompute the intervals
+independently, and check every sentence against the records. That reviewer is \texttt{gpt-6-astra},
 which is also one of the auditor families measured in \S\ref{sec:auditor}, one of the two raters
 behind \S\ref{sec:residual}'s labels, and one of the two adjudicators whose joint labels define
 the clarification study's outcome. For most claims this is a cross-vendor check on work the
 reviewer had no part in. For the claims that rank \texttt{astra} against the other families, and
 for the clarification study's adjudication, the reviewer is the subject, and those results should
 be read as self-assessed until a model that audited nothing in this programme has checked them.
-The clarification study's Amendment 10 disqualified the same model as the clarification study's
-manipulation-check rater for the same reason, yet kept it as that study's second adjudicator and
-its reviewer, so the standard was applied unevenly within one study and not applied to the review.
+For the same reason, the clarification study's Amendment 10 disqualified this model as the study's
+manipulation-check rater. It kept the model as that study's second adjudicator and its reviewer,
+however, so the standard was applied unevenly within one study and not applied to the review.
 
 Reviews are archived verbatim, including those that refused approval, and several studies needed
 many rounds. On one day five reports were refused at once, and clearing those five took
-thirty-one further rounds. In most of them what moved was what the reports claimed about their
-measurements, and in most of the later refusals the object was a repair written to satisfy the
-previous round rather than the study it repaired. A fix written to satisfy a reviewer is itself an
+thirty-one further rounds. In most of those rounds, what changed was what the reports claimed
+about their measurements. Most of the later refusals objected to a repair written to satisfy the
+previous round, not to the study it repaired. A fix written to satisfy a reviewer is itself an
 unreviewed claim.
 
 \textbf{The reviewer is a language model, and this paper measures the ceiling on language models
 reading work they did not produce.} That applies to our own instrument. The studies of
 \S\ref{sec:inreview} cleared review at rounds 3, 3, 4, 6, 7, 9, 10 and 11, and the
-ceiling study behind the headlines at 21; in every case the round before the last still returned
+ceiling study behind the headlines at 21. In every case the round before the last still returned
 substantive findings. Some of those findings were defects introduced by the repairs between
 rounds, so the counts do not estimate a single pass's recall; they show only that no report
 cleared in fewer than three. \emph{Quotable at round $N$} means a report survived $N$ passes, not
 that it was verified, and the marks in this paper should be read as a filter of unknown recall.
 
 Two further points follow. First, measurements did move on review. The severity sweep's first
-review found its loader misreading one family's draws and another's population, and every
-cross-family figure was recomputed; the clarification study's second review moved its primary
-from 9 of 31 to 9 of 32 instances and its contrast from $+29.0$ to $+28.1$ points, by finding an
-instance wrongly excluded; and a label count inside a reviewed report was 71 where its data say
+review found its loader misreading one family's draws and another family's population, and every
+cross-family figure was recomputed. The clarification study's second review found an instance
+wrongly excluded, which moved its primary from 9 of 31 to 9 of 32 instances and its contrast from
+$+29.0$ to $+28.1$ points. And a label count inside a reviewed report was 71 where its data say
 67. Once a figure's inputs were right, the reviewers reproduced rates, intervals, subset
 enumerations and seeds independently and found no arithmetic error, and most refusals were about
 what the prose claimed. The reviews were reliable on recomputation and unreliable on interpretation,
 and the two should not be quoted as one assurance. Second, the class of defect this leaves open is
 the one that looks right to a language model. The clarification study audited the wrong program
-for 384 readings, because a per-problem field was used where a per-instance one was needed, and
-every automated gate passed: each checked that the code was \emph{identical across conditions},
-and it was, because every condition showed the same wrong program. The agent found it while reading an adjudication sheet, by noticing
-that a displayed program returned exactly what its hidden suite was said to reject. Neither the
+for 384 readings, because a per-problem field was used where a per-instance one was needed. Every
+automated gate passed. Each checked that the code was \emph{identical across conditions}, and it
+was, because every condition showed the same wrong program. The agent found the error while
+reading an adjudication sheet, by noticing that a displayed program returned exactly what its hidden suite was said to reject. Neither the
 gates nor a reviewer found it, and we do not know what else of that kind remains.
 
 \textbf{Every review prompt in this programme stated the claimed result before the reviewer
@@ -222,11 +223,10 @@ That prompt's list of binding artefacts then named two files that state those fi
 them the claims-ledger entry for the result under review. The blinding was not enforced, so the
 agreement between that pass and the briefed one establishes nothing. What the pass did return is a
 disagreement count: six substantive findings that six briefed rounds on the same file had not
-produced, among them that the report's two groups were two different definitions of
-\emph{caught} rather than one population with duplicate rows, that its rating sheet displays at
-most three failing inputs while 81 of its 121 entries have more recorded, and that a count of
-changed labels was 71 where the data say 67. That count is $n=1$, uncontrolled and
-unregistered. A seventh round might have found new things under any prompt, and no matched
+produced. Among them, the report's two groups were two different definitions of \emph{caught}
+rather than one population with duplicate rows; its rating sheet displays at most three failing
+inputs while 81 of its 121 entries have more recorded; and a count of changed labels was 71 where
+the data say 67. The disagreement count is $n=1$, uncontrolled and unregistered. A seventh round might have found new things under any prompt, and no matched
 briefed round was run against the same file. We report it as a reason to test blinding properly
 rather than as a result about blinding. Later first rounds withheld the conclusions from the
 prompt text, but the report under review stayed among the named artefacts, with an instruction to

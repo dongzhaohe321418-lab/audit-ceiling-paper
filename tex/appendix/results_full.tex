@@ -8,9 +8,9 @@ between three and eleven rounds each to reach that point, and states what each d
 license. The headline results of \S\ref{sec:repeat}--\S\ref{sec:residual} come from the ceiling
 study; where they cite a study from \S\ref{sec:inreview}, they say so.
 
-Rates carry the 95\% problem-cluster percentile bootstrap as the primary interval, with the
-Wilson interval beside it where the source report gives one, because problems recur across
-generation batches and an interval that treats instances as independent is too narrow. For single
+Rates carry the 95\% problem-cluster percentile bootstrap as the primary interval. Problems recur
+across generation batches, and an interval that treats instances as independent is too narrow.
+Where the source report gives a Wilson interval, it appears beside the bootstrap. For single
 rates, simulations of an analogous interval under this clustered design (\S\ref{sec:stats})
 suggest coverage near nominal at the headlines' rates and possible undercoverage below a true rate
 of about $0.10$, under an assumed within-problem correlation. They do not measure the coverage of
@@ -23,9 +23,9 @@ never to intervals. Every interval in this paper is an unadjusted 95\% interval,
 statement resting on an interval alone, with no $p$ value that clears its family, is worded as a
 direction rather than as a finding. Each $p$ value belongs to the family of the study that computed
 it. Those in \S\ref{sec:rulebook} are members of that sixteen-member family. The one in
-\S\ref{sec:auditor} is the auditor-family study's single registered primary, which had no family to correct
-within; it would also clear $0.00313$. The clarification study's are reported beside a primary
-registered on its interval, and no correction was registered for them. Where a $p$ value appears
+\S\ref{sec:auditor} is the auditor-family study's single registered primary, so there was no family
+to correct within; it would also clear $0.00313$. The clarification study's $p$ values are reported
+beside a primary registered on its interval, and no correction was registered for them. Where a $p$ value appears
 below, the exact McNemar value and the cluster-level sign-flip permutation value are both given,
 because instances within a problem are not independent and only the second respects that.
 
@@ -44,9 +44,9 @@ eight (Figure~\ref{fig:saturation}). The eighth reading still adds 1.93 points, 
 was not met. Under exact subset averaging that statistic has a closed form: the number of
 instances flagged by exactly one of the $K$ readings divided by $K n$, here $17/(8\cdot110)$. It
 is a count of singletons, not a fitted slope. Its interval resamples problems and so carries
-task-sampling variance, while the statistic itself is made of reading-sampling variance, which the
-interval does not describe; the bar should be read as a statement about these 17 instances rather
-than about a population slope.
+task-sampling variance. The statistic itself is made of reading-sampling variance, which the
+interval does not describe. The bar should therefore be read as a statement about these 17
+instances, not about a population slope.
 
 The constrained fit puts the asymptote at 31.5\%, but on our own registered criterion that figure
 is an extrapolation, and the raw union at eight readings is the number to quote. What the data
@@ -68,9 +68,9 @@ twenty (a heuristic, not an estimate), and the pooled figure should be read as a
 routes rather than over twenty independent looks.
 
 The price is measured on the same footing. Union false positives on 150 correct increments reach
-16.0\% [10.1, 22.3] at eight readings. The recall bought per point of false positive, meaning
-recall gained over one reading divided by false positives gained over one reading, is
-1.68 at eight, and it changes little as readings accumulate: from $K=2$ to $K=8$ the
+16.0\% [10.1, 22.3] at eight readings. We also compute the recall bought per point of false
+positive: recall gained over one reading divided by false positives gained over one reading. It is
+1.68 at eight readings and changes little as readings accumulate. From $K=2$ to $K=8$ the
 ratio runs 1.67, 1.63, 1.64, 1.65, 1.66, 1.67, 1.68. It falls once, at $K=3$, and then rises, so repeated
 reading on this route buys recall at a slightly improving price. The ratio is a quotient of two
 measured rates and carries no interval of its own.
@@ -89,18 +89,19 @@ measurements qualify what it means, and none of them favours reading it as a sta
 auditing ability.
 
 First, the two auditors are not at the same operating point, and this paper elsewhere warns against
-comparing auditors at different operating points. The stronger model flags correct code at 3.3\%, or 5 of 150, which
-\S\ref{sec:stats} says to quote as a count; its bootstrap interval, [0.7, 6.7], sits in the
-range where simulations of an analogous interval cover about $0.89$ at a true rate of $0.03$
+comparing auditors at different operating points. The stronger model flags correct code at
+3.3\%, or 5 of 150, which \S\ref{sec:stats} says to quote as a count. Its bootstrap interval,
+[0.7, 6.7], sits in the range where simulations of an analogous interval cover about $0.89$ at a true rate of $0.03$
 rather than $0.95$, so it may be narrower than it claims. The shipped auditor flags 16.0\% [10.1,
 22.3]. The stronger model blocks less of everything.
 
-Second, the sign reverses under a weaker severity rule (Figure~\ref{fig:sweep}). Counting any
-finding rather than only findings graded BLOCKER, an exploratory rule that was not preregistered,
-the stronger model reaches 59.1\% [47.3, 70.6] on the defect population at 34.0\% [26.5, 41.7] on
-correct code, against the shipped auditor's 34.5\% [23.6, 45.5] at 19.3\% [12.8, 26.3]. The ratio
-of those two rates, a derived point ratio with no interval, is 1.74 and 1.79 respectively, so
-nothing here shows one family buying more recall per false positive than the other. Under
+Second, the sign reverses under a weaker severity rule (Figure~\ref{fig:sweep}). That rule counts
+any finding rather than only findings graded BLOCKER; it is exploratory and was not
+preregistered. Under it the stronger model reaches 59.1\% [47.3, 70.6] on the defect population at
+34.0\% [26.5, 41.7] on correct code, and the shipped auditor reaches 34.5\% [23.6, 45.5] at
+19.3\% [12.8, 26.3]. The ratio of recall to false positives, a derived point ratio with no
+interval, is 1.74 for the stronger model and 1.79 for the shipped auditor, so nothing here shows
+one family buying more recall per false positive than the other. Under
 any-finding grading the stronger model's findings cover more instances, and under the BLOCKER rule
 fewer, so the $-26.4$ depends on the counting rule. That does not show why the families' findings
 differ, or that any finding identifies the hidden failure.
@@ -124,8 +125,8 @@ readings it leads on recall, $+11.5$ [2.9, 21.3], with an unresolved false-posit
 of $-0.3$ $[-3.8, +3.4]$; against the shipped auditor's full eight it leads on false positives,
 $-5.3$ $[-10.3, -0.7]$ unadjusted, but not on recall, $+2.7$ $[-6.5, +13.0]$
 (\S\ref{sec:inreview}). The evidence therefore does not support ``a stronger model is a worse
-auditor''. It supports the narrower statement that this particular same-vendor model, at this
-the preregistered BLOCKER rule and sampled at temperature $0$, blocks far less.
+auditor''. It supports the narrower statement that this particular same-vendor model, under the
+preregistered BLOCKER rule and sampled at temperature $0$, blocks far less.
 
 A same-vendor route of the generator's own size reached lower union recall than the
 cross-vendor one on these instances, $-12.7$ points $[-25.0, -0.9]$ at eight readings, signed so
@@ -175,19 +176,19 @@ routes and a gain from $K=1$).
 Two costs travel with it. On correct code the same rule moved flags by $+12.50$ points. Every
 discordant pair points the same way (7 against 0), so by the rule stated in \S\ref{sec:stats} the
 percentile bootstrap's bound at zero is an artefact, and the admissible interval is the
-unconditional one. That interval, computed with a grid-approximated nuisance supremum and ignoring
-clustering, is approximate rather than guaranteed exact; it is $[-3.6, +26.8]$ and
-does not exclude zero, and its exact McNemar and cluster sign-flip $p$ are both $0.0156$,
-against that study's Bonferroni threshold of $0.00313$. The directed statement the records
+unconditional one. That interval is $[-3.6, +26.8]$ and does not exclude zero. It is approximate
+rather than guaranteed exact, because it uses a grid-approximated nuisance supremum and ignores
+clustering. Its exact McNemar and cluster sign-flip $p$ are both $0.0156$, against that study's
+Bonferroni threshold of $0.00313$. The directed statement the records
 support is the pooled one, where 23 discordant pairs point one way and 1 the other (exact McNemar
 $p = 3.0\times10^{-6}$, cluster sign-flip $p = 1.0\times10^{-5}$): the sentence makes the auditor
 louder overall. On the correct stratum alone the cost is $+12.50$ points with an interval that
 contains zero.
 
-The second cost is to outcomes. On the contrast that isolates the rule, the arm with the added rule against
-the cross-vendor arm on hidden-suite pass rate after one revision (both strata, 112 instances on
-96 problems), the effect is $+5.36$ points, cluster $[-0.89, +12.07]$, exact McNemar $p = 0.146$
-and cluster sign-flip $p = 0.183$, which does not exclude zero. The rule demonstrably moves what
+The second cost is to outcomes. The contrast that isolates the rule compares the arm with the
+added rule against the cross-vendor arm on hidden-suite pass rate after one revision, over both
+strata (112 instances on 96 problems). The effect is $+5.36$ points, cluster $[-0.89, +12.07]$,
+exact McNemar $p = 0.146$ and cluster sign-flip $p = 0.183$; the interval does not exclude zero. The rule demonstrably moves what
 the auditor writes down. Whether that converts into code that passes the hidden suite is not
 established, and since this paper argues that a flag is not a catch, that distinction applies to
 our own intervention first.
@@ -230,11 +231,11 @@ auditor, and the raters are not independent of it: one was the agent that ran th
 was at stake. Three things support the second reading. The rubric was fixed before any label was
 written. The labels were committed before we looked for outside evidence. And when a first pass
 was found to have carried instance identifiers and a sheet name into the raters' view, the
-labelling was re-run with identities stripped and the result held. Where an outside party had
-independently recorded that one of these specifications is defective, in twelve MBPP tasks named
-in a paper written for another purpose \citep{richter2026collapse}, our raters agree on 9 of the 11 that fall inside our
-defect population, with both disagreements on the boundary that paper's own ``incomplete''
-category draws. That check is one-sided by construction: it can support agreement where an
+labelling was re-run with identities stripped and the result held. An outside party had also
+independently recorded specifications as defective, in twelve MBPP tasks named in a paper written
+for another purpose \citep{richter2026collapse}. Of the 11 that fall inside our
+defect population, our raters agree on 9, and both disagreements lie on the boundary that paper's
+own ``incomplete'' category draws. That check is one-sided by construction: it can support agreement where an
 outsider looked, and can bound nothing about the rate.
 
 \textbf{A rater outside the residual's families, asked a different question.} One of the two
@@ -247,8 +248,8 @@ most three failing inputs and never the expected values (\S\ref{sec:inreview}). 
 constructs. The earlier category also admits prose that determines an answer the oracle
 contradicts, which this rubric does not count as undetermined, so 38 is not a corrected estimate
 of 44. What they share is that a participating and a non-participating rater both put a majority
-of the residual on the undetermined side, and the second agreed with itself on only 7 of 11
-repeated items.
+of the residual on the undetermined side. The non-participating rater agreed with itself on only
+7 of 11 repeated items.
 
 
 \begin{figure*}[t]
@@ -282,45 +283,50 @@ itself a finding about this method.
 \textbf{A rulebook sentence moves a second vendor's family.} The referent rule, \emph{find what the
 visible tests do not cover}, raises union BLOCKER recall on \texttt{self-strong} (\texttt{claude-sonnet-4-6})
 at four readings by +20.9 points, cluster [10.8, 31.8], at a false-positive cost on
-correct code of +8.0 points [3.4, 12.7]. A second intervention, a rule on how findings are graded, shows no demonstrated
-improvement, $+0.9$ points $[-1.8, +4.5]$, and that hypothesis fails its registered criterion,
-which demonstrates neither equivalence nor that the rule did nothing. This reproduces
-\S\ref{sec:rulebook}'s effect on a different vendor's model at a different $K$, with its own
-price. A post hoc quantity from the same study, whether a flagged finding \emph{reports a failure}
-on the instance's failing input class (says that class raises or returns the wrong value), is 3 of 110 under the shipped constitution and 27 of 110
-under the rule, and it may not be quoted as defect recognition. Its rubric admits a finding even
+correct code of +8.0 points [3.4, 12.7]. This reproduces \S\ref{sec:rulebook}'s effect on a different vendor's model at a
+different $K$, with its own price. A second intervention, a rule on how findings are graded, shows
+no demonstrated improvement: $+0.9$ points $[-1.8, +4.5]$. That hypothesis fails its registered
+criterion, and the failure demonstrates neither equivalence nor that the rule did nothing. The
+same study also measured, post hoc, whether a flagged finding \emph{reports a failure} on the
+instance's failing input class, that is, says that class raises or returns the wrong value. The
+count is 3 of 110 under the shipped constitution and 27 of 110 under the referent rule (not the
+grading rule), and it may not be
+quoted as defect recognition. Its rubric admits a finding even
 where it grades the class non-blocking or says the specification is silent, so findings that
 disclaim the requirement are counted in.
 
 \textbf{The added rule raises union recall to 60.9\%; a higher ceiling is not established.}
-On the defect population the same rule takes union recall (the identical quantity: blocked by at
-least one BLOCKER, unioned over eight readings) from 33 of 110 to 67 of 110 = 60.9\%
-[48.6, 72.5], +30.9 points [19.1, 43.1], at +20.7 points [12.8, 28.8] of false
-positives, with a single-draw false-positive rate of 23.6\% [17.1, 30.3] that fails the product bar on all eight
-draws. The caution that a flag is not a catch attaches to both figures equally. What separates
+On the defect population the referent rule takes union recall from 33 of 110 to 67 of 110, or 60.9\%
+[48.6, 72.5]. This is the same quantity as the shipped auditor's eight-reading headline in
+\S\ref{sec:repeat}: blocked by at least one BLOCKER, unioned over eight readings, here for the
+shipped auditor with the referent rule against the shipped auditor alone. The gain is +30.9 points [19.1, 43.1], at a cost of +20.7 points
+[12.8, 28.8] in false positives. The single-draw false-positive rate is 23.6\% [17.1, 30.3] and
+fails the product bar on all eight draws. The caution that a flag is not a catch attaches to both figures equally. What separates
 them is their price, 36.7\% [28.5, 44.8] false positives against 16.0\%, which is why the shipped
 route is the shipped route. The fitted asymptotes differ by $+27.1$ points [10.9, 39.0], and
 \emph{that does not establish a higher ceiling}. The cross-vendor arm never flattened, so one of
 the two terms is an extrapolation. Heterogeneous low-probability detection imitates a ceiling at
 this budget, since an instance found with probability $0.02$ per reading survives eight readings
 about 85\% of the time. And this study's own zero-inflated estimator finds no never-detectable
-class in \emph{either} arm. Its adjudication kill is arithmetic rather than a labelling artefact:
-only 9 of 110 instances drew any finding on the single reading whose finding texts were archived, so the largest defect-asserting count available under
-perfect adjudication was 9, below the floor of 20. Every adjudication-derived figure in it is
-conditional on labels whose production can no longer be audited, because one rater's raw reply,
-prompt, launcher and execution log lived only in a session scratchpad and were destroyed between
-the review that flagged them and the repair.
+class in \emph{either} arm. The study's adjudication kill is arithmetic rather than a labelling
+artefact. Only 9 of 110 instances drew any finding on the single reading whose finding texts were
+archived, so the largest defect-asserting count available under perfect adjudication was 9, below
+the floor of 20. Every adjudication-derived figure in the study is conditional on labels whose
+production can no longer be audited. One rater's raw reply, prompt, launcher and execution log
+lived only in a session scratchpad, and they were destroyed between the review that flagged them
+and the repair.
 
 \textbf{Corroboration does not validate a generated test.} A wrong generated test, one that fails
 on the dataset's canonical solution, is not reliably recognised by asking whether further
 independent generation draws also fail on the same candidate. Neither rule that makes further generation calls reaches the
-preregistered threshold on the registered population, which covers failing applications on all
-three candidate strata, 58 of those 107 failing applications on candidates that already fail their visible
-tests. The retained wrong-test rates are 12.2\% [3.6, 22.6] (Wilson [7.0, 20.6]) for majority-over-draws
-and 14.9\% [6.5, 25.5] for any-draw agreement, against a limit of 2\%, and neither is shown to improve on the free
-within-draw comparator at 12.8\% [3.9, 23.9]: the better of the two rules keeps the same wrong applications plus four
-correct ones, a small observed advantage the study cannot resolve. On the candidates a product
-would meet, those passing their visible tests (post hoc), the rates are 6 of 33, 18.2\%
+preregistered threshold on the registered population. That population covers failing
+applications on all three candidate strata; 58 of its 107 failing applications are on candidates
+that already fail their visible tests. The retained wrong-test rates are 12.2\% [3.6, 22.6]
+(Wilson [7.0, 20.6]) for majority-over-draws and 14.9\% [6.5, 25.5] for any-draw agreement,
+against a limit of 2\%. Neither is shown to improve on the free within-draw comparator at 12.8\%
+[3.9, 23.9]: the better of the two rules keeps the same wrong applications plus four correct ones,
+a small observed advantage the study cannot resolve. A post hoc analysis restricted to the
+candidates a product would meet, those passing their visible tests, gives 6 of 33, 18.2\%
 [0.0, 44.8], and 10 of 43, 23.3\% [6.8, 47.1]. The first leaves its relation to the 2\%
 threshold unresolved; the second's unadjusted interval lies wholly above it, which is exploratory
 evidence of exceeding it. Neither is a preregistered test on that population, whose registered
@@ -340,9 +346,8 @@ already imported. No filter establishes specification entailment, and repairing 
 alone would not have: recovering the failing input and executing a witness shows that the edit
 changes behaviour on an input the hidden suite exercises, not that the specification entails the
 value expected there. What may be quoted is descriptive. At eight readings the auditor blocked
-90 of 92 accepted injected instances against 11 of their 92 unmodified twins,
-79 discordant pairs one way and none the other, and against 33 of 110 on the natural
-residual. The instances the construction's own gate \emph{refused} were blocked 31 of 40,
+90 of 92 accepted injected instances and 11 of their 92 unmodified twins, with 79 discordant
+pairs one way and none the other. On the natural residual it blocked 33 of 110. The instances the construction's own gate \emph{refused} were blocked 31 of 40,
 which is why that gate cannot be assumed conservative. A probe separates the injected set from the
 natural one at 96.7\% on the items it answered, \emph{by a feature it does not identify}: the two
 arms share no problem, so task composition alone could produce the result, and the probe's model
@@ -358,15 +363,15 @@ class without the class header, so it failed to parse on all 300 tasks while sco
 intact class. The repair for that fault introduced a second one, re-attaching a hidden method's
 decorators to the first visible method on 26 tasks. A third run on a clean extraction reproduced
 five of the six reversals of first-substrate findings that the second run had produced, and did not
-reproduce the sixth. The
-criterion registered before those numbers existed was stated over the set, so the strict reading
-applies and the study is closed after three runs, about \$82, and no quotable number. Whether five
+reproduce the sixth. The criterion registered before those numbers existed was stated over the
+set, so the strict reading applies: the study is closed after three runs and about \$82, with no
+quotable number. Whether five
 of six should have licensed the five is recorded as an open question in \texttt{CLAIMS.md}.
 
 \textbf{Measured union recall is rule-dependent, and a headline's magnitude belongs to its own
-rule.} Re-grading findings already archived by two of the studies above under four decision
-rules, with no new model calls, leaves the shipped BLOCKER threshold's estimate intact for its own
-rule, which \emph{was} preregistered as ``$\geq 1$ BLOCKER finding'', while \emph{reversing its
+rule.} We re-graded findings already archived by two of the studies above under four decision
+rules, with no new model calls. The shipped BLOCKER threshold's estimate stays intact for its own
+rule, which \emph{was} preregistered as ``$\geq 1$ BLOCKER finding'', and \emph{reverses its
 sign} under any-finding grading. That reversal is a mechanical consequence of changing what
 counts, and it identifies nothing about why the families produced different findings or
 different severities. At a common depth of four readings, \texttt{astra} exceeds the
@@ -377,10 +382,10 @@ so $\binom{4}{4}=1$ and its estimate is a single realisation with none of its re
 variance averaged out; one arm's luck in four draws is fully in the number and the other's is not.
 On the cross-vendor auditor's complete eight-draw ladder the same contrast is $+2.7$ points
 $[-6.5, +13.0]$ with a false-positive difference of $-5.3$ points $[-10.3, -0.7]$. That
-comparison points toward lower false positives, not higher recall, on an interval whose upper end
-is 0.7 points from zero and which is not adjusted for the other contrasts computed beside it, so
-it is a direction the data lean and not one they establish. Observed false-positive rates near one
-another are not a matched operating point, and one family has no point under the four
+comparison points toward lower false positives, not higher recall. The false-positive interval's
+upper end is 0.7 points from zero, and it is not adjusted for the other contrasts computed beside
+it, so this is a direction the data lean and not one they establish. Observed false-positive rates
+near one another are not a matched operating point. One family has no point under the four
 deterministic rules between 3.3\% and 34.0\% false positives, precisely where a matched comparison
 would sit, so its ranking is bracketed rather than measured. Nothing here assesses finding content
 against the hidden failure, so none of it speaks to what any finding identified.
@@ -392,8 +397,8 @@ re-rated the whole sheet after we rebuilt it on mechanically recovered witnesses
 necessary because the control arm had been unanswerable: 42 of 53 caught entries carried no
 failing-input evidence, and all 42 drew \texttt{cannot-tell}. The share labelled
 \emph{undetermined} is 43 of 68 against 23 of 53, +19.8 points [1.2, 38.1]. Those two
-groups are not two populations, because they define \emph{caught} differently and 11 instances
-fall in both; removing those 11 from the missed group gives $+23.3$ points [2.0, 43.6], post
+groups are not two populations: they define \emph{caught} differently, and 11 instances fall in
+both. Removing those 11 from the missed group gives $+23.3$ points [2.0, 43.6], post
 hoc and larger, so the overlap had understated the contrast. The limit is part of the result. On
 those 11 instances, shown with identical text and identical evidence, the rater agreed
 with itself on 7 of 11 on this binary outcome and 5 of 11 on the full label, where the earlier
@@ -414,8 +419,9 @@ clarified and a same-length placebo specification, four readings each. An instan
 diagnosed only if both adjudicators judged some finding to state the behaviour the hidden suite
 expects. Diagnosis rose from 0 of 32 to 9 of 32 under clarification and stayed at 0 of 32
 under placebo. The registered primary, clarified against original, is +28.1 points,
-problem-cluster 95\% interval [7.7, 51.4], which meets the registered criterion. The registered secondary, on the 23 instances where the re-rating study's consensus (\S\ref{sec:residual}) and
-the third rater's label agree, is 8 of 23 against 0 of 23, $+34.8$ [10.0, 60.9].
+problem-cluster 95\% interval [7.7, 51.4], which meets the registered criterion. The registered
+secondary uses the 23 instances where the re-rating study's consensus (\S\ref{sec:residual}) and
+the third rater's label agree; it is 8 of 23 against 0 of 23, $+34.8$ [10.0, 60.9].
 
 Given the observed data, that criterion added little. Every discordant pair points one way, so no
 bootstrap resample can fall below zero, and with successes on five of 19 problems a resample is
@@ -433,9 +439,9 @@ Two further limits are part of the result. \emph{The inferred rule contradicts t
 entirely on 23 of the 32 instances and partly on 2}, and diagnosis was 0 of 23 where it
 contradicted against 9 of 9 elsewhere. That split was classified after the outcome was seen, not
 assigned, and the agreeing instances may simply be the easier problems; it does not say which
-property of the edits moved diagnosis. And a separate model rated the clarified prose more
-determining than the original by $+28.1$ points [2.6, 54.3] but than the placebo by $+18.8$
-$[-9.4, +45.2]$, so whether the placebo was inert as a specification is unresolved. One
+property of the edits moved diagnosis. A separate model rated the clarified prose more
+determining than the original by $+28.1$ points [2.6, 54.3], but more determining than the
+placebo by $+18.8$ $[-9.4, +45.2]$, so whether the placebo was inert as a specification is unresolved. One
 adjudicator is the agent that ran the study and the other is \texttt{gpt-6-astra}, the model that
 also reviewed this study (\S\ref{sec:methods-review}); they agreed on 84 of 91 items,
 $\kappa = 0.85$, which is agreement and not accuracy. The study supports a specification-edit
