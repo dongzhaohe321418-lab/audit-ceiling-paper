@@ -47,8 +47,7 @@ checks verify what code can verify. On general-purpose code with hidden tests, a
 independent readings flagged 30.0\% [20.0, 40.7] of defective programs that pass their visible
 tests, and 16.0\% [10.1, 22.3] of correct ones, with diminishing returns and no plateau. That rate
 belongs to a configuration, not to the auditor: the auditor route (model and sampling together),
-one rulebook sentence and the counting rule each move it, and much of what is missed is, on a post
-hoc rating, behaviour the specification never states. Three preregistered studies then examine
+one rulebook sentence and the counting rule each move it, and on a post hoc rating most missed programs fail where the specification's prose does not entail the value the hidden suite expects. Three preregistered studies then examine
 scientific code, reported results and data. Checks that every reported number traces to its source
 flagged every inconsistency and no fabrication written consistently into log, results and report;
 the model auditor flagged nearly all such fabrications, twice on a wrong calculation
@@ -56,7 +55,8 @@ the model auditor flagged nearly all such fabrications, twice on a wrong calcula
 documentation-derived validator and the model flagged overlapping but different faults, so together
 they covered more than either. On scientific code with no tests shown, reframing the task around one
 step sharply reduced flags on correct programs. Where both tiers ran, every flag on a clean item and
-every wrong finding came from the model. Studies making model calls were preregistered, the two
+every wrong finding came from the model, partly by construction of the clean items; where the code
+could be run, re-executing it was the stronger check. Studies making model calls were preregistered, the two
 unregistered analyses are named, and every quoted report passed independent cross-vendor review.
 \end{abstract}
 

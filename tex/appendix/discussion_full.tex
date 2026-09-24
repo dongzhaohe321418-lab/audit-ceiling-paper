@@ -94,7 +94,7 @@ counts that as a catch. For one reading of the shipped auditor the finding texts
 adjudicated blind by two raters. The auditor returned a finding on 9 of 110 defective instances
 and asserted the actual failing behaviour on 5 to 7 of them, depending on how the two raters are
 combined. The raters agreed at $\kappa = 0.391$. We report that beside the rate because weak agreement
-is part of what the rate is worth. That study's preregistered kill condition fired on
+is part of what the rate is worth. These figures are conditional on labels whose production can no longer be audited: one rater's raw replies and prompts were destroyed before the repair (\S\ref{sec:inreview}). That study's preregistered kill condition fired on
 this result, and \S\ref{sec:inreview} states its headline in the form the kill requires. The
 figure describes one reading. It is not a naming rate for the eight-reading union, which would
 need the texts of all eight readings, and those were not archived.
@@ -106,23 +106,21 @@ science studies give that rule an empirical reading and a boundary. On results, 
 flagged every inconsistency between a report, its results file and its log, and could not see a
 result that was wrong consistently; the model flagged 23 of 25 such fabrications, 21 with a sound
 finding about the fault (post hoc). On data, a validator written from the card flagged what a rule can
-state and missed what needs reading across columns and units; of the 28 such items the validator
-missed, the model flagged 18 with a finding about the fault (post hoc).
-Where both tiers ran, the deterministic one flagged no clean item, and every clean-item flag and every
-wrong finding came from the model. On data the union was better than either part; on results the
+state and missed what needs reading across columns and units; of the 28 mixed-unit or swapped-column items among the 48 faulty items the validator missed, the model flagged 18 with a finding about the fault (post hoc).
+Where both tiers ran, the deterministic one flagged no clean item, and every clean-item flag and every wrong finding came from the model. This is partly by construction: a clean results item was admitted only if the profile and re-execution passed it, and the clean data pools had exact duplicates and impossible rows removed before sampling. On data the union was better than either part; on results the
 model's flags already contained the profile's, whose findings its prompt carried. Neither study shows
 that the model tier scales. The artefacts were small, the model's fabrication findings are hand
-calculations (two of the 23 rest on wrong ones), and it missed every fault that needs comparison
-across many rows. A model reading is a useful second tier where the artefact fits in the reader's
+calculations (two of the 23 rest on wrong ones), and in these runs it flagged no duplicated rows and no shuffled target (0 of 20 each). A model reading is a useful second tier where the artefact fits in the reader's
 working memory. It is not a substitute for executing the code or computing over the data.
 
 \textbf{Clean items must be clean by the auditor's standard.} In the results and data studies the
-auditor flagged defects in our own construction: a card and file that named a column differently, a
-file outside the audited scope, a report claiming a run no file performed, a provenance sentence false
-for inputs passed as literals, and a unit label contradicting the code's documentation. Each was a
-correct flag on an item we had built as clean. We caught two in pilots, one because every verdict
-came back as an escalation, and the other two by reading every flag on a clean item, which the registrations
-required. In the code study the task we wrote named the whole problem when one step was delivered,
+auditor flagged four defects in our own construction: a card and file that named a column
+differently, a report claiming a run no file performed, a provenance sentence false for inputs passed
+as literals, and a unit label contradicting the code's documentation. Each was a correct flag on an
+item we had built as clean. Two surfaced before the reported readings and were repaired by amendment;
+the other two surfaced by reading every flag on a clean item, which the registrations required. A
+fifth construction defect, data files placed outside the audited scope, was not a model finding: it
+showed up because every verdict came back as an escalation. In the code study the task we wrote named the whole problem when one step was delivered,
 and a sample of the auditor's flags on correct code objected to exactly that; there we read a sample,
 not every flag. Without such reading, a false-positive rate can measure the evaluator.
 
@@ -145,7 +143,7 @@ not every flag. Without such reading, a false-positive rate can measure the eval
   defect population, 143 for the correct sample); the science studies' have their own, and the data
   study resamples items within dataset. We simulated an analogous single-rate interval, with 600
   resamples rather than 10{,}000 and at the tested rates only. It covers near nominally at the
-  headlines' rates, and at 0.80 at the one tested rate below $0.10$, which was 0.03
+  headlines' rates, and below nominal at the two tested rates under $0.10$: 0.80 at 0.03 and 0.87 at 0.05 on the defect stratum
   (\S\ref{sec:stats}). For the paired contrasts and
   conditional shares coverage is unmeasured, and no sample size was justified in advance by a
   detectable-effect calculation.

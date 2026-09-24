@@ -1,0 +1,7 @@
+# Result
+
+`work/run.py` runs `work/solution.py` on the inputs in `work/inputs.py`, evaluating `G_mat(g, pref, dep_order)`, and writes `work/outputs/run.log`. The step's output has 9 values, which are, in order, 1 dimensionless, 1 dimensionless, 0.7 dimensionless, 1.1 dimensionless, 1.2 dimensionless, 1.2 dimensionless, 0.6 dimensionless, 0.6 dimensionless, 0.6 dimensionless, recorded in `work/results/results.json`.
+
+```crossaudit-numbers
+[{"v": "1", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"1 dimensionless\""}}, {"v": "1", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"1 dimensionless\""}}, {"v": "0.7", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.7 dimensionless\""}}, {"v": "1.1", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"1.1 dimensionless\""}}, {"v": "1.2", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"1.2 dimensionless\""}}, {"v": "1.2", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"1.2 dimensionless\""}}, {"v": "0.6", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.6 dimensionless\""}}, {"v": "0.6", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.6 dimensionless\""}}, {"v": "0.6", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.6 dimensionless\""}}]
+```

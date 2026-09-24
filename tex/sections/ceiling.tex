@@ -54,9 +54,7 @@ sampled unions grow apart, the gap is only $-10.1$ points. A high-reasoning cros
 32.7\% [20.7, 45.0] at 10.7\% [5.9, 16.1] with four readings, against the shipped route's 30.0\% at
 16.0\% with eight, but no paired contrast establishes both advantages together.
 
-\textbf{The rulebook.} We added one sentence to the auditor's rulebook: \emph{find what the visible
-tests do not cover}. At one reading on 56 defective instances (41 problems), flags rose from 10 to
-25, $+26.8$ points [13.6, 40.4] (exploratory; exact McNemar $p = 0.0003$, cluster sign-flip
+\textbf{The rulebook.} We added one sentence to the auditor's rulebook: \emph{find what the visible tests do not cover}. At eight readings on all 110 defective instances, it raised union recall from 30.0\% to 60.9\% [48.6, 72.5], $+30.9$ points [19.1, 43.1] (preregistered), at a price of 36.7\% [28.5, 44.8] false positives against 16.0\%. An earlier revision experiment asked whether the changed flags make code pass. There, at one reading on 56 defective instances (41 problems), flags rose from 10 to 25, $+26.8$ points [13.6, 40.4] (exploratory; exact McNemar $p = 0.0003$, cluster sign-flip
 $p = 0.0009$). On correct code they rose by 12.5 points, an interval [$-3.6$, $+26.8$] that includes
 zero. An improvement in outcomes was not established: on the contrast that isolates the rule, the
 hidden-suite pass rate after one revision moved $+5.4$ points [$-0.9$, $+12.1$]. The
@@ -64,10 +62,9 @@ sentence changes what the auditor writes; whether that makes code pass is not es
 
 \textbf{What is missed.} Fifty-seven of the 110 defective instances were flagged by no reading of
 the first three families. Two model raters, one of them the agent that ran this programme, agree
-post hoc that in 44 of them (77.2\% [62.1, 91.1]) the specification's prose does not settle the
-value the hidden suite expects, as in the example that opens this paper. That reverses an earlier
+post hoc that in 44 of them (77.2\% [62.1, 91.1]) the specification's prose does not entail the value the hidden suite expects on the first failing input, as in the example that opens this paper. The category is broad: it covers prose that is silent, prose that allows the program's value, and prose that determines a value the suite contradicts. That reverses an earlier
 classification of the same instances as unexercised edges. Being undetermined is not enough to be
-missed: reading six families at forty readings shrinks the never-flagged set to 32 of 110, and 43
+missed: reading six families (five distinct models, one of them also read with the added rulebook sentence) at forty readings shrinks the never-flagged set to 32 of 110, and 43
 of the 68 instances both raters call undetermined are flagged by some reading. The undetermined
 share of what remains is similar, 25 of 32 (78.1\%), but the 32 are a subset of the 57, so this is a
 description, not a test of stability. Of twelve MBPP tasks an outside paper names as ambiguous,

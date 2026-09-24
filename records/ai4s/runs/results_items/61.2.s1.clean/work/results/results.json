@@ -1,0 +1,7 @@
+{
+ "quantities": [
+  {"name": "output[0]", "value": "-0.096297594", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-72fe09f67f#L1", "text": "-0.096297594 dimensionless"},
+  {"name": "output[1]", "value": "-0.29246037", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-72fe09f67f#L2", "text": "-0.29246037 dimensionless"},
+  {"name": "output[2]", "value": "0.41983264", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-72fe09f67f#L3", "text": "0.41983264 dimensionless"}
+ ]
+}

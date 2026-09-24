@@ -26,10 +26,10 @@ the command printed in `reproduce.sh`.
 | C2 | study 18 | `RESULTS-CEILING3.md` | `reviews/harness/2026-09-10-ceiling3-r*.md` | `code/ceiling3/numbers.json` |
 | C3 | ceiling 2 | `RESULTS-CEILING.md` | as C1 | `code/ceiling/numbers.json` |
 | C4 | study 21 | `RESULTS-RERATE.md` | `reviews/harness/2026-09-1*-rerate*.md` | `code/rerate/` |
-| C7 | study 17 | `RESULTS-TESTGEN-VAL.md` | `reviews/harness/2026-09-09-testgen*`, `reviews/cross-vendor/codex-review-testval8/` | not mirrored |
-| C8 | study 19 | `RESULTS-CEILING3B.md` | `reviews/cross-vendor/codex-review-c3br8/` | not mirrored |
+| C7 | study 17 | `RESULTS-TESTGEN-VAL.md` | `reviews/harness/2026-09-09-testgen*`, `reviews/cross-vendor/codex-review-testval8/` | `code/testgen-val/` |
+| C8 | study 19 | `RESULTS-CEILING3B.md` | `reviews/cross-vendor/codex-review-c3br8/` | `code/ceiling3b/` |
 | C9 | study 20 | `RESULTS-CEILING4.md` | `reviews/cross-vendor/codex-review-c4r1/` | `code/ceiling4/numbers.json` |
-| C10 | study 22 | `RESULTS-INJECT.md` | `reviews/cross-vendor/codex-review-inject1/` | not mirrored |
+| C10 | study 22 | `RESULTS-INJECT.md` | `reviews/cross-vendor/codex-review-inject1/` | `code/inject/` |
 | C11 | P2 | `RESULTS-SWEEP.md` | `reviews/cross-vendor/codex-review-sweep1/` | `code/threshold_sweep.json` |
 | C12 | P1 | `RESULTS-RATE3.md` | `reviews/cross-vendor/codex-review-rate3/` | `code/rate3/analysis.json` |
 | C13 | P3 | `RESULTS-CLARIFY.md` | `reviews/cross-vendor/codex-review-clarify1/` | `code/clarify/` |
@@ -40,9 +40,9 @@ the command printed in `reproduce.sh`.
 | C19 | A4S-1 and A4S-1b, scientific code | `RESULTS-AI4S-CODE.md` | `reviews/cross-vendor/codex-review-a4s1/` | `ai4s/strata.json`, `ai4s/code_*.json`, `ai4s/residual*` |
 | none | study 23, closed | `RESULTS-SUBSTRATE2.md` | `reviews/cross-vendor/codex-review-sub2r1/` | — |
 
-"Not mirrored" means the paper quotes that claim's numbers in prose but no figure or table
-script reads them; they are in the study's own record at the commit named in
-`records/PROVENANCE.md`. Early review rounds, archived in the harness, are mirrored in `reviews/harness/`;
+Every quoted study's records are under `records/`; where no figure or table script reads them,
+the paper quotes their numbers in prose, and `records/PROVENANCE.md` names the harness commit
+each copy was taken from. The science studies' raw readings are in `records/ai4s/runs/`. Early review rounds, archived in the harness, are mirrored in `reviews/harness/`;
 later rounds of every queue live under `reviews/cross-vendor/<queue>/` as `prompt-rN.md` and
 `report-rN.md`, verbatim, refusals included. `codex-review-blind1` is the blinded-review
 experiment, withdrawn because it was not blind (`notes/blinded-review-experiment.md`).

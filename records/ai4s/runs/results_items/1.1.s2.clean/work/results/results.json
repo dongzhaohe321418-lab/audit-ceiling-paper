@@ -1,0 +1,11 @@
+{
+ "quantities": [
+  {"name": "output[0]", "value": "0.014285714", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-f7b6b474ac#L1", "text": "0.014285714 dimensionless"},
+  {"name": "output[1]", "value": "0.035364235", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-f7b6b474ac#L2", "text": "0.035364235 dimensionless"},
+  {"name": "output[2]", "value": "0.0023420578", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-f7b6b474ac#L3", "text": "0.0023420578 dimensionless"},
+  {"name": "output[3]", "value": "-0.035104006", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-f7b6b474ac#L4", "text": "-0.035104006 dimensionless"},
+  {"name": "output[4]", "value": "-0.16497266", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-f7b6b474ac#L5", "text": "-0.16497266 dimensionless"},
+  {"name": "output[5]", "value": "0.01677371", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-f7b6b474ac#L6", "text": "0.01677371 dimensionless"},
+  {"name": "output[6]", "value": "0.16524911", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-f7b6b474ac#L7", "text": "0.16524911 dimensionless"}
+ ]
+}

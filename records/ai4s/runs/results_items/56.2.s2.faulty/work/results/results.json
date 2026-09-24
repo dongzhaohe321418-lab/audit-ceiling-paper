@@ -1,0 +1,13 @@
+{
+ "quantities": [
+  {"name": "output[0]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L1", "text": "1.05 dimensionless"},
+  {"name": "output[1]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L2", "text": "1.05 dimensionless"},
+  {"name": "output[2]", "value": "0.735", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L3", "text": "0.735 dimensionless"},
+  {"name": "output[3]", "value": "1.155", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L4", "text": "1.155 dimensionless"},
+  {"name": "output[4]", "value": "1.26", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L5", "text": "1.26 dimensionless"},
+  {"name": "output[5]", "value": "1.26", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L6", "text": "1.26 dimensionless"},
+  {"name": "output[6]", "value": "0.63", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L7", "text": "0.63 dimensionless"},
+  {"name": "output[7]", "value": "0.63", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L8", "text": "0.63 dimensionless"},
+  {"name": "output[8]", "value": "0.63", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-6a803152a8#L9", "text": "0.63 dimensionless"}
+ ]
+}

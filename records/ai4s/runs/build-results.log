@@ -1,0 +1,4 @@
+74 of 150 qualify; dropped 76; substitutions 4
+cycle ['F4', 'R5', 'F1', 'R1', 'R3', 'R4', 'R2']
+gate (DCL half): clean items with a science-profile BLOCKER: 0 []
+faults Counter({'F1': 14, 'F4': 11, 'R1': 11, 'R4': 11, 'R2': 10, 'R3': 9, 'R5': 8})

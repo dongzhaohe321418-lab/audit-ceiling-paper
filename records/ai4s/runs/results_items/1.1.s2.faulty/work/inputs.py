@@ -1,0 +1,13 @@
+n = 7
+h = 1.0/n
+diagonal = [1/h for i in range(n)]
+diagonal_up = [-9/h for i in range(n-1)]
+diagonal_down = [-9/h for i in range(n-1)]
+A = np.diag(diagonal) + np.diag(diagonal_up, 1) + np.diag(diagonal_down, -1)
+A[:, 0] = 0
+A[0, :] = 0
+A[0, 0] = 1/h
+b = np.array([0.1,0.1,0.0,10,0.0,0.1,0.1])
+x0 = np.zeros(n)
+maxIter = 200
+tol = 10e-7

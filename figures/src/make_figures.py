@@ -45,15 +45,15 @@ def figure1(c1, s2):
     panels = [
         (axes[0], "Defective increments (recall)",
          [("cross-vendor (shipped)", c1["cross"]["P"]["curve"], CROSS, "-", "o",
-           c1["cross"]["P"]["curve_ci95"]),
+           c1["cross"]["P"]["union_at_kmax_block"]["cluster_ci95"]),
           ("same-vendor, temperature 0", c1["self"]["P"]["curve"], SELF, "-", "s",
-           c1["self"]["P"]["curve_ci95"]),
+           c1["self"]["P"]["union_at_kmax_block"]["cluster_ci95"]),
 ]),
         (axes[1], "Correct increments (false positives)",
          [("cross-vendor (shipped)", c1["cross"]["C"]["curve"], CROSS, "-", "o",
-           c1["cross"]["C"]["curve_ci95"]),
+           c1["cross"]["C"]["union_at_kmax_block"]["cluster_ci95"]),
           ("same-vendor, temperature 0", c1["self"]["C"]["curve"], SELF, "-", "s",
-           c1["self"]["C"]["curve_ci95"]),
+           c1["self"]["C"]["union_at_kmax_block"]["cluster_ci95"]),
 ]),
     ]
     for ax, title, series in panels:
@@ -63,7 +63,8 @@ def figure1(c1, s2):
             # the quoted point carries its 95% problem-cluster interval. One bar per series
             # rather than a band keeps four curves legible, and the bars are dodged in x so
             # two series with overlapping intervals stay separately readable.
-            lo, hi = ci[-1]
+            # the same K=8 interval Table 1 and the text quote (union_at_kmax_block)
+            lo, hi = ci
             x_ci = 8.50 + 0.42 * index
             ax.errorbar([x_ci], [curve[-1]], yerr=[[curve[-1] - lo], [hi - curve[-1]]],
                         fmt="none", ecolor=colour, elinewidth=0.9, capsize=2.0, capthick=0.9)

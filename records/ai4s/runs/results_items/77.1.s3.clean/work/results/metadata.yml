@@ -1,0 +1,6 @@
+code_version: a4s2-1687edd8e9
+inputs:
+  - work/outputs/run.log@a4s2-1687edd8e9
+  - work/solution.py@a4s2-1687edd8e9
+  - work/inputs.py@a4s2-1687edd8e9
+  - work/run.py@a4s2-1687edd8e9

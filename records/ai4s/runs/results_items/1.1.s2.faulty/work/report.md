@@ -1,0 +1,7 @@
+# Result
+
+`work/run.py` runs `work/solution.py` on the inputs in `work/inputs.py`, evaluating `cg(A, b, x0, tol)`, and writes `work/outputs/run.log`. The step's output has 7 values, which are, in order, 0.015 dimensionless, 0.037132446 dimensionless, 0.0024591607 dimensionless, -0.036859206 dimensionless, -0.17322129 dimensionless, 0.017612396 dimensionless, 0.17351156 dimensionless, recorded in `work/results/results.json`.
+
+```crossaudit-numbers
+[{"v": "0.015", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.015 dimensionless\""}}, {"v": "0.037132446", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.037132446 dimensionless\""}}, {"v": "0.0024591607", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.0024591607 dimensionless\""}}, {"v": "-0.036859206", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"-0.036859206 dimensionless\""}}, {"v": "-0.17322129", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"-0.17322129 dimensionless\""}}, {"v": "0.017612396", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.017612396 dimensionless\""}}, {"v": "0.17351156", "u": "dimensionless", "src": {"file": "work/results/results.json", "quote": "\"text\": \"0.17351156 dimensionless\""}}]
+```

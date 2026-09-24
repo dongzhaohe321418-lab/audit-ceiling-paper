@@ -1,0 +1,5 @@
+spc = np.array([1, 1])
+res = np.array([0.02, 0.04])
+c = np.array([[1, 0.1], [0.1, 1]])
+r = np.array([0.7, 0.9])
+K = np.array([0.1, 0.05])

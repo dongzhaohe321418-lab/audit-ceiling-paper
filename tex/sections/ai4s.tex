@@ -30,8 +30,7 @@ gates, amendments and full results are in Appendix~\ref{sec:ai4s-full}.
 \textbf{Design.} SciCode \citep{tian2024scicode} decomposes research problems from 16 subfields into
 steps with numeric tests written by scientists. The same frozen generator wrote every step three
 times, each sample building on its own earlier steps. An instance is correct if it passes the step's
-tests and defective if not; a step enters only if some sample passes it. This gives 81 defective
-instances (30 problems) and 150 correct ones (53 problems). SciCode has no visible/hidden split, so
+tests and defective if not; a step enters only if some sample passes it, which excluded 184 of 336 evaluated steps. This gives 81 defective instances (30 problems) and 150 correct ones (53 problems). Labels are per step, but the auditor sees the whole chain, and 51 of the defective and 49 of the correct instances have a failing earlier step (post hoc description). SciCode has no visible/hidden split, so
 the auditor sees the step's prose, background, header and code, and no tests. The shipped
 cross-vendor auditor and the generator's own model each read every instance eight times. After the
 registered arm's outcomes, a second registered arm changed only the task text, naming the step's
@@ -52,16 +51,13 @@ own model's union recall was 46.9 points lower than the shipped auditor's in eac
 of correct code, respectively.
 
 At one reading in the reframed arm, the shipped auditor flags 61.7\% [47.9, 75.9] of defective and
-19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. We read a sample of 20 of its
-flags on correct code. They range from real divergences between code and step text, through
+19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. We read the first blocking finding of a seeded sample of 20 flagged correct instances whose earlier steps all pass. They range from real divergences between code and step text, through
 contradictions inside the benchmark's own instructions, to tests too weak to separate outputs;
 which flags point at defects was not established. An independent expert audit of SciCode found
 self-contradictory specifications, non-reproducible gold answers and over-tight tolerances that
 reject correct solutions \citep{hu2026scicodeverified}, so some instances labelled defective here
 may be correct code the benchmark rejects. Of the 81 defective instances, 7 and 19 escaped all
-sixteen readings of the two families in the two arms. Both raters judged most of them (4 of 7, 13 of
-19) undetermined by the prose, but the registered test that this share exceeds the general-code
-residual's 77.2\% is killed in both arms by its own interval rule.
+sixteen readings of the two families in the two arms. Both raters judged 4 of 7 (two problems; cluster interval [0.0, 80.0]; $\kappa = -0.235$) and 13 of 19 (eight problems; [28.6, 93.5]; $\kappa = 0.587$) undetermined by the prose, too few problems and too little agreement for a stable share. The registered test that this share exceeds the general-code residual's 77.2\% is killed in both arms by its own interval rule.
 
 \subsection{Scientific results}
 \label{sec:ai4s-results}
@@ -83,7 +79,7 @@ usually by working the result out from the code, for example evaluating a KL div
 the report says 1000; the other two rest on wrong calculations. All 23 discordant items go the model's
 way (exact McNemar $p = 2.4\times10^{-7}$). On reporting faults its rate is of the combined workflow,
 since its prompt carried the profile's findings. Re-execution misses four faults whose change
-to a near-zero output falls within \texttt{np.allclose}'s default absolute tolerance. The model auditor also flags 12 of 74 clean items. Read one by one (post hoc),
+to a near-zero output falls within \texttt{np.allclose}'s default absolute tolerance. Setting those four aside (post hoc), re-execution flags 70 of 70 faulty items at 0 of 70 clean, against the model auditor's 68 of 70 at 12 of 70: where the code can be run, running it is the stronger check. The model auditor also flags 12 of 74 clean items. Read one by one (post hoc),
 8 correctly identify defects in our construction (a provenance sentence false where the benchmark
 passes inputs as call literals; a unit label contradicting documented units); 4 rest on wrong
 calculations or a syntax error that is not there.

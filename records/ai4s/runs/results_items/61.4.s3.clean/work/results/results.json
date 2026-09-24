@@ -1,0 +1,13 @@
+{
+ "quantities": [
+  {"name": "output[0]", "value": "-0.72391914", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L1", "text": "-0.72391914 dimensionless"},
+  {"name": "output[1]", "value": "0.68863694", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L2", "text": "0.68863694 dimensionless"},
+  {"name": "output[2]", "value": "0.041475808", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L3", "text": "0.041475808 dimensionless"},
+  {"name": "output[3]", "value": "-0.3649658", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L4", "text": "-0.3649658 dimensionless"},
+  {"name": "output[4]", "value": "-0.43329619", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L5", "text": "-0.43329619 dimensionless"},
+  {"name": "output[5]", "value": "0.82404756", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L6", "text": "0.82404756 dimensionless"},
+  {"name": "output[6]", "value": "0.5854409", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L7", "text": "0.5854409 dimensionless"},
+  {"name": "output[7]", "value": "0.58140655", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L8", "text": "0.58140655 dimensionless"},
+  {"name": "output[8]", "value": "0.56500033", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-ebdf28b5a2#L9", "text": "0.56500033 dimensionless"}
+ ]
+}

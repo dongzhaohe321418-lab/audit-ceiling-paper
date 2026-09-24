@@ -1,0 +1,35 @@
+  50/997 executed
+  100/997 executed
+  150/997 executed
+  200/997 executed
+  250/997 executed
+  300/997 executed
+  350/997 executed
+  400/997 executed
+  450/997 executed
+  500/997 executed
+  550/997 executed
+  600/997 executed
+  650/997 executed
+  700/997 executed
+  750/997 executed
+  800/997 executed
+  850/997 executed
+  900/997 executed
+  950/997 executed
+{
+ "readings_executed": 1008,
+ "outcomes": {
+  "pass": 374,
+  "fail": 626,
+  "no-function": 3,
+  "timeout": 5
+ },
+ "steps_total": 336,
+ "steps_passable": 152,
+ "correct_pool": 374,
+ "defective_pool": 81,
+ "defective_excluded_unpassable": 550,
+ "seed": 20260925,
+ "cap": 150
+}

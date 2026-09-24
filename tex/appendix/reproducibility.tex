@@ -13,9 +13,5 @@ is byte-identical to the copy the manuscript compiles, with no model calls, no n
 a fresh clone with the home directory unavailable to establish that. The
 repository's \texttt{README} maps each claim to its report, its reviews and its records. The
 corpora are HumanEval (MIT), HumanEval+ and MBPP+ (Apache-2.0), SciCode (Apache-2.0) and four UCI
-datasets (CC BY 4.0), which permit redistribution. What a replication cannot do from this repository alone is regenerate the
-records themselves. With the archive of raw readings, which is kept separately, they regenerate
-deterministically through the analysis code in the auditor harness, a separate repository named
-in the provenance file; without it, only by re-running the studies against model endpoints whose
-outputs are not deterministic.
+datasets (CC BY 4.0), which permit redistribution. For the three science studies the repository also carries the raw run archive (\texttt{records/ai4s/runs/}): the audited items, every reading's findings, the rating sheets and the logs, so the post hoc adjudications can be checked finding by finding. For the general-code studies it carries each study's derived records; their raw readings regenerate the records deterministically through the analysis code in the auditor harness, a separate public repository named in the provenance file. Without raw readings, records can be regenerated only by re-running the studies against model endpoints whose outputs are not deterministic.
 

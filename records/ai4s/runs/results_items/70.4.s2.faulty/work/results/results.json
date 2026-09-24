@@ -1,0 +1,5 @@
+{
+ "quantities": [
+  {"name": "output[0]", "value": "0.28867513", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-023b61d236#L1", "text": "0.28867513 dimensionless"}
+ ]
+}

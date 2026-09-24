@@ -1,0 +1,6 @@
+code_version: a4s2-d25b6eb2bb
+inputs:
+  - work/outputs/run.log@a4s2-d25b6eb2bb
+  - work/solution.py@a4s2-d25b6eb2bb
+  - work/inputs.py@a4s2-d25b6eb2bb
+  - work/run.py@a4s2-d25b6eb2bb

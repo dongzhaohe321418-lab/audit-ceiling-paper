@@ -1,0 +1,21 @@
+\textbf{Results.} In these runs, what the auditor was told the deliverable is changed its flag rate
+substantially (Figure~\ref{fig:ai4s}a). In the registered design the task
+opened with the whole multi-step problem, and the shipped auditor flagged 87.7\% [72.7, 98.6] of
+defective instances and 68.7\% [56.6, 79.7] of correct ones at eight readings. Many of its
+objections to correct code were that one step did not implement the whole problem. A second
+registered arm, run after the first and changing only the task text, named the step's function as
+the deliverable and gave the problem description as context. On the same program bytes, flags on
+correct code fell to 36.0\% [26.4, 45.6], a paired change of $-32.7$ points [$-42.8$, $-22.4$], and
+recall fell to 72.8\% [59.3, 87.3], $-14.8$ points [$-28.6$, $-2.7$]. The generator's own model flagged
+less of both strata in both arms, 46.9 points less of the defective instances than the shipped
+auditor (exact McNemar $p = 1.6\times10^{-9}$ in each arm). With no tests shown, the shipped auditor
+discriminates, but modestly: at one reading, 61.7\% of defective against 19.8\% of correct instances.
+
+On reading a sample of its flags on correct code, some point at real divergences between the code
+and the step's text or its own documentation, and some at contradictions inside the benchmark's own
+instructions or at tests too weak to tell outputs apart. Few defects went unflagged by any of the
+sixteen readings: 7 in the first arm and 19 in the second. Most of them the two raters called
+undetermined by the prose, 4 of 7 and 13 of 19 (for example an entropy's logarithm base, or the
+direction of a minimum-image vector), but the registered test that this share exceeds the general-code
+residual's 77.2\% is killed in both arms by its own interval rule. These labels describe the prose,
+not why a defect was missed.

@@ -23,8 +23,7 @@ steps whose gold fails here are excluded, as are the three the official harness 
 three samples per step, each sample building on its own earlier steps. A candidate is
 \emph{correct} if it passes the step's tests and \emph{defective} if it fails or times out. A step
 enters either stratum only if at least one sample passes it, so a failure counts only where this
-environment has shown the step can be passed. This yields 81 defective instances from 30 problems
-and 374 correct ones, from which 150 (53 problems) were drawn by seed.
+environment has shown the step can be passed; 184 of 336 evaluated steps had no passing sample and were excluded. This yields 81 defective instances from 30 problems and 374 correct ones, from which 150 (53 problems) were drawn by seed. Labels are per step, but the program each auditor sees holds the sample's functions for every step up to the one tested, and 51 of the 81 defective and 49 of the 150 correct instances have a failing earlier step in their chain (post hoc description).
 
 \textbf{What differs from the general-code studies.} SciCode has no visible and hidden split, and we did not invent
 one. The auditor sees the problem, the step, its background, the function header, the allowed
@@ -55,16 +54,13 @@ generator's own model was 46.9 points below the shipped auditor's in each arm ([
 [$-61.5$, $-34.4$]; a route comparison). It flagged 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] of
 correct code in the two arms, respectively.
 At one reading in the reframed arm the shipped auditor flags 61.7\% [47.9, 75.9] of defective against
-19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. We read a sample of 20 of its
-flags on correct code. They range from real divergences between code and step text, through
+19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. We read the first blocking finding of a seeded sample of 20 flagged correct instances whose earlier steps all pass. They range from real divergences between code and step text, through
 contradictions inside the benchmark's own instructions, to tests too weak to separate outputs; which
 flags point at defects was not established. An independent expert audit of SciCode's test problems found self-contradictory
 specifications, non-reproducible gold answers and over-tight tolerances that reject correct solutions
 \citep{hu2026scicodeverified}, so some instances labelled defective here may be correct code the
 benchmark rejects. Of the 81 defective instances, 7 and 19 escaped all sixteen readings of
-the two families in the two arms. Both raters judged most of them (4 of 7, 13 of 19) undetermined by
-the prose, but the registered test that this share exceeds the
-general-code residual's 77.2\% is killed in both arms by its own interval rule.
+the two families in the two arms. Both raters judged 4 of 7 (two problems; cluster interval [0.0, 80.0]; $\kappa = -0.235$) and 13 of 19 (eight problems; [28.6, 93.5]; $\kappa = 0.587$) undetermined by the prose, too few problems and too little agreement for a stable share. The registered test that this share exceeds the general-code residual's 77.2\% is killed in both arms by its own interval rule. The rating sheets showed only the step's function, not helpers its test calls, and truncated long expected arrays; of six items that appeared on both sheets, the second rater changed three labels.
 
 \subsection{Scientific results}
 \label{sec:ai4s-results-full}
@@ -106,7 +102,7 @@ themselves wrong. Paired on the faulty items, all 23 discordant items go the LLM
 McNemar $p = 2.4\times10^{-7}$). A problem-level sign-flip test, run post hoc, gives $3.8\times10^{-6}$.
 On the reporting faults its rate is of the combined workflow, since its prompt carried the
 profile's findings. Re-execution flags every fault except four whose change to a near-zero output falls within
-\texttt{np.allclose}'s default absolute tolerance; two of those outputs are floating-point zeros.
+\texttt{np.allclose}'s default absolute tolerance; two of those outputs are floating-point zeros. Setting those four aside (post hoc), re-execution flags 70 of 70 faulty items at 0 of 70 clean, against the model auditor's 68 of 70 at 12 of 70: where the code can be run, running it is the stronger check.
 
 The LLM also flags 12 of the 74 clean items. We read each of these flags (post hoc), and 8 are right. In 9 instances the
 benchmark passes the test's inputs inside the call itself, so the report's sentence that the

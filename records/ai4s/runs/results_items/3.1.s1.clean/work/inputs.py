@@ -1,0 +1,10 @@
+n = 7
+h = 1/(n-1)
+diagonal = [2/h for i in range(n)]
+diagonal_up = [-0.5/h for i in range(n-2)]
+diagonal_down = [-0.5/h for i in range(n-2)]
+A = np.diag(diagonal) + np.diag(diagonal_up, 2) + np.diag(diagonal_down, -2)
+b = np.array([0.5,0.1,0.5,0.1,0.5,0.1,0.5])
+x_true = np.linalg.solve(A, b)
+eps = 10e-5
+x0 = np.zeros(n)

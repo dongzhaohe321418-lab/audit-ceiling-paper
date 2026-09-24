@@ -1,0 +1,14 @@
+{
+ "quantities": [
+  {"name": "output[0]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L1", "text": "1.05 dimensionless"},
+  {"name": "output[1]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L2", "text": "1.05 dimensionless"},
+  {"name": "output[2]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L3", "text": "1.05 dimensionless"},
+  {"name": "output[3]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L4", "text": "1.05 dimensionless"},
+  {"name": "output[4]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L5", "text": "1.05 dimensionless"},
+  {"name": "output[5]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L6", "text": "1.05 dimensionless"},
+  {"name": "output[6]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L7", "text": "1.05 dimensionless"},
+  {"name": "output[7]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L8", "text": "1.05 dimensionless"},
+  {"name": "output[8]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L9", "text": "1.05 dimensionless"},
+  {"name": "output[9]", "value": "1.05", "unit": "dimensionless", "source": "work/outputs/run.log@a4s2-e3c95d9400#L10", "text": "1.05 dimensionless"}
+ ]
+}

@@ -79,5 +79,14 @@ byte-identical copies from the same commits):
 | records/ai4s/results_*.json | study/ai4s-results | e3baa55 | A4S-2, scientific results |
 | records/ai4s/strata.json, code_*.json, residual* | study/ai4s-codeaudit | cb3b8d9 | A4S-1 and A4S-1b, scientific code |
 
-Raw readings are in the local run archive (`~/Documents/Crossaudit/ai4s/runs/`); the residual
-rating sheets quote SciCode (Apache-2.0) and stay there, with the L1 hash files.
+Raw readings are mirrored in `records/ai4s/runs/` (copied 2026-09-24 from the run archive
+`~/Documents/Crossaudit/ai4s/runs/`): audited items, readings, rating sheets (which quote SciCode,
+Apache-2.0) and logs. The product rulebook copies inside it are the harness's published templates.
+
+## General-code records mirrored 2026-09-24
+
+| here | harness branch | commit | study |
+|---|---|---|---|
+| records/code/testgen-val/ | study/testgen-val | 036f2dc | study 17, test validation (C7) |
+| records/code/ceiling3b/ | study/ceiling3b | 92e0bc7 | study 19 (C8) |
+| records/code/inject/ | study/injection | a39eeaa | study 22 (C10) |
