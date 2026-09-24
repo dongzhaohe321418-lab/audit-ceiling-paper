@@ -1,0 +1,9 @@
+You are an INDEPENDENT REVIEWER from a different vendor, acting as an ICML referee. SECOND round of review of the manuscript in the repository `audit-ceiling-paper` at `c7e3e8e` (the directory you are in; branch `ai4s`). Do not modify any file.
+
+Round 1 (`reviews/cross-vendor/codex-review-paper3/report-r1.md`, at `eea30b4`) recommended weak reject with fourteen findings. The repairs are `git diff eea30b4..c7e3e8e`. They include: the residual label stated operationally; the deterministic tier's zero clean flags qualified; a re-execution sensitivity; SciCode selection details; the cross-row claim narrowed; the amendment chronology exception; science residual intervals and kappa; the surviving-label condition; the scope defect separated from model findings; coverage at 0.05; six families as five models; Figure 1 on Table 1's K=8 interval; the rulebook paragraph led by the K=8 contrast; a study map table (Table 2 in the results appendix); and the raw science run archive and three studies' records mirrored under `records/`. Finding 2 (a matched-false-positive diagnosis experiment with independent adjudication) was not run.
+
+1. For each round-1 finding, say whether it is fixed, partly fixed or open. Check each repaired sentence and every cell of the new study map against `manuscript/CLAIMS.md`, the reports, the preregistrations under `plan/` and `records/`; check that no repair overcorrects or introduces an error.
+2. Check that the newly mirrored records support what the paper says about the science post hoc adjudications (for example the 21 sound fabrication findings and the 18 fault-relevant data findings) and contain no credentials or personal data.
+3. Give an updated overall recommendation as an ICML referee and the single change that would most improve the paper now.
+
+Findings most severe first, each with file:line and the record involved.

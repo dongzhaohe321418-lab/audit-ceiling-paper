@@ -81,7 +81,10 @@ byte-identical copies from the same commits):
 
 Raw readings are mirrored in `records/ai4s/runs/` (copied 2026-09-24 from the run archive
 `~/Documents/Crossaudit/ai4s/runs/`): audited items, readings, rating sheets (which quote SciCode,
-Apache-2.0) and logs. The product rulebook copies inside it are the harness's published templates.
+Apache-2.0) and logs. The product rulebook copies inside it are the harness's published templates. Home-directory prefixes in logs and tracebacks were replaced by `~`; readings keep each
+BLOCKER's text, and non-blocking findings are counted without their text. The final analysis
+scripts are mirrored in `records/ai4s/analysis/` (see its README); `runs/analysis/` holds earlier
+snapshots.
 
 ## General-code records mirrored 2026-09-24
 

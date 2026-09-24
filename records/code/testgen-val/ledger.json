@@ -13,6 +13,6 @@
       "usd": 1.685796
     }
   },
-  "ledger": "/Users/ericdong/Documents/Crossaudit/study-data/wt-testval-runs/scratch/project-holistic__cross__d1/.crossaudit/usage.jsonl",
+  "ledger": "~/Documents/Crossaudit/study-data/wt-testval-runs/scratch/project-holistic__cross__d1/.crossaudit/usage.jsonl",
   "read_at": "2026-09-10T23:13:50+0800"
 }

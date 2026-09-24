@@ -54,7 +54,7 @@ generator's own model was 46.9 points below the shipped auditor's in each arm ([
 [$-61.5$, $-34.4$]; a route comparison). It flagged 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] of
 correct code in the two arms, respectively.
 At one reading in the reframed arm the shipped auditor flags 61.7\% [47.9, 75.9] of defective against
-19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. We read the first blocking finding of a seeded sample of 20 flagged correct instances whose earlier steps all pass. They range from real divergences between code and step text, through
+19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. We read a seeded sample of 20 flagged correct instances whose earlier steps all pass, taking the first BLOCKER of the first flagged reading of each; four of the twenty concern earlier functions that the reframed task excluded from the deliverable. They range from real divergences between code and step text, through
 contradictions inside the benchmark's own instructions, to tests too weak to separate outputs; which
 flags point at defects was not established. An independent expert audit of SciCode's test problems found self-contradictory
 specifications, non-reproducible gold answers and over-tight tolerances that reject correct solutions
@@ -102,7 +102,7 @@ themselves wrong. Paired on the faulty items, all 23 discordant items go the LLM
 McNemar $p = 2.4\times10^{-7}$). A problem-level sign-flip test, run post hoc, gives $3.8\times10^{-6}$.
 On the reporting faults its rate is of the combined workflow, since its prompt carried the
 profile's findings. Re-execution flags every fault except four whose change to a near-zero output falls within
-\texttt{np.allclose}'s default absolute tolerance; two of those outputs are floating-point zeros. Setting those four aside (post hoc), re-execution flags 70 of 70 faulty items at 0 of 70 clean, against the model auditor's 68 of 70 at 12 of 70: where the code can be run, running it is the stronger check.
+\texttt{np.allclose}'s default absolute tolerance; two of those outputs are floating-point zeros. Setting those four aside (post hoc), re-execution flags 70 of 70 faulty items at 0 of 70 clean, against the model auditor's 68 of 70 at 12 of 70. On the registered population the two flag 70 and 72 of 74 faulty items, and eight of the model's twelve clean-item flags identify real construction defects, so this subset favours re-execution for injected numerical faults without making it the better check in general.
 
 The LLM also flags 12 of the 74 clean items. We read each of these flags (post hoc), and 8 are right. In 9 instances the
 benchmark passes the test's inputs inside the call itself, so the report's sentence that the
