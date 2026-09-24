@@ -43,35 +43,38 @@ adds 1.93 points [1.14, 2.78], above the 1.0-point flattening bar registered in 
 diminishing returns, not saturation. Twenty readings pooled across three families reach 48.2\%
 [36.7, 60.0] at 36.0\% [28.2, 44.2] on correct code: pooling buys coverage at its own price.
 
-\textbf{Which model reads.} Replacing the auditor with a stronger same-vendor model moved union
-recall at eight readings by $-26.4$ points [$-37.3$, $-15.6$] (exact McNemar $p = 4.2\times10^{-7}$; cluster sign-flip $p = 2.0\times10^{-5}$),
-a preregistered primary. It does not measure auditing ability. The stronger model flags 3.3\% [0.7, 6.7] of
-correct code against 16.0\%; under an exploratory any-finding rule the sign reverses, 59.1\%
-[47.3, 70.6] at 34.0\% [26.5, 41.7] on correct code against 34.5\% [23.6, 45.5] at 19.3\% [12.8, 26.3]
-(Figure~\ref{fig:sweep} in Appendix~\ref{sec:results}); and at one reading, before the differently
-sampled unions grow, the gap is $-10.1$ points. A high-reasoning cross-vendor model reaches 32.7\%
-[20.7, 45.0] at 10.7\% [5.9, 16.1] with four readings, against the shipped route's 30.0\% at 16.0\% with eight;
-no paired contrast establishes both advantages together.
+\textbf{Which model reads.} Replacing the auditor with a stronger same-vendor model lowered union
+recall at eight readings by 26.4 points [$-37.3$, $-15.6$] (exact McNemar $p = 4.2\times10^{-7}$;
+cluster sign-flip $p = 2.0\times10^{-5}$), a preregistered primary. This is not a measure of auditing
+ability. The stronger model also flags far less correct code, 3.3\% [0.7, 6.7] against 16.0\%, and
+under an exploratory any-finding rule the sign reverses: 59.1\% [47.3, 70.6] recall at 34.0\%
+[26.5, 41.7] on correct code, against 34.5\% [23.6, 45.5] at 19.3\% [12.8, 26.3]
+(Figure~\ref{fig:sweep} in Appendix~\ref{sec:results}). At one reading, before the differently
+sampled unions grow apart, the gap is only $-10.1$ points. A high-reasoning cross-vendor model reaches
+32.7\% [20.7, 45.0] at 10.7\% [5.9, 16.1] with four readings, against the shipped route's 30.0\% at
+16.0\% with eight, but no paired contrast establishes both advantages together.
 
-\textbf{The rulebook.} One added sentence, \emph{find what the visible tests do not cover}, moved
-flags at one reading on 56 defective instances (41 problems) from 10 to 25, $+26.8$ points
-[13.6, 40.4] (exploratory; exact McNemar $p = 0.0003$, cluster sign-flip $p = 0.0009$), at $+12.5$ points on correct code, an interval [$-3.6$, $+26.8$] that does not exclude
-zero. On the contrast that isolates the rule, hidden-suite pass rate after one revision moves
-$+5.4$ points [$-0.9$, $+12.1$]: the sentence changes what the auditor writes, and whether that makes
-code pass is not established.
+\textbf{The rulebook.} We added one sentence to the auditor's rulebook: \emph{find what the visible
+tests do not cover}. At one reading on 56 defective instances (41 problems), flags rose from 10 to
+25, $+26.8$ points [13.6, 40.4] (exploratory; exact McNemar $p = 0.0003$, cluster sign-flip
+$p = 0.0009$). On correct code they rose by 12.5 points, an interval [$-3.6$, $+26.8$] that includes
+zero. What the sentence did not visibly change is the outcome: on the contrast that isolates the
+rule, the hidden-suite pass rate after one revision moved $+5.4$ points [$-0.9$, $+12.1$]. The
+sentence changes what the auditor writes; whether that makes code pass is not established.
 
 \textbf{What is missed.} Fifty-seven of the 110 defective instances were flagged by no reading of
 the first three families. Two model raters, one of them the agent that ran this programme, agree
-post hoc that 44 of 57 (77.2\% [62.1, 91.1]) are cases where the specification's prose does not
-settle the value the hidden suite expects, reversing an earlier classification of the same instances
-as unexercised edges. Reading six families at forty readings shrinks the never-flagged set to 32 of
-110, and 43 of the 68 instances both raters call undetermined are flagged by some reading, so being
-undetermined is not sufficient for being missed; the undetermined share of what remains is similar
-(25 of 32, 78.1\%; the 32 are a subset of the 57, so this is a description, not a test of stability).
-Of twelve MBPP tasks an outside paper names as ambiguous, incomplete or contradictory
-\citep{richter2026collapse}, 11 are in our defect population, and our frozen labels call 9 of them
-undetermined (post hoc). An attempt to construct a population whose specification-determinedness
-would hold by construction did not deliver that property, so this remains a post hoc description (Appendix~\ref{sec:inreview}).
+post hoc that in 44 of them (77.2\% [62.1, 91.1]) the specification's prose does not settle the
+value the hidden suite expects, as in the example that opens this paper. That reverses an earlier
+classification of the same instances as unexercised edges. Being undetermined is not enough to be
+missed: reading six families at forty readings shrinks the never-flagged set to 32 of 110, and 43
+of the 68 instances both raters call undetermined are flagged by some reading. The undetermined
+share of what remains is similar, 25 of 32 (78.1\%), but the 32 are a subset of the 57, so this is a
+description, not a test of stability. Of twelve MBPP tasks an outside paper names as ambiguous,
+incomplete or contradictory \citep{richter2026collapse}, 11 are in our defect population, and our
+frozen labels call 9 of them undetermined (post hoc). An attempt to build a population whose
+specifications determine the defect by construction did not deliver that property, so this
+remains a post hoc description (Appendix~\ref{sec:inreview}).
 
 \textbf{What follows.} A union recall figure is contingent on the false-positive rate it cost, the
 model and sampling of the route, the rulebook, the decision rule, and what the benchmark's

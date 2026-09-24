@@ -38,29 +38,30 @@ registered arm's outcomes, a second registered arm changed only the task text, n
 function as the deliverable instead of opening with the whole problem; the program bytes are
 identical (Appendix~\ref{sec:ai4s-code-full}).
 
-\textbf{Results.} In these runs, how the task framed the deliverable changed the flag rate
-substantially (Figure~\ref{fig:ai4s}a). With the whole problem as the task, the shipped auditor
+\textbf{Results.} What the task named as the deliverable changed the flag rate substantially
+(Figure~\ref{fig:ai4s}a). With the whole problem as the task, the shipped auditor
 flagged 87.7\% [72.7, 98.6] of defective and 68.7\% [56.6, 79.7] of correct instances at eight
-readings; some of its objections to correct code were that one step did not implement the whole
-problem. With the task reframed around the step, flags on correct code fell to 36.0\% [26.4, 45.6], a
-paired change of $-32.7$ points [$-42.8$, $-22.4$], and recall fell to 72.8\% [59.3, 87.3], $-14.8$
-points [$-28.6$, $-2.7$], though the cluster sign-flip test for that recall change gives
+readings, and some of its objections to correct code were that one step did not implement the whole
+problem. With the task reframed around the step, flags on correct code fell to 36.0\% [26.4, 45.6],
+a paired change of $-32.7$ points [$-42.8$, $-22.4$]. Recall fell too, to 72.8\% [59.3, 87.3], a
+change of $-14.8$ points [$-28.6$, $-2.7$], though the cluster sign-flip test for it gives
 $p = 0.0625$. The change is the whole reframing (the step named, the problem description moved last
-and marked as context, earlier functions exempted), and the arms ran in sequence. The generator's own
-model's recall was 46.9 points lower than the shipped auditor's in each arm ([$-63.0$, $-30.7$] and
-[$-61.5$, $-34.4$]; a route comparison), and it flagged 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6] of
-correct code, respectively.
-At one reading in the reframed arm the shipped auditor flags 61.7\% [47.9, 75.9] of defective against
-19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. A read sample of 20 of its flags
-on correct code ranges from real divergences between code and step text to contradictions inside the
-benchmark's own instructions and tests too weak to separate outputs; which flags point at defects was
-not established. An independent expert audit of SciCode's test problems found self-contradictory
-specifications, non-reproducible gold answers and over-tight tolerances that reject correct solutions
-\citep{hu2026scicodeverified}, so some instances labelled defective here may be correct code the
-benchmark rejects. Of the 81 defective instances, 7 and 19 escaped all sixteen readings of
-the two families in the two arms; both raters judged most of them (4 of 7, 13 of 19) undetermined by
-the prose, but the registered test that this share exceeds the
-general-code residual's 77.2\% is killed in both arms by its own interval rule.
+and marked as context, earlier functions exempted), and the arms ran in sequence. The generator's
+own model caught 46.9 points less than the shipped auditor in each arm ([$-63.0$, $-30.7$] and
+[$-61.5$, $-34.4$]; a route comparison), while flagging 27.3\% [18.4, 37.3] and 18.0\% [11.5, 25.6]
+of correct code, respectively.
+
+At one reading in the reframed arm, the shipped auditor flags 61.7\% [47.9, 75.9] of defective and
+19.8\% [12.9, 27.2] of correct instances: it discriminates, modestly. We read a sample of 20 of its
+flags on correct code. They range from real divergences between code and step text, through
+contradictions inside the benchmark's own instructions, to tests too weak to separate outputs;
+which flags point at defects was not established. An independent expert audit of SciCode found
+self-contradictory specifications, non-reproducible gold answers and over-tight tolerances that
+reject correct solutions \citep{hu2026scicodeverified}, so some instances labelled defective here
+may be correct code the benchmark rejects. Of the 81 defective instances, 7 and 19 escaped all
+sixteen readings of the two families in the two arms. Both raters judged most of them (4 of 7, 13 of
+19) undetermined by the prose, but the registered test that this share exceeds the general-code
+residual's 77.2\% is killed in both arms by its own interval rule.
 
 \subsection{Scientific results}
 \label{sec:ai4s-results}
