@@ -166,3 +166,41 @@ but it omits one range the concrete source's documentation states and uses a lis
 columns the card does not give; with the omitted range it would flag 93 of 140. Unit conversion
 also left floating-point tails that mark some converted cells in two of the tables. None of the
 auditor's mixed-unit findings cites them, but that does not show they had no influence.
+
+\textbf{Held-out diagnosis at a fixed false-positive budget.} A fourth preregistered study
+(registered before any of its items was built or read) answers a question the study above cannot:
+whether the model auditor \emph{correctly diagnoses} faults, rather than flags items, at a
+false-positive budget fixed before the data exist. It builds 280 new items by the construction above,
+unchanged except for the seed (no CSV is shared with the development items), and reads each four
+times with both families. Diagnosis is decided by code from the injection manifest: a faulty item is
+diagnosed when a flagging reading's BLOCKER text names the injected column, both columns for a swap,
+or a duplication term for duplicated rows, using a frozen alias table. No model judges any outcome.
+The rule is necessary rather than sufficient for a correct diagnosis. On the development items it
+counts 60 of the shipped auditor's diagnoses against the post hoc fault-relevant count of 61, and
+within one item on every fault type but swapped columns (13 against 15). The operating points were
+fixed on the development items: the smallest vote threshold over four readings whose clean-flag rate
+was at most 10\%, any one reading for the shipped auditor (2.9\% on development) and all four for
+the generator's own model (7.1\%); no threshold of the latter reaches 5\%, which is why the budget is
+10\%.
+
+On the held-out items the validator diagnoses 90 of 140 faulty items (64.3\% [56.4, 72.1]) and flags
+no clean item. The shipped auditor at its operating point diagnoses 57 (40.7\% [32.6, 48.9]) at 9 of
+140 clean flags (6.4\% [2.8, 10.5]), and the generator's own model 40 (28.6\% [21.7, 35.9]) at 14
+(10.0\% [5.6, 14.8]). The validator with the shipped auditor diagnoses 105 (75.0\% [67.6, 81.9]) at
+the same 9 clean flags. The registered primary, the union against the validator alone, is $+10.7$
+points [6.0, 15.9]: 15 items diagnosed only by the union and none only by the validator (exact McNemar
+$p = 6.1\times10^{-5}$), inside the budget, so the hypothesis holds. The gain comes from mixed units
+(5 to 13 of 20) and swapped columns (5 to 12 of 20), as on development. The secondary route
+comparison puts the shipped auditor 12.1 points [4.1, 20.3] above the generator's own model
+(27 against 10 discordant items); model and sampling change together, and the two sit at different
+realised false-positive rates inside the same budget. Intervals resample items within dataset. The
+study cost \$24.41.
+
+Read after the outcome (post hoc): of the six faulty items the shipped auditor flags without the rule
+counting a diagnosis, three are the card-documentation request below, one objects to the file's row
+count, and two name one of the two swapped columns and describe its impossible values, which a reader
+would count and the rule does not. A seeded sample of ten counted findings each names the injected
+column and describes the injected corruption. All nine clean flags are on airfoil items and make one
+objection: the card names each column's unit but does not define it, the same objection as the four
+development clean flags. The held-out items are new draws from the same four tables and seven
+synthetic faults, so the result does not extend to other data, faults or cards.

@@ -408,6 +408,22 @@ earlier steps. Evidence: A4S-1/1b (`reports/RESULTS-AI4S-CODE.md`, *quotable* at
 2026-09-24, gpt-6-astra; harness `cb3b8d9`, branch `study/ai4s-codeaudit`, not yet merged into the
 integration branch).
 
+**C20 — PENDING REVIEW; not quotable until an independent review ends quotable. On held-out
+scientific data, at a clean-flag budget fixed in advance and with diagnosis decided by code, adding
+the shipped auditor to the validator raises the share of faults correctly named.** 280 new items by
+A4S-3's construction (seed 20261001); operating points fixed on A4S-3 at a 10% clean-flag budget
+(`cross` any of four readings, `self` all four). Executable rule: a flagging BLOCKER text names the
+injected column (both for a swap; a duplication term for duplicated rows). Validator 90/140 (64.3%
+[56.4, 72.1]) at 0/140 clean; validator or `cross` **105/140 (75.0% [67.6, 81.9])** at 9/140 clean
+(6.4% [2.8, 10.5]); **H1 +10.7 points [6.0, 15.9]**, 15 against 0 discordant, exact McNemar
+p = 6.1e-5, holds. H2 (route comparison): `cross` 57 against `self` 40, +12.1 [4.1, 20.3].
+**Limits that travel with it:** the rule is lexical, necessary not sufficient; new draws from the
+same four tables and seven synthetic faults; the two families sit at different realised rates within
+one budget; all nine `cross` clean flags are one card-documentation objection. Evidence: A4S-4
+(`reports/RESULTS-AI4S-DIAG.md`; registration `plan/studies/ai4s/PREREGISTRATION-DIAG.md` at harness
+`a6c04af`; branch `study/ai4s-diagnosis`, report at `25071d0`). **Not reviewed:** the Codex reviewer's
+quota was exhausted until 2026-09-29.
+
 ## Claims the evidence does not support, and which must not appear
 
 * *"The ceiling is set by unexercised edges."* Withdrawn by C4. The paper's earlier claim (2)

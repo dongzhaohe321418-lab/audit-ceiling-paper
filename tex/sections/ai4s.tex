@@ -109,3 +109,18 @@ validator on every fault the validator was written for. The generator's own mode
 clean items, and for at least 48 of those (a post hoc lower bound) one finding states a row count, field count, missing
 column or truncation the file contradicts. The validator omits one range the concrete documentation
 states and uses a list of continuous columns the card does not give.
+
+\textbf{Held-out diagnosis at a fixed budget.} The counts above rest on flags, and their
+diagnosis counts are post hoc. A further preregistered study asked the question a referee would:
+on 280 new items built the same way from a new seed, does the model auditor \emph{correctly
+diagnose} faults the validator misses, at a clean-flag rate fixed in advance? Diagnosis was decided
+by code, not by a model: a flagging finding counts when it names the injected column (both columns
+for a swap; duplication for duplicated rows), read from the injection manifest. The rule is
+necessary, not sufficient, for a correct diagnosis. Each family's operating point was fixed on the
+items above before the new ones existed: the smallest vote threshold over four readings whose clean-flag
+rate was at most 10\%, which is any one reading for the shipped auditor and all four for the
+generator's own model. On the held-out items the validator diagnoses 90 of 140 faulty items
+(64.3\% [56.4, 72.1]) at no clean flag, and the validator with the shipped auditor 105 (75.0\%
+[67.6, 81.9]) at 9 of 140 clean flags (6.4\% [2.8, 10.5]): $+10.7$ points [6.0, 15.9], 15 items one
+way and none the other (exact McNemar $p = 6.1\times10^{-5}$), the registered primary. At its own operating point the generator's own model diagnoses
+40 at 14 clean flags, 12.1 points [4.1, 20.3] fewer than the shipped auditor (a route comparison; Appendix~\ref{sec:ai4s-data-full}).

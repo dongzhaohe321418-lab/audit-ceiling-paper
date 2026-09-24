@@ -93,3 +93,11 @@ snapshots.
 | records/code/testgen-val/ | study/testgen-val | 036f2dc | study 17, test validation (C7) |
 | records/code/ceiling3b/ | study/ceiling3b | 92e0bc7 | study 19 (C8) |
 | records/code/inject/ | study/injection | a39eeaa | study 22 (C10) |
+
+## A4S-4 (held-out diagnosis), mirrored 2026-09-24 — pending review
+
+| here | harness branch | commit |
+|---|---|---|
+| records/ai4s/data_items_ho.json, diag_results.json, diag_calibration_dev.json, diag_readings/ | study/ai4s-diagnosis | 25071d0 |
+| records/ai4s/analysis/diag-25071d0/ | study/ai4s-diagnosis | 25071d0 |
+| reports/RESULTS-AI4S-DIAG.md, plan/studies/ai4s/PREREGISTRATION-DIAG.md | study/ai4s-diagnosis | 25071d0 (registered at a6c04af) |
