@@ -1,6 +1,6 @@
 \section{Introduction}
-Here is a program that no reading of our first three auditor families flagged (a family is one
-auditor model reached through one route). The task,
+Here is a program that none of twenty readings, by three different auditor models, flagged. The
+task,
 MBPP+ problem 102 \citep{liu2023evalplus}, asks for a function that converts a snake-case string to
 camel case, and shows three ordinary examples. The generated function splits on underscores and
 capitalises each word, and it passes all three. The hidden suite then passes
@@ -31,7 +31,7 @@ readings of the shipped auditor flags 30.0\% [20.0, 40.7] of defective programs 
 visible tests, and 16.0\% [10.1, 22.3] of correct ones. Each extra reading adds less, but the eighth
 still adds 1.93 points [1.14, 2.78]: no plateau within eight readings. The rate also changes with the
 auditor route, its instructions and the counting rule. What no reading flags mostly resembles the
-example above: of the 57 defective programs no reading of the first three families flagged,
+example above: of the 57 defective programs none of those twenty readings flagged,
 two model raters judge 44 (77.2\% [62.1, 91.1], post hoc) to fail on behaviour the specification
 never determined.
 
@@ -52,8 +52,9 @@ flags on correct programs, and less sharply on defective ones.
   always reported beside the false-positive rate it cost: controlled changes to the number of
   readings and the rulebook, route comparisons that change model and sampling together, re-grading
   under decision rules, and a post hoc association with what the specification determines. On
-  general-purpose code, each of these moves the rate, so a recall figure without its operating
-  point does not transfer.
+  general-purpose code, each controlled or route contrast moves the flag rate, so a recall figure
+  without its operating point does not transfer; the specification analysis describes an
+  association, not a tested cause.
 \item Operating points of the model auditor on scientific code, and comparisons of the model tier
   with deterministic verification on reported results (the shipped provenance checks and
   re-execution) and on data (a documentation-derived validator). The tiers flag different faults,
