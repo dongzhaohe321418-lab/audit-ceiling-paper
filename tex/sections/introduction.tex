@@ -1,81 +1,76 @@
 \section{Introduction}
-Here is a program that no reading of our first three auditor families flagged. The task, from MBPP+
-\citep{liu2023evalplus}, asks for a function that converts a snake-case string to camel case, and
-shows three ordinary examples. The generated function splits on underscores and capitalises each
-word, and it passes all three. The hidden suite then passes \verb|___python_program| and
-expects \verb|___PythonProgram|: the leading underscores kept, the rest converted. The task
-never says so. Whoever reads this code against this task has little to object to, and the defect
-is real only because a test suite nobody showed the reader decides what is correct.
+Here is a program that no reading of our first three auditor families flagged (a family is one
+auditor model reached through one route). The task,
+MBPP+ problem 102 \citep{liu2023evalplus}, asks for a function that converts a snake-case string to
+camel case, and shows three ordinary examples. The generated function splits on underscores and
+capitalises each word, and it passes all three. The hidden suite then passes
+\verb|___python_program| and expects \verb|___PythonProgram|; the function returns
+\verb|PythonProgram|. The task does not say how leading underscores should be handled. Both model
+raters in a post hoc assessment classified this instance as undetermined by the prose, and it still
+counts as defective under our hidden-test definition.
 
 When a model writes code, reports a result or prepares a dataset, someone has to check it, and
-increasingly that someone is another model. This paper measures how much such a checker catches,
-what sets its limit, and whether it helps where checking matters most, in science. We study one
-shipped system, CrossAudit (Section~\ref{sec:system}), through which every auditor reading here
-passes. It rests on two rules: the model that audits comes from a different vendor from the model
-that wrote the work, and whatever a deterministic check can verify is verified by code, not by a
-model's opinion.
+increasingly that someone is another model. This paper measures how often such a checker flags
+defective work, what moves that rate, and whether it helps where checking matters most, in science.
+We study one shipped system, CrossAudit (Section~\ref{sec:system}), through which every auditor
+reading here passes. It rests on two rules: the model that audits comes from a different vendor from
+the model that wrote the work, and whatever a deterministic check can verify is verified by code, not
+by a model's opinion. The shipped configuration pairs different vendors; our comparisons also
+include same-vendor controls.
 
-A reviewer's score on a benchmark mixes at least four things: whether the model can see a defect,
-whether it judges the defect worth blocking on, whether the benchmark defines the behaviour it
-would have to see, and how many times it looks. Work on critic models usually reports the
-aggregate. We vary these factors one at a time where the design allows, against a truth no model
-supplies: a hidden test suite run by an interpreter. Some contrasts cannot be isolated. Changing the
-reading model also changed its sampling, and the role of the specification is a post hoc
-association.
+An auditor's score on a benchmark combines at least four things: whether it flags a program, which
+of its findings count as blocking, how many times it is asked, and whether the expected behaviour
+follows from the specification it is shown. Work on critic models usually reports the aggregate. We
+vary these factors one at a time where the design allows, against a truth no model supplies: a
+hidden test suite run by an interpreter. Two limits apply throughout. Changing the reading model also
+changed its sampling, so route comparisons do not isolate model ability. And the role of the
+specification is a post hoc association, not a tested cause.
 
-\textbf{General-purpose code} (Section~\ref{sec:ceiling}). Eight independent readings of the shipped
-auditor catch 30.0\% [20.0, 40.7] of defective programs that pass their visible tests, while
-flagging 16.0\% [10.1, 22.3] of correct ones. Each extra reading adds less, but the eighth still
-adds 1.93 points [1.14, 2.78]: no plateau within eight readings. The figure is not a property of the auditor
-alone. A stronger same-vendor model, sampled differently, catches 26.4 points less
-[$-37.3$, $-15.6$] at 3.3\% false positives, and under a looser any-finding rule the comparison
-reverses. One added rulebook sentence raises the flag rate on defective code by 26.8 points
-[13.6, 40.4] (exploratory, 56 instances, one reading), and on correct code by 12.5 points, an interval
-[$-3.6$, $+26.8$] that includes zero; it does not measurably change whether code passes after
-revision. And what the auditors miss mostly resembles the example above: of the 57 defective
-programs no reading of the first three auditor families flagged, two model raters judge 44 (77.2\% [62.1,
-91.1], post hoc) to fail on behaviour the specification never determined.
+\textbf{General-purpose code} (Section~\ref{sec:ceiling}). At least one of eight independent
+readings of the shipped auditor flags 30.0\% [20.0, 40.7] of defective programs that pass their
+visible tests, and 16.0\% [10.1, 22.3] of correct ones. Each extra reading adds less, but the eighth
+still adds 1.93 points [1.14, 2.78]: no plateau within eight readings. The rate also changes with the
+auditor route, its instructions and the counting rule. What no reading flags mostly resembles the
+example above: of the 57 defective programs no reading of the first three families flagged,
+two model raters judge 44 (77.2\% [62.1, 91.1], post hoc) to fail on behaviour the specification
+never determined.
 
-\textbf{Science} (Section~\ref{sec:ai4s}). We then ran one preregistered study for each job a
-scientist would hand an auditor, and the two kinds of check failed in different places. On reported
-results, the check that every number traces to its source caught all 49 inconsistencies among a
-report, its results file and its run log, and none of 25 results that were wrong consistently in
-all three; the model auditor flagged 23 of those 25, 21 for the right reason (post hoc). On data, a
-validator written from the documentation and the auditor flagged overlapping but different faulty
-items, 92 and 65 of 140, together 112, at the auditor's 2.9\% flag rate on clean data (post hoc,
-counting only findings about the injected fault: 61 and 110). On scientific code, naming the step
-rather than the whole problem as the task cut the auditor's flags on correct code from 68.7\% to
-36.0\% and its recall from 87.7\% to 72.8\%, on the same programs.
+\textbf{Science} (Section~\ref{sec:ai4s}). Three preregistered studies examine the jobs a scientist
+would hand an auditor: scientific code, reported results and data. The results and data studies
+compare model auditing with deterministic verification, and the two failed in different places.
+Checking that every reported number traces to its source flagged every inconsistency among a report,
+its results file and its run log, and none of the results that were wrong consistently in all three;
+the model auditor flagged nearly all of those. On data, a validator written from the documentation
+and the model flagged overlapping sets of faulty items, so together they covered more than either. On
+scientific code, with no tests shown, a task reframing that specified the step as the deliverable,
+moved the overall problem into context and exempted earlier functions sharply reduced the auditor's
+flags on correct programs, and less sharply on defective ones.
 
 \textbf{Contributions.}
 \begin{itemize}\itemsep1pt
-\item A way to measure an automated auditor's limit against executed ground truth, with union
-  recall always reported beside the false-positive rate it cost: controlled changes to the number
-  of readings and the rulebook, route comparisons that change model and sampling together,
-  re-grading under decision rules, and a post hoc association with what the specification
-  determines.
-\item Evidence that no single factor fixes the limit on general-purpose code. Readings, rulebook,
-  route and decision rule each move it, and what is missed is associated (post hoc, not isolated
-  as a cause) with what the specification leaves open. A recall figure without its operating point
-  does not transfer.
+\item A way to measure an automated auditor's limit against executed ground truth, with union recall
+  always reported beside the false-positive rate it cost: controlled changes to the number of
+  readings and the rulebook, route comparisons that change model and sampling together, re-grading
+  under decision rules, and a post hoc association with what the specification determines. On
+  general-purpose code, each of these moves the rate, so a recall figure without its operating
+  point does not transfer.
 \item Operating points of the model auditor on scientific code, and comparisons of the model tier
   with deterministic verification on reported results (the shipped provenance checks and
   re-execution) and on data (a documentation-derived validator). The tiers flag different faults,
   and each fails where the other does not.
 \item A lesson for evaluating auditors. In the results and data studies, reading every flag on a
   clean item showed the auditor finding real defects in our own construction of those items. An
-  evaluation must establish that its clean items are clean by the auditor's standard, or its
-  false-positive rate measures the evaluator.
+  evaluation must establish that its clean items are clean by the auditor's standard; otherwise its
+  apparent false-positive rate can include valid findings about defects in the evaluation materials.
 \end{itemize}
 
 \textbf{Preregistration and review.} Every study that made model calls was preregistered before its
-first call, with hypotheses, intervals and stopping rules fixed in advance and departures recorded
-as numbered amendments. Two whole analyses were not registered, and the paper names both
-(Appendix~\ref{sec:method}); every other unregistered quantity is labelled post hoc where it
-appears. Four preregistered hypotheses were killed by their own rules, and one more in the science
-studies. Every report was reviewed, with access to the raw records, by a model from a different
-vendor, for between three and twenty-one rounds (the derived-quantities report within the
-whole-manuscript review); the reviews are archived verbatim. Section~\ref{sec:discussion} discusses what the measurements
-mean. The full method, results and discussion
-are in Appendices~\ref{sec:method}--\ref{sec:discussion-full}, and the records, reviews and the
-command that regenerates every figure are described in Appendix~\ref{sec:repro}.
+first call, with hypotheses, intervals and stopping rules fixed in advance and departures recorded as
+numbered amendments. Two whole analyses were not registered, and the paper names both
+(Appendix~\ref{sec:method}); every other unregistered quantity is labelled post hoc where it appears.
+Five preregistered hypotheses met their own rejection criteria, one of them in the science studies.
+Every report was reviewed against the raw records by a model from a different vendor, and the reviews
+are archived verbatim (Appendix~\ref{sec:method}). Section~\ref{sec:discussion} discusses what the
+measurements mean. The full method, results and discussion are in
+Appendices~\ref{sec:method}--\ref{sec:discussion-full}, and the records, reviews and the command that
+regenerates every figure are described in Appendix~\ref{sec:repro}.
