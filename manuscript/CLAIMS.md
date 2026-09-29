@@ -408,21 +408,23 @@ earlier steps. Evidence: A4S-1/1b (`reports/RESULTS-AI4S-CODE.md`, *quotable* at
 2026-09-24, gpt-6-astra; harness `cb3b8d9`, branch `study/ai4s-codeaudit`, not yet merged into the
 integration branch).
 
-**C20 — PENDING REVIEW (round 2); not quotable until an independent review ends quotable. On
+**C20 — PENDING REVIEW (round 3); not quotable until an independent review ends quotable. On
 held-out scientific data, at a clean-flag budget fixed in advance, adding the shipped auditor to the
 validator raises the share of faulty items with a finding that names the injected column.** Registered
 lexical endpoint (NOT correct diagnosis): validator 90/140 (64.3% [56.4, 72.1]) at 0/140 clean;
 validator or `cross` **105/140 (75.0% [67.6, 81.9])** at 9/140 clean (6.4% [2.8, 10.5]); **H1 +10.7
 points [6.0, 15.9]**, 15:0, exact McNemar p = 6.1e-5, holds (realised rate inside the budget; its
 interval reaches 10.5%). H2 route comparison: `cross` 57 against `self` 40, +12.1 [4.1, 20.3].
-**Post hoc, the agent's reading, not independent:** all fifteen union-added items state the fault,
-fourteen with the right columns; counting those fourteen, +10.0 [5.4, 15.1], p = 0.00012. **Must
+**Post hoc, the study agent's unblinded reading, not independent:** of the fifteen union-added
+items, fourteen locate the fault in the right columns (+10.0 [5.4, 15.1], p = 0.00012) and eleven
+also explain the injected transformation (+7.9 [3.7, 12.5]). A stricter post hoc keyword filter leaves
+the union at 105; it is lexical too. **Must
 travel with it:** the rule counts findings about other things (one `cross`, six `self`) and misses
 some relevant ones; `self`'s F4/F7 counts are not diagnoses; new draws from the same four tables and
 seven synthetic faults; the nine `cross` clean flags are one card-documentation objection that may be
 a fair reading. **Must not be written:** "correctly diagnosed", "correct diagnosis rate", or any
 statement that the rule validates diagnosis. Evidence: A4S-4 (`reports/RESULTS-AI4S-DIAG.md`;
-registration at harness `a6c04af`; report revised at `2b4855e` after round 1 `codex-review-a4s4`).
+registration at harness `a6c04af`; report revised at `b8a0693` after rounds 1 and 2 `codex-review-a4s4`).
 
 ## Claims the evidence does not support, and which must not appear
 
