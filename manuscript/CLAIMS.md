@@ -408,7 +408,7 @@ earlier steps. Evidence: A4S-1/1b (`reports/RESULTS-AI4S-CODE.md`, *quotable* at
 2026-09-24, gpt-6-astra; harness `cb3b8d9`, branch `study/ai4s-codeaudit`, not yet merged into the
 integration branch).
 
-**C20 — PENDING REVIEW (round 3); not quotable until an independent review ends quotable. On
+**C20 — On
 held-out scientific data, at a clean-flag budget fixed in advance, adding the shipped auditor to the
 validator raises the share of faulty items with a finding that names the injected column.** Registered
 lexical endpoint (NOT correct diagnosis): validator 90/140 (64.3% [56.4, 72.1]) at 0/140 clean;
@@ -424,7 +424,7 @@ some relevant ones; `self`'s F4/F7 counts are not diagnoses; new draws from the 
 seven synthetic faults; the nine `cross` clean flags are one card-documentation objection that may be
 a fair reading. **Must not be written:** "correctly diagnosed", "correct diagnosis rate", or any
 statement that the rule validates diagnosis. Evidence: A4S-4 (`reports/RESULTS-AI4S-DIAG.md`;
-registration at harness `a6c04af`; report revised at `b8a0693` after rounds 1 and 2 `codex-review-a4s4`).
+registration at harness `a6c04af`; report revised at `b8a0693` after rounds 1 and 2; *quotable* at review round 3, 2026-09-30, `codex-review-a4s4`, gpt-6-astra, for the registered lexical result; companion docstrings aligned at `0981f67`). Reader statement, not to be exceeded: on 280 new samples from four previously used tables, adding cross-model audit findings increased coverage under a preregistered lexical rule from 90 to 105 of 140 faulty items, while flagging 9 of 140 clean items; these counts do not establish correct diagnosis.
 
 ## Claims the evidence does not support, and which must not appear
 
@@ -758,7 +758,7 @@ sentence defining what it is, and `tex/` carries none of its figures or rates. T
 stands on studies 17, 19, 20 and 22. *(Historical: that blocker was discharged when those four
 studies passed review, 2026-09-20/21.)*
 
-**Current status, 2026-09-24.** Every claim the manuscript quotes is admitted above (C1–C19),
+**Current status, 2026-09-30.** C20 (A4S-4) admitted at study review round 3. The manuscript with A4S-4 went three referee rounds (`codex-review-paper4`); round 3 found no reporting blocker beyond C20's admission and one appendix sentence, both since resolved, and kept a weak-reject recommendation on scientific strength: the prospective result is lexical coverage, and the diagnostic reading is the agent's post hoc assessment, not independent adjudication. Every claim the manuscript quotes is admitted above (C1–C20),
 each from a report that passed independent cross-vendor review; study 23 closed without a
 quotable number and is named only to say what it no longer supports. The restructured manuscript
 passed its fourth whole-manuscript review round as **submittable**

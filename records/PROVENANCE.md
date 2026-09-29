@@ -98,6 +98,6 @@ snapshots.
 
 | here | harness branch | commit |
 |---|---|---|
-| records/ai4s/data_items_ho.json, data_items_ho/, diag_results.json, diag_calibration_dev.json, diag_supplement.json, diag_posthoc.json, diag_readings/, diag_ledger/ | study/ai4s-diagnosis | b8a0693 |
-| records/ai4s/analysis/diag-b8a0693/ | study/ai4s-diagnosis | b8a0693 |
+| records/ai4s/data_items_ho.json, data_items_ho/, diag_results.json, diag_calibration_dev.json, diag_supplement.json, diag_posthoc.json, diag_readings/, diag_ledger/ | study/ai4s-diagnosis | 0981f67 |
+| records/ai4s/analysis/diag-0981f67/ | study/ai4s-diagnosis | 0981f67 |
 | reports/RESULTS-AI4S-DIAG.md, plan/studies/ai4s/PREREGISTRATION-DIAG.md | study/ai4s-diagnosis | b8a0693 (registered at a6c04af) |
