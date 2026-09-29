@@ -38,6 +38,7 @@ the command printed in `reproduce.sh`.
 | C17 | A4S-3, scientific data | `RESULTS-AI4S-DATA.md` | `reviews/cross-vendor/codex-review-a4s3/` | `ai4s/data_*.json` |
 | C18 | A4S-2, scientific results | `RESULTS-AI4S-RESULTS.md` | `reviews/cross-vendor/codex-review-a4s2/` | `ai4s/results_*.json` |
 | C19 | A4S-1 and A4S-1b, scientific code | `RESULTS-AI4S-CODE.md` | `reviews/cross-vendor/codex-review-a4s1/` | `ai4s/strata.json`, `ai4s/code_*.json`, `ai4s/residual*` |
+| C20 | A4S-4, held-out naming of faults at a fixed budget | `RESULTS-AI4S-DIAG.md` | `reviews/cross-vendor/codex-review-a4s4/`, `reviews/cross-vendor/codex-review-paper4/` | `ai4s/data_items_ho*`, `ai4s/diag_*` |
 | none | study 23, closed | `RESULTS-SUBSTRATE2.md` | `reviews/cross-vendor/codex-review-sub2r1/` | — |
 
 Every quoted study's records are under `records/`; where no figure or table script reads them,

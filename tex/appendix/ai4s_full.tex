@@ -166,3 +166,41 @@ but it omits one range the concrete source's documentation states and uses a lis
 columns the card does not give; with the omitted range it would flag 93 of 140. Unit conversion
 also left floating-point tails that mark some converted cells in two of the tables. None of the
 auditor's mixed-unit findings cites them, but that does not show they had no influence.
+
+\textbf{Held-out naming of faults at a fixed false-positive budget.} A fourth preregistered study
+(registered before any of its items was built or read) asks what the study above cannot: whether the
+model auditor names faults the validator misses, rather than flags items, at a false-positive budget
+fixed before the data exist. It builds 280 new items by the construction above, unchanged except for
+the seed (no CSV is shared with the development items), and reads each four times with both families.
+The registered endpoint is scored by code from the injection manifest: a faulty item counts when a
+flagging reading's BLOCKER text names the injected column, both columns for a swap, or a duplication
+term for duplicated rows, using a frozen alias table. No model judges any outcome. The rule is lexical;
+it is not a measure of correct diagnosis, and below we report what it wrongly counts and misses. On the
+development items it counts 60 of the shipped auditor's findings against the post hoc fault-relevant
+count of 61. The operating points were fixed on the development items: the smallest vote threshold over
+four readings whose clean-flag rate was at most 10\%, any one reading for the shipped auditor (2.9\% on
+development) and all four for the generator's own model (7.1\%), which then counts when at least one of
+the four flagging readings meets the rule. No threshold of the latter reaches 5\%, which is why the
+budget is 10\%.
+
+On the held-out items the validator meets the rule on 90 of 140 faulty items (64.3\% [56.4, 72.1]) and
+flags no clean item. The shipped auditor at its operating point meets it on 57 (40.7\% [32.6, 48.9]) at
+9 of 140 clean flags (6.4\% [2.8, 10.5]), and the generator's own model on 40 (28.6\% [21.7, 35.9]) at
+14 (10.0\% [5.6, 14.8]). The validator with the shipped auditor reaches 105 (75.0\% [67.6, 81.9]) at the
+same 9 clean flags. The registered primary, the union against the validator alone, is $+10.7$ points
+[6.0, 15.9]: 15 items added and none lost (exact McNemar $p = 6.1\times10^{-5}$), at a realised
+clean-flag rate inside the budget, so the hypothesis holds; the union's interval on that rate reaches
+10.5\%, so the population rate is not shown to be inside it. The gain comes from mixed units (5 to 13
+of 20) and swapped columns (5 to 12 of 20). The secondary route comparison puts the shipped auditor
+12.1 points [4.1, 20.3] above the generator's own model (27 against 10 discordant items); model and
+sampling change together, and the two sit at different realised rates inside one budget. Intervals
+resample items within dataset. The ledgers value the study's calls at \$24.41.
+
+Read against the manifest and item files after the outcome (post hoc), the rule is liberal about
+meaning and strict about wording. It counts one of the shipped auditor's findings that is a request for column definitions and six of the other model's that are about something else (row counts, the card, missing ranges, near-duplicate records, or a statement that the structure is satisfied), so that model's three shuffled-target and two rounding counts are not diagnoses. It counts one of the fifteen items the union adds, a swap, on a finding that
+reports the wrong columns; and it misses three findings that describe impossible values in one of the
+two swapped columns. A stricter post hoc keyword filter, requiring a fault term or a quoted injected value as well, leaves the shipped auditor at 53 and the other model at 32; it is still lexical, and it wrongly drops one swap whose findings describe the two columns as reversed. The four items the shipped auditor loses are validator items, so the union stays at 105. The study agent read the fifteen items the union adds against the manifest and item files, unblinded and after the outcome: fourteen locate the fault in the right columns ($+10.0$ points [5.4, 15.1], exact McNemar $p = 0.00012$), and eleven also explain the injected transformation ($+7.9$ [3.7, 12.5]); three strength items converted to psi are located without the conversion being explained (one finding calls it a decimal shift and one reconstructs a wrong factor). That reading is not an independent adjudication. All nine of the shipped auditor's clean flags
+are on airfoil items and make one objection, that the card names each column's unit but does not
+define it; like the four development clean flags, they may be a fair reading of the task sentence
+rather than errors. The held-out items are new draws from the same four tables and seven synthetic
+faults, so the result does not extend to other data, faults or cards.

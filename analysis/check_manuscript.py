@@ -105,6 +105,8 @@ FORBIDDEN = {
         r"is a worse auditor|stronger model is (?:a )?worse",
     "C13: a causal verb on the clarification result":
         r"(?:underdetermination|ambiguity|incompleteness) (?:causes|caused|explains)",
+    "C20: the lexical naming rule read as correct diagnosis":
+        r"correctly diagnos|correct diagnosis rate|correctly named faults",
     "study 22 licensing a bound on the ceiling":
         r"construction licenses is a bound",
 }
