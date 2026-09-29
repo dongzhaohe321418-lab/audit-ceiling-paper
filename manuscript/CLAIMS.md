@@ -408,21 +408,21 @@ earlier steps. Evidence: A4S-1/1b (`reports/RESULTS-AI4S-CODE.md`, *quotable* at
 2026-09-24, gpt-6-astra; harness `cb3b8d9`, branch `study/ai4s-codeaudit`, not yet merged into the
 integration branch).
 
-**C20 — PENDING REVIEW; not quotable until an independent review ends quotable. On held-out
-scientific data, at a clean-flag budget fixed in advance and with diagnosis decided by code, adding
-the shipped auditor to the validator raises the share of faults correctly named.** 280 new items by
-A4S-3's construction (seed 20261001); operating points fixed on A4S-3 at a 10% clean-flag budget
-(`cross` any of four readings, `self` all four). Executable rule: a flagging BLOCKER text names the
-injected column (both for a swap; a duplication term for duplicated rows). Validator 90/140 (64.3%
-[56.4, 72.1]) at 0/140 clean; validator or `cross` **105/140 (75.0% [67.6, 81.9])** at 9/140 clean
-(6.4% [2.8, 10.5]); **H1 +10.7 points [6.0, 15.9]**, 15 against 0 discordant, exact McNemar
-p = 6.1e-5, holds. H2 (route comparison): `cross` 57 against `self` 40, +12.1 [4.1, 20.3].
-**Limits that travel with it:** the rule is lexical, necessary not sufficient; new draws from the
-same four tables and seven synthetic faults; the two families sit at different realised rates within
-one budget; all nine `cross` clean flags are one card-documentation objection. Evidence: A4S-4
-(`reports/RESULTS-AI4S-DIAG.md`; registration `plan/studies/ai4s/PREREGISTRATION-DIAG.md` at harness
-`a6c04af`; branch `study/ai4s-diagnosis`, report at `25071d0`). **Not reviewed:** the Codex reviewer's
-quota was exhausted until 2026-09-29.
+**C20 — PENDING REVIEW (round 2); not quotable until an independent review ends quotable. On
+held-out scientific data, at a clean-flag budget fixed in advance, adding the shipped auditor to the
+validator raises the share of faulty items with a finding that names the injected column.** Registered
+lexical endpoint (NOT correct diagnosis): validator 90/140 (64.3% [56.4, 72.1]) at 0/140 clean;
+validator or `cross` **105/140 (75.0% [67.6, 81.9])** at 9/140 clean (6.4% [2.8, 10.5]); **H1 +10.7
+points [6.0, 15.9]**, 15:0, exact McNemar p = 6.1e-5, holds (realised rate inside the budget; its
+interval reaches 10.5%). H2 route comparison: `cross` 57 against `self` 40, +12.1 [4.1, 20.3].
+**Post hoc, the agent's reading, not independent:** all fifteen union-added items state the fault,
+fourteen with the right columns; counting those fourteen, +10.0 [5.4, 15.1], p = 0.00012. **Must
+travel with it:** the rule counts findings about other things (one `cross`, six `self`) and misses
+some relevant ones; `self`'s F4/F7 counts are not diagnoses; new draws from the same four tables and
+seven synthetic faults; the nine `cross` clean flags are one card-documentation objection that may be
+a fair reading. **Must not be written:** "correctly diagnosed", "correct diagnosis rate", or any
+statement that the rule validates diagnosis. Evidence: A4S-4 (`reports/RESULTS-AI4S-DIAG.md`;
+registration at harness `a6c04af`; report revised at `2b4855e` after round 1 `codex-review-a4s4`).
 
 ## Claims the evidence does not support, and which must not appear
 
