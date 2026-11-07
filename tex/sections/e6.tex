@@ -59,6 +59,38 @@ that the witness exercises the disagreement. A unit's value is the mean over con
 problem-level bootstraps, and the false-flag budget after resolution (10\%) is tested separately with a betting
 confidence bound \citep{waudbysmith2024betting}, which does not gate the other claims.
 
+\subsection{Results}
+\label{sec:e6-results}
+
+The held-out population has \tbd{40} units from \tbd{40} problems (\tbd{32} from the first construction attempt and
+\tbd{8} from the second) and \tbd{3{,}200} readings; the positive-control population has \tbd{54} units. All
+hypotheses, intervals and the order in which claims are tested were registered before the first held-out call.
+
+\paragraph{Without the contract, auditors side with the convention.} In the \textsc{none} arm the two flag rates are
+equal by construction (\tbd{x}\% each), so flagging carries no information about which program is wrong. The
+diagnoses are not symmetric: a verified diagnosis is \tbd{y} points [\tbd{lo}, \tbd{hi}] more likely when the
+contract is the benchmark's own rule than when it is the alternative (E6-2). An auditor that ``detects'' the program
+departing from the reference is, on these units, reporting the convention it expects.
+
+\paragraph{Stating the contract moves the ceiling.} Resolving the menu raises verified diagnosis from \tbd{c0}\%
+to \tbd{c1}\% (E6-1: +\tbd{d} [\tbd{lo}, \tbd{hi}]), and one ordinary sentence without a menu does nearly as well
+(E6-5: +\tbd{d5} over \textsc{none}). After resolution the flag rate on correct programs is \tbd{f}\%; its betting
+upper bound is \tbd{u}\% against the registered 10\% budget (E6-1b, \tbd{met / not met}).
+
+\paragraph{More reasoning does not.} After resolution the high reasoning budget changes verified diagnosis by
+\tbd{e} points (bootstrap [\tbd{lo}, \tbd{hi}]; betting [\tbd{lo}, \tbd{hi}]). The registered equivalence claim
+(margin 10) is \tbd{inconclusive}: at this sample size the betting interval is wider than the margin. Before
+resolution the budget changes neither the flag rates nor the diagnoses by more than \tbd{e0} points.
+
+\paragraph{The vendors differ in what they do with an open question.} Told that the task leaves the choice open,
+GPT passes \tbd{p}\% of readings and Claude asks for clarification in \tbd{q}\% (Figure~\ref{fig:e6}c). Neither
+flags. Both behaviours are defensible; only one is visible to a benchmark that scores flag or pass.
+
+\paragraph{Positive controls.} Where the task's words do rule one program out, the same auditors separate the two
+programs without any added text: flag recall minus false-flag rate is \tbd{j} points [\tbd{lo}, \tbd{hi}] (E6-4).
+The flat \textsc{none} arm of the open units is therefore not an auditor that cannot read; it is evidence that does
+not decide.
+
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{fig_e6.pdf}
