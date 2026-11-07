@@ -21,8 +21,10 @@ implementations, so the two share provenance and style; the vendor alternates ac
 
 \paragraph{Admission by execution.} An independent model writes a domain predicate \texttt{valid} and 16--24 probe
 inputs; the proposer writes a class predicate \texttt{in\_class}. A unit is admitted only if, on every valid input
-among the hidden suite, the proposer's inputs, the probes and 120 seeded stress mutations (unusual whitespace and
-Unicode, extreme and cancelling floating-point values, empty and duplicated collections), both B implementations agree with the reference; outside
+among the hidden suite, the proposer's inputs, the probes, up to 300 seeded stress mutations (unusual whitespace,
+combining marks and other Unicode, complex values equal to integers, negative indices, extreme and cancelling
+floating-point values, empty and duplicated collections) and up to 40 inputs from a red-team model that sees all
+implementations and both predicates and tries to break these conditions, both B implementations agree with the reference; outside
 the class all four implementations agree with the reference; inside it the two A implementations agree; A and B
 differ on at least two valid class inputs; and every implementation passes the visible tests. Each stage is attempted
 once per problem; problems without a first-attempt primary unit received one second, independent attempt, fixed
