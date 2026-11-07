@@ -1,0 +1,55 @@
+% Draft (2026-11-07). Test numbers are marked \tbd{} until the preregistered test run.
+\section{A randomised-contract audit experiment}
+\label{sec:e6}
+
+Section~\ref{sec:framework} says that a miss on an indistinguishable case cannot be repaired by computation, but
+on a natural benchmark we never observe the counterfactual contract. This section builds it. Each unit is a real
+benchmark task with one behaviour the task leaves open; we write two programs that differ only there, draw the
+contract the auditor is graded against independently of what it sees, and then reveal the contract, or not.
+
+\subsection{Construction}
+\label{sec:e6-construction}
+
+\paragraph{Contracts first.} For each of the 542 HumanEval+ and MBPP+ problems \citep{liu2023evalplus}, a proposer
+model names one kind of valid input on which the task text and the visible tests leave the behaviour open, and states
+two rules for it as requirements a task author could add: \emph{B}, the behaviour the benchmark reference follows,
+and \emph{A}, an alternative of equal specificity (for example, ``if several sublists are equally short, return the
+first'' against ``\dots the last''). Each rule is then implemented from the task and the rule alone, by two vendors
+with the same prompt; no implementation sees the reference. The programs an auditor reads are one vendor's A and B
+implementations, so the two share provenance and style; the vendor alternates across units.
+
+\paragraph{Admission by execution.} An independent model writes a domain predicate \texttt{valid} and 16--24 probe
+inputs; the proposer writes a class predicate \texttt{in\_class}. A unit is admitted only if, on every valid input
+among the hidden suite, the proposer's inputs and the probes, both B implementations agree with the reference; outside
+the class all four implementations agree with the reference; inside it the two A implementations agree; A and B
+differ on at least two valid class inputs; and every implementation passes the visible tests. These checks reject,
+for example, a ``correct'' B program whose integer summation silently became floating point.
+
+\paragraph{Judging without human raters.} Two models that neither proposed the rules nor audit (Claude Opus,
+GPT-6.1-sol) judge, blind to which rule is the benchmark's, whether the inputs are valid and whether each rule is
+compatible with the task's words and visible tests, with the instruction that a missing example is not permission.
+The primary population is the admitted units on which both judges accept the domain and both rules. We call these
+\emph{execution-validated, two-model-compatible contract pairs}. They are not human-validated ambiguities, and we make
+no claim about how common such ambiguity is.
+
+\paragraph{Positive controls.} The same pipeline, with a proposer prompt asking for a plausible \emph{misreading}
+that passes the visible tests but that the words rule out, yields units on which the evidence does distinguish the
+programs. Both judges must call the misreading incompatible and the required rule compatible.
+
+\subsection{Arms, auditors and scoring}
+\label{sec:e6-arms}
+
+Each open unit is audited under six arms that append text to the task: nothing (\textsc{none}); both rules as a
+numbered menu with the statement that the task does not say which applies (\textsc{menu}); the same menu plus
+``the function must follow rule ($k$)'' (\textsc{resolve}); and one rule stated as an ordinary requirement with no
+menu (\textsc{sentence}). Menu order is fixed per unit and independent of the contract. Auditors are GPT-5.6-terra and
+Claude Sonnet 5.5, each at a low and a high reasoning budget, with the shipped rulebook and two readings per cell
+(\tbd{N} readings in all).
+
+Under contract $X$, program $X$ is correct and the other is defective. In \textsc{none} and \textsc{menu} the evidence
+does not depend on the contract, so the same readings are scored under both contracts (Lemma~\ref{lem:symmetric}
+then forces flag recall to equal the false-flag rate; we report it as a check). A cell flags if either reading
+reports a blocking finding. A diagnosis is \emph{verified} only if a flagging reading supplies a witness call that
+satisfies \texttt{valid}, lies in the class, and on which the program and the contract's oracle disagree under the
+benchmark's own comparator (the reference for B, the other vendor's implementation for A). The resolved false-flag
+rate must stay under a preregistered budget of 5\%.

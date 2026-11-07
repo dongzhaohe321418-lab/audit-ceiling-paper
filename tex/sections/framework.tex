@@ -34,8 +34,11 @@ programs. Then every auditor has $\mathrm{TPR}_K=\mathrm{FPR}_K$. If a share $\p
 components, recall at component false-flag rate at most $\alpha$ is at most $(1-\pi)+\pi\alpha$.
 \end{corollary}
 
-The statements are elementary; their use here is to separate two causes of a missed defect that audit evaluations
-conflate. A miss on a distinguishable case is a \emph{capacity} miss: some auditor with the same evidence could do
+Both statements are textbook facts about hypothesis testing (the Neyman--Pearson lemma and the total-variation
+bound on any test's power minus its size; \citealp{neyman1933efficient}); we claim no novelty for them. Note that the
+component bound needs the false-flag constraint on the component itself: under an overall false-flag rate $\alpha$
+alone, with $q$ the share of correct programs in the component, the bound is only $(1-\pi)+\pi\min(1,\alpha/q)$.
+Their use here is to separate two causes of a missed defect that audit evaluations conflate. A miss on a distinguishable case is a \emph{capacity} miss: some auditor with the same evidence could do
 better. A miss on an indistinguishable case is an \emph{information} miss: no auditor can do better without
 different evidence. Only interventions that change $E$ move the ceiling.
 
