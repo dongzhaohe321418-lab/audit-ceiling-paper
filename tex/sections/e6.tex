@@ -20,9 +20,12 @@ implementations, so the two share provenance and style; the vendor alternates ac
 
 \paragraph{Admission by execution.} An independent model writes a domain predicate \texttt{valid} and 16--24 probe
 inputs; the proposer writes a class predicate \texttt{in\_class}. A unit is admitted only if, on every valid input
-among the hidden suite, the proposer's inputs and the probes, both B implementations agree with the reference; outside
+among the hidden suite, the proposer's inputs, the probes and 120 seeded stress mutations (unusual whitespace and
+Unicode, extreme and cancelling floating-point values, empty and duplicated collections), both B implementations agree with the reference; outside
 the class all four implementations agree with the reference; inside it the two A implementations agree; A and B
-differ on at least two valid class inputs; and every implementation passes the visible tests. These checks reject,
+differ on at least two valid class inputs; and every implementation passes the visible tests. Each stage is attempted
+once per problem; problems without a first-attempt primary unit received one second, independent attempt, fixed
+before any held-out audit. These checks reject,
 for example, a ``correct'' B program whose integer summation silently became floating point.
 
 \paragraph{Judging without human raters.} Two models that neither proposed the rules nor audit (Claude Opus,
@@ -51,5 +54,7 @@ does not depend on the contract, so the same readings are scored under both cont
 then forces flag recall to equal the false-flag rate; we report it as a check). A cell flags if either reading
 reports a blocking finding. A diagnosis is \emph{verified} only if a flagging reading supplies a witness call that
 satisfies \texttt{valid}, lies in the class, and on which the program and the contract's oracle disagree under the
-benchmark's own comparator (the reference for B, the other vendor's implementation for A). The resolved false-flag
-rate must stay under a preregistered budget of 5\%.
+benchmark's own comparator (the reference for B, the other vendor's implementation for A), and both judges confirm
+that the witness exercises the disagreement. A unit's value is the mean over configurations; intervals are
+problem-level bootstraps, and the false-flag budget after resolution (10\%) is tested separately with a betting
+confidence bound \citep{waudbysmith2024betting}, which does not gate the other claims.
