@@ -1,38 +1,38 @@
 \section{Related work}
 \label{sec:related}
 
-\textbf{Critics and repeated reading.} Trained critics catch more bugs in model-written code than unaided humans
-and hallucinate some \citep{mcaleese2024critics}; aggregating review passes raises review F1 on real pull requests
-\citep{zeng2025swrbench}; coverage under repeated sampling grows roughly log-linearly in the number of samples
-\citep{brown2024monkeys}; and self-correction without external feedback does not reliably help
-\citep{huang2024selfcorrect}. These results vary the auditor while holding the evidence fixed. We vary the evidence
-while holding the auditor fixed, and show that on the cases we construct the second moves performance and the first
-does not.
+\textbf{Critics and repeated reading.} Trained critics catch more bugs in model-written code than unaided humans,
+but also hallucinate some \citep{mcaleese2024critics}. Aggregating review passes raises review F1 on real pull
+requests \citep{zeng2025swrbench}, and coverage under repeated sampling grows roughly log-linearly in the number
+of samples \citep{brown2024monkeys}. Self-correction without external feedback does not reliably help
+\citep{huang2024selfcorrect}. These studies vary the auditor while holding the evidence fixed. We hold the auditor
+fixed and vary the evidence. On the cases we construct, changing the evidence moves performance; changing the
+auditor does not.
 
 \textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites
-\citep{liu2023evalplus}; models collapse onto one reading of an underspecified task \citep{richter2026collapse};
-generated tests err mostly in the expected value \citep{xiong2023testing}; and generated oracles capture what a
+\citep{liu2023evalplus}. Models collapse onto one reading of an underspecified task \citep{richter2026collapse},
+and generated tests err mostly in the expected value \citep{xiong2023testing}. Generated oracles capture what a
 program does rather than what was intended \citep{konstantinou2024oracles}. Label errors in test sets bound and
-reorder what benchmarks can measure \citep{northcutt2021labelerrors, gema2025mmlu}. Our setting differs: the
-reference is not wrong, it is one of several behaviours the task admits, so the right correction is neither
-relabelling nor discarding but stating the contract, and we measure what stating it does.
+reorder what benchmarks can measure \citep{northcutt2021labelerrors, gema2025mmlu}. In our setting, the reference
+is not wrong: it is one of several behaviours the task admits. The appropriate correction is to state the
+contract, rather than relabel or discard the case. We measure the effect of stating it.
 
 \textbf{Clarification.} Code generators can be made to ask clarifying questions when a task is ambiguous
 \citep{mu2024clarifygpt, wu2025humanevalcomm}, or to formalise intent as tests confirmed by a user
-\citep{lahiri2022ticoder}; abstaining when evidence is insufficient is the classical reject option
-\citep{chow1970reject}. We study the auditing side: we score a request for clarification as a separate outcome,
-neither a detection nor a pass, and find % CHECK against held-out routing result
- that the two vendors' auditors differ sharply in how often they make one.
+\citep{lahiri2022ticoder}. Abstaining when evidence is insufficient is the classical reject option
+\citep{chow1970reject}. We study auditing and score a request for clarification as a separate outcome,
+neither a detection nor a pass. We find % CHECK against held-out routing result
+ that the two vendors' auditors differ sharply in how often they request clarification.
 
 \textbf{Auditing scientific work.} Models detect a minority of errata-grade errors in manuscripts
-\citep{son2025spot} and of paper--code discrepancies \citep{baumgartner2026scicoqa}; an auditor of AI-scientist
-projects detects pitfalls far better with logs and code than with the paper alone \citep{luo2025pitfalls}; cleaning
-agents miss errors that span rows \citep{bendinelli2025cleaning}; and an expert audit of SciCode
-\citep{tian2024scicode} found specifications and tests that reject correct solutions \citep{hu2026scicodeverified},
-which it repairs by rewriting the specification. Our randomised contracts are the experimental counterpart of that
-repair: they measure how much of an auditor's apparent miss rate a repaired specification would remove.
+\citep{son2025spot} and of paper--code discrepancies \citep{baumgartner2026scicoqa}. An auditor of AI-scientist
+projects detects pitfalls far better with logs and code than with the paper alone \citep{luo2025pitfalls}.
+Cleaning agents miss errors that span rows \citep{bendinelli2025cleaning}. An expert audit of SciCode
+\citep{tian2024scicode} found specifications and tests that reject correct solutions \citep{hu2026scicodeverified}
+and repairs them by rewriting the specification. Our randomised contracts are the experimental counterpart
+of that repair. They measure how much of an auditor's apparent miss rate a repaired specification would remove.
 
-\textbf{Statistics.} The ceiling is the Neyman--Pearson bound \citep{neyman1933efficient}; the false-flag budget is
-tested with a betting confidence sequence \citep{waudbysmith2024betting}, which is valid at any sample size.
+\textbf{Statistics.} The ceiling is the Neyman--Pearson bound \citep{neyman1933efficient}. We test the false-flag
+budget with a betting confidence sequence \citep{waudbysmith2024betting}, which is valid at any sample size.
 Preregistration of evaluations is beginning to appear in machine learning \citep{vaccaro2026prereg,
-thomas2026phacking}; here it is method, not contribution.
+thomas2026phacking}. We use it as a method and do not claim it as a contribution.

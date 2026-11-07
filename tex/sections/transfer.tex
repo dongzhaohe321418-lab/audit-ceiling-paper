@@ -2,38 +2,39 @@
 \section{Transfer: scientific code, results and data}
 \label{sec:transfer}
 
-Section~\ref{sec:framework} separates two kinds of miss: a capacity miss, where the evidence decides the case and
-the auditor does not use it, and an information miss, where the evidence does not decide it. Three preregistered
-studies of scientific work, run before the experiment above and reported in full in Appendix~\ref{app:earlier}, fall
-on either side of that line. Each uses ground truth no model supplies.
+Section~\ref{sec:framework} separates capacity misses, where the evidence decides the case but the auditor does
+not use it, from information misses, where the evidence does not decide the case. Three preregistered studies of
+scientific work fall on either side of this distinction. They preceded the experiment above and are reported in
+full in Appendix~\ref{app:earlier}. Each uses ground truth that no model supplies.
 
 \paragraph{Code: what the auditor is told it is reviewing.} SciCode \citep{tian2024scicode} splits research problems
-into steps with tests written by scientists. Generated steps that pass are correct and those that fail are
-defective (81 defective, 150 correct instances); the auditor sees the step's text and code, no tests. Given the whole
-problem as the task, a cross-vendor auditor at eight readings flagged 87.7\% [72.7, 98.6] of defective and 68.7\%
-[56.6, 79.7] of correct steps, some of its objections being that one step did not implement the whole problem. A second registered arm
-changed only the task text, naming the step as the deliverable; the program bytes were identical. Flags on correct
-code fell by 32.7 points [22.4, 42.8]. As on the constructed units, the largest change came from telling the
-auditor what was required, not from reading more.
+into steps with tests written by scientists. We label generated steps that pass the tests correct and those that fail defective (the tests can themselves
+reject correct code; \citealp{hu2026scicodeverified}) (81 defective, 150 correct instances). The auditor sees the step's text and code but no tests.
+Given the whole problem as the task, a cross-vendor auditor at eight readings flagged 87.7\% [72.7, 98.6] of
+defective and 68.7\% [56.6, 79.7] of correct steps. Some objections concerned a single step's failure to implement
+the whole problem. A second registered arm changed only the task text to name the step as the deliverable;
+the program bytes were identical. Flags on correct code fell by 32.7 points [22.4, 42.8]. As on the constructed
+units, telling the auditor what was required produced the largest change, rather than reading more.
 
 \paragraph{Results: where the evidence decides, computation helps.} For 74 correct SciCode programs we built a run
-log, a results file and a report whose every number cites its source, and injected either a reporting fault (the
-artefacts disagree) or a fabrication written consistently into all of them. A deterministic provenance check flagged
-all 49 reporting faults and none of the 25 fabrications, because everything agreed with everything else. The model
-auditor flagged 23 of the 25, usually by recomputing the result from the code and inputs (exact McNemar
-$p=2.4\times10^{-7}$); re-execution, which uses the same information, flagged 70 of the 74 faulty items, missing four
-whose change fell inside the default numerical tolerance. Here the evidence determines the
-right value, so a miss is a capacity miss, and more capacity, a model that computes or simply running the code,
-removes it.
+log, a results file and a report in which every number cites its source. We injected either a reporting fault
+(the artefacts disagree) or a fabrication written consistently into all of them. A deterministic provenance
+check flagged all 49 reporting faults and none of the 25 fabrications, whose artefacts all agreed.
+The model auditor flagged 23 of the 25, usually by recomputing the result from the code and inputs (exact McNemar
+$p=2.4\times10^{-7}$). Re-execution uses the same information and flagged 70 of the 74 faulty items.
+It missed four whose change fell inside the default numerical tolerance. The evidence here determines the
+right value, so a miss is a capacity miss. More capacity, through a model that computes or simply running the
+code, removes most of them.
 
-\paragraph{Data: where the documentation carries the information.} Twelve public regression tables were each given a
-data card and either left clean or given one injected fault (mixed units, negated values, duplicated rows, a shuffled
-target, swapped columns, sentinel values, rounding); eight tables (266 items) were held out. A validator written
-mechanically from the card was combined with a model auditor (GPT or Claude, with a shell on the full table or reading
-120 rows). Adding the model raised correct localisation, scored by code against the injection manifest, by 2.3 points
-[0.4, 4.8] and flags on clean items by 16.0 points [3.2, 31.4]; neither the full table nor tool use helped. Every
-reading ran in an operating-system sandbox, after an unsandboxed pilot in which one auditor searched the disk and the
-web for the original files; inside it, 57\% of that auditor's held-out readings still attempted out-of-scope access,
-which was logged and returned nothing. An earlier study on four tables, at a clean-flag budget fixed in advance, found
-a larger gain in findings naming the faulty column (10.7 points [6.0, 15.9]) over a simpler validator. Either way, where the documentation already states
-what valid data look like, a check written from it finds most of the faults that it and the model find together.
+\paragraph{Data: where the documentation carries the information.} We gave each of twelve public regression tables a
+data card. Each table was either left clean or given one injected fault (mixed units, negated values, duplicated
+rows, a shuffled target, swapped columns, sentinel values, rounding). We held out eight tables (266 items) and
+combined a validator written mechanically from the card with a model auditor (GPT or Claude, with a shell on the
+full table or reading 120 rows). Adding the model raised correct localisation, scored by code against the injection manifest, by 2.3 points
+[0.4, 4.8] and flags on clean items by 16.0 points [3.2, 31.4]. Neither the full table nor tool use helped.
+In an unsandboxed pilot, one auditor searched the disk and the web for the original files. Every subsequent
+reading ran in an operating-system sandbox. Even there, 57\% of that auditor's held-out readings attempted
+out-of-scope access; these attempts were logged and returned nothing. An earlier study on four tables, at a clean-flag budget fixed in advance, found
+a larger gain in findings naming the faulty column (10.7 points [6.0, 15.9]) over a simpler validator.
+In both studies, where the documentation already states what valid data look like, a check written from it
+finds most of the faults that it and the model find together.

@@ -35,19 +35,21 @@ components, recall at component false-flag rate at most $\alpha$ is at most $(1-
 \end{corollary}
 
 Both statements are textbook facts about hypothesis testing (the Neyman--Pearson lemma and the total-variation
-bound on any test's power minus its size; \citealp{neyman1933efficient}); we claim no novelty for them. Note that the
-component bound needs the false-flag constraint on the component itself: under an overall false-flag rate $\alpha$
+bound on any test's power minus its size; \citealp{neyman1933efficient}). We claim no novelty for them. The
+component bound requires a false-flag constraint on the component itself. Under an overall false-flag rate $\alpha$
 alone, with $q$ the share of correct programs in the component, the bound is only $(1-\pi)+\pi\min(1,\alpha/q)$.
-Their use here is to separate two causes of a missed defect that audit evaluations conflate. A miss on a distinguishable case is a \emph{capacity} miss: some auditor with the same evidence could do
-better. A miss on an indistinguishable case is an \emph{information} miss: no auditor can do better without
-different evidence. Only interventions that change $E$ move the ceiling.
+We use these statements to separate two causes of missed defects that audit evaluations conflate.
+Misses on distinguishable cases are \emph{capacity} misses: some auditor with the same evidence attains higher
+recall at the same false-flag rate. Misses on indistinguishable cases are \emph{information} misses: there, any
+auditor buys recall only with an equal rise in false flags, and no auditor does better at a fixed false-flag rate
+without different evidence. Only interventions that change $E$ move the ceiling.
 
 \paragraph{Contract randomisation makes the component observable.}
-On a natural benchmark the hidden contract is fixed to the benchmark's reference behaviour, so indistinguishability
-is a counterfactual: we cannot see the auditor's response under the other admissible contract. We construct it.
-Take a discrepancy unit: an input class on which two behaviours, $A$ and $B$, are both admissible under the task
-text and the visible tests. Build two programs that differ only on that class, $X_A$ and $X_B$, and draw
-$H\in\{A,B\}$ independently of everything the auditor sees.
+A natural benchmark fixes the hidden contract to its reference behaviour. Indistinguishability is therefore
+counterfactual: we cannot see the auditor's response under the other admissible contract. We construct this
+counterfactual using a discrepancy unit, an input class on which two behaviours, $A$ and $B$, are both admissible
+under the task text and the visible tests. We build two programs that differ only on that class, $X_A$ and $X_B$,
+and draw $H\in\{A,B\}$ independently of everything the auditor sees.
 
 \begin{lemma}
 \label{lem:symmetric}
@@ -63,16 +65,17 @@ Q_{X_A}+\tfrac12 Q_{X_B}$, where $Q_x$ is the law of $E$ given $X=x$.
 
 Revealing $H$ in the evidence (stating the requirement) breaks the premise of Lemma~\ref{lem:symmetric}; text that
 draws attention to the input class, or lists both behaviours without choosing, does not. The experiment in
-Section~\ref{sec:e6} therefore measures three things that the propositions leave open: how far real auditors sit
-below the ceiling once the requirement is revealed, whether additional computation helps more before or after
-the reveal, and how much of the recall measured on natural benchmarks is agreement with the benchmark's convention
-on indistinguishable units, which would be false flags had the convention gone the other way.
+Section~\ref{sec:e6} measures how far real auditors sit below the ceiling once the requirement is revealed and
+whether additional computation helps more before or after the reveal. It also measures how much of the recall
+on natural benchmarks reflects agreement with the benchmark's convention on indistinguishable units.
+Those detections would be false flags had the convention gone the other way. The propositions leave these
+three questions open.
 
 \paragraph{What we do not claim.}
-The ceiling is relative to the evidence, and the evidence includes what a model brings with it: a model that has
-memorised a benchmark's reference sees more than the task text. Contract randomisation neutralises this on the
-constructed units, because the memorised convention is equally likely to be wrong. On natural units we cannot
-observe the counterfactual contract, so Section~\ref{sec:natural} reports which failures the task's words determine,
-as judged by two models and checked against what independent programmers do; that is a description of a benchmark,
-not an estimate of an information-limited share. Logical ambiguity of a task is not the same as equality of the two
-evidence laws, and nothing here says that computation cannot help on natural programs.
+The ceiling is relative to the evidence, which includes what a model brings with it.
+A model that has memorised a benchmark's reference sees more than the task text. Contract randomisation
+neutralises this on the constructed units because the memorised convention is equally likely to be wrong.
+On natural units we cannot observe the counterfactual contract. Section~\ref{sec:natural} therefore reports
+which failures the task's words determine, as judged by two models and checked against what independent programmers do.
+This describes a benchmark; it does not estimate an information-limited share. A task's logical ambiguity is
+not the same as equality of the two evidence laws, and nothing here rules out computation helping on natural programs.
