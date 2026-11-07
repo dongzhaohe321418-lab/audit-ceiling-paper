@@ -1,0 +1,25 @@
+% Draft (2026-11-07). E3 numbers are final (preregistered, Amendment 3).
+\section{Transfer: auditing scientific data}
+\label{sec:data}
+
+For data, the information an auditor needs is in the documentation: units, ranges, what a row is. We asked whether a
+model auditor adds anything to a validator written mechanically from that documentation. Twelve public regression
+datasets were each delivered with a data card and either left clean or given one injected fault (mixed units,
+negated values, duplicated rows, a shuffled target, swapped columns, sentinel values, rounding); four datasets were used for
+development and eight held out. A profile validator derived from the card was combined with one of two auditors,
+GPT-5.6-terra or Claude Sonnet 5.5, run either with a shell on the full table or reading a 120-row table with every
+tool disabled. Faults counted as localised only if a blocking finding names the injected fault type and column,
+scored by code against the injection manifest.
+
+\paragraph{Isolation.} An auditor with a shell can look for the clean source instead of auditing the table. In an
+earlier run the GPT auditor searched the disk and the web for the original UCI files and found copies kept for item
+construction; we discarded that run. Every reported reading runs inside an operating-system sandbox that denies reads
+outside the reading's own copy of the item and all network except the vendor's API. Inside it, 57\% of the GPT
+auditor's held-out readings (86\% in development) still attempted out-of-scope access, against none of Claude's; the
+attempts are logged and could not return information.
+
+\paragraph{Results (held out, 266 items, preregistered).} Adding the model to the card-derived validator raised
+correct localisation by 2.3 points [0.4, 4.8] and flags on clean items by 16.0 points [3.2, 31.4], above the
+registered tolerance of 10. Neither the full 12{,}000-row table (0.0) nor tool use over reading (+1.3 [$-$2.7, 5.8])
+helped. Where the documentation already carries the information, a validator written from it captures nearly all of
+what the model finds, and the model's additional contribution is mostly false alarms.
