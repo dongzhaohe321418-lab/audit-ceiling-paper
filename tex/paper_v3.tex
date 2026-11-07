@@ -1,0 +1,102 @@
+\documentclass{article}
+
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% ICML 2027 version. The anonymous submission build defines \ANON before loading this file.
+\ifdefined\ANON
+\usepackage{icml2026}
+\else
+\usepackage[preprint]{icml2026}
+\fi
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\ifdefined\XeTeXversion\usepackage{fontspec}\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]\setmonofont{texgyrecursor}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]\fi
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+% numbers that come from the preregistered held-out runs
+\newcommand{\tbd}[1]{\textcolor{red}{[#1]}}
+
+\icmltitlerunning{What moves the ceiling on automated audit}
+
+\begin{document}
+
+\twocolumn[
+\icmltitle{What Moves the Ceiling on Automated Audit:\\
+           from General Code to Scientific Code, Results and Data}
+
+\begin{icmlauthorlist}
+\icmlauthor{Zhaohe Dong}{ind}
+\end{icmlauthorlist}
+
+\icmlaffiliation{ind}{Independent researcher}
+\icmlcorrespondingauthor{Zhaohe Dong}{dongzhaohe321418@gmail.com}
+
+\icmlkeywords{code review, LLM critics, audit, evaluation, preregistration, AI for science}
+
+\vskip 0.3in
+]
+
+\printAffiliationsAndNotice{}
+
+\begin{abstract}
+Audit benchmarks score an automated auditor against a hidden reference, yet on many cases the evidence the auditor
+sees is equally consistent with the program and with the reference. For any flagging rule, recall minus false-flag
+rate is then bounded by how well that evidence separates defective from correct programs, a classical testing fact
+that audit evaluations cannot observe because a benchmark fixes one contract. We make it observable. From real
+HumanEval+ and MBPP+ tasks we build execution-validated pairs of programs that differ only on a behaviour the task
+leaves open, grade auditors against a contract drawn at random, and vary how the contract is revealed. On
+\tbd{40} held-out units, with auditors from two vendors at two reasoning budgets, the auditors flag both programs
+equally often when the contract is withheld, but diagnose departures from the benchmark's convention \tbd{y}
+points more often than the reverse. Stating the missing requirement raises verified diagnosis by \tbd{z} points; a
+higher reasoning budget changes it by \tbd{e}. Of 150 natural hidden-test failures, two model classifiers find that
+the task's words single out the expected value in only 34, and solutions written from the task alone return the
+``defective'' program's output about twice as often as the reference's. On scientific data, where the
+documentation carries the information, a validator written from it captures nearly all that a model auditor
+finds. What limits automated audit here is what the auditor is told, not how long it thinks. All held-out analyses
+were preregistered.
+\end{abstract}
+
+\input{sections/introduction_v2}
+\input{sections/framework}
+\input{sections/e6}
+\input{sections/natural}
+\input{sections/data}
+\input{sections/related_v3}
+\input{sections/discussion_v3}
+
+\section*{Impact Statement}
+This paper concerns how much automated auditors of model-written code and data should be trusted. It argues
+against reading a hidden-test recall figure as auditor capability when the task does not determine the expected
+behaviour, and against counting agreement with a benchmark's convention as detection. A risk is that the
+constructed units are used to tune auditors toward a benchmark's conventions; we release them with both contracts
+for that reason. All data are public benchmarks and datasets under permissive licences; no human subjects were
+involved.
+
+\bibliography{paper}
+\bibliographystyle{icml2026}
+
+\newpage
+\appendix
+\onecolumn
+\section{Earlier studies of one shipped audit configuration}
+\label{app:earlier}
+\input{sections/system}
+\input{sections/ceiling}
+\input{sections/ai4s}
+\input{appendix/method_full}
+\input{appendix/results_full}
+\input{appendix/ai4s_full}
+\input{appendix/reproducibility}
+
+\end{document}

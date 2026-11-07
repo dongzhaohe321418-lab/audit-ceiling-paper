@@ -1,0 +1,31 @@
+\section{Discussion and limitations}
+\label{sec:discussion}
+
+\paragraph{What the results say.} On units where the task leaves a behaviour open, a hidden-test ``detection'' is
+agreement with the benchmark's convention, and the auditors we tested agree with it more often than chance
+(Section~\ref{sec:e6}). One added sentence that states the convention turns that agreement into verified diagnosis;
+a larger reasoning budget does not. On natural failures the same pattern appears without construction: most
+failures are ones the task's words do not settle, independent programmers mostly behave like the ``defective''
+program, and the diagnoses auditors do verify concern what the words settle (Section~\ref{sec:natural}). On data,
+the information an auditor needs is in the documentation, and a validator written from it already uses it
+(Section~\ref{sec:data}). In each case the ceiling moves with what the auditor is told.
+
+\paragraph{Practical consequences.} An audit benchmark should report, beside recall, which of its cases the task
+determines, and should not count agreement with an unstated convention as detection. An auditor that is unsure
+whether a behaviour is required should be scored for asking, not only for flagging or passing. For deployment,
+the cheapest improvement we measured is to write the missing requirement down.
+
+\paragraph{Limitations.}\label{sec:limits} \emph{Constructed units.} The randomised-contract units are execution-validated and judged
+admissible by two models, not by people; we make no claim about how often such ambiguity occurs, and two models
+agreeing that a rule is compatible with a task is weaker than expert agreement. \emph{Benchmarks.} All code units
+come from HumanEval+ and MBPP+, short functions with small specifications; whether the size of the convention
+advantage carries over to larger programs, where more behaviour is unstated, is untested. \emph{Auditors.} Two
+vendors' models at two reasoning budgets, with one rulebook; other auditors, agent scaffolds or execution-based
+test generation may sit closer to the ceiling before the reveal, although Lemma~\ref{lem:symmetric} bounds what any
+of them can do on the unrevealed arms. \emph{Verification.} A verified diagnosis requires a witness that the
+benchmark's own comparator confirms and two judges accept; diagnoses stated only in prose are not credited, which
+can understate auditors whose findings are correct but unexecutable. \emph{Natural failures.} The classification
+of natural failures is model-made, with Cohen's $\kappa$ of 0.78 on development items, and the behavioural check
+uses solutions from two generators only. \emph{Data.} The data study injects one fault per item into twelve public
+tables; its conclusion is specific to faults that documentation describes. \emph{Earlier studies} of the shipped
+configuration (Appendix~\ref{app:earlier}) are reported as they were registered and are not re-analysed here.
