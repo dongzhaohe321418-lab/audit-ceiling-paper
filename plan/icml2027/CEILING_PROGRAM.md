@@ -1,114 +1,100 @@
-# The ceiling programme (ICML 2027), version 2
+# The ceiling programme (ICML 2027), version 3
 
-2026-11-07. Version 1 (asymptotic reach, E5 capacity grid) was reviewed by GPT (`review_gpt_P1.md`) and
-withdrawn: reach is not identified at finite k, the clean-flag budget was not imposed, the taxonomy is a model
-judgement on the first failing input only, AT_ODDS was mixed with underspecification, and the "capacity does
-not help" hypotheses were underpowered non-equivalence claims. Version 2 replaces E5 with a controlled
-information-release experiment (E6) whose ceiling is a theorem, not an extrapolation.
+2026-11-07. v1 (asymptotic reach) and v2 (minimal pairs from failures) were reviewed by GPT (`review_gpt_P1.md`,
+`review_gpt_P2.md`; P2 verdict: borderline, lean accept if executed with the corrections below). E1's development
+pipeline was reviewed in `review_gpt_A4.md` (test stays closed until B1-B7 are resolved).
 
-## 1. The ceiling is a property of the evidence
+**One-sentence contribution (P2).** A human-validated, contract-randomised audit benchmark separates
+benchmark-convention agreement from reliable defect diagnosis, and measures how clarification and computation
+change verified detection at a fixed false-flag budget.
 
-An audit case is a program X, the evidence E the auditor sees (task text, visible tests, any added text,
-tool outputs that are functions of these), and a hidden contract H that defines the ground truth. D = 1 if X
-violates H. An auditor, of any capacity, is a randomised map from E to a finding.
+## 1. Framing (what is theory, construction, observation, transport)
 
-**Proposition 1 (evidence ceiling).** For every auditor, TPR - FPR <= TV(P_{E|D=1}, P_{E|D=0}); at a false-flag
-rate alpha the attainable TPR is at most the Neyman-Pearson ROC of E at alpha.
+- *Classical limit.* For any flagging policy phi(E) on the complete observation E (program, task, visible tests,
+  added text, anything computable from them), TPR - FPR <= TV(P1, P0); the constrained envelope is the
+  Neyman-Pearson power beta_E(alpha). Presented as a textbook testing bound specialised to auditing, with proof and
+  assumptions; not claimed as new. The component bound TPR <= 1 - pi + pi*alpha needs the component FPR constraint;
+  under an overall constraint only 1 - pi + pi*min(1, alpha/q).
+- *Construction guarantee.* Under contract randomisation with symmetric presentation, unrevealed flag J = 0 exactly.
+  This is a baseline built by design, not a finding.
+- *Observation.* What auditors do once the contract is revealed, how close verified diagnosis comes to the
+  flag constraint, what computation adds, and how strongly auditors side with the benchmark's convention.
+- *Transport.* Natural-failure analyses (E1, taxonomy, human ambiguity prevalence) are descriptive: logical
+  ambiguity is not distributional indistinguishability, an OPEN miss is not automatically an information miss, and
+  nothing here says computation cannot help on natural programs.
 
-**Corollary (indistinguishable component).** On any component of cases where E has the same distribution for
-defective and correct programs, every auditor's TPR equals its FPR. If a share pi of the defects lies in such a
-component, recall at component false-flag rate alpha is at most (1 - pi) + pi * alpha.
+## 2. Outcomes
 
-Consequences, which organise the paper: (i) capacity (sampling, model, reasoning, execution of supplied code) can
-at most approach the ROC of the evidence; (ii) only changing E (information) moves that ROC; (iii) on a natural
-benchmark, where the hidden contract is fixed to the benchmark's convention, flags on indistinguishable cases can
-look like detection while being convention-guessing that would be false flags under the other convention. The
-empirical questions are therefore how large pi is in natural populations, how much measured audit recall lies on
-it, how far real auditors sit below the ceiling once information is released, and whether capacity matters more
-after release.
+1. *Flag discrimination* of one deployable policy: TPR, FPR, J.
+2. *Actionable audit performance*: verified-diagnosis coverage of the same deployable policy's findings, under a
+   cumulative clean-flag constraint alpha (numerical alpha, primary k and the aggregation threshold set on
+   development units, frozen; held-out compliance = upper bound below alpha; >= 59 independent clean cases).
+   Verified diagnosis scores the policy's own findings; no aggregation uses hidden verification.
+3. Secondary: contract-conditioned (conditional) findings, clarification requests, cost (tokens, time).
 
-## 2. Estimands (finite budget, common constraint)
+## 3. E6 construction (contracts first)
 
-- **Coverage at budget k**: exact subset-averaged union U(k) = mean_i [1 - C(m - s_i, k) / C(m, k)] over m readings,
-  for verified diagnosis on defective programs and for flags on correct programs (F(k), which accumulates too).
-- **Constrained comparison**: configurations are compared at a common cumulative clean-flag budget alpha, set on
-  development controls (aggregation threshold: number of the k readings that must flag), frozen, and checked on
-  held-out controls with uncertainty; a configuration exceeding alpha fails the constrained comparison.
-- **Youden J = TPR - FPR** at fixed k as a budget-free summary; by Proposition 1, J <= TV.
-- No asymptotic reach is estimated. Chao2 appears only as a sensitivity analysis, labelled a lower bound.
+1. *Proposal.* For every HumanEval+/MBPP+ problem (542; frozen problem-level split 136 dev / 406 test), a proposer
+   names one input class the task text and visible tests leave open and states RULE_B (the reference's behaviour)
+   and RULE_A (an equally compatible alternative), equally specific, plus 4-8 class inputs and 3-5 other inputs, or
+   skips.
+2. *Independent implementations.* Each rule is implemented from the task plus the rule alone by two vendors with
+   the same prompt (no reference shown). Audited programs: one A and one B implementation from the same vendor,
+   vendor counterbalanced across units, so the pair shares provenance and style (no untouched reference beside an
+   edited copy).
+3. *Admission (execution).* All four implementations pass the visible tests; both B implementations pass the full
+   hidden suite; the two A implementations agree on every validation input; A and B differ on >= 2 class inputs and
+   agree on every other input; class and other inputs are valid for the reference.
+4. *Human validation.* Two programmers who did not build the units judge RULE_A and RULE_B separately as
+   compatible / incompatible / unresolved with the task text and visible tests (order randomised, provenance hidden),
+   with requirement citations; neither-compatible is a category; third-person adjudication; rubric trained on dev
+   units. Probability sample of >= 100 test units over >= 60 problems with known weights, plus every unit behind a
+   specific benchmark-error claim. The primary analysis covers all execution-admitted units; the human sample gives
+   the admissibility error rate and a registered sensitivity analysis on human-confirmed units.
+5. *Positive controls (distinguishable).* Units whose alternative rule is incompatible with the task (human-judged),
+   evaluated under the uniquely valid contract with the B implementation as correct control: unrevealed J > 0
+   expected.
 
-## 3. E6: contract-randomised information release (new, primary)
+**Arms.** `none`; `menu` (both rules, order randomised independently of the contract, identical bytes under both
+contracts, no labels such as standard or alternative); `resolve-A`, `resolve-B` (the same menu plus one selection
+sentence of equal specificity; no witness, patch or guidance). All four resolved program-contract cells are kept.
 
-**Unit.** A discrepancy unit: a task, an input class, and two behaviours on it, A (the defective generation's) and
-B (the benchmark reference's), both compatible with the task text and the visible tests.
+**Configurations.** Two vendors x two reasoning budgets of the same model; execution route (OS-isolated shell) on a
+prespecified subset. Two readings per cell.
 
-**Construction (candidate-blind where possible, verified by execution).**
-1. Source: E1's 150 hidden-test failures (HumanEval+/MBPP+), plus new failures from additional generators to
-   enlarge the pool; development problems for piloting only.
-2. Minimal pair: a model rewrites the reference into C_A that adopts A on the input class. Admitted only if C_A
-   passes the visible tests, differs from the reference on at least one hidden input, and on every differing
-   hidden input returns the defective program's output (same discrepancy, no new defect).
-3. Contracts: suite_B = the original hidden suite; suite_A = the same inputs with C_A's outputs.
-4. Validation of compatibility (breaking the circularity): two independent human programmers, blind to which
-   behaviour is the benchmark's (order randomised) and to all auditor outcomes, judge for each unit whether A and
-   B are each compatible with the task text and visible tests; third-person adjudication. Model raters (three
-   vendors) run in parallel and are compared with the humans, not substituted for them. Classes: COMPATIBLE-BOTH
-   (the indistinguishable component), DETERMINED (only B compatible: positive controls), AT_ODDS (only A
-   compatible: benchmark error), UNCLEAR-DOMAIN, each with its written evidence. Report pre-adjudication
-   agreement, confusion matrix and class-specific agreement.
+**Size.** Target >= 200 admitted held-out problems (P2 planning: 197 problems for 80% power at 10 points if the
+problem-level SD is 0.5); outcome-blind enlargement rule fixed after the dev power simulation. Grid: 2 programs x 4
+arms x 4 configurations x 2 readings = 64 readings per unit, about 12,800 for 200 units.
 
-**Arms** (texts appended to the task; constructed blind to auditor outcomes; length-matched where applicable):
-- `none`; `pointer` (names the input class); `menu` (states that the hidden contract fixes the behaviour on this
-  class and lists both behaviours, order randomised; maximal attention and both options, no resolution);
-- `resolve-A`, `resolve-B` (a requirement stating one behaviour); E1's checks for leaks and for consistency with
-  the task.
+**Registered contrasts (hierarchical).**
+- E6-1: actionable coverage at alpha, resolve minus menu, with an absolute criterion on resolve set on dev.
+- E6-2 *benchmark-convention advantage*: in `none`, (r_B - r_A)/2, with symmetric provenance; plus flag preference.
+- E6-3: reasoning-budget effect after resolution (the menu-arm term is zero by construction; not an interaction).
+- Power simulated on dev covariance (pairing, readings, configurations, clusters, missingness, aggregation);
+  joint power if both E6-1 and E6-2 are required.
 
-**Programs.** Each unit is audited with C_A and with the reference R (both suite-passing under one contract).
+## 4. Bridge to natural programs (E1)
 
-**Configurations (capacity).** Two vendors x two reasoning budgets within the same model (low, high); an execution
-route (OS-isolated shell, same visible evidence, no hidden tests) as a prespecified secondary factor. Four
-readings per unit x program x arm x configuration.
+Classify E1's successful witnesses by the discrepancy they diagnose; rescore convention-dependent witnesses against
+validated alternative contracts; report programme-level successes supported only by convention-dependent witnesses
+separately from those with an independently valid witness. Framed as benchmark-conformance recall versus
+contract-robust diagnosis.
 
-**Scoring.** Under contract H, a program is defective iff it differs from H's implementation; verified diagnosis
-requires a witness on which the program and H's implementation differ, with the expected value equal to H's
-output (judge-v3.1). In `none`, `pointer` and `menu` the evidence does not depend on H, so the same readings are
-scored under both contracts (symmetric scoring); `resolve-H` reveals H.
+## 5. E1 (registered; Amendment 4 before test)
 
-**Registered contrasts (test units; problem-cluster bootstrap; hierarchical order).**
-- E6-1 (information moves the ceiling): symmetric J, `resolve` minus `menu`, on COMPATIBLE-BOTH units, pooled over
-  configurations. Supported if the lower bound exceeds 0.
-- E6-2 (convention-guessing inflates natural recall): on COMPATIBLE-BOTH units in `none`, natural recall (contract
-  fixed to B: verified diagnosis on C_A) minus symmetric recall. Supported if the lower bound exceeds 0. Reported
-  with the auditors' preference for B (flag C_A minus flag R).
-- E6-3 (information changes the return to computation): (high - low reasoning) in `resolve` minus the same in
-  `menu`, symmetric J. Two-sided; either sign is a result.
-- Descriptive: constrained coverage at the frozen alpha by arm and configuration; gained and lost units, not only
-  net change; DETERMINED units as positive controls (J > 0 expected in `none`); AT_ODDS units analysed as
-  benchmark-error cases (does the auditor identify the specification-reference conflict).
-- Power: simulated before registration from the real cluster sizes, observed discordance in the pilot and
-  reading dependence; sample size set so that E6-1 and E6-2 have at least 80% power at effects of 10 points.
+Fix A4 B1-B7: semantic reconciliation of the 38 admitted items (human-rated: both behaviours permissible), neutral
+placebos and pointers rechecked, H5 framed as benefit beyond the specified pointer, H6 as a programme-level
+observational association with first-failure labels, judge-v3.2 (done), completeness from the required key
+universe (done), full H6 matrix (done), boundary-sensitive intervals for H2/H4 as a sensitivity rule, checksummed
+pre-test bundle.
 
-## 4. Natural population: how much of the miss mass is information-limited
+## 6. Transfer
 
-On the 150 E1 failures (and new generations), the human-validated classes give pi for HumanEval+/MBPP+ failures
-and hence the ceiling for that population: recall at budget alpha <= (1 - pi) + pi * alpha. Observed auditors
-(E1 original-text readings) are placed against it: the gap on DETERMINED units is a capacity gap; misses on
-COMPATIBLE-BOTH units are information-limited by Proposition 1.
+Only if it tests the same mechanism: E6 on a prespecified deterministic NumPy/SciPy subset of DS-1000 (~50
+problems), modest claims. No claim that scientific code has larger ambiguity prevalence. Position against
+SciCode-Verified (specification repair) as randomised-contract auditing.
 
-## 5. Transfer to scientific code
+## 7. Roles
 
-The same E6 construction on scientific functions with hidden numerical tests, where the classic underspecified
-points are conventions (units, normalisation, sign and boundary conventions). Prediction: pi is larger than for
-general code, so the same auditors have a lower ceiling without the convention, and resolving it moves coverage
-more. Source: a scientific-coding benchmark with gold solutions and executable tests (to be selected; SciCode if
-its test data can be obtained and run offline).
-
-## 6. Roles of the existing studies
-
-| Study | Role |
-|---|---|
-| E1 (registered) | natural-text clause intervention; pointer as attention control; taxonomy H6, read against the human labels |
-| E6 (new) | primary identification experiment |
-| natural decomposition (Section 4) | measurement foundation |
-| E3 (registered) | data transfer, reported at its registered operating point; not claimed as a ceiling result |
-| scientific results, SciCode reframing, earlier route and rulebook studies | appendix or compact illustration |
+E6: core. Bridge and E1: natural evidence. E3: data study at its registered operating point (appendix or short
+section). Earlier studies: appendix.
