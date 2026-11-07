@@ -2,34 +2,37 @@
 \section{What natural audit failures are made of}
 \label{sec:natural}
 
-The randomised experiment isolates the information limit on constructed units. Here we ask how much of an ordinary
-audit benchmark sits behind that limit. We use 150 programs written by two generator models for HumanEval+ and MBPP+
-problems that pass their visible tests and fail the hidden suite, each paired with a test-passing control
+The randomised experiment isolates the information limit on constructed units. We ask how much of an ordinary audit
+benchmark is subject to that limit. We use 150 programs written by two generator models for HumanEval+ and MBPP+
+problems. Each program passes its visible tests but fails the hidden suite and is paired with a test-passing control
 \citep{liu2023evalplus}.
 
-\paragraph{Most hidden-test failures are not determined by the task.} Two models, blind to which output is the
-benchmark's (order randomised by evidence), classify each program's first failing input: the input is outside the
-task's domain, only the reference's output is acceptable (\textsc{determined}), both are (\textsc{open}), only the
-program's is (\textsc{at odds}), or neither. Identical evidence is pooled so that it cannot receive two labels. Of the
-150 failures, 34 are \textsc{determined}, 26 \textsc{open}, 37 \textsc{at odds}, 21 out of domain and 32 disputed
-(Cohen's $\kappa=0.78$ on the 43 development items). On roughly three failures in four, then, the task's words do not
-single out the value the hidden suite expects.
+\paragraph{Most hidden-test failures are not determined by the task.} Two models classify each program's first failing
+input, blind to which output is the benchmark's (order randomised by evidence). The categories are: the input is
+outside the task's domain, only the reference's output is acceptable (\textsc{determined}), both are
+(\textsc{open}), only the program's is (\textsc{at odds}), or neither. Identical evidence is pooled so that it cannot
+receive two labels. Of the 150 failures, 34 are \textsc{determined}, 26 \textsc{open}, 37 \textsc{at odds},
+21 out of domain and 32 disputed (Cohen's $\kappa=0.78$ on the 43 development items). Only on 34 of the 150 (23\%) do
+both classifiers agree that the task's words single out the value the hidden suite expects; on 63 they agree that
+the words leave it open or point the other way.
 
 \paragraph{Independent programmers mostly side with the ``defective'' program.} A behavioural check avoids model
-judgement altogether. For each failure we run the twelve solutions that two generators wrote from the task alone and
-that pass the visible tests on the same first failing input. They return the defective program's result 1{,}080 times
-and the reference's result 559 times (71 neither). On the inputs that define these programs as defective, most
-readers of the task do what the defective program does; the benchmark's expected value is the minority reading.
+judgement altogether. For each failure, two generators wrote twelve solutions from the task alone; we run the 1{,}710
+of the 1{,}800 that pass the visible tests on the same first failing input. They return the defective program's
+result 1{,}080 times and the reference's 559 times (71 neither); for 93 failures most solutions side with the
+defective program, for 46 with the reference. On the inputs that define these programs as defective,
+most readers of the task do what the defective program does; the benchmark's expected value is the minority reading.
 
-\paragraph{Auditors find what the words determine.} On the original task text, four readings per program and two
+\paragraph{Auditors find what the words determine.} With the original task text, four readings per program and two
 auditors, verified diagnosis is \tbd{a}\% on \textsc{determined} failures and \tbd{b}\% on \textsc{open} ones
-(preregistered H6: \tbd{difference}). When an auditor does produce a verified diagnosis, its witness usually targets a
-behaviour the words determine: of the \tbd{n} programs with a verified diagnosis, \tbd{m} have at least one witness
+(preregistered H6: \tbd{difference}). When an auditor produces a verified diagnosis, its witness usually targets a
+behaviour the words determine. Of the \tbd{n} programs with a verified diagnosis, \tbd{m} have at least one witness
 that the classifiers label \textsc{determined}; the rest are not established as contract-independent (development
-pilot: 5 of 6). Hidden-test recall on such a benchmark is therefore bounded by its share of determined failures, and
-the misses concentrate where Section~\ref{sec:framework} says no auditor can do better without being told more.
+pilot: 5 of 6). On such a benchmark, hidden-test recall mixes two things: on determined failures it measures the auditor, and on
+the rest it measures at best agreement with a convention the task does not state. The classification concerns the
+first failing input only, so a program may also have determined defects elsewhere.
 
 \paragraph{Clarifying the missing requirement.} For the 13 failures that remain \textsc{open} after reclassification
 and whose added sentences pass a neutrality recheck, we appended the missing requirement as one sentence, a
-length-matched placebo, or a pointer that names the input class without resolving it. On the \tbd{9} test items
-(\tbd{7} problems) this is a small replication of Section~\ref{sec:e6}: \tbd{H1, H5}.
+length-matched placebo, or a pointer naming the input class without resolving it. The \tbd{9} test items
+(\tbd{7} problems) provide a small replication of Section~\ref{sec:e6}: \tbd{H1, H5}.

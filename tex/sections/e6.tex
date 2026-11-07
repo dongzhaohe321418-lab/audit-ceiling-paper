@@ -2,97 +2,98 @@
 \section{A randomised-contract audit experiment}
 \label{sec:e6}
 
-Section~\ref{sec:framework} says that a miss on an indistinguishable case cannot be repaired by computation, but
-on a natural benchmark we never observe the counterfactual contract. This section builds it. Each unit is a real
-benchmark task with one behaviour the task leaves open; we write two programs that differ only there, draw the
-contract the auditor is graded against independently of what it sees, and then reveal the contract, or not.
+Section~\ref{sec:framework} states that computation cannot repair a miss on an indistinguishable case.
+In a natural benchmark, we never observe the counterfactual contract. We construct it for each experimental unit:
+a real benchmark task that leaves one behaviour open. We write two programs that differ only in that behaviour
+and draw the contract used to grade the auditor independently of what it sees. We then either reveal or withhold the contract.
 
 \subsection{Construction}
 \label{sec:e6-construction}
 \input{fig_design}
 
 \paragraph{Contracts first.} For each of the 542 HumanEval+ and MBPP+ problems \citep{liu2023evalplus}, a proposer
-model names one kind of valid input on which the task text and the visible tests leave the behaviour open, and states
-two rules for it as requirements a task author could add: \emph{B}, the behaviour the benchmark reference follows,
-and \emph{A}, an alternative of equal specificity (for example, ``if several sublists are equally short, return the
-first'' against ``\dots the last''). Each rule is then implemented from the task and the rule alone, by two vendors
-with the same prompt; no implementation sees the reference. The programs an auditor reads are one vendor's A and B
-implementations, so the two share provenance and style; the vendor alternates across units.
+model identifies one kind of valid input for which the task text and visible tests leave the behaviour open.
+It states two rules as requirements a task author could add: \emph{B}, the benchmark reference's behaviour,
+and \emph{A}, an equally specific alternative (for example, ``if several sublists are equally short, return the
+first'' versus ``\dots the last''). Two vendors then implement each rule from the task and the rule alone,
+using the same prompt; no implementation sees the reference. Auditors read one vendor's A and B implementations,
+which therefore share provenance and style. The vendor alternates across units.
 
 \paragraph{Admission by execution.} An independent model writes a domain predicate \texttt{valid} and 16--24 probe
-inputs; the proposer writes a class predicate \texttt{in\_class}. A unit is admitted only if, on every valid input
-among the hidden suite, the proposer's inputs, the probes, up to 300 seeded stress mutations (unusual whitespace,
-combining marks and other Unicode, complex values equal to integers, negative indices, extreme and cancelling
-floating-point values, empty and duplicated collections) and up to 40 inputs from a red-team model that sees all
-implementations and both predicates and tries to break these conditions, both B implementations agree with the reference; outside
-the class all four implementations agree with the reference; inside it the two A implementations agree; A and B
-differ on at least two valid class inputs; and every implementation passes the visible tests. Each stage is attempted
-once per problem; problems without a first-attempt primary unit received one second, independent attempt, fixed
-before any held-out audit. These checks reject,
-for example, a ``correct'' B program whose integer summation silently became floating point.
+inputs; the proposer writes a class predicate \texttt{in\_class}. The checks cover the hidden suite, the proposer's
+inputs, the probes, up to 300 seeded stress mutations (unusual whitespace, combining marks and other Unicode,
+complex values equal to integers, negative indices, extreme and cancelling floating-point values, empty and
+duplicated collections) and up to 40 inputs from a red-team model. That model sees all implementations and both
+predicates and tries to break the admission conditions. Admission requires both B implementations to agree with
+the reference on every valid input in these sets. Among these valid inputs, all four implementations must agree
+with the reference outside the class; inside it, the two A implementations must agree. A and B must differ on at
+least two valid class inputs, and every implementation must pass the visible tests. Each stage is attempted once
+per problem; problems without a first-attempt primary unit received one second, independent attempt, fixed before
+any held-out audit. These checks reject, for example, a ``correct'' B program whose integer summation silently
+became floating point.
 
-\paragraph{Judging without human raters.} Two models that neither proposed the rules nor audit (Claude Opus,
-GPT-6.1-sol) judge, blind to which rule is the benchmark's, whether the inputs are valid and whether each rule is
-compatible with the task's words and visible tests, with the instruction that a missing example is not permission.
-The primary population is the admitted units on which both judges accept the domain and both rules. We call these
+\paragraph{Judging without human raters.} Two models that neither proposed the rules nor serve as auditors (Claude Opus,
+GPT-6.1-sol) judge whether the inputs are valid and each rule is compatible with the task's words and visible tests.
+They are blind to which rule is the benchmark's and are instructed that a missing example is not permission.
+The primary population comprises admitted units for which both judges accept the domain and both rules. We call these
 \emph{execution-validated, two-model-compatible contract pairs}. They are not human-validated ambiguities, and we make
 no claim about how common such ambiguity is.
 
-\paragraph{Positive controls.} The same pipeline, with a proposer prompt asking for a plausible \emph{misreading}
-that passes the visible tests but that the words rule out, yields units on which the evidence does distinguish the
-programs. Both judges must call the misreading incompatible and the required rule compatible.
+\paragraph{Positive controls.} The same pipeline yields units whose evidence distinguishes the programs by asking
+the proposer for a plausible \emph{misreading} that passes the visible tests but that the task's words rule out.
+Both judges must call the misreading incompatible and the required rule compatible.
 
 \subsection{Arms, auditors and scoring}
 \label{sec:e6-arms}
 
-Each open unit is audited under six arms that append text to the task: nothing (\textsc{none}); both rules as a
-numbered menu with the statement that the task does not say which applies (\textsc{menu}); the same menu plus
+Each open unit is audited under six arms defined by the text appended to the task: nothing (\textsc{none}); both rules
+as a numbered menu stating that the task does not say which applies (\textsc{menu}); the same menu plus
 ``the function must follow rule ($k$)'' (\textsc{resolve}); and one rule stated as an ordinary requirement with no
-menu (\textsc{sentence}). Menu order is fixed per unit and independent of the contract. Auditors are GPT-5.6-terra and
-Claude Sonnet 5.5, each at a low and a high reasoning budget, with the shipped rulebook and two readings per cell
+menu (\textsc{sentence}). Menu order is fixed per unit and independent of the contract. GPT-5.6-terra and
+Claude Sonnet 5.5 each audit at a low and a high reasoning budget (\textsc{sentence} arms: low only), using the shipped rulebook and two readings per cell
 (\tbd{N} readings in all).
 
-Under contract $X$, program $X$ is correct and the other is defective. In \textsc{none} and \textsc{menu} the evidence
-does not depend on the contract, so the same readings are scored under both contracts (Lemma~\ref{lem:symmetric}
-then forces flag recall to equal the false-flag rate; we report it as a check). A cell flags if either reading
-reports a blocking finding. A diagnosis is \emph{verified} only if a flagging reading supplies a witness call that
-satisfies \texttt{valid}, lies in the class, and on which the program and the contract's oracle disagree under the
-benchmark's own comparator (the reference for B, the other vendor's implementation for A), and both judges confirm
-that the witness exercises the disagreement. A unit's value is the mean over configurations; intervals are
-problem-level bootstraps, and the false-flag budget after resolution (10\%) is tested separately with a betting
-confidence bound \citep{waudbysmith2024betting}, which does not gate the other claims.
+Under contract $X$, program $X$ is correct and the other is defective. In \textsc{none} and \textsc{menu}, the evidence
+does not depend on the contract, so we score the same readings under both contracts. Lemma~\ref{lem:symmetric}
+then forces flag recall to equal the false-flag rate; we report this equality as a check. A cell flags if either
+reading reports a blocking finding. A diagnosis is \emph{verified} only if a flagging reading supplies a witness call
+that satisfies \texttt{valid} and lies in the class. On that call, the program and the contract's oracle
+(the reference for B, the other vendor's implementation for A) must disagree under the benchmark's own comparator,
+and both judges must confirm that the witness exercises the disagreement. A unit's value is the mean over
+configurations; intervals are problem-level bootstraps. We test the false-flag budget after resolution (10\%)
+separately with a betting confidence bound \citep{waudbysmith2024betting}, which does not gate the other claims.
 
 \subsection{Results}
 \label{sec:e6-results}
 
-The held-out population has \tbd{40} units from \tbd{40} problems (\tbd{32} from the first construction attempt and
-\tbd{8} from the second) and \tbd{3{,}200} readings; the positive-control population has \tbd{54} units. All
-hypotheses, intervals and the order in which claims are tested were registered before the first held-out call.
+The held-out population contains \tbd{40} units from \tbd{40} problems (\tbd{32} from the first construction attempt
+and \tbd{8} from the second) and \tbd{3{,}200} readings; the positive-control population contains \tbd{54} units.
+All hypotheses, intervals and the order in which claims are tested were registered before the first held-out call.
 
-\paragraph{Without the contract, auditors side with the convention.} In the \textsc{none} arm the two flag rates are
-equal by construction (\tbd{x}\% each), so flagging carries no information about which program is wrong. The
-diagnoses are not symmetric: a verified diagnosis is \tbd{y} points [\tbd{lo}, \tbd{hi}] more likely when the
-contract is the benchmark's own rule than when it is the alternative (E6-2). An auditor that ``detects'' the program
-departing from the reference is, on these units, reporting the convention it expects.
+\paragraph{Without the contract, auditors side with the convention.} In the \textsc{none} arm, the two flag rates
+are equal by construction (\tbd{x}\% each), so flagging carries no information about which program is wrong.
+Verified diagnoses are asymmetric: they are \tbd{y} points [\tbd{lo}, \tbd{hi}] more likely when the contract is
+the benchmark's own rule than when it is the alternative (E6-2). On these units, an auditor that ``detects'' the
+program departing from the reference reports the convention it expects.
 
 \paragraph{Stating the contract moves the ceiling.} Resolving the menu raises verified diagnosis from \tbd{c0}\%
-to \tbd{c1}\% (E6-1: +\tbd{d} [\tbd{lo}, \tbd{hi}]), and one ordinary sentence without a menu does nearly as well
-(E6-5: +\tbd{d5} over \textsc{none}). After resolution the flag rate on correct programs is \tbd{f}\%; its betting
+to \tbd{c1}\% (E6-1: +\tbd{d} [\tbd{lo}, \tbd{hi}]). One ordinary sentence without a menu does nearly as well
+(E6-5: +\tbd{d5} over \textsc{none}). After resolution, the flag rate on correct programs is \tbd{f}\%; its betting
 upper bound is \tbd{u}\% against the registered 10\% budget (E6-1b, \tbd{met / not met}).
 
-\paragraph{More reasoning does not.} After resolution the high reasoning budget changes verified diagnosis by
+\paragraph{More reasoning does not.} After resolution, the high reasoning budget changes verified diagnosis by
 \tbd{e} points (bootstrap [\tbd{lo}, \tbd{hi}]; betting [\tbd{lo}, \tbd{hi}]). The registered equivalence claim
-(margin 10) is \tbd{inconclusive}: at this sample size the betting interval is wider than the margin. Before
-resolution the budget changes neither the flag rates nor the diagnoses by more than \tbd{e0} points.
+(margin 10) is \tbd{inconclusive}: at this sample size, the betting interval is wider than the margin. Before
+resolution, the budget changes neither the flag rates nor the diagnoses by more than \tbd{e0} points.
 
-\paragraph{The vendors differ in what they do with an open question.} Told that the task leaves the choice open,
+\paragraph{The vendors respond differently to an open question.} When told that the task leaves the choice open,
 GPT passes \tbd{p}\% of readings and Claude asks for clarification in \tbd{q}\% (Figure~\ref{fig:e6}c). Neither
-flags. Both behaviours are defensible; only one is visible to a benchmark that scores flag or pass.
+flags. Both behaviours are defensible, but only one is visible to a benchmark that scores flag or pass.
 
-\paragraph{Positive controls.} Where the task's words do rule one program out, the same auditors separate the two
+\paragraph{Positive controls.} Where the task's words rule out one program, the same auditors separate the two
 programs without any added text: flag recall minus false-flag rate is \tbd{j} points [\tbd{lo}, \tbd{hi}] (E6-4).
-The flat \textsc{none} arm of the open units is therefore not an auditor that cannot read; it is evidence that does
-not decide.
+The flat \textsc{none} arm of the open units therefore reflects evidence that does not decide, rather than an
+auditor that cannot read.
 
 \begin{figure*}[t]
 \centering
