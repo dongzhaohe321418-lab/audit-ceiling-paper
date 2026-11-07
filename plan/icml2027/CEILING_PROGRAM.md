@@ -45,12 +45,15 @@ change verified detection at a fixed false-flag budget.
 3. *Admission (execution).* All four implementations pass the visible tests; both B implementations pass the full
    hidden suite; the two A implementations agree on every validation input; A and B differ on >= 2 class inputs and
    agree on every other input; class and other inputs are valid for the reference.
-4. *Human validation.* Two programmers who did not build the units judge RULE_A and RULE_B separately as
-   compatible / incompatible / unresolved with the task text and visible tests (order randomised, provenance hidden),
-   with requirement citations; neither-compatible is a category; third-person adjudication; rubric trained on dev
-   units. Probability sample of >= 100 test units over >= 60 problems with known weights, plus every unit behind a
-   specific benchmark-error claim. The primary analysis covers all execution-admitted units; the human sample gives
-   the admissibility error rate and a registered sensitivity analysis on human-confirmed units.
+4. *Validation without human raters (the author declined to rate; no second rater).* (i) A blind two-vendor judge
+   panel (Claude Opus, GPT-6.1-sol; neither proposes rules nor audits) rates RULE_A and RULE_B separately as
+   compatible / incompatible / unresolved, order randomised, provenance hidden; the primary population is the
+   execution-admitted units both judges rate compatible on both rules. (ii) Behavioural evidence: the twelve task-only
+   E1 generations per problem that pass the visible tests are run on the class inputs and classified as following A,
+   B or neither. On the 55 dev units 94.5% of classified solutions follow B: the rules are logically open but
+   conventionally dominated, so behaviour measures convention strength (or memorisation), not admissibility. It is
+   reported per unit, and units where both rules are followed by at least one solution form a registered
+   sensitivity subset. The lack of human validation is a stated limitation.
 5. *Positive controls (distinguishable).* Units whose alternative rule is incompatible with the task (human-judged),
    evaluated under the uniquely valid contract with the B implementation as correct control: unrevealed J > 0
    expected.
