@@ -1,0 +1,39 @@
+% Figure 1: one randomised-contract unit (illustrative). Included from sections/e6.tex. Width <= 80 mm.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  box/.style={draw, rounded corners=1pt, inner sep=2pt, line width=0.4pt},
+  arm/.style={box, text width=16mm, align=center, minimum height=10mm},
+  arr/.style={-{Stealth[length=1.2mm]}, line width=0.4pt}]
+% row 1: task
+\node[box, text width=76mm, align=left] (task) at (0,0)
+  {\textbf{Task} (illustrative): convert snake case to camel case; three visible tests. Leading underscores are
+   never mentioned.};
+% row 2: rules -> programs; contract
+\node[box, text width=33mm, align=left, below=2.5mm of task.south west, anchor=north west] (rules)
+  {\textbf{B} (benchmark): keep leading underscores.\\ \textbf{A}: drop them.};
+\node[box, fill=gray!8, right=5mm of rules.north east, anchor=north west, minimum width=12mm, align=center] (xa) {$X_A$};
+\node[box, fill=gray!8, right=5mm of rules.south east, anchor=south west, minimum width=12mm, align=center] (xb) {$X_B$};
+\node[box, fill=yellow!12, text width=21mm, align=center, anchor=north east] (coin) at (task.south east |- rules.north)
+  {contract $H\in\{A,B\}$, drawn at random};
+\draw[arr] (rules.east) -- (xa.west);
+\draw[arr] (rules.east) -- (xb.west);
+% row 3: arms
+\node[arm, below=4.5mm of rules.south west, anchor=north west] (none) {\textsc{none}\\{\tiny task only}};
+\node[arm, right=2mm of none] (menu) {\textsc{menu}\\{\tiny A or B; undecided}};
+\node[arm, right=2mm of menu] (sent) {\textsc{sentence}\\{\tiny $H$ as one requirement}};
+\node[arm, right=2mm of sent] (res) {\textsc{resolve}\\{\tiny menu, then ``rule $H$''}};
+\draw[arr, dashed] (coin.south) -- ++(0,-1.6mm) -| (sent.north);
+\draw[arr, dashed] (coin.south) -- ++(0,-1.6mm) -| (res.north);
+% row 4: what the evidence allows
+\draw[decorate, decoration={brace, amplitude=2pt, mirror}] ([yshift=-0.5mm]none.south west) -- ([yshift=-0.5mm]menu.south east)
+  node[midway, below=2pt, font=\tiny, align=center] {evidence independent of $H$:\\ recall $=$ false-flag rate};
+\draw[decorate, decoration={brace, amplitude=2pt, mirror}] ([yshift=-0.5mm]sent.south west) -- ([yshift=-0.5mm]res.south east)
+  node[midway, below=2pt, font=\tiny, align=center] {$H$ revealed:\\ separable};
+\end{tikzpicture}
+\caption{An illustrative unit. Two programs differ only on a behaviour the task leaves open; the contract the auditor
+is graded against is drawn at random, then withheld or stated. A diagnosis counts only with a witness input on which
+the program and the contract's oracle disagree under the benchmark's comparator.}
+\label{fig:design}
+\end{figure}
