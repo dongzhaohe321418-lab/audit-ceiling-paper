@@ -1,4 +1,4 @@
-% Draft (2026-11-07) for the ICML 2027 version. \tbd{} marks numbers that come from preregistered test runs.
+% Draft (2026-11-07) for the ICML 2027 version. \tbd{} marks numbers from the preregistered held-out runs.
 \section{Introduction}
 \label{sec:intro}
 
@@ -39,10 +39,15 @@ of the open behaviour are validated by execution; admissibility of both rules is
 \end{itemize}
 On the natural failures we audited earlier (Section~\ref{sec:natural}), most hidden-test failures are ones the task's
 words do not determine, and the verified diagnoses auditors do produce mostly concern defects the words determine.
+Three earlier preregistered studies of scientific code, results and data (Section~\ref{sec:transfer}) fall on either
+side of the same line: telling the auditor what the deliverable is nearly halves its false flags on correct
+scientific code, recomputation catches consistently fabricated results because code and inputs determine them, and
+on data a validator written from the documentation finds most of what a model auditor finds.
 
 \textbf{Contributions.} (i) A randomised-contract design that makes the information limit of an audit observable and
 separates convention agreement, unjustified accusation, requests for clarification and verified diagnosis, with
 execution-validated programs and oracles. (ii) Evidence, preregistered, that on such cases clarification moves audit
 performance from the convention baseline to near the ceiling while additional computation does not. (iii) A bridge to
-natural audits showing how hidden-test recall decomposes into determined and undetermined failures. Code, records and
-preregistrations are released.
+natural audits showing how hidden-test recall decomposes into determined and undetermined failures, and a reading of
+scientific code, results and data audits through the same distinction between capacity and information misses.
+Code, records and preregistrations are released.
