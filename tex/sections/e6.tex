@@ -58,3 +58,15 @@ benchmark's own comparator (the reference for B, the other vendor's implementati
 that the witness exercises the disagreement. A unit's value is the mean over configurations; intervals are
 problem-level bootstraps, and the false-flag budget after resolution (10\%) is tested separately with a betting
 confidence bound \citep{waudbysmith2024betting}, which does not gate the other claims.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_e6.pdf}
+\caption{Randomised-contract experiment, \tbd{development units; replaced by the held-out run}. (a) Flag rate on
+defective and on correct programs and verified diagnosis, pooled over the four auditor configurations (sentence: low
+budget only). With the contract withheld the two flag rates are equal by construction (Lemma~\ref{lem:symmetric});
+stating it, as a choice between the two rules (resolve) or as one ordinary requirement (sentence), separates them.
+(b) Verified diagnosis after resolution at the low and high reasoning budget. (c) What auditors do when told that the
+task leaves the choice open (menu arm). Bars and intervals: problem-level means with 95\% bootstrap intervals.}
+\label{fig:e6}
+\end{figure*}
