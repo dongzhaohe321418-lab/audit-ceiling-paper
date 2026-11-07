@@ -58,8 +58,8 @@ rate is then bounded by how well that evidence separates defective from correct 
 that audit evaluations cannot observe because a benchmark fixes one contract. We make it observable. From real
 HumanEval+ and MBPP+ tasks we build execution-validated pairs of programs that differ only on a behaviour the task
 leaves open, grade auditors against a contract drawn at random, and vary how the contract is revealed. On
-\tbd{40} held-out units, with auditors from two vendors at two reasoning budgets, the auditors flag both programs
-equally often when the contract is withheld, but diagnose departures from the benchmark's convention \tbd{y}
+52 held-out units, with auditors from two vendors at two reasoning budgets, the auditors flag defective and
+correct programs at the same rate when the contract is withheld, but diagnose departures from the benchmark's convention \tbd{y}
 points more often than the reverse. Stating the missing requirement raises verified diagnosis by \tbd{z} points; a
 higher reasoning budget changes it by \tbd{e}. Of 150 natural hidden-test failures, two model classifiers find that
 the task's words single out the expected value in only 34, and solutions written from the task alone return the
