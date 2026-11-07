@@ -63,9 +63,11 @@ equally often when the contract is withheld, but diagnose departures from the be
 points more often than the reverse. Stating the missing requirement raises verified diagnosis by \tbd{z} points; a
 higher reasoning budget changes it by \tbd{e}. Of 150 natural hidden-test failures, two model classifiers find that
 the task's words single out the expected value in only 34, and solutions written from the task alone return the
-``defective'' program's output about twice as often as the reference's. On scientific data, where the
-documentation carries the information, a validator written from it captures nearly all that a model auditor
-finds. What limits automated audit here is what the auditor is told, not how long it thinks. All held-out analyses
+``defective'' program's output about twice as often as the reference's. In scientific work the same line
+holds: naming the deliverable nearly halves false flags on correct scientific code; where code and inputs determine a
+reported value, recomputation catches fabrications that provenance checks miss; and on data a validator written from
+the documentation finds most faults. Computation helps where the evidence decides the case;
+elsewhere, what limits automated audit is what the auditor is told. All held-out analyses
 were preregistered.
 \end{abstract}
 
@@ -73,7 +75,7 @@ were preregistered.
 \input{sections/framework}
 \input{sections/e6}
 \input{sections/natural}
-\input{sections/data}
+\input{sections/transfer}
 \input{sections/related_v3}
 \input{sections/discussion_v3}
 
