@@ -21,7 +21,21 @@ judgement altogether. For each failure, two generators wrote twelve solutions fr
 of the 1{,}800 that pass the visible tests on the same first failing input. They return the defective program's
 result 1{,}080 times and the reference's 559 times (71 neither); for 93 failures most solutions side with the
 defective program, for 46 with the reference. On the inputs that define these programs as defective,
-most readers of the task do what the defective program does; the benchmark's expected value is the minority reading.
+most readers of the task do what the defective program does; the benchmark's expected value is the minority reading. The
+behaviour also checks the classification (Figure~\ref{fig:natural}b): where the classifiers judge that only the
+program's output fits the words (\textsc{at odds}), 90\% of independent solutions return it; where they judge the
+reference's value determined, solutions split almost evenly, so these are genuine defects that the generators commonly
+share.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_natural.pdf}
+\caption{Natural hidden-test failures (150 programs that pass their visible tests). (a) Class of the first failing
+input, as two classifiers judge it from the task's words and visible tests, with identical evidence pooled. (b) What
+independent solutions written from the task alone (and passing the visible tests) return on that input, by class;
+the interval is an item-level bootstrap for the share returning the reference's result.}
+\label{fig:natural}
+\end{figure}
 
 \paragraph{Auditors find what the words determine.} With the original task text, four readings per program and two
 auditors, verified diagnosis is \NOneVdDetermined\% on \textsc{determined} failures and \NOneVdOpen\% on \textsc{open}
