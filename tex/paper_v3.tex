@@ -54,22 +54,20 @@
 
 \begin{abstract}
 Audit benchmarks score an automated auditor against a hidden reference, yet on many cases the evidence the auditor
-sees is equally consistent with the program and with the reference. For any flagging rule, recall minus false-flag
-rate is then bounded by how well that evidence separates defective from correct programs, a classical testing fact
-that audit evaluations cannot observe because a benchmark fixes one contract. We make it observable. From real
-HumanEval+ and MBPP+ tasks we build execution-validated pairs of programs that differ only on a behaviour the task
-leaves open, grade auditors against a contract drawn at random, and vary how the contract is revealed. On
-52 held-out units, with auditors from two vendors at two reasoning budgets, the auditors flag defective and
-correct programs at the same rate when the contract is withheld, but diagnose departures from the benchmark's convention \NSixTwo{}
-points more often than the reverse. Stating the missing requirement raises verified diagnosis by \NSixOne{} points; a
-higher reasoning budget changes it by \NSixThree. Of 150 natural hidden-test failures, two model classifiers find that
-the task's words single out the expected value in only 34, and solutions written from the task alone return the
-``defective'' program's output about twice as often as the reference's. In scientific work the same line
-holds: naming the deliverable nearly halves false flags on correct scientific code; where code and inputs determine a
-reported value, recomputation catches fabrications that provenance checks miss; and on data a validator written from
-the documentation finds most faults. Computation helps where the evidence decides the case;
-elsewhere, what limits automated audit is what the auditor is told. All held-out analyses
-were preregistered.
+sees is equally consistent with the program and with the reference. Recall minus false-flag rate is then bounded by
+how well that evidence separates defective from correct programs, a classical testing fact that audit evaluations
+cannot observe because a benchmark fixes one contract. We make it observable. From real HumanEval+ and MBPP+ tasks
+we build execution-validated pairs of programs that differ only on a behaviour the task leaves open, grade auditors
+from two vendors against a contract drawn at random, and vary how the contract is revealed. On 41 held-out units,
+with the contract withheld, auditors flag the program that departs from the benchmark's behaviour \NSixFlagPref{}
+points more often than the one that follows it, and diagnose it more often; independent solutions written from the
+task alone follow the benchmark's behaviour almost always, so the benchmark rewards agreement with the default
+reading. Adding the missing requirement as one sentence raises verified diagnosis by \NSixFive{} points. Of 150
+natural hidden-test failures, two model classifiers agree that the task's words single out the expected value in
+only 34. Three earlier preregistered studies of scientific code, results and data are consistent with the same
+distinction: false flags on correct scientific code fall by half when the task names the deliverable, and
+recomputation catches fabricated results where code and inputs determine them. Held-out analyses were
+preregistered.
 \end{abstract}
 
 \input{sections/introduction_v2}

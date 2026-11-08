@@ -48,10 +48,12 @@ Both judges must call the misreading incompatible and the required rule compatib
 \subsection{Arms, auditors and scoring}
 \label{sec:e6-arms}
 
-Each open unit is audited under six arms defined by the text appended to the task: nothing (\textsc{none}); both rules
-as a numbered menu stating that the task does not say which applies (\textsc{menu}); the same menu plus
-``the function must follow rule ($k$)'' (\textsc{resolve}); and one rule stated as an ordinary requirement with no
-menu (\textsc{sentence}). Menu order is fixed per unit and independent of the contract. GPT-5.6-terra and
+Each open unit is audited under six arms, defined by the text appended to the task: nothing (\textsc{none}); both
+rules as a numbered menu stating that the task does not say which applies (\textsc{menu}); the same menu plus ``the
+function must follow rule ($k$)'', once for each rule (\textsc{resolve-a}, \textsc{resolve-b}); and one rule stated as
+an ordinary requirement with no menu, once for each rule (\textsc{sentence-a}, \textsc{sentence-b}). A
+\emph{reading} is one audit call; a \emph{cell} is a unit, program, arm and auditor configuration, read twice; a
+\emph{configuration} is one auditor at one reasoning budget. Menu order is fixed per unit and independent of the contract. GPT-5.6-terra and
 Claude Sonnet 5.5 each audit at a low and a high reasoning budget (\textsc{sentence} arms: low only), using the shipped rulebook and two readings per cell
 (\NSixReadings{} readings in all, including the positive controls).
 
@@ -69,33 +71,41 @@ separately with a betting confidence bound \citep{waudbysmith2024betting}, which
 \subsection{Results}
 \label{sec:e6-results}
 
-The held-out population contains 52 units from 52 problems (41 from the first construction attempt
-and 11 from the second) and 4{,}160 readings; the positive-control population contains 85 units.
-All hypotheses, intervals and the order in which claims are tested were registered before the first held-out call.
+The held-out population contains 41 units from 41 problems (34 from the first construction attempt and 7 from the
+second) and 3{,}280 readings; the positive-control population contains 78 units. All hypotheses, intervals and the
+order in which claims are tested were registered before the first held-out call.
 
-\paragraph{Without the contract, auditors side with the convention.} In the \textsc{none} arm, the two flag rates
-are equal by construction (\NSixNoneFlag\% each), so flagging carries no information about which program is wrong.
-Verified diagnoses are asymmetric: they are \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] more likely when the contract is
-the benchmark's own rule than when it is the alternative (E6-2). On these units, an auditor that ``detects'' the
-program departing from the reference reports the convention it expects.
+\paragraph{Adding the requirement turns agreement into diagnosis.} One ordinary sentence stating the contract, with
+no menu, raises verified diagnosis by \NSixFive{} points [\NSixFiveLo, \NSixFiveHi] over the task alone (E6-5); a menu
+of both rules followed by a choice does as well (\NSixResolveCov\% against \NSixMenuCov\% with the undecided menu;
+E6-1: +\NSixOne{} [\NSixOneLo, \NSixOneHi]). The undecided menu itself suppresses flagging, so E6-5 is the contrast
+that answers what a stated requirement adds to the plain task. After the contract is stated, the flag rate on correct
+programs is \NSixResolveFpr\%; its betting upper bound is \NSixResolveFprUp\% against the registered 10\% budget
+(E6-1b, \NSixOneBVerdict).
 
-\paragraph{Stating the contract moves the ceiling.} Resolving the menu raises verified diagnosis from \NSixMenuCov\%
-to \NSixResolveCov\% (E6-1: +\NSixOne{} [\NSixOneLo, \NSixOneHi]). One ordinary sentence without a menu does nearly as well
-(E6-5: +\NSixFive{} [\NSixFiveLo, \NSixFiveHi] over \textsc{none}). After resolution, the flag rate on correct programs is
-\NSixResolveFpr\%; its betting upper bound is \NSixResolveFprUp\% against the registered 10\% budget (E6-1b, \NSixOneBVerdict).
+\paragraph{Without the contract, auditors side with the benchmark.} In the \textsc{none} arm, recall equals the
+false-flag rate by construction (\NSixNoneFlag\%), because the same readings are scored under both contracts. The
+informative quantity is which program is flagged: the one that departs from the benchmark's behaviour is flagged
+\NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it (an analysis the frozen
+code computes but the registration does not list as a hypothesis), and verified diagnoses are \NSixTwo{} points
+[\NSixTwoLo, \NSixTwoHi] more likely when the contract is the benchmark's rule (E6-2). We cannot say whether this
+reflects memory of the benchmark or the most natural reading of the task, and the distinction does not matter for an
+evaluation: independent solutions written from the task alone follow the benchmark's rule on these units almost
+always (Appendix~\ref{app:e6}), so a hidden-test ``detection'' here credits agreement with the default reading,
+which would be a false accusation had the task's author intended the other rule.
 
-\paragraph{More reasoning does not.} After resolution, the high reasoning budget changes verified diagnosis by
+\paragraph{Reasoning budget.} After the contract is stated, the high budget changes verified diagnosis by
 \NSixThree{} points (bootstrap [\NSixThreeLo, \NSixThreeHi]; betting [\NSixThreeBetLo, \NSixThreeBetHi]). The registered
-equivalence claim (margin 10) is \NSixThreeVerdict; the betting interval is valid at any sample size but wide at
-this one.
+equivalence claim (margin 10) is \NSixThreeVerdict: near the ceiling and at this sample size the data cannot
+distinguish no effect from a moderate one, and we make no claim either way.
 
 \paragraph{The vendors respond differently to an open question.} When told that the task leaves the choice open,
-GPT passes \NSixGptPass\% of readings and Claude asks for clarification in \NSixClaudeAsk\% (Figure~\ref{fig:e6}c). Neither
-flags. Both behaviours are defensible, but only one is visible to a benchmark that scores flag or pass.
+GPT passes \NSixGptPass\% of readings and Claude asks for clarification in \NSixClaudeAsk\% (Figure~\ref{fig:e6}c).
+Neither flags. Both behaviours are defensible, but only one is visible to a benchmark that scores flag or pass.
 
 \paragraph{Positive controls.} Where the task's words rule out one program, the same auditors separate the two
-programs without any added text: flag recall minus false-flag rate is \NSixFourJ{} points [\NSixFourJLo, \NSixFourJHi] (E6-4).
-The flat \textsc{none} arm of the open units therefore reflects evidence that does not decide, rather than an
+programs without any added text: flag recall minus false-flag rate is \NSixFourJ{} points [\NSixFourJLo, \NSixFourJHi]
+(E6-4). The flat \textsc{none} arm of the open units therefore reflects evidence that does not decide, rather than an
 auditor that cannot read.
 
 \begin{figure*}[t]

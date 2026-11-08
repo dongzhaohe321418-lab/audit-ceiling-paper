@@ -2,21 +2,22 @@
 \label{sec:discussion}
 
 \paragraph{Interpretation.} On units where the task leaves a behaviour open, a hidden-test ``detection'' is
-agreement with the benchmark's convention, and the auditors we tested agree with it more often than chance
-(Section~\ref{sec:e6}). Adding one sentence that states the convention turns that agreement into verified
-diagnosis. A larger reasoning budget does not. Natural failures show the same pattern without construction.
-The task's words do not settle most failures, and independent programmers mostly behave like the ``defective''
-program. The diagnoses auditors do verify concern what the words settle (Section~\ref{sec:natural}).
-Scientific work shows both sides of this distinction (Section~\ref{sec:transfer}). Naming the deliverable cut
-false flags on correct scientific code from 69\% to 36\%. Where code and inputs determine a reported value,
-recomputation by the model, or by re-execution, catches fabrications that consistency checks cannot.
-Where documentation states what valid data look like, a validator written from it already finds most faults.
-Computation helps where the evidence decides; elsewhere the ceiling moves with what the auditor is told.
+agreement with the benchmark's behaviour, which is also the default reading of the task: auditors flag the program
+that departs from it far more often, and solutions written from the task alone follow it (Section~\ref{sec:e6}).
+Adding one sentence that states the requirement turns that agreement into verified diagnosis; we could not resolve
+whether a larger reasoning budget changes the result once it is stated. Natural failures are observational and
+classified by models, but they point the same way: both classifiers agree that the task's words settle fewer than
+a quarter of failures, and other solutions mostly behave like the ``defective'' program
+(Section~\ref{sec:natural}). The earlier scientific studies are consistent with the distinction without testing it
+(Section~\ref{sec:transfer}): naming the deliverable cut false flags on correct scientific code from 69\% to 36\%,
+and where code and inputs determine a reported value, recomputation catches fabrications that consistency checks
+cannot.
 
 \paragraph{Practical consequences.} Alongside recall, an audit benchmark should report which of its cases the
 task determines. It should not count agreement with an unstated convention as detection. An auditor that is
 unsure whether a behaviour is required should be scored for asking, not only for flagging or passing.
-Writing down the missing requirement is the cheapest deployment improvement we measured.
+For deployment, an auditor's value on such behaviour depends on whether the requirement is written down;
+discovering requirements that nobody wrote down, which we did not measure, is the harder problem.
 
 \paragraph{Limitations.}\label{sec:limits} \emph{Constructed units.} The randomised-contract units are execution-validated;
 two models, rather than people, judge them admissible. We make no claim about how often such ambiguity occurs.

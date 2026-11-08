@@ -5,17 +5,21 @@
 but also hallucinate some \citep{mcaleese2024critics}. Aggregating review passes raises review F1 on real pull
 requests \citep{zeng2025swrbench}, and coverage under repeated sampling grows roughly log-linearly in the number
 of samples \citep{brown2024monkeys}. Self-correction without external feedback does not reliably help
-\citep{huang2024selfcorrect}. These studies vary the auditor while holding the evidence fixed. We hold the auditor
-fixed and vary the evidence. On the cases we construct, changing the evidence moves performance; changing the
-auditor does not.
+\citep{huang2024selfcorrect}, and critique benchmarks score critics against reference answers
+\citep{lin2024criticbench}. These studies vary the auditor while holding the evidence fixed. We hold the auditor fixed
+and vary the evidence; on the cases we construct, changing the evidence moves performance far more than anything we
+varied about the auditor.
 
 \textbf{What the hidden suite decides.} EvalPlus rebuilt HumanEval and MBPP with larger suites
 \citep{liu2023evalplus}. Models collapse onto one reading of an underspecified task \citep{richter2026collapse},
 and generated tests err mostly in the expected value \citep{xiong2023testing}. Generated oracles capture what a
 program does rather than what was intended \citep{konstantinou2024oracles}. Label errors in test sets bound and
-reorder what benchmarks can measure \citep{northcutt2021labelerrors, gema2025mmlu}. In our setting, the reference
+reorder what benchmarks can measure \citep{northcutt2021labelerrors, gema2025mmlu}, which motivates relabelled
+``platinum'' benchmarks \citep{vendrow2025platinum}; SWE-bench Verified removed, by human annotation, issues whose
+descriptions were underspecified or whose tests were too specific \citep{openai2024swebenchverified}; and ambiguous
+questions in open-domain QA admit several correct answers \citep{min2020ambigqa}. In our setting, the reference
 is not wrong: it is one of several behaviours the task admits. The appropriate correction is to state the
-contract, rather than relabel or discard the case. We measure the effect of stating it.
+contract, rather than relabel or discard the case as those efforts do. We measure the effect of stating it.
 
 \textbf{Clarification.} Code generators can be made to ask clarifying questions when a task is ambiguous
 \citep{mu2024clarifygpt, wu2025humanevalcomm}, or to formalise intent as tests confirmed by a user

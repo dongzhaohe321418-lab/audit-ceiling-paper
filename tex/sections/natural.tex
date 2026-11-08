@@ -16,15 +16,16 @@ receive two labels. Of the 150 failures, 34 are \textsc{determined}, 26 \textsc{
 both classifiers agree that the task's words single out the value the hidden suite expects; on 63 they agree that
 the words leave it open or point the other way.
 
-\paragraph{Independent programmers mostly side with the ``defective'' program.} A behavioural check avoids model
-judgement altogether. For each failure, two generators wrote twelve solutions from the task alone; we run the 1{,}710
+\paragraph{Other solutions mostly side with the ``defective'' program.} A behavioural check avoids classifier
+judgement. For each failure, two generators wrote twelve solutions from the task alone; we run the 1{,}710
 of the 1{,}800 that pass the visible tests on the same first failing input. They return the defective program's
 result 1{,}080 times and the reference's 559 times (71 neither); for 93 failures most solutions side with the
-defective program, for 46 with the reference. On the inputs that define these programs as defective,
-most readers of the task do what the defective program does; the benchmark's expected value is the minority reading. The
+defective program, for 46 with the reference. The solutions come from the same two generators that wrote the failing
+programs, so this is partly a model agreeing with itself; still, on the inputs that define these programs as
+defective, the benchmark's expected value is the minority reading among solutions written from the task. The
 behaviour also checks the classification (Figure~\ref{fig:natural}b): where the classifiers judge that only the
 program's output fits the words (\textsc{at odds}), 90\% of independent solutions return it; where they judge the
-reference's value determined, solutions split almost evenly, so these are genuine defects that the generators commonly
+reference's value determined, solutions split almost evenly, which is consistent with defects the generators commonly
 share.
 
 \begin{figure}[t]

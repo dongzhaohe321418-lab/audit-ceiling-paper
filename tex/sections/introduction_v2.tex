@@ -24,31 +24,32 @@ that leaves one behaviour open and build two programs that differ only there. We
 contract drawn independently of what it sees, then reveal the contract in different ways. Execution validates the
 programs, oracles and boundaries of the open behaviour; two independent models judge whether both rules are admissible.
 
-\textbf{Findings.} Across \NSixUnits{} held-out units and two auditor families at two reasoning budgets:
+\textbf{Findings.} Across \NSixUnits{} held-out units and auditors from two vendors at two reasoning budgets:
 \begin{itemize}\itemsep1pt
-\item Without the contract, auditors flag defective and correct programs at the same rate (\NSixNoneFlag\%), as the construction forces.
-  Yet they diagnose the program that departs from the benchmark's convention more often than the reverse: a
-  benchmark-convention advantage of \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi].
-\item Stating the contract, either as a choice between the two rules or as one ordinary requirement, raises verified
-  diagnosis to \NSixResolveCov\% at a false-flag rate of \NSixResolveFpr\%. A higher reasoning budget changes verified diagnosis by
-  \NSixThree{} points once the contract is stated (betting interval [\NSixThreeBetLo, \NSixThreeBetHi]).
-\item When told that the task leaves the choice open, the two vendors respond differently: one passes almost every
-  program, while the other asks for clarification.
+\item With the contract withheld, flagging cannot track which program is wrong: the same readings are scored under
+  both contracts, so recall equals the false-flag rate by construction (\NSixNoneFlag\%; a check, not a finding).
+  What auditors do flag is telling: the program that departs from the benchmark's behaviour is flagged
+  \NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it, and diagnosed
+  \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] more often (the benchmark-convention advantage).
+\item Independent solutions written from the task alone follow the benchmark's behaviour on these units almost
+  always, so the convention the benchmark rewards is the default reading; it would be a false accusation had the
+  task's author meant the other rule.
+\item Adding the missing requirement as one ordinary sentence raises verified diagnosis by \NSixFive{} points
+  [\NSixFiveLo, \NSixFiveHi] over the task alone, at a false-flag rate of \NSixResolveFpr\% once the contract is stated.
+\item When told only that the task leaves the choice open, the two vendors respond differently: one passes almost
+  every program, while the other asks for clarification.
 \item On positive controls, where the task's words rule out one program, the same auditors separate the programs
   without being told (recall minus false-flag rate \NSixFourJ{} points).
 \end{itemize}
-Among the natural failures we audited earlier (Section~\ref{sec:natural}), fewer than a quarter of hidden-test failures are
-ones that both classifiers agree the task's words determine. Most verified diagnoses, however, concern defects that the words determine.
-Three earlier preregistered studies of scientific code, results and data (Section~\ref{sec:transfer}) fall on either
-side of the same distinction. Telling the auditor what the deliverable is nearly halves its false flags on correct
-scientific code. Recomputation catches consistently fabricated results because code and inputs determine them.
-For data, a validator written from the documentation finds most of what a model auditor finds.
+Among natural hidden-test failures (Section~\ref{sec:natural}), fewer than a quarter are ones that both classifiers
+agree the task's words determine. Three earlier preregistered studies of scientific code, results and data
+(Section~\ref{sec:transfer}) are consistent with the same distinction, although none of them varied the information
+an auditor receives in the way our experiment does.
 
 \textbf{Contributions.} (i) A randomised-contract design that makes the information limit of an audit observable and
 separates convention agreement, unjustified accusation, requests for clarification and verified diagnosis, with
-execution-validated programs and oracles. (ii) Preregistered evidence that, on such cases, clarification moves audit
-performance from the convention baseline to near the ceiling, while a higher reasoning budget has no detectable
-effect. (iii) A bridge to
+execution-validated programs and oracles. (ii) Preregistered evidence that, on such cases, auditors side with the benchmark's default reading, and that one
+added sentence stating the requirement turns that agreement into verified diagnosis. (iii) A bridge to
 natural audits showing how hidden-test recall decomposes into determined and undetermined failures, and an
 interpretation of scientific code, results and data audits using the same distinction between capacity and information misses.
 Code, records and preregistrations are released.

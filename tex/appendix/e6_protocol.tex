@@ -67,6 +67,14 @@ Degenerate inputs & 1 / 3 & MBPP+ 93, power: $0^0$ raises \texttt{ValueError} / 
 \end{tabular}
 \end{table}
 
+\paragraph{What independent solutions do.} For every registered unit we ran the solutions that two generators
+(Claude Haiku 4.5 and GPT-5.6-terra, six samples each) wrote from the task alone and that pass the visible tests on
+the unit's class inputs where the two rules differ. Of the classified solutions, 98.4\% follow the benchmark's
+rule B on development units (187 of 190; 3 follow A) and 89.1\% on held-out units (415 of 466; 32 follow A and 19
+neither; a further 12 cannot be classified because no class input separates the rules); on 34 of the 41 held-out units every classified solution follows B. These are
+construction records, computed before any held-out audit. One generator is also one of the auditors, so the
+agreement between what auditors flag and what generators write is partly agreement of a model with itself.
+
 \subsection{Inputs, interface and red team}
 
 The registered input set of a unit is the hidden suite, the proposer's class and non-class inputs, 16--24 probes

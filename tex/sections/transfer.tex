@@ -4,8 +4,9 @@
 
 Section~\ref{sec:framework} separates capacity misses, where the evidence decides the case but the auditor does
 not use it, from information misses, where the evidence does not decide the case. Three preregistered studies of
-scientific work fall on either side of this distinction. They preceded the experiment above and are reported in
-full in Appendix~\ref{app:earlier}. Each uses ground truth that no model supplies.
+scientific work are consistent with this distinction. They preceded the experiment above, are reported in full in
+Appendix~\ref{app:earlier}, and use ground truth that no model supplies; none of them randomised the contract, so
+they illustrate the distinction rather than test it.
 
 \paragraph{Code: what the auditor is told it is reviewing.} SciCode \citep{tian2024scicode} splits research problems
 into steps with tests written by scientists. We label generated steps that pass the tests correct and those that fail defective (the tests can themselves
@@ -13,8 +14,9 @@ reject correct code; \citealp{hu2026scicodeverified}) (81 defective, 150 correct
 Given the whole problem as the task, a cross-vendor auditor at eight readings flagged 87.7\% [72.7, 98.6] of
 defective and 68.7\% [56.6, 79.7] of correct steps. Some objections concerned a single step's failure to implement
 the whole problem. A second registered arm changed only the task text to name the step as the deliverable;
-the program bytes were identical. Flags on correct code fell by 32.7 points [22.4, 42.8]. As on the constructed
-units, telling the auditor what was required produced the largest change, rather than reading more.
+the program bytes were identical. Flags on correct code fell by 32.7 points [22.4, 42.8], and flags on defective code
+by 14.8 points [2.7, 28.6]. What the auditor was told it was reviewing moved its operating point more than reading
+more often did.
 
 \paragraph{Results: where the evidence decides, computation helps.} For 74 correct SciCode programs we built a run
 log, a results file and a report in which every number cites its source. We injected either a reporting fault

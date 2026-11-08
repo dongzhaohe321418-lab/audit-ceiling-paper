@@ -32,6 +32,8 @@ def main(rec: str, split: str) -> None:
 
     lv = e6["levels"]
     out["SixUnits"] = str(e6["n_units"])
+    if split == "test":
+        out["SixUnitsFirst"], out["SixUnitsSecond"] = "34", "7"       # frozen registration (e6.registered_units)
     out["SixControls"] = str(det["n_units"])
     out["SixReadings"] = f'{80 * e6["n_units"] + 16 * det["n_units"]:,}'.replace(",", "{,}")   # registered schedule
     iv("SixNoneFlag", lv["all|none"]["tpr"])           # equal to the false-flag rate by construction
@@ -44,6 +46,7 @@ def main(rec: str, split: str) -> None:
     iv("SixOne", e6["E6_1_cov_resolve_minus_menu"])
     iv("SixTwo", e6["E6_2_convention_advantage_none"])
     iv("SixFive", e6["E6_5_cov_sentence_minus_none"])
+    iv("SixFlagPref", e6.get("flag_pref_a_minus_b_none"))     # Pr(flag | X_A) - Pr(flag | X_B), none arm
     iv("SixSentMinusRes", e6["sentence_minus_resolve_cov"])
     e63 = e6["E6_3_cov_high_minus_low_resolve"]
     iv("SixThree", e63)
