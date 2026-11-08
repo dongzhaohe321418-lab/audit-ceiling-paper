@@ -34,13 +34,16 @@ rows, a shuffled target, swapped columns, sentinel values, rounding). Eight tabl
 clean items). A profile validator, built from the card and from thresholds against a clean reference sample of the
 same table, was combined with a model auditor (GPT or Claude, with a shell on the full table or reading 120 rows).
 Adding the model raised correct localisation, scored by code against the injection manifest, by 2.3 points
-[0.4, 4.8], and flags on clean items by 16.0 points [3.2, 31.4]. Against a validator written from the card alone,
-the model's gain in localisation is 23.3 points [13.2, 33.3]: the profile's clean reference sample, not the card,
-carries most of the information. Neither the full table (0.0) nor tool use over reading (+1.3 [$-$2.7, 5.8])
-changed localisation detectably. Earlier runs of this study were voided: in them one auditor searched the disk and
-the web for the original files, and held-out results had been computed before the registered amendment that
-introduced an operating-system sandbox and replaced them (Appendix~\ref{app:earlier}). In the reported run, 57\% of
+[0.4, 4.8], and flags on clean items by 16.0 points [3.2, 31.4]. Against a weaker validator (the card's ranges and units with
+simple checks against the reference sample), which localises 67.7\% of faults against the profile's 91.0\%, the
+model's gain is 23.3 points [13.2, 33.3]. On the 42 faulty items with a full 12{,}000-row table, adding the model
+to the profile changed localisation by 0.0, and agentic over reading-only configurations, which also differ in the
+number of readings, by +1.3 [$-$2.7, 5.8]. Earlier runs of this study were voided: in them one auditor searched the
+disk and the web for the original files, and several readings found and read the clean source files kept for item
+construction; held-out results under those runs (localisation gain +1.5 [0.0, 3.4], clean-flag increase +19.2) had
+been computed before the registered amendment that introduced an operating-system sandbox and replaced them
+(Appendix~\ref{app:e3}). In the reported run, 57\% of
 that auditor's held-out readings still attempted out-of-scope access; the attempts were logged and returned nothing.
 An earlier study on four tables, at a clean-flag budget fixed in advance, found a gain of 10.7 points [6.0, 15.9] in
-findings naming the faulty column over a card validator. Where a clean reference is available, a check built from it
-leaves the model little to add except false flags.
+findings naming the faulty column over a card validator. Where a strong profile from a clean reference is available,
+the model adds little localisation and many false flags.

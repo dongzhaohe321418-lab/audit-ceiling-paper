@@ -21,8 +21,8 @@ disagreement between the classifiers.
 \paragraph{The generators' other solutions often side with the ``defective'' program.} A behavioural check avoids
 classifier judgement. For each failure we run the problem's other generations that pass the visible tests (up to
 eleven, from the same two generators, excluding the failing program itself) on its first failing input. They return
-the defective program's result 930 times and the reference's 559 times (71 neither); for 90 failures most of them side
-with the defective program, for 57 with the reference. Because the solutions come from the generators that wrote the
+the defective program's result 930 times and the reference's 559 times (71 neither); for 90 failures more of them return
+the defective program's result than the reference's, for 57 the reverse (an absolute majority: 85 against 55). Because the solutions come from the generators that wrote the
 failing programs, this measures what these models take the task to mean, not what independent programmers would do.
 It also checks the classification (Figure~\ref{fig:natural}b): where the classifiers judge that only the program's
 output fits the words (\textsc{at odds}), 89\% of the other solutions return it; on \textsc{determined} and
@@ -52,6 +52,6 @@ and whose added sentences pass a neutrality recheck, we appended the missing req
 length-matched placebo, or a pointer naming the input class without resolving it. The \NOneItems{} held-out items
 (\NOneProblems{} problems) give a small replication of Section~\ref{sec:e6}: the clause raises verified diagnosis by
 \NOneHOne{} points [\NOneHOneLo, \NOneHOneHi] over the placebo (H1) and by \NOneHFive{} points [\NOneHFiveLo,
-\NOneHFiveHi] over the pointer (H5). The placebo produced no verified diagnosis on any item (H4 passes its registered
-rule, but with seven problems the exact upper bound is 34.8\%), and whether the clause changes flags on the
+\NOneHFiveHi] over the pointer (H5). The placebo left verified diagnosis where the original task had it (11.1\% in both; H4 passes its
+registered rule, but with seven problems its exact upper bound is 34.8\%), and whether the clause changes flags on the
 test-passing controls could not be settled (H2: $-$5.6 points [$-$33.3, 22.2]).

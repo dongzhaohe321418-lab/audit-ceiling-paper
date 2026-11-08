@@ -5,7 +5,8 @@
 \subsection{Construction funnel}
 
 Table~\ref{tab:e6-funnel} follows every problem from proposal to the registered population. Each stage was attempted
-once per problem and kind; a failed attempt consumes it. Second-attempt (open2) proposals were made, before any
+once per problem and kind, and a failed attempt consumes it; the red team alone may make a second call when its
+first reply yields fewer than ten usable inputs. Second-attempt (open2) proposals were made, before any
 held-out audit, only for problems without a first-attempt primary unit under the admission then in force, and the
 analysis takes a second-attempt unit only for a problem without a first-attempt one.
 
@@ -170,3 +171,32 @@ with its date and the development results before and after it. During the held-o
 held-out analysis and reviewed by another vendor's model: a call that exits without any recorded model usage does
 not consume an attempt (decided by transport metadata only), and a reference that times out on a witness input at
 10\,s twice and again at 60\,s places that input outside its domain (no credit).
+
+\section{The data study's voided runs}
+\label{app:e3}
+
+The data study (Section~\ref{sec:transfer}) was registered with its hypotheses, validators and scoring before any
+reading. Its first agentic runs used a command filter that discarded readings in which the auditor tried to reach the
+clean source. After the held-out analysis under that rule (Amendment 2) had been computed, inspection showed that the
+GPT auditor had tried to obtain the clean source in 174 of 829 agentic readings (21\%), with commands such as
+\texttt{curl} to the UCI archive and searches of the home and temporary directories, and that several readings found
+and read the clean source files kept for item construction. Amendment 3 reran every agentic reading inside an
+operating-system sandbox that denies such reads and all network except the vendor's API, and records attempts
+instead of discarding readings. The registration requires both sets of held-out results to be reported side by side.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Data study, held-out results under the voided Amendment 2 runs and the reported Amendment 3 runs (points).}
+\label{tab:e3-amendments}
+\begin{tabular}{lll}
+\toprule
+Hypothesis & Amendment 2 (voided) & Amendment 3 (reported) \\
+\midrule
+H1 localisation, model with profile minus profile & +1.5 [0.0, 3.4], not supported & +2.3 [0.4, 4.8], supported \\
+H2 clean-flag increase within 10 points & +19.2 [4.8, 35.4], not supported & +16.0 [3.2, 31.4], not supported \\
+H3 gain on the 12{,}000-row items & 0.0 & 0.0 \\
+H4 agentic minus reading-only & $-$2.2 [$-$7.1, 2.2], not supported & +1.3 [$-$2.7, 5.8], not supported \\
+\bottomrule
+\end{tabular}
+\end{table}
