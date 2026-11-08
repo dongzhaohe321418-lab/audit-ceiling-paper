@@ -24,9 +24,9 @@ defective program, for 46 with the reference. On the inputs that define these pr
 most readers of the task do what the defective program does; the benchmark's expected value is the minority reading.
 
 \paragraph{Auditors find what the words determine.} With the original task text, four readings per program and two
-auditors, verified diagnosis is \tbd{a}\% on \textsc{determined} failures and \tbd{b}\% on \textsc{open} ones
-(preregistered H6: \tbd{difference}). When an auditor produces a verified diagnosis, its witness usually targets a
-behaviour the words determine. Of the \tbd{n} programs with a verified diagnosis, \tbd{m} have at least one witness
+auditors, verified diagnosis is \NOneVdDetermined\% on \textsc{determined} failures and \NOneVdOpen\% on \textsc{open}
+ones (preregistered H6: \NOneHSix{} points [\NOneHSixLo, \NOneHSixHi]). When an auditor produces a verified diagnosis, its witness usually targets a
+behaviour the words determine. Of the \NOneBridgeItems{} programs with a verified diagnosis, \NOneBridgeDetermined{} have at least one witness
 that the classifiers label \textsc{determined}; the rest are not established as contract-independent (development
 pilot: 5 of 6). On such a benchmark, hidden-test recall mixes two things: on determined failures it measures the auditor, and on
 the rest it measures at best agreement with a convention the task does not state. The classification concerns the
@@ -34,5 +34,7 @@ first failing input only, so a program may also have determined defects elsewher
 
 \paragraph{Clarifying the missing requirement.} For the 13 failures that remain \textsc{open} after reclassification
 and whose added sentences pass a neutrality recheck, we appended the missing requirement as one sentence, a
-length-matched placebo, or a pointer naming the input class without resolving it. The \tbd{9} test items
-(\tbd{7} problems) provide a small replication of Section~\ref{sec:e6}: \tbd{H1, H5}.
+length-matched placebo, or a pointer naming the input class without resolving it. The \NOneItems{} held-out items
+(\NOneProblems{} problems) provide a small replication of Section~\ref{sec:e6}: the clause raises verified
+diagnosis by \NOneHOne{} points [\NOneHOneLo, \NOneHOneHi] over the placebo (H1) and by \NOneHFive{} points
+[\NOneHFiveLo, \NOneHFiveHi] over the pointer (H5).

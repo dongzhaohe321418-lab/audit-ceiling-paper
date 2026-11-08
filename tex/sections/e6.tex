@@ -51,7 +51,7 @@ as a numbered menu stating that the task does not say which applies (\textsc{men
 ``the function must follow rule ($k$)'' (\textsc{resolve}); and one rule stated as an ordinary requirement with no
 menu (\textsc{sentence}). Menu order is fixed per unit and independent of the contract. GPT-5.6-terra and
 Claude Sonnet 5.5 each audit at a low and a high reasoning budget (\textsc{sentence} arms: low only), using the shipped rulebook and two readings per cell
-(\tbd{N} readings in all).
+(\NSixReadings{} readings in all, including the positive controls).
 
 Under contract $X$, program $X$ is correct and the other is defective. In \textsc{none} and \textsc{menu}, the evidence
 does not depend on the contract, so we score the same readings under both contracts. Lemma~\ref{lem:symmetric}
@@ -71,27 +71,27 @@ and 11 from the second) and 4{,}160 readings; the positive-control population co
 All hypotheses, intervals and the order in which claims are tested were registered before the first held-out call.
 
 \paragraph{Without the contract, auditors side with the convention.} In the \textsc{none} arm, the two flag rates
-are equal by construction (\tbd{x}\% each), so flagging carries no information about which program is wrong.
-Verified diagnoses are asymmetric: they are \tbd{y} points [\tbd{lo}, \tbd{hi}] more likely when the contract is
+are equal by construction (\NSixNoneFlag\% each), so flagging carries no information about which program is wrong.
+Verified diagnoses are asymmetric: they are \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] more likely when the contract is
 the benchmark's own rule than when it is the alternative (E6-2). On these units, an auditor that ``detects'' the
 program departing from the reference reports the convention it expects.
 
-\paragraph{Stating the contract moves the ceiling.} Resolving the menu raises verified diagnosis from \tbd{c0}\%
-to \tbd{c1}\% (E6-1: +\tbd{d} [\tbd{lo}, \tbd{hi}]). One ordinary sentence without a menu does nearly as well
-(E6-5: +\tbd{d5} over \textsc{none}). After resolution, the flag rate on correct programs is \tbd{f}\%; its betting
-upper bound is \tbd{u}\% against the registered 10\% budget (E6-1b, \tbd{met / not met}).
+\paragraph{Stating the contract moves the ceiling.} Resolving the menu raises verified diagnosis from \NSixMenuCov\%
+to \NSixResolveCov\% (E6-1: +\NSixOne{} [\NSixOneLo, \NSixOneHi]). One ordinary sentence without a menu does nearly as well
+(E6-5: +\NSixFive{} [\NSixFiveLo, \NSixFiveHi] over \textsc{none}). After resolution, the flag rate on correct programs is
+\NSixResolveFpr\%; its betting upper bound is \NSixResolveFprUp\% against the registered 10\% budget (E6-1b, \NSixOneBVerdict).
 
 \paragraph{More reasoning does not.} After resolution, the high reasoning budget changes verified diagnosis by
-\tbd{e} points (bootstrap [\tbd{lo}, \tbd{hi}]; betting [\tbd{lo}, \tbd{hi}]). The registered equivalence claim
-(margin 10) is \tbd{inconclusive}: at this sample size, the betting interval is wider than the margin. Before
-resolution, the budget changes neither the flag rates nor the diagnoses by more than \tbd{e0} points.
+\NSixThree{} points (bootstrap [\NSixThreeLo, \NSixThreeHi]; betting [\NSixThreeBetLo, \NSixThreeBetHi]). The registered
+equivalence claim (margin 10) is \NSixThreeVerdict; the betting interval is valid at any sample size but wide at
+this one.
 
 \paragraph{The vendors respond differently to an open question.} When told that the task leaves the choice open,
-GPT passes \tbd{p}\% of readings and Claude asks for clarification in \tbd{q}\% (Figure~\ref{fig:e6}c). Neither
+GPT passes \NSixGptPass\% of readings and Claude asks for clarification in \NSixClaudeAsk\% (Figure~\ref{fig:e6}c). Neither
 flags. Both behaviours are defensible, but only one is visible to a benchmark that scores flag or pass.
 
 \paragraph{Positive controls.} Where the task's words rule out one program, the same auditors separate the two
-programs without any added text: flag recall minus false-flag rate is \tbd{j} points [\tbd{lo}, \tbd{hi}] (E6-4).
+programs without any added text: flag recall minus false-flag rate is \NSixFourJ{} points [\NSixFourJLo, \NSixFourJHi] (E6-4).
 The flat \textsc{none} arm of the open units therefore reflects evidence that does not decide, rather than an
 auditor that cannot read.
 
