@@ -57,9 +57,10 @@ Under contract $X$, program $X$ is correct and the other is defective. In \texts
 does not depend on the contract, so we score the same readings under both contracts. Lemma~\ref{lem:symmetric}
 then forces flag recall to equal the false-flag rate; we report this equality as a check. A cell flags if either
 reading reports a blocking finding. A diagnosis is \emph{verified} only if a flagging reading supplies a witness call
-that satisfies \texttt{valid} and lies in the class. On that call, the program and the contract's oracle
-(the reference for B, the other vendor's implementation for A) must disagree under the benchmark's own comparator,
-and both judges must confirm that the witness exercises the disagreement. A unit's value is the mean over
+whose arguments have the benchmark's own types, that satisfies \texttt{valid} and lies in the class. On that call
+the two contract oracles must differ, the program must disagree with the contract's oracle (the reference for B, the
+other vendor's implementation for A) under the benchmark's own comparator, and the value the auditor says the call
+should return must equal the oracle's. All of this is checked by execution. A unit's value is the mean over
 configurations; intervals are problem-level bootstraps. We test the false-flag budget after resolution (10\%)
 separately with a betting confidence bound \citep{waudbysmith2024betting}, which does not gate the other claims.
 

@@ -1,0 +1,88 @@
+% E6 protocol details (protocol e6-v4.3). Counts from records/icml (construction is complete for both splits).
+\section{The randomised-contract experiment in detail}
+\label{app:e6}
+
+\subsection{Construction funnel}
+
+Table~\ref{tab:e6-funnel} follows every problem from proposal to the registered population. Each stage was attempted
+once per problem and kind; a failed attempt consumes it. Second-attempt (open2) proposals were made, before any
+held-out audit, only for problems without a first-attempt primary unit under the admission then in force, and the
+analysis takes a second-attempt unit only for a problem without a first-attempt one.
+
+\begin{table}[h]
+\centering
+\small
+\caption{E6 construction funnel (development / held-out). \emph{Pre-admission}: both implementations of each rule
+pass the visible tests and differ on the proposer's inputs. \emph{Admitted}: admission v4.3 on the hidden suite,
+proposer inputs, probes and stress inputs inside the interface. \emph{Red team}: no violation among the red-team
+model's interface inputs, at least one such input. \emph{Judges}: both judges accept the domain and both rules
+(controls: rule A incompatible, rule B compatible). \emph{Registered}: one unit per problem.}
+\label{tab:e6-funnel}
+\begin{tabular}{lrrr}
+\toprule
+ & Open, 1st attempt & Open, 2nd attempt & Positive controls \\
+\midrule
+Problems & 136 / 406 & 122 / 374 & 136 / 406 \\
+Proposal parsed & 135 / 394 & 119 / 362 & 134 / 399 \\
+Pre-admission & 55 / 140 & 39 / 112 & 70 / 221 \\
+Admitted (v4.3) & 25 / 81 & 18 / 53 & 38 / 105 \\
+Red team passed & 22 / 66 & 14 / 37 & 35 / 82 \\
+Judges passed & 13 / 34 & 5 / 12 & 30 / 78 \\
+Registered & 13 / 34 & 3 / 7 & 30 / 78 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The most common admission failures were disagreement with the reference outside the class (an implementation of
+rule A that changed behaviour beyond the open input class) and a rule-B implementation that disagreed with the
+reference somewhere (for example, integer summation that silently became floating point). Admission is an operational
+guarantee: on every registered input inside the programs' interface on which the reference runs, both rule-B programs
+return the reference's result, both rule-A programs return it outside the class and agree with each other inside it,
+and the two rules differ on at least two valid class inputs. It does not establish whole-program correctness.
+
+\subsection{Inputs, interface and red team}
+
+The registered input set of a unit is the hidden suite, the proposer's class and non-class inputs, 16--24 probes
+from a model that did not propose the rules, up to 300 seeded type-guided stress inputs (unusual whitespace,
+combining marks and other Unicode, complex values equal to integers, negative indices, extreme and cancelling
+floating-point values, empty, singleton and duplicated collections), and up to 40 inputs from a red-team model shown
+the task, the reference, both rules, both predicates and all four implementations. Every check, and every credit in
+scoring, is restricted to inputs whose arguments have the types the benchmark's own inputs use at that position,
+element types included; behaviour on other types belongs to neither contract. A batch that stalls or exceeds a
+memory cap is re-executed with one killed child process per call, so that calls the per-call alarm cannot interrupt
+become timeouts instead of stalling admission.
+
+\subsection{Judging, auditing and scoring}
+
+Two models that neither proposed the rules nor audit judge, blind to which rule is the benchmark's and with the rule
+order randomised, whether the domain is valid and whether each rule is compatible with the task's words and visible
+tests; a missing example is not permission. Each registered open unit is read under six arms by four configurations
+(two vendors, two reasoning budgets; the sentence arms at the low budget only), two readings per cell: 80 readings per
+unit. Positive controls are read in the unrevealed arm only, 16 readings per unit. A reading flags if it reports a
+blocking finding; a cell flags if either reading does. A diagnosis is verified only if a flagging reading supplies a
+witness call inside the interface that satisfies the domain predicate, lies in the class, and on which the two
+contract oracles differ, the program disagrees with the contract's oracle under the benchmark's own comparator,
+and the value the auditor says the call should return equals the oracle's; every step is executed, none is judged by
+a model. Sensitivity analyses replace the domain predicate by the reference's own domain
+and credit witnesses outside the class.
+
+\subsection{Statistics}
+
+Unit values average over configurations; intervals are problem-level percentile bootstraps (10{,}000 draws). The
+false-flag budget after resolution (E6-1b, 10\%) and the equivalence of the two reasoning budgets (E6-3, margin 10
+points) use betting confidence bounds \citep{waudbysmith2024betting}, which are valid at any sample size but wide at
+ours. Hypotheses are tested in a registered order (E6-1, E6-2, E6-5, E6-3), each claimed only if all earlier ones
+hold; positive controls form a separate family (E6-4). Missing cells are reported with bounds that set excluded units
+to the worst and best values.
+
+\subsection{Protocol history}
+
+The protocol was revised six times on development units before any held-out audit, each time after an
+adversarial methods review by a model from another vendor; every version, its admissions and its reasons are
+archived. The revisions added stress inputs (after a review found admitted programs that disagreed with the reference
+on unseen inputs), replaced a too-narrow class predicate by the proposer's, corrected a sign error in the betting
+bound, separated the false-flag budget from the ordered family, added the second construction attempt, added the
+red-team stage, restricted every check and credit to the interface, and rescored earlier development witness records
+under the final rule (some had been scored by an earlier witness stage without the executable domain, class and
+oracle checks; development results in this paper use the rescored records). The registration file lists each change
+with its date and the development results before and after it.
