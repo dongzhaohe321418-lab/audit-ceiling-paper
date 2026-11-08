@@ -26,12 +26,15 @@ inputs; the proposer writes a class predicate \texttt{in\_class}. The checks cov
 inputs, the probes, up to 300 seeded stress mutations (unusual whitespace, combining marks and other Unicode,
 complex values equal to integers, negative indices, extreme and cancelling floating-point values, empty and
 duplicated collections) and up to 40 inputs from a red-team model. That model sees all implementations and both
-predicates and tries to break the admission conditions. Admission requires both B implementations to agree with
-the reference on every valid input in these sets. Among these valid inputs, all four implementations must agree
-with the reference outside the class; inside it, the two A implementations must agree. A and B must differ on at
-least two valid class inputs, and every implementation must pass the visible tests. Each stage is attempted once
-per problem; problems without a first-attempt primary unit received one second, independent attempt, fixed before
-any held-out audit. These checks reject, for example, a ``correct'' B program whose integer summation silently
+predicates and tries to break the admission conditions. Checks apply to every input in these sets whose arguments have
+the benchmark's own types and on which the reference runs, whether or not \texttt{valid} accepts it: both B
+implementations must agree with the reference; outside the class all four implementations must agree with it, and
+inside it the two A implementations must agree with each other. A and B must differ on at least two valid class
+inputs, and every implementation must pass the visible tests. Each construction stage is attempted once per problem
+(the red team may make a second call if the first yields fewer than ten usable inputs); problems without a
+first-attempt primary unit received one second, independent attempt, fixed before any held-out audit. The models
+that judge the rules (Claude Opus, GPT-6.1-sol) also implement them, Claude Opus writes the probes and GPT-6.1-sol the
+red-team inputs, so construction and judging are separate calls, not independent validators. These checks reject, for example, a ``correct'' B program whose integer summation silently
 became floating point.
 
 \paragraph{Judging without human raters.} Two models that neither proposed the rules nor serve as auditors (Claude Opus,
@@ -81,7 +84,8 @@ rules followed by a choice does about as well: \NSixResolveCov\%, against \NSixM
 +\NSixOne{} [\NSixOneLo, \NSixOneHi]). Because the undecided menu itself suppresses flagging, E6-5 is the contrast
 that measures what a stated requirement adds to the plain task. The menu doubles as an attention control. It is
 longer than the sentence, names the input class and states both rules, yet it yields almost no verified diagnosis;
-the gain comes from knowing which rule holds, not from being pointed at the right place. Once the contract is
+the gain is consistent with knowing which rule holds rather than being pointed at the right place, though the menu
+is also a strong cue of uncertainty and the arms do not rule out every prompting effect. Once the contract is
 stated, the flag rate on correct programs is \NSixResolveFpr\%, with a betting upper bound of \NSixResolveFprUp\%
 against the registered 10\% budget (E6-1b, \NSixOneBVerdict).
 
@@ -90,10 +94,11 @@ false-flag rate (\NSixNoneFlag\%) by construction, since the same readings are s
 carries information is which program gets flagged. The program that departs from the benchmark's behaviour is
 flagged \NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it; the frozen
 code computes this, though the registration does not list it as a hypothesis. Verified diagnoses, likewise, are
-\NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] more likely when the contract is the benchmark's rule (E6-2). Whether this
+more likely when the contract is the benchmark's rule: the registered convention advantage, half the difference
+between the two diagnosis rates, is \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] (E6-2). Whether this
 reflects memory of the benchmark or the most natural reading of the task we cannot say, and for an evaluation it
-makes no difference. Solutions written from the task alone follow the benchmark's rule on these units almost always
-(Appendix~\ref{app:e6}). A hidden-test ``detection'' here therefore credits agreement with the default reading, and
+makes no difference. The models' own solutions written from the task alone follow the benchmark's rule on these units 89\% of the
+time (Appendix~\ref{app:e6}). A hidden-test ``detection'' here therefore credits agreement with a shared convention, and
 it would be a false accusation had the task's author meant the other rule.
 
 \paragraph{Reasoning budget.} After the contract is stated, the high budget changes verified diagnosis by
@@ -103,7 +108,7 @@ distinguish no effect from a moderate one, and we make no claim either way.
 
 \paragraph{The vendors respond differently to an open question.} When told that the task leaves the choice open,
 GPT passes \NSixGptPass\% of readings and Claude asks for clarification in \NSixClaudeAsk\% (Figure~\ref{fig:e6}c).
-Neither flags. Both behaviours are defensible, but only one is visible to a benchmark that scores flag or pass.
+GPT blocks about 3\% of readings and Claude none. Both behaviours are defensible, but only one is visible to a benchmark that scores flag or pass.
 
 \paragraph{Positive controls.} Where the task's words rule out one program, the same auditors separate the two
 programs without any added text: flag recall minus false-flag rate is \NSixFourJ{} points [\NSixFourJLo, \NSixFourJHi]

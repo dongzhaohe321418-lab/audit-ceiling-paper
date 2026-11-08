@@ -3,8 +3,9 @@
     python figures/make_fig_natural.py figures/data/natural_v4.json figures/fig_natural
 
 (a) the 150 failures by taxonomy-v4 class (two classifiers, identical evidence pooled);
-(b) per class, the share of independent solutions (passing the visible tests) that return the defective program's
-result, the reference's result, or neither, on the failing input; intervals: item-level bootstrap (10,000 draws).
+(b) per class, the share of the generators' other solutions (passing the visible tests; the failing program itself is
+excluded) that return the defective program's result, the reference's result, or neither, on the failing input;
+intervals: bootstrap over problems (10,000 draws), since items of the same problem share solutions.
 """
 from __future__ import annotations
 
@@ -31,9 +32,13 @@ DEF, REF, OTH = "#D55E00", "#0072B2", "#BBBBBB"
 
 def boot_share(items: list, b: int = 10000, seed: int = 20261113) -> tuple[float, float]:
     rng = random.Random(seed)
+    groups: dict = {}
+    for x in items:                      # cluster by problem
+        groups.setdefault(x[0], []).append(x)
+    keys = sorted(groups)
     draws = []
     for _ in range(b):
-        s = [rng.choice(items) for _ in items]
+        s = [x for k in (rng.choice(keys) for _ in keys) for x in groups[k]]
         tot = sum(x[1] + x[2] + x[3] for x in s)
         draws.append(100 * sum(x[2] for x in s) / tot if tot else 0.0)
     draws.sort()
@@ -44,7 +49,8 @@ def main(path: str, stem: str) -> None:
     d = json.loads(Path(path).read_text())
     by = {c: [] for c, _ in CLASSES}
     for k, v in d["behaviour"].items():
-        by[d["taxonomy"][k]].append((k, v["n_defective"], v["n_reference"], v["n_other"]))
+        # the failing program is one of its problem's generations: remove it from the defective count
+        by[d["taxonomy"][k]].append((k.split("|")[1], v["n_defective"] - 1, v["n_reference"], v["n_other"]))
     fig = plt.figure(figsize=(3.3, 1.75))
     gs = fig.add_gridspec(1, 2, width_ratios=[0.8, 1.2], wspace=0.15)
     ax_a, ax_b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
@@ -68,7 +74,7 @@ def main(path: str, stem: str) -> None:
     ax_b.tick_params(axis="y", length=0)
     ax_b.invert_yaxis()
     ax_b.set_xlim(0, 100)
-    ax_b.set_xlabel("independent solutions (%)")
+    ax_b.set_xlabel("other solutions (%)")
     ax_b.legend(loc="lower left", bbox_to_anchor=(-0.02, 1.0), ncol=2, fontsize=5.5, handlelength=0.9,
                 columnspacing=0.7, borderaxespad=0.2)
     for ax, letter in ((ax_a, "a"), (ax_b, "b")):

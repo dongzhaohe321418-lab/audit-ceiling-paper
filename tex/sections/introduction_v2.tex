@@ -29,14 +29,14 @@ programs, oracles and boundaries of the open behaviour; two independent models j
 \item With the contract withheld, flagging cannot track which program is wrong: the same readings are scored under
   both contracts, so recall equals the false-flag rate (\NSixNoneFlag\%) by construction. Which program is flagged
   is telling. The one that departs from the benchmark's behaviour is flagged \NSixFlagPref{} points
-  [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it, and diagnosed \NSixTwo{} points
-  [\NSixTwoLo, \NSixTwoHi] more often (the benchmark-convention advantage).
-\item Solutions written from the task alone follow the benchmark's behaviour on these units almost always. The
-  convention the benchmark rewards is the default reading, and rewarding it would be a false accusation had the
-  task's author meant the other rule.
+  [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it, and diagnosed more often too (the registered convention advantage, half
+  the difference between the two diagnosis rates, is \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi]).
+\item The models' own solutions written from the task alone follow the benchmark's behaviour on these units 89\%
+  of the time. The convention the benchmark rewards is one the models share, and rewarding it would be a false
+  accusation had the task's author meant the other rule.
 \item Adding the missing requirement as one ordinary sentence raises verified diagnosis by \NSixFive{} points
-  [\NSixFiveLo, \NSixFiveHi] over the task alone; once the contract is stated, \NSixResolveFpr\% of correct programs
-  are flagged.
+  [\NSixFiveLo, \NSixFiveHi] over the task alone, with no correct program flagged in that arm (\NSixResolveFpr\% when the contract is
+  stated as a choice between the two rules).
 \item When told only that the task leaves the choice open, the two vendors respond differently: one passes almost
   every program, while the other asks for clarification.
 \item On positive controls, where the task's words rule out one program, the same auditors separate the programs
@@ -49,7 +49,7 @@ an auditor receives in the way our experiment does.
 
 \textbf{Contributions.} (i) A randomised-contract design that makes the information limit of an audit observable and
 separates convention agreement, unjustified accusation, requests for clarification and verified diagnosis, with
-execution-validated programs and oracles. (ii) Preregistered evidence that, on such cases, auditors side with the benchmark's default reading, and that one
+execution-validated programs and oracles. (ii) Preregistered evidence that, on such cases, auditors side with the benchmark's convention, and that one
 added sentence stating the requirement turns that agreement into verified diagnosis. (iii) A bridge to
 natural audits showing how hidden-test recall decomposes into determined and undetermined failures, and an
 interpretation of scientific code, results and data audits using the same distinction between capacity and information misses.

@@ -39,10 +39,12 @@ bound on any test's power minus its size; \citealp{neyman1933efficient}). We cla
 component bound requires a false-flag constraint on the component itself. Under an overall false-flag rate $\alpha$
 alone, with $q$ the share of correct programs in the component, the bound is only $(1-\pi)+\pi\min(1,\alpha/q)$.
 We use these statements to separate two causes of missed defects that audit evaluations conflate.
-Misses on distinguishable cases are \emph{capacity} misses: some auditor with the same evidence attains higher
-recall at the same false-flag rate. Misses on indistinguishable cases are \emph{information} misses: there, any
-auditor buys recall only with an equal rise in false flags, and no auditor does better at a fixed false-flag rate
-without different evidence. By definition, only a change in $E$ moves the ceiling; the empirical questions are how far real auditors sit
+An auditor that operates below the likelihood-ratio ROC of its evidence loses recall to \emph{capacity}: some
+auditor with the same evidence attains higher recall at the same false-flag rate. Recall lost because the ROC itself
+is low is lost to \emph{information}; in the extreme of an indistinguishable component, any auditor buys recall there
+only with an equal rise in false flags, and no auditor does better without different evidence. Where the two laws
+overlap only partly, even the optimal test misses some defects, so not every miss on a distinguishable case is a
+capacity miss. By definition, only a change in $E$ moves the ceiling; the empirical questions are how far real auditors sit
 below it and which changes in $E$ matter.
 
 \paragraph{Contract randomisation makes the component observable.}
@@ -66,11 +68,9 @@ Q_{X_A}+\tfrac12 Q_{X_B}$, where $Q_x$ is the law of $E$ given $X=x$.
 
 Revealing $H$ in the evidence (stating the requirement) breaks the premise of Lemma~\ref{lem:symmetric}; text that
 draws attention to the input class, or lists both behaviours without choosing, does not. The experiment in
-Section~\ref{sec:e6} measures how far real auditors sit below the ceiling once the requirement is revealed and
-whether additional computation helps more before or after the reveal. It also measures how much of the recall
-on natural benchmarks reflects agreement with the benchmark's convention on indistinguishable units.
-Those detections would be false flags had the convention gone the other way. The propositions leave these
-three questions open.
+Section~\ref{sec:e6} measures how far real auditors sit below the ceiling once the requirement is revealed, and how
+often, before it is revealed, their detections agree with the benchmark's convention, detections that would be false
+flags had the convention gone the other way. The propositions leave both questions open.
 
 \paragraph{What we do not claim.}
 The ceiling is relative to the evidence, which includes what a model brings with it.

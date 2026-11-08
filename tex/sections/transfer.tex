@@ -22,21 +22,25 @@ more often did.
 log, a results file and a report in which every number cites its source. We injected either a reporting fault
 (the artefacts disagree) or a fabrication written consistently into all of them. A deterministic provenance
 check flagged all 49 reporting faults and none of the 25 fabrications, whose artefacts all agreed.
-The model auditor flagged 23 of the 25, usually by recomputing the result from the code and inputs (exact McNemar
-$p=2.4\times10^{-7}$). Re-execution uses the same information and flagged 70 of the 74 faulty items.
+The model auditor flagged 23 of the 25 (exact McNemar $p=2.4\times10^{-7}$), 21 of them with a finding about the
+fault itself on our post hoc reading, usually after recomputing the result from the code and inputs. Re-execution uses the same information and flagged 70 of the 74 faulty items.
 It missed four whose change fell inside the default numerical tolerance. The evidence here determines the
 right value, so a miss is a capacity miss. More capacity, through a model that computes or simply running the
 code, removes most of them.
 
-\paragraph{Data: where the documentation carries the information.} We gave each of twelve public regression tables a
+\paragraph{Data: what a deterministic profile already captures.} We gave each of twelve public regression tables a
 data card. Each table was either left clean or given one injected fault (mixed units, negated values, duplicated
-rows, a shuffled target, swapped columns, sentinel values, rounding). We held out eight tables (266 items) and
-combined a validator written mechanically from the card with a model auditor (GPT or Claude, with a shell on the
-full table or reading 120 rows). Adding the model raised correct localisation, scored by code against the injection manifest, by 2.3 points
-[0.4, 4.8] and flags on clean items by 16.0 points [3.2, 31.4]. Neither the full table nor tool use helped.
-In an unsandboxed pilot, one auditor searched the disk and the web for the original files. Every subsequent
-reading ran in an operating-system sandbox. Even there, 57\% of that auditor's held-out readings attempted
-out-of-scope access; these attempts were logged and returned nothing. An earlier study on four tables, at a clean-flag budget fixed in advance, found
-a larger gain in findings naming the faulty column (10.7 points [6.0, 15.9]) over a simpler validator.
-In both studies, where the documentation already states what valid data look like, a check written from it
-finds most of the faults that it and the model find together.
+rows, a shuffled target, swapped columns, sentinel values, rounding). Eight tables were held out (266 faulty and 266
+clean items). A profile validator, built from the card and from thresholds against a clean reference sample of the
+same table, was combined with a model auditor (GPT or Claude, with a shell on the full table or reading 120 rows).
+Adding the model raised correct localisation, scored by code against the injection manifest, by 2.3 points
+[0.4, 4.8], and flags on clean items by 16.0 points [3.2, 31.4]. Against a validator written from the card alone,
+the model's gain in localisation is 23.3 points [13.2, 33.3]: the profile's clean reference sample, not the card,
+carries most of the information. Neither the full table (0.0) nor tool use over reading (+1.3 [$-$2.7, 5.8])
+changed localisation detectably. Earlier runs of this study were voided: in them one auditor searched the disk and
+the web for the original files, and held-out results had been computed before the registered amendment that
+introduced an operating-system sandbox and replaced them (Appendix~\ref{app:earlier}). In the reported run, 57\% of
+that auditor's held-out readings still attempted out-of-scope access; the attempts were logged and returned nothing.
+An earlier study on four tables, at a clean-flag budget fixed in advance, found a gain of 10.7 points [6.0, 15.9] in
+findings naming the faulty column over a card validator. Where a clean reference is available, a check built from it
+leaves the model little to add except false flags.

@@ -81,7 +81,8 @@ the task leaves unspecified, as questions to the task author. Claude Opus 5.5, s
 not told which is the benchmark's, judged whether any question targets the behaviour on which the rules differ. On
 the 41 held-out open units it did in 97.6\% of readings [93.8, 100]; on the 78 held-out positive controls, where
 the task's words decide that behaviour, it also did in 80.8\% [75.0, 86.4]. The difference, 16.8 points [10.5,
-23.2] (problem-paired bootstrap), shows some selectivity, but an auditor asked to look still names four in five
+23.2] (problem-paired bootstrap), shows some selectivity, though the interval does not resolve it against the
+registered 20-point threshold for substantial selectivity, and an auditor asked to look still names four in five
 decided behaviours as unspecified: its questions are a broad list of the usual edge cases, and telling which of them
 the task leaves open is left largely to the task's author. E8 was registered after a development pilot (96.9\%
 against 88.3\%), uses one vendor for both roles and relies on a model judge; all 238 held-out readings completed.
@@ -121,6 +122,40 @@ ours. Hypotheses are tested in a registered order (E6-1, E6-2, E6-5, E6-3), each
 hold; positive controls form a separate family (E6-4). Missing cells are reported with bounds that set excluded units
 to the worst and best values.
 
+\subsection{Registered hypotheses and held-out verdicts}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Every registered held-out hypothesis, its estimate and its verdict (points; 95\% problem-level bootstrap
+intervals unless stated). E6 family 1 is ordered (E6-1, E6-2, E6-5, E6-3); a claim is made only if all earlier ones
+hold. Exploratory analyses are marked.}
+\label{tab:verdicts}
+\begin{tabular}{p{1.4cm}p{7.2cm}p{4.0cm}p{1.6cm}}
+\toprule
+Label & Estimand & Held-out estimate & Verdict \\
+\midrule
+E6-1 & resolved minus undecided menu, verified diagnosis; resolved lower bound $\geq 50$ & +91.2 [82.9, 97.6]; 91.2 resolved & claimed \\
+E6-2 & convention advantage, $(r_B - r_A)/2$, \textsc{none} arm & +11.6 [5.2, 18.0] & claimed \\
+E6-5 & sentence minus \textsc{none}, verified diagnosis & +76.8 [68.3, 84.8] & claimed \\
+E6-3 & high minus low budget after resolution, equivalence within 10 (betting) & +0.6; betting [$-$10.9, 12.0] & inconclusive \\
+E6-1b & resolved false-flag rate below 10\% (betting upper bound) & 2.1\%; bound 11.3\% & not met \\
+E6-4 & positive controls, recall minus false-flag rate & 94.2 [90.7, 97.1] & claimed \\
+(expl.) & flag rate on $X_A$ minus $X_B$, \textsc{none} arm & +23.8 [10.4, 37.2] & exploratory \\
+\midrule
+E1 H1 & clause minus placebo, verified diagnosis & +88.9 [62.5, 100] & supported \\
+E1 H2 & clause minus placebo, flags on test-passing controls & $-$5.6 [$-$33.3, 22.2] & not supported \\
+E1 H3 & two clause readings minus four original & +88.9 [62.5, 100] & supported \\
+E1 H4 & two placebo readings minus two original & 0.0 [0, 0]; exact upper 34.8 & supported (fragile) \\
+E1 H5 & clause minus pointer & +61.1 [38.9, 85.0] & supported \\
+E1 H6 & \textsc{determined} minus \textsc{open}, verified diagnosis & +6.0 [$-$20.2, 28.3] & not supported \\
+\midrule
+E8-1 & discovery on open units, lower bound $>50$ & 97.6 [93.8, 100] & supported \\
+E8-2 & selectivity, open minus controls (two-sided) & +16.8 [10.5, 23.2] & $>0$; vs 20 unresolved \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{Protocol history}
 
 The protocol was revised six times on development units before any held-out audit, each time after an
@@ -131,4 +166,7 @@ bound, separated the false-flag budget from the ordered family, added the second
 red-team stage, restricted every check and credit to the interface, and rescored earlier development witness records
 under the final rule (some had been scored by an earlier witness stage without the executable domain, class and
 oracle checks; development results in this paper use the rescored records). The registration file lists each change
-with its date and the development results before and after it.
+with its date and the development results before and after it. During the held-out runs, after a provider quota interruption, two infrastructure rules were added before any
+held-out analysis and reviewed by another vendor's model: a call that exits without any recorded model usage does
+not consume an attempt (decided by transport metadata only), and a reference that times out on a witness input at
+10\,s twice and again at 60\,s places that input outside its domain (no credit).

@@ -2,12 +2,13 @@
 \label{sec:discussion}
 
 \paragraph{Interpretation.} On units where the task leaves a behaviour open, a hidden-test ``detection'' is
-agreement with the benchmark's behaviour, which is also the default reading of the task: auditors flag the program
-that departs from it far more often, and solutions written from the task alone follow it (Section~\ref{sec:e6}).
+agreement with the benchmark's behaviour, a convention the models' own task-only solutions also follow (89\% on
+held-out units): auditors flag the program that departs from it far more often (Section~\ref{sec:e6}). Whether
+this convention is a natural reading of the task or one the models share with the benchmark, we cannot separate.
 Adding one sentence that states the requirement turns that agreement into verified diagnosis; we could not resolve
 whether a larger reasoning budget changes the result once it is stated. Natural failures are observational and
 classified by models, but they point the same way: both classifiers agree that the task's words settle fewer than
-a quarter of failures, and other solutions mostly behave like the ``defective'' program
+a quarter of failures, and the generators' other solutions often behave like the ``defective'' program
 (Section~\ref{sec:natural}). The earlier scientific studies are consistent with the distinction without testing it
 (Section~\ref{sec:transfer}): naming the deliverable cut false flags on correct scientific code from 69\% to 36\%,
 and where code and inputs determine a reported value, recomputation catches fabrications that consistency checks
@@ -20,20 +21,25 @@ For deployment, an auditor's value on such behaviour depends on whether the requ
 discovering requirements that nobody wrote down, which we did not measure, is the harder problem.
 
 \paragraph{Limitations.}\label{sec:limits} \emph{Constructed units.} The randomised-contract units are execution-validated;
-two models, rather than people, judge them admissible. We make no claim about how often such ambiguity occurs.
-Agreement between two models that a rule is compatible with a task is weaker than expert agreement.
+two models, rather than people, judge them admissible, and the same two models implement the rules, so construction
+and judging are not independent. We make no claim about how often such ambiguity occurs. The 41 held-out units are
+selected (from 406 problems) and concentrated: 37 come from MBPP+, and on only two do the models' task-only solutions
+follow both rules.
 \emph{Benchmarks.} All randomised-contract and natural-failure units come from HumanEval+ and MBPP+, short functions with small specifications.
 Whether the size of the convention advantage carries over to larger programs, where more behaviour is
 unstated, remains untested. \emph{Auditors.} We tested two vendors' models at two reasoning budgets with one rulebook.
 Other auditors, agent scaffolds or execution-based test generation may sit closer to the ceiling before the
 reveal, although Lemma~\ref{lem:symmetric} bounds what any of them can do on the unrevealed arms.
-\emph{Verification.} A verified diagnosis requires a witness that the benchmark's own comparator confirms and
-two judges accept. We do not credit diagnoses stated only in prose, which can understate auditors whose
-findings are correct but unexecutable. \emph{Natural failures.} Models classify the natural failures, with
-Cohen's $\kappa$ of 0.78 on development items. The behavioural check uses solutions from two generators only.
+\emph{Verification.} A verified diagnosis requires a witness whose disagreement with the contract's oracle the
+benchmark's own comparator confirms by execution, with the auditor's stated expected value correct. We do not credit diagnoses stated only in prose, which can understate auditors whose
+findings are correct but unexecutable. \emph{Natural failures.} Models classify the natural failures
+(Cohen's $\kappa$ 0.71 on held-out items), and the behavioural check reuses the generators' own solutions.
 \emph{Data.} The data study injects one fault per item into twelve public tables; its conclusion is specific to
-faults that documentation describes. \emph{Discovering requirements.} Our registered arms state the requirement or list both candidates. In a
+faults that a clean reference sample reveals. \emph{Discovering requirements.} Our registered arms state the requirement or list both candidates. In a
 registered follow-up (E8, Appendix~\ref{app:e6}), an auditor asked to list unspecified behaviours named the open
-behaviour in 97.6\% of held-out readings but also named the decided behaviour of positive controls in 80.8\%, so
-discovery comes with little selectivity and returns the question to the task's author. \emph{Earlier studies} of the shipped configuration
+behaviour in 97.6\% of held-out readings but also named the decided behaviour of positive controls in 80.8\%: a
+selectivity of 16.8 points [10.5, 23.2], above zero but not resolved against the registered 20-point threshold for
+substantial selectivity, so the question largely returns to the task's author. \emph{Amendments.} Two
+infrastructure rules were registered during the held-out runs, before any held-out analysis (attempt accounting
+for calls that never reached the model; terminal treatment of reference timeouts); Appendix~\ref{app:e6} lists them. \emph{Earlier studies} of the shipped configuration
 (Appendix~\ref{app:earlier}) are reported as registered and are not re-analysed here.
