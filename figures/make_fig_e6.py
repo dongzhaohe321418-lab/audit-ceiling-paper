@@ -33,7 +33,13 @@ ARMS = [("none", "all|none", "none"), ("menu", "all|menu", "menu"),
 
 
 def err(m: dict) -> tuple[float, float]:
+    if m.get("est") is None:
+        return 0.0, 0.0
     return m["est"] - m["lo"], m["hi"] - m["est"]
+
+
+def est(m: dict) -> float:
+    return m["est"] if m.get("est") is not None else float("nan")      # missing: no bar or marker is drawn
 
 
 def main(path: str, stem: str) -> None:
@@ -49,7 +55,7 @@ def main(path: str, stem: str) -> None:
         for j, (metric, col) in enumerate((("tpr", TPR), ("fpr", FPR), ("cov", COV))):
             m = lv[metric]
             lo, hi = err(m)
-            ax_a.bar(i + (j - 1) * w, m["est"], w, color=col, yerr=[[lo], [hi]], error_kw={"lw": 0.6, "capsize": 1.2},
+            ax_a.bar(i + (j - 1) * w, est(m), w, color=col, yerr=[[lo], [hi]], error_kw={"lw": 0.6, "capsize": 1.2},
                      label=("flag | defective", "flag | correct", "verified diagnosis")[j] if i == 0 else None)
     ax_a.set_xticks(range(len(ARMS)), [a[2] for a in ARMS])
     ax_a.set_ylim(0, 105)
@@ -65,7 +71,7 @@ def main(path: str, stem: str) -> None:
     for k, (v, (route, name)) in enumerate(VENDOR.items()):
         ys = [d["levels"][f"{route}-{b}|resolve"]["cov"] for b in ("low", "high")]
         xs = [0 + 0.06 * (k - 0.5), 1 + 0.06 * (k - 0.5)]
-        ax_b.errorbar(xs, [y["est"] for y in ys], yerr=[[err(y)[0] for y in ys], [err(y)[1] for y in ys]],
+        ax_b.errorbar(xs, [est(y) for y in ys], yerr=[[err(y)[0] for y in ys], [err(y)[1] for y in ys]],
                       marker="os"[k], ms=3.2, lw=0.9, capsize=1.2, color=("0.15", "0.55")[k], label=name)
     ax_b.set_xticks([0, 1], ["low", "high"])
     ax_b.set_xlim(-0.4, 1.4)

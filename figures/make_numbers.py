@@ -39,22 +39,25 @@ def main(rec: str, split: str) -> None:
     iv("SixMenuCov", lv["all|menu"]["cov"])
     iv("SixResolveCov", lv["all|resolve"]["cov"])
     iv("SixResolveFpr", lv["all|resolve"]["fpr"])
-    out["SixResolveFprUp"] = fmt(lv["all|resolve"]["fpr_betting_upper95"])
+    up = lv["all|resolve"].get("fpr_betting_upper95")
+    out["SixResolveFprUp"] = fmt(up) if up is not None else "n/a"
     iv("SixOne", e6["E6_1_cov_resolve_minus_menu"])
     iv("SixTwo", e6["E6_2_convention_advantage_none"])
     iv("SixFive", e6["E6_5_cov_sentence_minus_none"])
     iv("SixSentMinusRes", e6["sentence_minus_resolve_cov"])
     e63 = e6["E6_3_cov_high_minus_low_resolve"]
     iv("SixThree", e63)
-    out["SixThreeBetLo"], out["SixThreeBetHi"] = fmt(e63["betting_lo"]), fmt(e63["betting_hi"])
+    out["SixThreeBetLo"], out["SixThreeBetHi"] = ((fmt(e63["betting_lo"]), fmt(e63["betting_hi"]))
+                                                  if "betting_lo" in e63 else ("n/a", "n/a"))
     v = e6["verdicts"]
     out["SixThreeVerdict"] = "within the margin" if v["E6_3_equivalent_within_10_claimed"] else "inconclusive"
     out["SixOneBVerdict"] = "met" if v["E6_1b_fpr_budget"] else "not met"
     rt = e6["routing_menu"]
     gpt = [rt[c] for c in rt if "gpt" in c]
     cla = [rt[c] for c in rt if "claude" in c]
-    out["SixGptPass"] = fmt(100 * sum(x["pass"] for x in gpt) / len(gpt))
-    out["SixClaudeAsk"] = fmt(100 * sum(x["escalate"] for x in cla) / len(cla))
+    share = lambda xs, f: fmt(100 * sum(x[f] * x["n"] for x in xs) / sum(x["n"] for x in xs)) if sum(x["n"] for x in xs) else "n/a"
+    out["SixGptPass"] = share(gpt, "pass")             # pooled over readings
+    out["SixClaudeAsk"] = share(cla, "escalate")
     iv("SixFourJ", det["E6_4_J_none"])
 
     out["OneItems"], out["OneProblems"] = str(e1["n_items"]), str(e1["n_problems"])
