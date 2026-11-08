@@ -123,6 +123,14 @@ ours. Hypotheses are tested in a registered order (E6-1, E6-2, E6-5, E6-3), each
 hold; positive controls form a separate family (E6-4). Missing cells are reported with bounds that set excluded units
 to the worst and best values.
 
+\paragraph{Data-science tasks (E7, stopped at construction).} The same stages, unchanged, ran on the 121
+BigCodeBench tasks whose references are deterministic with comparable outputs and pass their own suites (recorded
+hidden inputs; a pandas/numpy comparator; arguments may be constructor expressions, evaluated only in the executor).
+Funnel (development / held out), open units: 28 / 93 tasks, 12 / 37 pre-admitted, 2 / 18 admitted, 0 / 7 past the
+red team, 0 / 5 past both judges; positive controls: 28 / 93, 11 / 34, 5 / 9, 5 / 3, 5 / 2. The registered rule
+required 12 held-out open units, so no audit was run. A provider outage during the first pass was handled as in E1
+Amendment 5: calls that never reached the model were archived and repeated.
+
 \subsection{Registered hypotheses and held-out verdicts}
 
 \begin{table}[h]
