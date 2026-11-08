@@ -28,3 +28,13 @@ calls. Run only after E6's held-out audits have finished (GPT quota is the bindi
 **Go / no-go.** Go if, after admission and red team, at least 12 units pass the judges; otherwise report the funnel
 as a finding (data-science tasks rarely leave a behaviour open in a way two vendors implement consistently) and
 stop. Preregister before any audit; review by GPT before the held-out run, as for E6.
+
+## Feasibility result (2026-11-08, no model calls)
+
+Executor with pandas/numpy/scipy/scikit-learn (`audit/.exec7`). Of the 172 deterministic tasks, the reference passes
+its whole suite on 135; recording the entry point's actual arguments while the reference runs its own suite gives
+at least 3 distinct inputs on which the reference is deterministic under the comparator for **121 tasks (28 dev,
+93 held out)**. At E6's open yield (7.6%) that is about 9 units; tasks with more unstated pandas/numpy behaviour
+(dtypes, ties, NaN handling, index order) may raise the yield. Decision: proceed with construction after E6's
+held-out audits, on all 121 tasks; the go/no-go threshold stays at 12 registered units, and a smaller funnel is
+reported as a finding.
