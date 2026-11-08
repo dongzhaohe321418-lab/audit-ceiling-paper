@@ -75,26 +75,26 @@ The held-out population contains 41 units from 41 problems (34 from the first co
 second) and 3{,}280 readings; the positive-control population contains 78 units. All hypotheses, intervals and the
 order in which claims are tested were registered before the first held-out call.
 
-\paragraph{Adding the requirement turns agreement into diagnosis.} One ordinary sentence stating the contract, with
-no menu, raises verified diagnosis by \NSixFive{} points [\NSixFiveLo, \NSixFiveHi] over the task alone (E6-5); a menu
-of both rules followed by a choice does as well (\NSixResolveCov\% against \NSixMenuCov\% with the undecided menu;
-E6-1: +\NSixOne{} [\NSixOneLo, \NSixOneHi]). The undecided menu itself suppresses flagging, so E6-5 is the contrast
-that answers what a stated requirement adds to the plain task. The menu also serves as an attention control: it adds
-more text than the sentence, names the input class and states both rules, yet yields almost no verified diagnosis,
-so the gain comes from knowing which rule holds, not from being pointed at the right place. After the contract is stated, the flag rate on correct
-programs is \NSixResolveFpr\%; its betting upper bound is \NSixResolveFprUp\% against the registered 10\% budget
-(E6-1b, \NSixOneBVerdict).
+\paragraph{Adding the requirement turns agreement into diagnosis.} One ordinary sentence stating the contract
+raises verified diagnosis by \NSixFive{} points [\NSixFiveLo, \NSixFiveHi] over the task alone (E6-5). A menu of both
+rules followed by a choice does about as well: \NSixResolveCov\%, against \NSixMenuCov\% with the undecided menu (E6-1:
++\NSixOne{} [\NSixOneLo, \NSixOneHi]). Because the undecided menu itself suppresses flagging, E6-5 is the contrast
+that measures what a stated requirement adds to the plain task. The menu doubles as an attention control. It is
+longer than the sentence, names the input class and states both rules, yet it yields almost no verified diagnosis;
+the gain comes from knowing which rule holds, not from being pointed at the right place. Once the contract is
+stated, the flag rate on correct programs is \NSixResolveFpr\%, with a betting upper bound of \NSixResolveFprUp\%
+against the registered 10\% budget (E6-1b, \NSixOneBVerdict).
 
-\paragraph{Without the contract, auditors side with the benchmark.} In the \textsc{none} arm, recall equals the
-false-flag rate by construction (\NSixNoneFlag\%), because the same readings are scored under both contracts. The
-informative quantity is which program is flagged: the one that departs from the benchmark's behaviour is flagged
-\NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it (an analysis the frozen
-code computes but the registration does not list as a hypothesis), and verified diagnoses are \NSixTwo{} points
-[\NSixTwoLo, \NSixTwoHi] more likely when the contract is the benchmark's rule (E6-2). We cannot say whether this
-reflects memory of the benchmark or the most natural reading of the task, and the distinction does not matter for an
-evaluation: independent solutions written from the task alone follow the benchmark's rule on these units almost
-always (Appendix~\ref{app:e6}), so a hidden-test ``detection'' here credits agreement with the default reading,
-which would be a false accusation had the task's author intended the other rule.
+\paragraph{Without the contract, auditors side with the benchmark.} In the \textsc{none} arm recall equals the
+false-flag rate (\NSixNoneFlag\%) by construction, since the same readings are scored under both contracts. What
+carries information is which program gets flagged. The program that departs from the benchmark's behaviour is
+flagged \NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it; the frozen
+code computes this, though the registration does not list it as a hypothesis. Verified diagnoses, likewise, are
+\NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] more likely when the contract is the benchmark's rule (E6-2). Whether this
+reflects memory of the benchmark or the most natural reading of the task we cannot say, and for an evaluation it
+makes no difference. Solutions written from the task alone follow the benchmark's rule on these units almost always
+(Appendix~\ref{app:e6}). A hidden-test ``detection'' here therefore credits agreement with the default reading, and
+it would be a false accusation had the task's author meant the other rule.
 
 \paragraph{Reasoning budget.} After the contract is stated, the high budget changes verified diagnosis by
 \NSixThree{} points (bootstrap [\NSixThreeLo, \NSixThreeHi]; betting [\NSixThreeBetLo, \NSixThreeBetHi]). The registered
