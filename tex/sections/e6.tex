@@ -15,7 +15,9 @@ and draw the contract used to grade the auditor independently of what it sees. W
 model identifies one kind of valid input for which the task text and visible tests leave the behaviour open.
 It states two rules as requirements a task author could add: \emph{B}, the benchmark reference's behaviour,
 and \emph{A}, an equally specific alternative (for example, ``if several sublists are equally short, return the
-first'' versus ``\dots the last''). Two vendors then implement each rule from the task and the rule alone,
+first'' versus ``\dots the last''). Appendix~\ref{app:e6} groups the registered units by the kind of
+behaviour left open (ties, readings of a phrase, Unicode conventions, repeated items, numeric types, degenerate
+inputs). Two vendors then implement each rule from the task and the rule alone,
 using the same prompt; no implementation sees the reference. Auditors read one vendor's A and B implementations,
 which therefore share provenance and style. The vendor alternates across units.
 
