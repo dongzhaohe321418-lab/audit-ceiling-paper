@@ -6,12 +6,13 @@ MBPP+ problem 102 \citep{liu2023evalplus} asks for a function that converts a sn
 gives three ordinary examples. A generated function splits on underscores, capitalises each word and passes
 all three. The hidden suite then passes \verb|___python_program| and expects \verb|___PythonProgram|; the function
 returns \verb|PythonProgram|. The task says nothing about how to handle leading underscores. The benchmark treats
-this program as defective, so an automated auditor that reads and passes it has missed a defect.
+this program as defective. By that measure, an automated auditor that reads and passes it has missed a defect.
 
 Models increasingly check what other models write. Audit benchmarks score them as in this example, against a hidden
 reference. We argue that these scores conflate two kinds of case. In some, the evidence available to the auditor
 determines the correct behaviour, and a miss is the auditor's failure. In others, such as the example above, the
-evidence is equally consistent with the program and the reference. No auditor, whatever its capacity, can tell them
+evidence is equally consistent with the program and the reference; where the evidence is moreover identically
+distributed under both behaviours, as our construction guarantees, no auditor, whatever its capacity, can tell them
 apart without being told which behaviour is wanted. A ``detection'' in these cases amounts to agreement with the
 benchmark's convention; it would be a false accusation had the convention gone the other way.
 
@@ -19,16 +20,16 @@ This distinction is classical. For any flagging rule, recall minus false-flag ra
 variation between the evidence a defective and a correct program produce. The best attainable recall at a given
 false-flag rate is the Neyman--Pearson power of that evidence (Section~\ref{sec:framework}). Audit evaluations have
 lacked a way to observe this distinction because a benchmark fixes one contract and hides the counterfactual.
-Our experiment constructs that counterfactual (Section~\ref{sec:e6}). For each unit, we take a real benchmark task
-that leaves one behaviour open and build two programs that differ only there. We grade the auditor against a
+We construct that counterfactual experimentally (Section~\ref{sec:e6}). Each unit starts with a real benchmark task
+that leaves one behaviour open; we build two programs that differ only in that behaviour. We grade the auditor against a
 contract drawn independently of what it sees, then reveal the contract in different ways. Execution validates the
-programs, oracles and boundaries of the open behaviour; two independent models judge whether both rules are admissible.
+programs, oracles and boundaries of the open behaviour; two models, which also implement the rules, judge whether both are admissible.
 
 \textbf{Findings.} Across \NSixUnits{} held-out units and auditors from two vendors at two reasoning budgets:
 \begin{itemize}\itemsep1pt
 \item With the contract withheld, flagging cannot track which program is wrong: the same readings are scored under
-  both contracts, so recall equals the false-flag rate (\NSixNoneFlag\%) by construction. Which program is flagged
-  is telling. The one that departs from the benchmark's behaviour is flagged \NSixFlagPref{} points
+  both contracts, so recall equals the false-flag rate (\NSixNoneFlag\%) by construction. The informative difference
+  is which program is flagged. The one that departs from the benchmark's behaviour is flagged \NSixFlagPref{} points
   [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it, and diagnosed more often too (the registered convention advantage, half
   the difference between the two diagnosis rates, is \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi]).
 \item The models' own solutions written from the task alone follow the benchmark's behaviour on these units 89\%

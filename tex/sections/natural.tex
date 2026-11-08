@@ -2,10 +2,10 @@
 \section{What natural audit failures are made of}
 \label{sec:natural}
 
-The randomised experiment isolates the information limit on constructed units. Here we describe an ordinary audit
-benchmark through the same lens, without claiming to estimate how much of it is information-limited: classifying a
-program's first failing input does not establish that a defective and a correct program are indistinguishable. We use
-150 programs written by two generator models for 97 HumanEval+ and MBPP+ problems \citep{liu2023evalplus}; each passes
+The randomised experiment isolates the information limit on constructed units. We use the same distinction to
+describe an ordinary audit benchmark, without claiming to estimate how much of it is information-limited.
+Classifying a program's first failing input does not establish that a defective and a correct program are
+indistinguishable. We use 150 programs written by two generator models for 97 HumanEval+ and MBPP+ problems \citep{liu2023evalplus}; each passes
 its visible tests but fails the hidden suite and is paired with a control that passes the hidden suite. Of the 150,
 43 are development and 107 held-out items.
 
@@ -14,7 +14,7 @@ input, blind to which output is the benchmark's (order randomised by evidence): 
 reference's output acceptable (\textsc{determined}); both acceptable (\textsc{open}); only the program's acceptable
 (\textsc{at odds}); or neither. Identical evidence is pooled so that it cannot receive two labels. On the 107 held-out
 items, both classifiers agree on \textsc{determined} for 26, \textsc{open} for 21, \textsc{at odds} for 22 and out of
-domain for 13, and disagree on 25 (Cohen's $\kappa=0.71$; 0.78 on development items). Over all 150, both agree that
+domain for 13, and disagree on 25 (Cohen's $\kappa=0.71$; 0.78 on development items). Across all 150, both agree that
 the words single out the hidden suite's value for 34 (23\%). Disputed items are not evidence of ambiguity, only of
 disagreement between the classifiers.
 
@@ -22,8 +22,8 @@ disagreement between the classifiers.
 classifier judgement. For each failure we run the problem's other generations that pass the visible tests (up to
 eleven, from the same two generators, excluding the failing program itself) on its first failing input. They return
 the defective program's result 930 times and the reference's 559 times (71 neither); for 90 failures more of them return
-the defective program's result than the reference's, for 57 the reverse (an absolute majority: 85 against 55). Because the solutions come from the generators that wrote the
-failing programs, this measures what these models take the task to mean, not what independent programmers would do.
+the defective program's result than the reference's, for 57 the reverse (an absolute majority: 85 against 55). These solutions come from the generators that wrote the
+failing programs, so the check measures what these models take the task to mean, not what independent programmers would do.
 It also checks the classification (Figure~\ref{fig:natural}b): where the classifiers judge that only the program's
 output fits the words (\textsc{at odds}), 89\% of the other solutions return it; on \textsc{determined} and
 \textsc{open} failures the solutions split roughly evenly.
@@ -41,7 +41,7 @@ class; the interval is a bootstrap over problems for the share returning the ref
 \paragraph{What auditors verify.} With the original task text, four readings per program and two auditors, verified
 diagnosis on the held-out failures is \NOneVdDetermined\% on \textsc{determined} failures and \NOneVdOpen\% on
 \textsc{open} ones. The registered contrast (H6) is \NOneHSix{} points [\NOneHSixLo, \NOneHSixHi]: we could not detect
-a difference, and the interval allows a sizeable one in either direction (the development estimate, from 13 items,
+a difference, but the interval allows a sizeable one in either direction (the development estimate, from 13 items,
 was 50 points). Of the \NOneBridgeItems{} held-out programs with a verified diagnosis, \NOneBridgeDetermined{} have at
 least one witness that both classifiers label \textsc{determined}; among the four \textsc{open} failures with a
 verified diagnosis, two do. The classification concerns the first failing input only, so a program may have
@@ -52,6 +52,6 @@ and whose added sentences pass a neutrality recheck, we appended the missing req
 length-matched placebo, or a pointer naming the input class without resolving it. The \NOneItems{} held-out items
 (\NOneProblems{} problems) give a small replication of Section~\ref{sec:e6}: the clause raises verified diagnosis by
 \NOneHOne{} points [\NOneHOneLo, \NOneHOneHi] over the placebo (H1) and by \NOneHFive{} points [\NOneHFiveLo,
-\NOneHFiveHi] over the pointer (H5). The placebo left verified diagnosis where the original task had it (11.1\% in both; H4 passes its
-registered rule, but with seven problems its exact upper bound is 34.8\%), and whether the clause changes flags on the
-test-passing controls could not be settled (H2: $-$5.6 points [$-$33.3, 22.2]).
+\NOneHFiveHi] over the pointer (H5). Verified diagnosis was the same under the placebo and the original task (11.1\% in both; H4 passes its
+registered rule, but with seven problems its exact upper bound is 34.8\%). We could not settle whether the clause
+changes flags on the test-passing controls (H2: $-$5.6 points [$-$33.3, 22.2]).

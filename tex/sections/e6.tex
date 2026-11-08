@@ -2,10 +2,11 @@
 \section{A randomised-contract audit experiment}
 \label{sec:e6}
 
-Section~\ref{sec:framework} states that computation cannot repair a miss on an indistinguishable case.
+Section~\ref{sec:framework} states that, on an indistinguishable case, no computation raises recall above the
+false-flag rate.
 In a natural benchmark, we never observe the counterfactual contract. We construct it for each experimental unit:
-a real benchmark task that leaves one behaviour open. We write two programs that differ only in that behaviour
-and draw the contract used to grade the auditor independently of what it sees. We then either reveal or withhold the contract.
+a real benchmark task that leaves one behaviour open. We write two programs that differ only in that behaviour.
+We draw the contract used to grade the auditor independently of what it sees, then either reveal or withhold it.
 
 \subsection{Construction}
 \label{sec:e6-construction}
@@ -18,8 +19,8 @@ and \emph{A}, an equally specific alternative (for example, ``if several sublist
 first'' versus ``\dots the last''). Appendix~\ref{app:e6} groups the registered units by the kind of
 behaviour left open (ties, readings of a phrase, Unicode conventions, repeated items, numeric types, degenerate
 inputs). Two vendors then implement each rule from the task and the rule alone,
-using the same prompt; no implementation sees the reference. Auditors read one vendor's A and B implementations,
-which therefore share provenance and style. The vendor alternates across units.
+using the same prompt; neither vendor sees the reference when implementing the rules. Auditors read one vendor's
+A and B implementations, which therefore share provenance and style. The vendor alternates across units.
 
 \paragraph{Admission by execution.} An independent model writes a domain predicate \texttt{valid} and 16--24 probe
 inputs; the proposer writes a class predicate \texttt{in\_class}. The checks cover the hidden suite, the proposer's
@@ -33,18 +34,18 @@ inside it the two A implementations must agree with each other. A and B must dif
 inputs, and every implementation must pass the visible tests. Each construction stage is attempted once per problem
 (the red team may make a second call if the first yields fewer than ten usable inputs); problems without a
 first-attempt primary unit received one second, independent attempt, fixed before any held-out audit. The models
-that judge the rules (Claude Opus, GPT-6.1-sol) also implement them, Claude Opus writes the probes and GPT-6.1-sol the
-red-team inputs, so construction and judging are separate calls, not independent validators. These checks reject, for example, a ``correct'' B program whose integer summation silently
-became floating point.
+that judge the rules (Claude Opus, GPT-6.1-sol) also implement them. Claude Opus writes the probes and GPT-6.1-sol the
+red-team inputs. Construction and judging thus use separate calls, not independent validators.
+These checks reject, for example, a ``correct'' B program whose integer summation silently became floating point.
 
 \paragraph{Judging without human raters.} Two models that neither proposed the rules nor serve as auditors (Claude Opus,
 GPT-6.1-sol) judge whether the inputs are valid and each rule is compatible with the task's words and visible tests.
 They are blind to which rule is the benchmark's and are instructed that a missing example is not permission.
-The primary population comprises admitted units for which both judges accept the domain and both rules. We call these
-\emph{execution-validated, two-model-compatible contract pairs}. They are not human-validated ambiguities, and we make
+The primary population comprises admitted units for which both judges accept the domain and both rules:
+\emph{execution-validated, two-model-compatible contract pairs}. These are not human-validated ambiguities, and we make
 no claim about how common such ambiguity is.
 
-\paragraph{Positive controls.} The same pipeline yields units whose evidence distinguishes the programs by asking
+\paragraph{Positive controls.} To obtain units whose evidence distinguishes the programs, the same pipeline asks
 the proposer for a plausible \emph{misreading} that passes the visible tests but that the task's words rule out.
 Both judges must call the misreading incompatible and the required rule compatible.
 
@@ -67,7 +68,7 @@ reading reports a blocking finding. A diagnosis is \emph{verified} only if a fla
 whose arguments have the benchmark's own types, that satisfies \texttt{valid} and lies in the class. On that call
 the two contract oracles must differ, the program must disagree with the contract's oracle (the reference for B, the
 other vendor's implementation for A) under the benchmark's own comparator, and the value the auditor says the call
-should return must equal the oracle's. All of this is checked by execution. A unit's value is the mean over
+should return must equal the oracle's. Execution checks all these conditions. A unit's value is the mean over
 configurations; intervals are problem-level bootstraps. We test the false-flag budget after resolution (10\%)
 separately with a betting confidence bound \citep{waudbysmith2024betting}, which does not gate the other claims.
 
@@ -81,24 +82,24 @@ order in which claims are tested were registered before the first held-out call.
 \paragraph{Adding the requirement turns agreement into diagnosis.} One ordinary sentence stating the contract
 raises verified diagnosis by \NSixFive{} points [\NSixFiveLo, \NSixFiveHi] over the task alone (E6-5). A menu of both
 rules followed by a choice does about as well: \NSixResolveCov\%, against \NSixMenuCov\% with the undecided menu (E6-1:
-+\NSixOne{} [\NSixOneLo, \NSixOneHi]). Because the undecided menu itself suppresses flagging, E6-5 is the contrast
-that measures what a stated requirement adds to the plain task. The menu doubles as an attention control. It is
-longer than the sentence, names the input class and states both rules, yet it yields almost no verified diagnosis;
-the gain is consistent with knowing which rule holds rather than being pointed at the right place, though the menu
++\NSixOne{} [\NSixOneLo, \NSixOneHi]). The undecided menu itself suppresses flagging, so E6-5 measures what a stated
+requirement adds to the plain task. The menu also serves as an attention control: it is longer than the sentence,
+names the input class and states both rules, yet yields almost no verified diagnosis.
+The gain is consistent with knowing which rule holds rather than being pointed at the right place, though the menu
 is also a strong cue of uncertainty and the arms do not rule out every prompting effect. Once the contract is
 stated, the flag rate on correct programs is \NSixResolveFpr\%, with a betting upper bound of \NSixResolveFprUp\%
 against the registered 10\% budget (E6-1b, \NSixOneBVerdict).
 
 \paragraph{Without the contract, auditors side with the benchmark.} In the \textsc{none} arm recall equals the
-false-flag rate (\NSixNoneFlag\%) by construction, since the same readings are scored under both contracts. What
-carries information is which program gets flagged. The program that departs from the benchmark's behaviour is
+false-flag rate (\NSixNoneFlag\%) by construction, since the same readings are scored under both contracts. The informative
+difference is which program gets flagged. The program that departs from the benchmark's behaviour is
 flagged \NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it; the frozen
-code computes this, though the registration does not list it as a hypothesis. Verified diagnoses, likewise, are
+code computes this, though the registration does not list it as a hypothesis. Verified diagnoses are also
 more likely when the contract is the benchmark's rule: the registered convention advantage, half the difference
-between the two diagnosis rates, is \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] (E6-2). Whether this
-reflects memory of the benchmark or the most natural reading of the task we cannot say, and for an evaluation it
-makes no difference. The models' own solutions written from the task alone follow the benchmark's rule on these units 89\% of the
-time (Appendix~\ref{app:e6}). A hidden-test ``detection'' here therefore credits agreement with a shared convention, and
+between the two diagnosis rates, is \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] (E6-2). We cannot say whether this
+reflects memory of the benchmark or the most natural reading of the task. For an evaluation, it makes no difference.
+The models' own solutions written from the task alone follow the benchmark's rule on these units 89\% of the time
+(Appendix~\ref{app:e6}). A hidden-test ``detection'' here therefore credits agreement with a shared convention, and
 it would be a false accusation had the task's author meant the other rule.
 
 \paragraph{Reasoning budget.} After the contract is stated, the high budget changes verified diagnosis by
