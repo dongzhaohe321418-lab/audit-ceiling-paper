@@ -20,3 +20,10 @@ The binding constraint is the Codex (GPT) quota, exhausted until 2026-11-11 18:2
 
 Fallback (user's second choice): a workshop, or TMLR, if the held-out results or E7 do not support a main-track
 claim. Submission itself requires the user's OpenReview account and approval; Claude never logs in.
+
+## Decision (2026-11-08)
+Venue: ICML 2027 main track with the current paper (the user's stated first choice; human semantic validation was
+declined by the user and is reported as a limitation). Fallback: a workshop or TMLR if rejected or if the official
+call changes the requirements. Ready: paper (tex/paper_v3.pdf, anonymous build tex/paper_v3_submission.tex),
+supplementary (audit/supplementary/supplementary_anon.zip), citation audit. Remaining, user only: re-check the official
+call on icml.cc when posted, and submit through the user's OpenReview account (Claude never logs in).
