@@ -88,6 +88,29 @@ decided behaviours as unspecified: its questions are a broad list of the usual e
 the task leaves open is left largely to the task's author. E8 was registered after a development pilot (96.9\%
 against 88.3\%), uses one vendor for both roles and relies on a model judge; all 238 held-out readings completed.
 
+\paragraph{Do judges outside the construction accept both rules? (E9.)} Registered after the E6 results were known and
+before any E9 call, in response to a review that named admissibility the central validity question. Two judges that
+took no part in the construction, Claude Sonnet 5.5 and GPT-5.6-terra (high budget; both also E6 auditors), read each
+held-out unit in both rule orders, not told which rule is the benchmark's nor what kind of item they read, and judged
+whether the inputs are valid and each rule compatible with the task; an exclusion had to quote the words that rule
+the rule out. Besides the 41 open units and 78 positive controls, 41 \emph{resolved} items appended one rule to the
+task as an ordinary requirement, so that the other rule should be excluded, an anchor that does not depend on E6's
+judges. Of 640 readings, one (a resolved item) failed. Both rules were accepted on 84.1\% [77.4, 90.3] of readings of
+open units (E9-1, lower bound $>50$: supported), and rule A was excluded on 9.1\% of them against 96.5\% of
+readings of controls: a difference of 87.3 points [81.5, 92.5] (E9-2, $>30$: supported). On resolved items the
+non-appended rule was excluded 55.0 points [47.5, 62.5] more often than on the same units without the requirement
+(E9-2b: supported). The judges differ: Claude accepted both rules on 96.3\% of open readings and GPT on 72.0\%, and
+on resolved items Claude excluded the non-appended rule in only 25.9\% of readings against GPT's 98.8\%, so Claude
+is the more permissive judge. The two rule orders gave the same judgement on 80.5\% of open readings; every one of the
+425 exclusions came with a quote found verbatim in the task (262) or an appeal to ordinary meaning (163). Rerun by
+the frozen E6 code on the 35 units that at least three of four readings accept, every registered E6 criterion holds:
+resolved diagnosis 91.1\% [81.4, 98.2], E6-2 +11.1 [5.0, 17.5], E6-5 +79.3 [70.0, 87.9], flag preference +22.9 [10.0,
+36.4]; so it does on the 23 units all four readings accept (E6-2 +8.7 [3.3, 15.2], E6-5 +83.7 [72.8, 92.4]). On units
+selected by one judge alone, the other vendor's auditors still show the convention advantage (selected by GPT,
+Claude auditors: +13.0 [5.4, 21.7]; selected by Claude, GPT auditors: +11.2 [5.3, 17.8]); on GPT-selected units
+GPT's own auditors give +4.3 [0.0, 9.8]. These judges are models of the same vendors, and the subset analyses are
+conditional, not independent replications; E9 does not replace human validation.
+
 \subsection{Inputs, interface and red team}
 
 The registered input set of a unit is the hidden suite, the proposer's class and non-class inputs, 16--24 probes
@@ -174,6 +197,10 @@ E1 H6 & \textsc{determined} minus \textsc{open}, verified diagnosis & +6.0 [$-$2
 \midrule
 E8-1 & discovery on open units, lower bound $>50$ & 97.6 [93.8, 100] & supported \\
 E8-2 & selectivity, open minus controls (two-sided) & +16.8 [10.5, 23.2] & $>0$; vs 20 unresolved \\
+\midrule
+E9-1 & outside judges accept both rules, open units; lower bound and worst case $>50$ & 84.1 [77.4, 90.3] & supported \\
+E9-2 & rule A excluded, controls minus open units; $>30$ & +87.3 [81.5, 92.5] & supported \\
+E9-2b & other rule excluded, resolved minus open items (paired); $>30$ & +55.0 [47.5, 62.5] & supported \\
 \bottomrule
 \end{tabular}
 \end{table}
