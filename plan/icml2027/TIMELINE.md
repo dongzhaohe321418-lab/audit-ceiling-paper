@@ -49,5 +49,5 @@ Source: icml.cc/Conferences/2027/CallForPapers, AuthorInstructions, UseOfGenerat
 Done on 2026-11-14: switched to icml2027.sty/.bst (identical to 2026 apart from the year); replaced "Use of AI
 models" with an AI Disclosure Statement under the 2027 policy; regenerated the four appendix figures with embedded
 TrueType instead of Type-3 fonts (same records, same content). Both builds compile; main text ends on page 8;
-anonymous build has no identifying strings. Contribution type to choose at submission: Datasets, Evaluations and
+anonymous build has no identifying strings. Body text now uses the template's Type-1 Times (Nimbus) via T1 fontenc under XeTeX; figure text is embedded TrueType (no Type 3). Contribution type to choose at submission: Datasets, Evaluations and
 Benchmarks (or General ML).
