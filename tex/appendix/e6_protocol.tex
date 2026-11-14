@@ -114,6 +114,19 @@ and the value the auditor says the call should return equals the oracle's; every
 a model. Sensitivity analyses replace the domain predicate by the reference's own domain
 and credit witnesses outside the class.
 
+\paragraph{Exception contracts (exploratory, found after the held-out analysis).} The frozen scorer treats a
+witness on which the contract's oracle raises as outside the domain. Two held-out units have a rule A that requires
+an exception (MBPP 93: \texttt{ValueError} for zero to the power zero; MBPP 623: the same for a zero element with
+exponent zero), so under contract A their diagnosis is zero by construction, while contract B, the reference's
+behaviour, cannot be affected. The registered results are unchanged; a separate script
+(\texttt{e6\_exception\_sensitivity.py}) recomputes them. Excluding the two units gives 39 units, resolved
+diagnosis 93.3\% [84.6, 99.7] and E6-5 +78.8 [69.9, 86.5]. Crediting a flagging reading under contract A when one of
+its in-class witness calls makes the A oracle raise and the auditor's stated expectation names an exception (all 24 flagging readings
+with witnesses on these programs qualify) gives resolved diagnosis 93.6\% [86.0, 99.7] and E6-5 +79.3 [70.7, 86.6], the largest effect
+the asymmetry can have. E6-2 (+11.6) and the flag preference (+23.8) are unchanged, since no auditor flagged the
+contract-B program of these units in the unrevealed arm, and every registered verdict is the same under all three analyses.
+The frozen estimates therefore slightly understate verified diagnosis once the contract is stated.
+
 \subsection{Statistics}
 
 Unit values average over configurations; intervals are problem-level percentile bootstraps (10{,}000 draws). The

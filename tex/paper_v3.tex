@@ -86,25 +86,36 @@ for that reason. All data are public benchmarks and datasets under permissive li
 involved.
 
 \section*{AI Disclosure Statement}
-\emph{As methodology.} Language models are the subjects of these experiments and also components of the
-construction pipeline (proposing rules, implementing them, writing probes and red-team inputs, judging
-admissibility, classifying natural failures); Sections~\ref{sec:e6} and~\ref{sec:natural} and
-Appendix~\ref{app:e6} describe each role, and the released records contain every prompt and reply.
 
-\emph{In conducting and writing the research.} Generative AI was used substantively throughout. An AI coding
-agent (Claude, Anthropic) helped develop the research questions and hypotheses, designed the experiments and
-drafted the preregistrations, wrote nearly all of the experiment and analysis code, ran the experiments, analysed
-the results, produced the figures and tables, searched the literature, and drafted most of the manuscript,
-including the proof of Lemma~\ref{lem:symmetric}. A model from a second vendor (GPT, OpenAI, via the Codex
-command-line tool) reviewed the code, the preregistrations and successive drafts adversarially, checked the
-reported numbers against the records, and edited the prose for readability.
+\emph{As methodology.} Language models were both the subjects of the
+experiments and components of the construction pipeline. Their roles
+included proposing and implementing rules, writing probes and red-team
+inputs, assessing admissibility, and classifying natural failures.
+Sections~\ref{sec:e6} and~\ref{sec:natural} and Appendix~\ref{app:e6}
+describe these roles; the released records contain every prompt and reply.
 
-\emph{Verification.} Each preregistration and its analysis code were frozen with content hashes before the
-held-out calls they govern, and deviations are disclosed as amendments. Every number in the paper is regenerated
-from the stored records by released scripts, and the two models audited each other's code and text; the
-resulting corrections were made before submission. Every reference was checked against its source by
-bibliographic lookup. The author set the research goal and takes full responsibility for all content, including
-claims, results, code and references.
+\emph{In conducting and writing the research.} Generative AI was used
+substantively throughout the research and preparation of the manuscript.
+An AI coding agent, Claude (Anthropic), helped develop the research
+questions and hypotheses, designed the experiments, drafted the
+preregistrations, and wrote nearly all the experimental and analysis
+code. It also ran the experiments, analysed the results, produced the
+figures and tables, searched the literature, and drafted most of the
+manuscript, including the proof of Lemma~\ref{lem:symmetric}. A model
+from a second vendor, GPT (OpenAI), accessed through the Codex
+command-line tool, provided adversarial reviews of the code,
+preregistrations and successive manuscript drafts, checked the reported
+numbers against the records, and edited the prose for readability.
+
+\emph{Verification.} Each preregistration and its associated analysis
+code were frozen with content hashes before the held-out calls they
+governed. Deviations are disclosed as amendments. Released scripts
+regenerate every number in the paper from the stored records. The two
+models audited each other's code and text, and the resulting corrections
+were made before submission. Every reference was checked against its
+source through bibliographic lookup. The author set the research goal
+and takes full responsibility for all content, including the claims,
+results, code and references.
 
 \bibliography{paper}
 \bibliographystyle{icml2027}

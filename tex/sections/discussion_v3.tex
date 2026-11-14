@@ -33,7 +33,9 @@ Other auditors, agent scaffolds or execution-based test generation may sit close
 reveal, although Lemma~\ref{lem:symmetric} bounds what any of them can do on the unrevealed arms.
 \emph{Verification.} A verified diagnosis requires a witness whose disagreement with the contract's oracle the
 benchmark's own comparator confirms by execution, with the auditor's stated expected value correct. We do not credit diagnoses stated only in prose. This can understate the performance of auditors whose
-findings are correct but unexecutable. \emph{Natural failures.} Models classify the natural failures
+findings are correct but unexecutable. Nor does the frozen scorer credit a witness on which the oracle raises, so on
+the two held-out units whose rule A requires an exception, diagnosis under contract A is zero by construction;
+crediting them raises E6-5 from 76.8 to 79.3 points and leaves every verdict unchanged (Appendix~\ref{app:e6}). \emph{Natural failures.} Models classify the natural failures
 (Cohen's $\kappa$ 0.71 on held-out items), and the behavioural check reuses the generators' own solutions.
 \emph{Data.} The data study injects one fault per item into twelve public tables; its conclusion is specific to
 faults that a clean reference sample reveals. \emph{Discovering requirements.} Our registered arms state the requirement or list both candidates. In a
