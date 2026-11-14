@@ -17,8 +17,12 @@ from pathlib import Path
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-sys.path.insert(0, str(Path.home() / ".claude/skills/nature-figure/scripts"))
-from audit_panel_alignment import require_matplotlib_panel_alignment  # noqa: E402
+try:            # optional layout QA from the author's figure toolkit; the figure itself does not depend on it
+    sys.path.insert(0, str(Path.home() / ".claude/skills/nature-figure/scripts"))
+    from audit_panel_alignment import require_matplotlib_panel_alignment  # noqa: E402
+except ImportError:
+    def require_matplotlib_panel_alignment(*args, **kwargs):
+        return None
 
 mpl.rcParams.update({
     "font.family": "sans-serif", "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],

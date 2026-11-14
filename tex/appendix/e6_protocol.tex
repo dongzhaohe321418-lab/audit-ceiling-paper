@@ -89,11 +89,10 @@ the task leaves open is left largely to the task's author. E8 was registered aft
 against 88.3\%), uses one vendor for both roles and relies on a model judge; all 238 held-out readings completed.
 
 \paragraph{Do judges outside the construction accept both rules? (E9.)} Registered after the E6 results were known and
-before any E9 call, in response to a review that named admissibility the central validity question. Two judges that
+before any held-out E9 call (after development pilots), in response to a review that named admissibility the central validity question. Two judges that
 took no part in the construction, Claude Sonnet 5.5 and GPT-5.6-terra (high budget; both also E6 auditors), read each
 held-out unit in both rule orders, not told which rule is the benchmark's nor what kind of item they read, and judged
-whether the inputs are valid and each rule compatible with the task; an exclusion had to quote the words that rule
-the rule out. Besides the 41 open units and 78 positive controls, 41 \emph{resolved} items appended one rule to the
+whether the inputs are valid and each rule compatible with the task; an exclusion had to quote the words that rule the rule out or appeal to ordinary meaning. Besides the 41 open units and 78 positive controls, 41 \emph{resolved} items appended one rule to the
 task as an ordinary requirement, so that the other rule should be excluded, an anchor that does not depend on E6's
 judges. Of 640 readings, one (a resolved item) failed. Both rules were accepted on 84.1\% [77.4, 90.3] of readings of
 open units (E9-1, lower bound $>50$: supported), and rule A was excluded on 9.1\% of them against 96.5\% of
@@ -101,9 +100,8 @@ readings of controls: a difference of 87.3 points [81.5, 92.5] (E9-2, $>30$: sup
 non-appended rule was excluded 55.0 points [47.5, 62.5] more often than on the same units without the requirement
 (E9-2b: supported). The judges differ: Claude accepted both rules on 96.3\% of open readings and GPT on 72.0\%, and
 on resolved items Claude excluded the non-appended rule in only 25.9\% of readings against GPT's 98.8\%, so Claude
-is the more permissive judge. The two rule orders gave the same judgement on 80.5\% of open readings; every one of the
-425 exclusions came with a quote found verbatim in the task (262) or an appeal to ordinary meaning (163). Rerun by
-the frozen E6 code on the 35 units that at least three of four readings accept, every registered E6 criterion holds:
+is the more permissive judge. The two rule orders gave the same judgement for 66 of 82 judge--unit pairs on open units (80.5\%); each of the 425 exclusions came with a quotation matching the task after normalisation (262; matching does not show that the words entail the exclusion) or an appeal to ordinary meaning (163). Rerun by
+the frozen E6 code on the 35 units that at least three of four readings accept, the registered criteria of E6-1, E6-2 and E6-5 hold and the flag preference stays positive:
 resolved diagnosis 91.1\% [81.4, 98.2], E6-2 +11.1 [5.0, 17.5], E6-5 +79.3 [70.0, 87.9], flag preference +22.9 [10.0,
 36.4]; so it does on the 23 units all four readings accept (E6-2 +8.7 [3.3, 15.2], E6-5 +83.7 [72.8, 92.4]). On units
 selected by one judge alone, the other vendor's auditors still show the convention advantage (selected by GPT,
@@ -112,7 +110,7 @@ GPT's own auditors give +4.3 [0.0, 9.8]. These judges are models of the same ven
 conditional, not independent replications; E9 does not replace human validation.
 
 \paragraph{Does the sentence add more than pointing at the behaviour? (E10.)} Registered after the E6, E8 and E9
-results were known and before any E10 call. On the 41 held-out open units, E6's two low-budget configurations read
+results were known and before any held-out E10 call (after a development pilot). On the 41 held-out open units, E6's two low-budget configurations read
 four arms afresh, interleaved within each construction attempt: the task alone; a \emph{pointer}, ``Additional note:
 pay particular attention to how the function handles the following kind of input: \dots'', naming the unit's input
 class in the constructor's words with any clause that says what is unspecified or names the alternatives removed by a
@@ -122,11 +120,9 @@ is scored under both. All 1{,}312 readings are valid. Verified diagnosis is 12.2
 60.4 points [51.8, 68.9] (E10-1, lower bound $>0$: supported), and does so for each vendor (GPT +59.8, Claude +61.0)
 and without the two exception-contract units (+62.2). The pointer adds 18.9 points [12.2, 26.2] over the task alone;
 since the upper limit exceeds the registered 20-point margin, we do not claim that attention adds little. Pointing
-without a rule raises flags on both programs alike (from 14.0\% to 37.8\%; correct programs are flagged as often as
-defective ones, by construction), widens the flag preference for the program that departs from the benchmark (+18.3
+without a rule raises pooled recall and false-flag rate equally (from 14.0\% to 37.8\%, equal by construction), more on program A (23.2\% to 53.7\%) than on program B (4.9\% to 22.0\%), widens the flag preference for the program that departs from the benchmark (+18.3
 [6.1, 31.7] to +31.7 [12.2, 51.2]) and the convention advantage (+9.8 to +15.2): directed to the behaviour but not
-told the rule, auditors apply the benchmark's convention more often. Over 90\% of flagging readings name an in-class
-witness in every arm, so the arms differ in knowing the answer, not in finding the input. The fresh sentence-minus-task
+told the rule, auditors apply the benchmark's convention more often. Among flagging readings, over 90\% name an in-class witness in every arm; since this is conditional on flagging, it does not show how often each arm finds the input. The fresh sentence-minus-task
 contrast, +79.3 [69.5, 87.2], replicates E6-5 (+76.8). The pointer is one attention control, phrased as a note rather
 than a requirement, and the auditors are two of E6's configurations at the low budget.
 
@@ -165,7 +161,7 @@ behaviour, cannot be affected. The registered results are unchanged; a separate 
 diagnosis 93.3\% [84.6, 99.7] and E6-5 +78.8 [69.9, 86.5]. Crediting a flagging reading under contract A when one of
 its in-class witness calls makes the A oracle raise and the auditor's stated expectation names an exception (all 24 flagging readings
 with witnesses on these programs qualify) gives resolved diagnosis 93.6\% [86.0, 99.7] and E6-5 +79.3 [70.7, 86.6], the largest effect
-the asymmetry can have. E6-2 (+11.6) and the flag preference (+23.8) are unchanged, since no auditor flagged the
+the asymmetry can have. Under recrediting, E6-2 (+11.6) and the flag preference (+23.8) are unchanged (11.5 and 23.7 without the two units), since no auditor flagged the
 contract-B program of these units in the unrevealed arm, and every registered verdict is the same under all three analyses.
 The frozen estimates therefore slightly understate verified diagnosis once the contract is stated.
 
