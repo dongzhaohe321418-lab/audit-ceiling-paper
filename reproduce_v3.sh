@@ -5,7 +5,7 @@
 #     ./reproduce_v3.sh [path to crossaudit-harness checkout]      (default: ../crossaudit-harness)
 #
 # 1. With REANALYSE=1 and the harness's Python environment (ANALYSIS_PYTHON=...), first reruns the registered analyses
-#    (E6 open units, E6 positive controls, E1, E8, E9) and the exploratory exception-scoring sensitivity from the raw
+#    (E6 open units, E6 positive controls, E1, E8, E9, E10) and the exploratory exception-scoring sensitivity from the raw
 #    audit and witness records, overwriting the results files under benchmarks/code/records/icml/.
 # 2. Regenerates tex/numbers.tex (every E6/E1 number the main text quotes) and checks it is identical to the copy the
 #    paper compiles.
@@ -27,7 +27,8 @@ if [ "${REANALYSE:-0}" = 1 ]; then
     "$APY" analyse_e1.py --split test --taxonomy
     "$APY" e6_exception_sensitivity.py
     cd ../../e8 && "$APY" e8.py analyse test
-    cd ../e9 && "$APY" e9.py analyse test ) > /dev/null
+    cd ../e9 && "$APY" e9.py analyse test
+    cd ../e10 && "$APY" e10.py analyse test ) > /dev/null
   echo "registered analyses rerun"
 fi
 

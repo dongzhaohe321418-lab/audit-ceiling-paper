@@ -111,6 +111,25 @@ Claude auditors: +13.0 [5.4, 21.7]; selected by Claude, GPT auditors: +11.2 [5.3
 GPT's own auditors give +4.3 [0.0, 9.8]. These judges are models of the same vendors, and the subset analyses are
 conditional, not independent replications; E9 does not replace human validation.
 
+\paragraph{Does the sentence add more than pointing at the behaviour? (E10.)} Registered after the E6, E8 and E9
+results were known and before any E10 call. On the 41 held-out open units, E6's two low-budget configurations read
+four arms afresh, interleaved within each construction attempt: the task alone; a \emph{pointer}, ``Additional note:
+pay particular attention to how the function handles the following kind of input: \dots'', naming the unit's input
+class in the constructor's words with any clause that says what is unspecified or names the alternatives removed by a
+fixed rule; and the two sentence arms. Scoring and analysis are E6's frozen code; the pointer, revealing no contract,
+is scored under both. All 1{,}312 readings are valid. Verified diagnosis is 12.2\% [7.3, 17.7] with the task alone,
+31.1\% [23.8, 38.4] with the pointer and 91.5\% [82.9, 97.6] with the sentence. The sentence exceeds the pointer by
+60.4 points [51.8, 68.9] (E10-1, lower bound $>0$: supported), and does so for each vendor (GPT +59.8, Claude +61.0)
+and without the two exception-contract units (+62.2). The pointer adds 18.9 points [12.2, 26.2] over the task alone;
+since the upper limit exceeds the registered 20-point margin, we do not claim that attention adds little. Pointing
+without a rule raises flags on both programs alike (from 14.0\% to 37.8\%; correct programs are flagged as often as
+defective ones, by construction), widens the flag preference for the program that departs from the benchmark (+18.3
+[6.1, 31.7] to +31.7 [12.2, 51.2]) and the convention advantage (+9.8 to +15.2): directed to the behaviour but not
+told the rule, auditors apply the benchmark's convention more often. Over 90\% of flagging readings name an in-class
+witness in every arm, so the arms differ in knowing the answer, not in finding the input. The fresh sentence-minus-task
+contrast, +79.3 [69.5, 87.2], replicates E6-5 (+76.8). The pointer is one attention control, phrased as a note rather
+than a requirement, and the auditors are two of E6's configurations at the low budget.
+
 \subsection{Inputs, interface and red team}
 
 The registered input set of a unit is the hidden suite, the proposer's class and non-class inputs, 16--24 probes
@@ -201,6 +220,9 @@ E8-2 & selectivity, open minus controls (two-sided) & +16.8 [10.5, 23.2] & $>0$;
 E9-1 & outside judges accept both rules, open units; lower bound and worst case $>50$ & 84.1 [77.4, 90.3] & supported \\
 E9-2 & rule A excluded, controls minus open units; $>30$ & +87.3 [81.5, 92.5] & supported \\
 E9-2b & other rule excluded, resolved minus open items (paired); $>30$ & +55.0 [47.5, 62.5] & supported \\
+\midrule
+E10-1 & sentence minus pointer, verified diagnosis & +60.4 [51.8, 68.9] & supported \\
+(E10) & pointer minus task alone (reported; margin 20) & +18.9 [12.2, 26.2] & reported \\
 \bottomrule
 \end{tabular}
 \end{table}
