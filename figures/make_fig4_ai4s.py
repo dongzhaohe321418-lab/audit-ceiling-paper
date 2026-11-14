@@ -22,6 +22,9 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import scienceplots  # noqa: F401  — registers the styles
+
+# Embed TrueType rather than Type 3 fonts (venue font requirements).
+plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42})
 from scipy.stats import beta
 
 ROOT = Path(__file__).resolve().parents[1]

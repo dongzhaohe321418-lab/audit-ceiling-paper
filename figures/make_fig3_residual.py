@@ -22,6 +22,9 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import scienceplots  # noqa: F401
 
+# Embed TrueType rather than Type 3 fonts (venue font requirements).
+plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42})
+
 REC = Path(__file__).resolve().parents[1] / "records/code/rate3/analysis.json"
 OUT = Path(__file__).resolve().parent / "fig3_residual.pdf"
 

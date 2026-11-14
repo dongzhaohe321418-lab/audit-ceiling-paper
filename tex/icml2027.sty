@@ -1,4 +1,4 @@
-% File: icml2026.sty (LaTeX style file for ICML-2026, version of 2025-10-29)
+% File: icml2027.sty (LaTeX style file for ICML-2027, version of 2027-10-30)
 
 % This file contains the LaTeX formatting parameters for a two-column
 % conference proceedings that is 8.5 inches wide by 11 inches high.
@@ -18,7 +18,7 @@
 % - Use newtx instead of times, aligning serif, sans-serif, typerwriter,
 %   and math fonts.
 % - Use caption package to setup captions instead of manually defining themanually defining them.
-% - Formatted icml2026.sty and example_paper.tex
+% - Formatted icml2027.sty and example_paper.tex
 % - Use title case for section title to 2.9
 % - Replace subfigure package with subcaption in example, since it is
 %   designed to work together with the caption package (which is now required).
@@ -107,7 +107,7 @@
 %%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{icml2026}[2025/10/29 v2.0 ICML Conference Style File]
+\ProvidesPackage{icml2027}[2025/10/29 v2.0 ICML Conference Style File]
 
 % Before 2018, \usepackage{times} was in the example TeX, but inevitably
 % not everybody did it.
@@ -158,8 +158,8 @@
 %%%%%%%%%%%%%%%%%%%%
 \newcommand{\ICML@appearing}{\textit{Proceedings of the
 $\mathit{43}^{rd}$ International Conference on Machine Learning},
-Seoul, South Korea. PMLR 306, 2026.
-Copyright 2026 by the author(s).}
+Seoul, South Korea. PMLR 306, 2027.
+Copyright 2027 by the author(s).}
 
 %%%%%%%%%%%%%%%%%%%%
 % This string is printed at the bottom of the page for the draft/under
@@ -184,7 +184,7 @@ International Conference on Machine Learning (ICML)\@.  Do not distribute.}
   \definecolor{mydarkblue}{rgb}{0,0.08,0.45}
   \hypersetup{ %
     pdftitle={},
-    pdfsubject={Proceedings of the International Conference on Machine Learning 2026},
+    pdfsubject={Proceedings of the International Conference on Machine Learning 2027},
     pdfkeywords={},
     pdfborder=0 0 0,
     pdfpagemode=UseNone,
@@ -502,12 +502,12 @@ the offending package(s), or layout-changing commands and try again.
 \newcommand{\icmlEqualContribution}{\textsuperscript{*}Equal contribution }
 
 
-% --- ICML 2026: ensure authors do not omit the affiliations/notice footnote ---
+% --- ICML 2027: ensure authors do not omit the affiliations/notice footnote ---
 \newif\ificml@noticeprinted
 \icml@noticeprintedfalse
 \AtEndDocument{%
   \ificml@noticeprinted\relax\else
-    \PackageWarningNoLine{icml2026}{%
+    \PackageWarningNoLine{icml2027}{%
       You did not call \string\printAffiliationsAndNotice{}. If you have no notice,%
       call \string\printAffiliationsAndNotice\string{} (empty braces).%
     }%

@@ -7,11 +7,11 @@
 \usepackage{hyperref}
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
-% ICML 2027 version. The anonymous submission build defines \ANON before loading this file.
+% ICML 2027 version (official 2027 style files). The anonymous submission build defines \ANON before loading this file.
 \ifdefined\ANON
-\usepackage{icml2026}
+\usepackage{icml2027}
 \else
-\usepackage[preprint]{icml2026}
+\usepackage[preprint]{icml2027}
 \fi
 
 \usepackage{amsmath}
@@ -85,16 +85,29 @@ constructed units are used to tune auditors toward a benchmark's conventions; we
 for that reason. All data are public benchmarks and datasets under permissive licences; no human subjects were
 involved.
 
-\section*{Use of AI models}
-Language models are the subjects of these experiments and, as described in Sections~\ref{sec:e6} and~\ref{sec:natural}
-and Appendix~\ref{app:e6}, also tools of the construction (proposing rules, implementing them, writing probes and
-red-team inputs, judging admissibility, classifying failures). They were also used to write and review the
-experiment code, to review the registrations and the manuscript adversarially, and to edit its prose. Every number in
-the paper is generated from the stored records by released scripts, and every reference was checked against its
-source; the author is responsible for all content.
+\section*{AI Disclosure Statement}
+\emph{As methodology.} Language models are the subjects of these experiments and also components of the
+construction pipeline (proposing rules, implementing them, writing probes and red-team inputs, judging
+admissibility, classifying natural failures); Sections~\ref{sec:e6} and~\ref{sec:natural} and
+Appendix~\ref{app:e6} describe each role, and the released records contain every prompt and reply.
+
+\emph{In conducting and writing the research.} Generative AI was used substantively throughout. An AI coding
+agent (Claude, Anthropic) helped develop the research questions and hypotheses, designed the experiments and
+drafted the preregistrations, wrote nearly all of the experiment and analysis code, ran the experiments, analysed
+the results, produced the figures and tables, searched the literature, and drafted most of the manuscript,
+including the proof of Lemma~\ref{lem:symmetric}. A model from a second vendor (GPT, OpenAI, via the Codex
+command-line tool) reviewed the code, the preregistrations and successive drafts adversarially, checked the
+reported numbers against the records, and edited the prose for readability.
+
+\emph{Verification.} Each preregistration and its analysis code were frozen with content hashes before the
+held-out calls they govern, and deviations are disclosed as amendments. Every number in the paper is regenerated
+from the stored records by released scripts, and the two models audited each other's code and text; the
+resulting corrections were made before submission. Every reference was checked against its source by
+bibliographic lookup. The author set the research goal and takes full responsibility for all content, including
+claims, results, code and references.
 
 \bibliography{paper}
-\bibliographystyle{icml2026}
+\bibliographystyle{icml2027}
 
 \newpage
 \appendix

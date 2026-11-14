@@ -27,3 +27,27 @@ declined by the user and is reported as a limitation). Fallback: a workshop or T
 call changes the requirements. Ready: paper (tex/paper_v3.pdf, anonymous build tex/paper_v3_submission.tex),
 supplementary (audit/supplementary/supplementary_anon.zip), citation audit. Remaining, user only: re-check the official
 call on icml.cc when posted, and submit through the user's OpenReview account (Claude never logs in).
+
+## Official call (posted 2026-11-14; supersedes the estimates above)
+Source: icml.cc/Conferences/2027/CallForPapers, AuthorInstructions, UseOfGenerativeAIByAuthors.
+- Submission site opens 2027-01-08; OpenReview account suggested by 2027-01-08 (institutional email activates at
+  once, other emails can take up to two weeks).
+- Abstract deadline 2027-01-14 23:59 AoE; full paper 2027-01-22 23:59 AoE; supplementary material has no separate
+  deadline (same as the paper).
+- Two-stage review: first-stage rejections notified by 2027-02-23; final decisions 2027-05-03. Conference: Rio de
+  Janeiro, 31 July to 6 August 2027.
+- Format: 8 pages of main text; references, impact statement and appendices unlimited, one PDF (at most 50 MB);
+  official 2027 style files; Type-1 fonts requested. ICML will announce submission-process changes (not format
+  changes) by late November 2026: re-check then.
+- Required unnumbered sections: Impact Statement (before references) and AI Disclosure Statement (before or after
+  references; not counted in pages; must describe substantive AI use and how outputs were verified).
+- Quotas: each submission designates one author as reciprocal reviewer; an author may appear on at most one
+  submission in which no author is an eligible reciprocal reviewer (so a sole-author paper is allowed once).
+- Preprints are allowed; the submission must not cite the non-anonymous version, and code links must be anonymous
+  (upload the zip as supplementary material instead).
+
+Done on 2026-11-14: switched to icml2027.sty/.bst (identical to 2026 apart from the year); replaced "Use of AI
+models" with an AI Disclosure Statement under the 2027 policy; regenerated the four appendix figures with embedded
+TrueType instead of Type-3 fonts (same records, same content). Both builds compile; main text ends on page 8;
+anonymous build has no identifying strings. Contribution type to choose at submission: Datasets, Evaluations and
+Benchmarks (or General ML).

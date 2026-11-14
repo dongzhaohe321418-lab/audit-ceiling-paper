@@ -16,6 +16,9 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import scienceplots  # noqa: F401  registers the styles
 
+# Embed TrueType rather than Type 3 fonts (venue font requirements).
+plt.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42})
+
 # Inputs are read from this repository's own mirror of the records (records/code/, provenance
 # in records/PROVENANCE.md), so the figure regenerates from a clean checkout (R3-M3). It read a
 # harness review worktree under ~/Documents until 2026-09-23.
