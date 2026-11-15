@@ -51,3 +51,13 @@ models" with an AI Disclosure Statement under the 2027 policy; regenerated the f
 TrueType instead of Type-3 fonts (same records, same content). Both builds compile; main text ends on page 8;
 anonymous build has no identifying strings. Body text now uses the template's Type-1 Times (Nimbus) via T1 fontenc under XeTeX; figure text is embedded TrueType (no Type 3). Contribution type to choose at submission: Datasets, Evaluations and
 Benchmarks (or General ML).
+
+## Check 2026-11-15 (CFP page re-read; process announcement still pending "by late November")
+- Contribution type must be selected at submission: recommended **Datasets, Evaluations and Benchmarks** (the paper is
+  about what audit benchmarks measure; the randomised-contract units are an evaluation instrument); alternative:
+  General. The author decides in OpenReview.
+- Two-stage reviewing: an AC (confirmed by an SAC) can reject at stage 1 by 2027-02-23 with a short justification, so
+  the abstract, introduction and Figure 1 must make the contribution and its scope plain on first reading.
+- AI Disclosure Statement required (present). Reciprocal reviewer: the sole author must be an eligible reciprocal
+  reviewer, or this is the author's one allowed submission without one.
+- Re-check the CFP/author instructions after 2026-11-25 for the announced process changes.
