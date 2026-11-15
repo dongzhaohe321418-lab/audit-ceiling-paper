@@ -236,15 +236,15 @@ from a plain reading of the task.
 
 \paragraph{Matched pairs with symmetric bodies (E15).} Registered after E14 and reviewed before the held-out run
 (\texttt{benchmarks/e15/}). E15 repeats E14 with one more constraint: with every expression replaced by a
-placeholder, the two branch bodies have identical syntax trees (statements, nesting, operators and names match), and
+placeholder, the two branch bodies have identical syntax trees (non-expression syntax matches; operators and names inside masked expressions may differ), and
 their token counts differ by at most a factor of 1.5 or four tokens. A first version of this check, which compared
 statement kinds only, was replaced after review. Thirty-six of the 41 held-out units passed, and the other five had no
 valid pair after three attempts. Body token counts were equal in 29 of the 36 pairs, and M$_A$'s body was longer in
 six. All 1{,}152 readings were valid. M$_A$ was flagged more often than M$_B$: complete cases +34.0 [18.8, 48.6],
 $n=36$. With the five missing units at the worst value the estimate is +17.7 [$-$1.2, 36.0], $n=41$, so the registered
-verdict is negative (E15-1: not supported). In the same readings A was flagged 25.7 [11.8, 38.2] points more often
-than B. The preference is +47.2 [30.6, 65.3] on the 18 analysed units whose A has more conditionals and +20.8
-[$-$1.4, 43.1] on the 18 others; the development pilot's equal strata did not replicate. Read with E14, the
+verdict is negative (E15-1: not supported). In the same readings A was flagged 25.7 [11.8, 39.6] points more often
+than B. The preference is +47.2 [30.6, 65.3] on 18 of the 20 units whose A has more conditionals and +20.8 [$-$1.4, 43.1] on 18 of the other 21. Pilot stratum
+estimates were +41.7 and +36.1; equality was not established in the pilot. Read with E14, the
 preference persists among the units where a symmetric pair could be built, but E15 does not establish it for all
 registered units, and it does not test independence from how each rule is computed.
 
@@ -253,7 +253,7 @@ registered units, and it does not test independence from how each rule is comput
 \includegraphics[width=\textwidth]{fig_controls.pdf}
 \caption{Held-out estimates across the randomised-contract studies (points; 95\% problem-level bootstrap intervals).
 (a) Flag rate of the program that departs from the benchmark's behaviour minus that of the program that follows it,
-with the task alone. E6 is shown alongside fresh interleaved readings from E13 and E14. B has a behaviour-preserving
+with the task alone. E6 is shown alongside fresh interleaved readings from E13, E14 and E15. B has a behaviour-preserving
 branch (E13), or both programs share all code outside one branch body (E14), and their branch bodies also match in
 form (E15); open markers: missing units at the worst value, the statistic the verdicts use. (b) Verified diagnosis: the sentence against the task alone and against the
 pointer (E6, E10), and on the edited BigCodeBench units (E11).}

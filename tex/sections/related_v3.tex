@@ -5,8 +5,8 @@
 but also hallucinate some \citep{mcaleese2024critics}. Aggregating review passes raises review F1 on real pull
 requests \citep{zeng2025swrbench}, and coverage under repeated sampling grows roughly log-linearly in the number
 of samples \citep{brown2024monkeys}. Self-correction without external feedback does not reliably help
-\citep{huang2024selfcorrect}, and critique benchmarks score critics against reference answers
-\citep{lin2024criticbench, zhang2026ccrab}. These studies vary the auditor while holding the evidence fixed. We hold the auditor fixed
+\citep{huang2024selfcorrect}, and critique benchmarks score critics against reference answers \citep{lin2024criticbench} or test review-guided revisions
+against tests derived from human review comments \citep{zhang2026ccrab}. These studies vary the auditor while holding the evidence fixed. We hold the auditor fixed
 and vary the evidence; on the cases we construct, changing the evidence moves performance far more than anything we
 varied about the auditor.
 
@@ -16,8 +16,7 @@ the ambiguity \citep{richter2026collapse, yang2026orchid}, and generated tests e
 program does rather than what was intended \citep{konstantinou2024oracles}. Label errors in test sets bound and
 reorder what benchmarks can measure \citep{northcutt2021labelerrors, gema2025mmlu}, which motivates relabelled
 ``platinum'' benchmarks \citep{vendrow2025platinum}; SWE-bench Verified removed, by human annotation, issues whose
-descriptions were underspecified or whose tests were too specific \citep{openai2024swebenchverified}; and ambiguous
-questions in open-domain QA admit several correct answers \citep{min2020ambigqa}. In our setting, the reference
+descriptions were underspecified or whose tests were too specific \citep{openai2024swebenchverified}. In our setting, the reference
 is not wrong: it is one of several behaviours the task admits. The appropriate correction is to state the
 contract, rather than relabel or discard the case as those efforts do. We measure the effect of stating it.
 

@@ -57,11 +57,12 @@ Audit benchmarks grade automated code auditors against a hidden reference. When 
 the evidence an auditor sees can fit the program and the reference equally well. Recall minus false-flag rate
 is then bounded by how well that evidence separates them. A benchmark with one fixed contract cannot show how
 much of its score this explains. We introduce a randomised-contract evaluation using execution-checked program
-pairs built from HumanEval+ and MBPP+ tasks. The programs differ only on a behaviour the task leaves open and are graded
+pairs built from HumanEval+ and MBPP+ tasks. The programs differ only on a behaviour that two model judges deem the task leaves open, and are graded
 against a randomly drawn contract revealed in different ways. With the contract withheld on 41 held-out units,
 auditors from two vendors flag the program that departs from the benchmark's behaviour \NSixFlagPref{} points
 more often than the one that follows it (exploratory; registered convention advantage \NSixTwo).
-The difference is 28.9 points among 38 of 41 units in a preregistered control with all code shared outside one branch body.
+The difference is 28.9 points among 38 of 41 units in a preregistered control with all code shared outside one branch body;
+a stricter symmetric-body control was inconclusive under its registered missing-unit test.
 Two generator models' task-only solutions follow the benchmark's behaviour 89\% of the time; on these units, the benchmark
 therefore rewards agreement with a convention the models share. One sentence stating the missing requirement
 adds \NSixFive{} points to verified diagnosis, 60.4 more than a pointer to the inputs concerned, and 58.3 on 18
