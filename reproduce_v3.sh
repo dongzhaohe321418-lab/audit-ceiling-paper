@@ -52,4 +52,6 @@ rm -f "$T"
 "$PY" figures/make_fig_natural.py figures/data/natural_v4.json figures/fig_natural
 cp figures/fig_e6_test.pdf tex/fig_e6.pdf
 cp figures/fig_natural.pdf tex/fig_natural.pdf
-echo "figures: fig_e6.pdf and fig_natural.pdf regenerated into tex/"
+"$PY" figures/make_fig_controls.py "$H" figures/fig_controls
+cp figures/fig_controls.pdf tex/fig_controls.pdf
+echo "figures: fig_e6.pdf, fig_natural.pdf and fig_controls.pdf regenerated into tex/"
