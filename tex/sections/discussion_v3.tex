@@ -22,10 +22,10 @@ Discovering requirements that nobody wrote down, which we did not measure, is th
 
 \paragraph{Limitations.}\label{sec:limits} \emph{Constructed units.} The randomised-contract units are execution-validated;
 two models, rather than people, judge them admissible. Both models also implement the rules, so construction and
-judging are not independent. Model judges outside construction agree (E9) but share the same vendors.
+judging are not independent. The judges outside construction (E9) are the auditor models.
 We make no claim about the frequency of such ambiguity. The 41 held-out units, selected from 406 problems,
-are concentrated in MBPP+ (37). The models' task-only solutions follow both rules on only two units.
-\emph{Benchmarks.} HumanEval+ and MBPP+ supply the natural failures and 41 of the 59 randomised-contract units;
+are concentrated in MBPP+ (37). Task-only solutions include followers of both rules on only two units.
+\emph{Benchmarks.} HumanEval+ and MBPP+ supply the natural failures and 41 of the 59 held-out randomised-contract units;
 the 18 BigCodeBench units are reference edits (Section~\ref{sec:transfer}). The convention advantage remains
 untested on unedited library code, where more behaviour is unstated. \emph{Auditors.} We tested two vendors' models at two reasoning budgets with one rulebook.
 Other auditors, agent scaffolds or execution-based test generation may sit closer to the ceiling before the

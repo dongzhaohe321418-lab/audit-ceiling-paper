@@ -22,7 +22,7 @@ inputs). Two vendors then implement each rule from the task and the rule alone,
 using the same prompt; neither vendor sees the reference when implementing the rules. Auditors read one vendor's
 A and B implementations, which therefore share provenance and style. The vendor alternates across units.
 
-\paragraph{Admission by execution.} An independent model writes a domain predicate \texttt{valid} and 16--24 probe
+\paragraph{Admission by execution.} Claude Opus writes a domain predicate \texttt{valid} and 16--24 probe
 inputs; the proposer writes a class predicate \texttt{in\_class}. The checks cover the hidden suite, the proposer's
 inputs, the probes, up to 300 seeded stress mutations (unusual whitespace, combining marks and other Unicode,
 complex values equal to integers, negative indices, extreme and cancelling floating-point values, empty and
@@ -34,7 +34,7 @@ inside it the two A implementations must agree with each other. A and B must dif
 inputs, and every implementation must pass the visible tests. Each construction stage is attempted once per problem
 (the red team may make a second call if the first yields fewer than ten usable inputs); problems without a
 first-attempt primary unit received one second, independent attempt, fixed before any held-out audit. The models
-that judge the rules (Claude Opus, GPT-6.1-sol) also implement them. Claude Opus writes the probes and GPT-6.1-sol the
+that judge the rules (Claude Opus, GPT-6.1-sol) also implement them. GPT-6.1-sol writes the
 red-team inputs. Construction and judging thus use separate calls, not independent validators.
 These checks reject, for example, a ``correct'' B program whose integer summation silently became floating point.
 
@@ -43,8 +43,8 @@ GPT-6.1-sol) judge whether the inputs are valid and each rule is compatible with
 They are blind to which rule is the benchmark's and are instructed that a missing example is not permission.
 The primary population comprises admitted units for which both judges accept the domain and both rules:
 \emph{execution-validated, two-model-compatible contract pairs}. These are not human-validated ambiguities, and we make
-no claim about how common such ambiguity is. A later preregistered check (E9, Appendix~\ref{app:e6}) used two judges outside the
-construction, blind to which rule is the benchmark's. They accepted both rules on 84\% of readings of these units
+no claim about how common such ambiguity is. A later preregistered check (E9, Appendix~\ref{app:e6}) used the two auditor models at the high budget, outside the
+construction and blind to which rule is the benchmark's. They accepted both rules on 84\% of readings of these units
 and excluded the misreading on 96\% of control readings. E6-1, E6-2 and E6-5 hold on the 35 units most readings accept.
 
 \paragraph{Positive controls.} To obtain units whose evidence distinguishes the programs, the same pipeline asks
@@ -85,17 +85,17 @@ order in which claims are tested were registered before the first held-out call.
 raises verified diagnosis by \NSixFive{} points [\NSixFiveLo, \NSixFiveHi] over the task alone (E6-5). A menu of both
 rules followed by a choice does about as well: \NSixResolveCov\%, against \NSixMenuCov\% with the undecided menu (E6-1:
 +\NSixOne{} [\NSixOneLo, \NSixOneHi]). The undecided menu itself suppresses flagging, so E6-5 measures what a stated
-requirement adds to the plain task. A later preregistered attention control (E10, Appendix~\ref{app:e6}) adds only a note naming the input class.
-It raises verified diagnosis by 18.9 points [12.2, 26.2] over the task alone and flags on correct programs
-from 14\% to 38\%. The sentence adds a further 60.4 points [51.8, 68.9], a substantial improvement beyond this pointer. Once the contract is
+requirement adds to the plain task. A later preregistered attention control (E10, Appendix~\ref{app:e6}) adds only a pointer naming the input class.
+It raises verified diagnosis by 18.9 points [12.2, 26.2] over the task alone and, in its two configurations,
+flags on correct programs from 14\% to 38\%. The sentence adds a further 60.4 points [51.8, 68.9], a substantial improvement beyond this pointer. Once the contract is
 stated, the flag rate on correct programs is \NSixResolveFpr\%, with a betting upper bound of \NSixResolveFprUp\%
 against the registered 10\% budget (E6-1b, \NSixOneBVerdict).
 
 \paragraph{Without the contract, auditors side with the benchmark.} In the \textsc{none} arm recall equals the
 false-flag rate (\NSixNoneFlag\%) by construction, since the same readings are scored under both contracts. The informative
 difference is which program gets flagged. The program that departs from the benchmark's behaviour is
-flagged \NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it; the frozen
-code computes this, though the registration does not list it as a hypothesis. Verified diagnoses are also
+flagged \NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it (exploratory: the frozen
+code computes this, but the registration does not list it as a hypothesis). Verified diagnoses are also
 more likely when the contract is the benchmark's rule: the registered convention advantage, half the difference
 between the two diagnosis rates, is \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] (E6-2). We cannot say whether this
 reflects memory of the benchmark or the most natural reading of the task. For an evaluation, it makes no difference.

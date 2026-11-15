@@ -125,7 +125,8 @@ sentence arms. The pointer read ``Additional note: pay particular attention to h
 the following kind of input: \dots''. It named the unit's input class in the constructor's words. A fixed
 rule removed any clause that said what was unspecified or named the alternatives. E6's frozen code
 handles scoring and analysis; the pointer reveals no contract and is scored under both. All 1{,}312
-readings are valid. Verified diagnosis is 12.2\% [7.3, 17.7] with the task alone, 31.1\% [23.8, 38.4]
+readings are valid. In E10's two low-budget configurations (E6's \textsc{none} arm pools four, hence 15.2\%),
+verified diagnosis is 12.2\% [7.3, 17.7] with the task alone, 31.1\% [23.8, 38.4]
 with the pointer and 91.5\% [82.9, 97.6] with the sentence. The sentence exceeds the pointer by 60.4
 points [51.8, 68.9] (E10-1, lower bound $>0$: supported). The difference is positive for each vendor (GPT
 +59.8, Claude +61.0) and without the two exception-contract units (+62.2). The pointer adds 18.9 points
@@ -217,10 +218,10 @@ rule (an exit without recorded usage), they count as calls that did not reach th
 repeated with identical prompts (E11 amendment 1). The proposal records do not keep usage and no
 transport log was retained, so the classification rests on the exit status. Preliminary gate reports were
 12 and 17; the final gate was evaluated after all eligible construction calls had completed. The 18 units
-come from 18 problems. The arms were the task alone, E10's note naming the input class, and E6's two
+come from 18 problems. The arms were the task alone, E10's pointer naming the input class, and E6's two
 sentence arms. GPT and Claude ran at the low budget, with two readings per cell; 576 of 576 registered
-readings were valid. Verified diagnosis was 8.3\% (task alone), 18.1\% (note), 66.7\% (sentence). E11-1,
-sentence minus task: +58.3 [41.7, 73.6]; E11-2, sentence minus note: +48.6 [34.7, 62.5]. Both are
+readings were valid. Verified diagnosis was 8.3\% (task alone), 18.1\% (pointer), 66.7\% (sentence). E11-1,
+sentence minus task: +58.3 [41.7, 73.6]; E11-2, sentence minus pointer: +48.6 [34.7, 62.5]. Both are
 supported, also for each vendor (GPT +55.6 and +41.7, Claude +61.1 and +55.6). No problem's effect is
 negative; the minimum leave-one-problem-out lower limits were 38.2 and 30.9 points. The two-reading
 policy's sentence-arm false-flag rate was 26.4\% [11.1, 43.1] (betting upper bound 46.0\%; 24.3\% of
@@ -272,7 +273,7 @@ E9-2b & other rule excluded, resolved minus open items (paired); $>30$ & +55.0 [
 E10-1 & sentence minus pointer, verified diagnosis & +60.4 [51.8, 68.9] & supported \\
 (E10) & pointer minus task alone (reported; margin 20) & +18.9 [12.2, 26.2] & reported \\
 E11-1 & BigCodeBench edits: sentence minus task alone, verified diagnosis & +58.3 [41.7, 73.6] & supported \\
-E11-2 & BigCodeBench edits: sentence minus note naming the class & +48.6 [34.7, 62.5] & supported \\
+E11-2 & BigCodeBench edits: sentence minus pointer naming the class & +48.6 [34.7, 62.5] & supported \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -303,6 +304,8 @@ GPT auditor had tried to obtain the clean source in 174 of 829 agentic readings 
 and read the clean source files kept for item construction. Amendment 3 reran every agentic reading inside an
 operating-system sandbox that denies such reads and all network except the vendor's API, and records attempts
 instead of discarding readings. The registration requires both sets of held-out results to be reported side by side.
+In the reported (sandboxed) run, 57\% of that auditor's held-out readings still attempted out-of-scope access, which
+returned nothing.
 
 \begin{table}[h]
 \centering
