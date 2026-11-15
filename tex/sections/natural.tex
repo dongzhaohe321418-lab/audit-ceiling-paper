@@ -22,7 +22,7 @@ disagreement between the classifiers.
 classifier judgement. For each failure we run the problem's other generations that pass the visible tests (up to
 eleven, from the same two generators, excluding the failing program itself) on its first failing input. They return
 the defective program's result 930 times and the reference's 559 times (71 neither); for 90 failures more of them return
-the defective program's result than the reference's, for 57 the reverse (an absolute majority: 85 against 55). These solutions come from the generators that wrote the
+the defective program's result than the reference's, for 57 the reverse (85 against 55 by a majority of all). These solutions come from the generators that wrote the
 failing programs, so the check measures what these models take the task to mean, not what independent programmers would do.
 It also checks the classification (Figure~\ref{fig:natural}b): where the classifiers judge that only the program's
 output fits the words (\textsc{at odds}), 89\% of the other solutions return it; on \textsc{determined} and
@@ -41,14 +41,14 @@ class; the interval is a bootstrap over problems for the share returning the ref
 \paragraph{What auditors verify.} With the original task text, four readings per program and two auditors, verified
 diagnosis on the held-out failures is \NOneVdDetermined\% on \textsc{determined} failures and \NOneVdOpen\% on
 \textsc{open} ones. The registered contrast (H6) is \NOneHSix{} points [\NOneHSixLo, \NOneHSixHi]: we could not detect
-a difference, but the interval allows a sizeable one in either direction (the development estimate, from 13 items,
+a difference, but the interval allows a sizeable one in either direction (the development estimate, from 13 development items,
 was 50 points). Of the \NOneBridgeItems{} held-out programs with a verified diagnosis, \NOneBridgeDetermined{} have at
 least one witness that both classifiers label \textsc{determined}; among the four \textsc{open} failures with a
 verified diagnosis, two do. The classification concerns the first failing input only, so a program may have
 determined defects elsewhere.
 
-\paragraph{Clarifying the missing requirement.} For the 13 failures that remain \textsc{open} after reclassification
-and whose added sentences pass a neutrality recheck, we appended the missing requirement as one sentence, a
+\paragraph{Clarifying the missing requirement.} For the 13 failures both classifiers still label \textsc{open} under the final
+taxonomy, with placebo and pointer judged neutral, we appended the missing requirement as one sentence, a
 length-matched placebo, or a pointer naming the input class without resolving it. The \NOneItems{} held-out items
 (\NOneProblems{} problems) give a small replication of Section~\ref{sec:e6}: the clause raises verified diagnosis by
 \NOneHOne{} points [\NOneHOneLo, \NOneHOneHi] over the placebo (H1) and by \NOneHFive{} points [\NOneHFiveLo,
