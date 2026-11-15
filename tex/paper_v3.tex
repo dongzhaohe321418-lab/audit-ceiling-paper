@@ -30,13 +30,13 @@
 \newcommand{\tbd}[1]{\textcolor{red}{[#1]}}
 \input{numbers}   % figures/make_numbers.py; red in development builds
 
-\icmltitlerunning{What moves the ceiling on automated audit}
+\icmltitlerunning{Convention agreement versus defect detection in code audit}
 
 \begin{document}
 
 \twocolumn[
-\icmltitle{What Moves the Ceiling on Automated Audit:\\
-           from General Code to Scientific Code, Results and Data}
+\icmltitle{What Moves the Ceiling on Automated Code Audit:\\
+           Separating Convention Agreement from Defect Detection}
 
 \begin{icmlauthorlist}
 \icmlauthor{Zhaohe Dong}{ind}
@@ -53,20 +53,20 @@
 \printAffiliationsAndNotice{}
 
 \begin{abstract}
-Audit benchmarks grade automated auditors against a hidden reference, yet auditors' evidence is often equally
-consistent with the program and the reference. Recall minus false-flag rate is then bounded by how well that
-evidence separates defective from correct programs. Audit evaluations cannot observe this classical testing
-bound because a benchmark fixes a single contract. To make it observable, we build execution-checked program
-pairs from HumanEval+ and MBPP+ tasks. The programs in each pair differ only on a behaviour the task leaves open.
-We grade auditors from two vendors against a randomly drawn contract and vary how we reveal it.
-With the contract withheld on 41 held-out units, auditors flag the program that departs from the benchmark's
-behaviour \NSixFlagPref{} points more often than the one that follows it (exploratory; registered convention advantage \NSixTwo), and by 28.9 points among 38 of 41 units in a preregistered control sharing all code outside one branch body. The models' own task-only solutions
-follow the benchmark's behaviour 89\% of the time. The benchmark thus rewards agreement with a convention the models share.
-One sentence stating the missing requirement adds \NSixFive{} points to verified diagnosis, and 58.3 on 18 reference-edited BigCodeBench data-science tasks.
-Two model classifiers agree that the task's words single out the expected value in only 34 of 150 natural hidden-test failures.
-Three earlier preregistered studies of scientific code, results and data fit the same distinction:
-false flags on correct scientific code halve when the task names the deliverable, and recomputation catches
-fabricated results where code and inputs determine them. Confirmatory analyses were preregistered; deviations are disclosed.
+Audit benchmarks grade automated code auditors against a hidden reference. Where the task leaves a behaviour open,
+the evidence an auditor sees can be equally consistent with the program and the reference, and recall minus
+false-flag rate is then bounded by how well that evidence separates the two; a benchmark that fixes one contract
+cannot show how much of a score this explains. We introduce a randomised-contract evaluation: execution-checked
+pairs of programs, built from HumanEval+ and MBPP+ tasks, that differ only on a behaviour the task leaves open,
+graded against a contract drawn at random and revealed in different ways. With the contract withheld on 41
+held-out units, auditors from two vendors flag the program that departs from the benchmark's behaviour
+\NSixFlagPref{} points more often than the one that follows it (exploratory; registered convention advantage
+\NSixTwo), and 28.9 points more often among 38 of 41 units in a preregistered control where the two programs share
+all code outside one branch body. The models' own task-only solutions follow the benchmark's behaviour 89\% of the
+time, so on these units the benchmark rewards agreement with a convention the models share. One sentence stating the
+missing requirement adds \NSixFive{} points to verified diagnosis, and 58.3 on 18 reference-edited BigCodeBench
+data-science tasks. In only 34 of 150 natural hidden-test failures do two model classifiers agree that the task's
+words single out the expected value. Confirmatory analyses were preregistered; deviations are disclosed.
 \end{abstract}
 
 \input{sections/introduction_v2}

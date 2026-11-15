@@ -9,7 +9,7 @@
 % row 1: task
 \node[box, text width=76mm, align=left] (task) at (0,0)
   {\textbf{Task} (illustrative): convert snake case to camel case; three visible tests. Leading underscores are
-   never mentioned.};
+   never mentioned. In every arm the auditor sees the task and one program.};
 % row 2: rules -> programs; contract
 \node[box, text width=33mm, align=left, below=2.5mm of task.south west, anchor=north west] (rules)
   {\textbf{B} (benchmark): keep leading underscores.\\ \textbf{A}: drop them.};
@@ -32,8 +32,10 @@
 \draw[decorate, decoration={brace, amplitude=2pt, mirror}] ([yshift=-0.5mm]sent.south west) -- ([yshift=-0.5mm]res.south east)
   node[midway, below=2pt, font=\tiny, align=center] {$H$ revealed:\\ separable};
 \end{tikzpicture}
-\caption{An illustrative unit. Two programs differ only on a behaviour the task leaves open; the contract the auditor
-is graded against is drawn at random, then withheld or stated. A diagnosis counts only with a witness input on which
-the program and the contract's oracle disagree under the benchmark's comparator.}
+\caption{Randomised-contract evaluation (an illustrative unit). Either program can be correct, depending on the
+contract the auditor is graded against, which is drawn at random and then withheld or stated. With it withheld,
+recall equals the false-flag rate by design; which program is flagged, and what stating the contract adds, are the
+empirical questions. A diagnosis counts only with a witness input on which the program and the contract's oracle
+disagree under the benchmark's comparator.}
 \label{fig:design}
 \end{figure}
