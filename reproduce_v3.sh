@@ -29,7 +29,7 @@ if [ "${REANALYSE:-0}" = 1 ]; then
     "$APY" analyse_e1.py --split test
     "$APY" analyse_e1.py --split test --taxonomy
     "$APY" e6_exception_sensitivity.py
-    "$APY" e6_code_shape.py
+    "$APY" ../../exploratory/e6_code_shape.py
     cd ../../e8 && "$APY" e8.py analyse test
     cd ../e9 && "$APY" e9.py analyse test
     cd ../e10 && "$APY" e10.py analyse test
