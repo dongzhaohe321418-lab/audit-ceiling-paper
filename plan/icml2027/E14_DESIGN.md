@@ -26,3 +26,11 @@ Units where A_min cannot reach B's number of conditionals are reported separatel
 ## Steps
 Development pilot of the A_min and A_br prompts and checks (16 units); preregistration; GPT review; construction on
 held-out units; freeze; audits; analysis; paper (one sentence in Section 4, appendix paragraph, verdict rows).
+
+## Outcome and next step (2026-11-15)
+E14 held out: +28.9 [14.5, 42.8] (n=38), worst-case +19.5 [2.4, 35.4] (n=41), supported. Review M5 keeps 7/10 and
+suggests crossing the rules with ordinary and conspicuous forms inside the branch body (E15). Decision: not now. Two
+shape controls (E13, E14) both left the preference intact and neither moved the score; the residual body-form
+difference is small (median 1 line each, M_A longer in 9 of 38) and disclosed. With ICML 2027's two-stage review, the
+higher-value work is first-reading clarity (abstract, introduction, Figure 1). E15 stays the next experiment if a
+review names body form as decisive.
