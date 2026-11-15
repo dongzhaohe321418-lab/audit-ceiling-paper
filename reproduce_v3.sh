@@ -5,8 +5,8 @@
 #     ./reproduce_v3.sh [path to crossaudit-harness checkout]      (default: ../crossaudit-harness)
 #
 # 1. With REANALYSE=1 and the harness's Python environment (ANALYSIS_PYTHON=...), first reruns the registered analyses
-#    (E6 open units, E6 positive controls, E1, E8, E9, E10) and the exploratory exception-scoring sensitivity from the raw
-#    audit and witness records, overwriting the results files under benchmarks/code/records/icml/.
+#    (E6 open units, E6 positive controls, E1, E8, E9, E10, E11) and the exploratory exception-scoring sensitivity from the raw
+#    audit and witness records (set CROSSAUDIT_BENCH_EXECUTOR to the E1/E6 executor; E11 uses E7's own), overwriting the results files under benchmarks/code/records/icml/.
 # 2. Regenerates tex/numbers.tex (every E6/E1 number the main text quotes) and checks it is identical to the copy the
 #    paper compiles.
 # 3. Regenerates the E6 and natural-failure figures into figures/ and copies them to tex/.
@@ -17,10 +17,13 @@ H="${1:-../crossaudit-harness}"
 R="$H/benchmarks/code/records/icml"
 PY="${PYTHON:-python3}"            # needs matplotlib and numpy for the figures
 APY="${ANALYSIS_PYTHON:-$PY}"      # the harness environment (see its README) for REANALYSE=1
+EPY="${E11_PYTHON:-$APY}"          # E7/E11 environment (E11's freeze binds its package list)
 [ -d "$R" ] || { echo "no records at $R"; exit 1; }
 
 if [ "${REANALYSE:-0}" = 1 ]; then
-  ( cd "$H/benchmarks/code/icml" && export PYTHONPATH="../../../src"
+  : "${CROSSAUDIT_BENCH_EXECUTOR:?REANALYSE=1 needs CROSSAUDIT_BENCH_EXECUTOR, the E1/E6 executor Python (harness README)}"
+  SRC="$(cd "$H/src" && pwd)"
+  ( cd "$H/benchmarks/code/icml" && export PYTHONPATH="$SRC"
     "$APY" analyse_e6.py --split test --kind open
     "$APY" analyse_e6.py --split test --kind det
     "$APY" analyse_e1.py --split test
@@ -28,7 +31,10 @@ if [ "${REANALYSE:-0}" = 1 ]; then
     "$APY" e6_exception_sensitivity.py
     cd ../../e8 && "$APY" e8.py analyse test
     cd ../e9 && "$APY" e9.py analyse test
-    cd ../e10 && "$APY" e10.py analyse test ) > /dev/null
+    cd ../e10 && "$APY" e10.py analyse test
+    cd ../e11 && env -u CROSSAUDIT_BENCH_EXECUTOR "$EPY" -W ignore e11.py analyse --split test
+    env -u CROSSAUDIT_BENCH_EXECUTOR "$EPY" -W ignore e11_report.py test
+    env -u CROSSAUDIT_BENCH_EXECUTOR "$EPY" -W ignore e11_admissibility.py test ) > /dev/null
   echo "registered analyses rerun"
 fi
 

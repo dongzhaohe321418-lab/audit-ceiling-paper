@@ -182,6 +182,31 @@ red team, 0 / 5 past both judges; positive controls: 28 / 93, 11 / 34, 5 / 9, 5 
 required 12 held-out open units, so no audit was run. A provider outage during the first pass was handled as in E1
 Amendment 5: calls that never reached the model were archived and repeated.
 
+\paragraph{Data-science tasks by localised edits (E11).} Registered after E6 and E8--E10 were known and after E7's
+construction records had been seen; E11 reuses E7's corpus, split, hidden inputs, comparator and rule proposals, so it
+extends E7 with held-out audit outcomes rather than replicating it on unused tasks. Only the implementation stage
+changes: each implementing vendor receives the task, the reference with its docstring removed and one rule, and is
+asked to edit the reference minimally so that the inputs the rule concerns go through an explicit branch that follows
+it. Minimality is prompted, not enforced; equivalence outside the class is established, as in E6, by execution on the
+registered inputs, and edits change a median of 4 lines (maximum 12) of the reference. All other stages, the two
+judges, E6's second construction attempt and E7's gate of 12 units are E6's and E7's frozen code. A protocol freeze
+preceded held-out construction and a population freeze preceded any held-out audit. Funnel (held out), first attempt:
+88 proposals, 71 pre-admitted, 37 admitted, 17 past the red team, 12 past both judges; second attempt: 78 usable
+proposals, 67, 27, 10, 6. During the second attempt 81 proposal calls that never reached the model (a provider outage)
+were archived and repeated under the same amendment (E11 amendment 1); a gate evaluated before the repeats gave 12.
+The 18 units come from 18 problems. Arms: the task alone, E10's note naming the input class, and E6's two sentence
+arms; GPT and Claude at the low budget, two readings per cell; 576 of 576 registered readings valid. Verified
+diagnosis: 8.3\% (task alone), 18.1\% (note), 66.7\% (sentence). E11-1, sentence minus task: +58.3 [41.7, 73.6];
+E11-2, sentence minus note: +48.6 [34.7, 62.5]; both supported, also for each vendor (GPT +55.6 and +41.7, Claude
++61.1 and +55.6). No problem's effect is negative; leaving out any one problem keeps the lower limits above 38.2 and
+30.9. Correct programs were flagged on 26.4\% [11.1, 43.1] of sentence-arm readings (betting upper bound 46.0\%;
+5 development units gave 25\%). Unregistered here: convention advantage +8.3 [2.8, 13.9] and flag preference
++13.9 [$-$2.8, 30.6] with the task alone. E9's judges, prompt and code (E11-3, descriptive) accepted both rules on
+93.1\% [86.1, 98.6] of open readings and excluded the non-appended rule on 73.6\% of resolved readings (Claude 47.2\%,
+GPT 100\%); E11 has no positive controls, so E9's Disc is not estimable. On the 17 units most of them accept, E11-1
+is +60.3 [42.6, 76.5] and E11-2 +50.0 [35.3, 64.7]. Both programs share the reference outside the branch, so the
+branch is a code-level cue present in every arm; the result is conditional on such edited programs.
+
 \subsection{Registered hypotheses and held-out verdicts}
 
 \begin{table}[h]
@@ -219,6 +244,8 @@ E9-2b & other rule excluded, resolved minus open items (paired); $>30$ & +55.0 [
 \midrule
 E10-1 & sentence minus pointer, verified diagnosis & +60.4 [51.8, 68.9] & supported \\
 (E10) & pointer minus task alone (reported; margin 20) & +18.9 [12.2, 26.2] & reported \\
+E11-1 & BigCodeBench edits: sentence minus task alone, verified diagnosis & +58.3 [41.7, 73.6] & supported \\
+E11-2 & BigCodeBench edits: sentence minus note naming the class & +48.6 [34.7, 62.5] & supported \\
 \bottomrule
 \end{tabular}
 \end{table}

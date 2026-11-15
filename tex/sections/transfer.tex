@@ -8,13 +8,21 @@ scientific work are consistent with this distinction. They preceded the experime
 model supplies. Appendix~\ref{app:earlier} reports them in full. None randomised the contract, so they illustrate the
 distinction rather than test it.
 
-\paragraph{Randomised contracts on data-science code.} We also tried to carry the experiment of
-Section~\ref{sec:e6} to 121 deterministic BigCodeBench tasks that use pandas, numpy, scipy or scikit-learn, with a
-registered rule to run held-out audits only if at least 12 units survived construction. Only 5 held-out units did
-(Appendix~\ref{app:e6}), so no audit was run. The red team rejected 11 of the 18 admitted units, against 13 of 79 on
-HumanEval+ and MBPP+: implementations of one rule kept disagreeing with the reference elsewhere. That is consistent
-with tasks that leave several behaviours unstated at once, but also with ordinary implementation errors or a
-construction procedure less suited to library-heavy code; we cannot tell these apart.
+\paragraph{Randomised contracts on data-science code.} A first attempt to carry the experiment of
+Section~\ref{sec:e6} to 121 deterministic BigCodeBench tasks that use pandas, numpy, scipy or scikit-learn (E7)
+stopped at construction: programs written from scratch kept disagreeing with the reference elsewhere, and only 5
+held-out units survived a registered gate of 12. A second preregistered study (E11)
+changed only how programs are built: each implementing vendor edits the reference so that an explicit branch follows
+one rule (median 4 changed lines). It yielded 18 held-out units from 18
+problems, with all 576 registered readings valid (Appendix~\ref{app:e6}). One sentence stating the requirement raised
+verified diagnosis by 58.3 points [41.7, 73.6] over the task alone (66.7\% against 8.3\%) and by 48.6 [34.7, 62.5]
+over a note naming the input class; the note alone added 9.7 [2.8, 16.7]. Both registered hypotheses hold, no
+problem's effect is negative, and leaving out any one problem keeps both lower limits above 30. With the contract
+withheld, the convention advantage was 8.3 [2.8, 13.9] (not registered here). Unlike on HumanEval+ and MBPP+, the
+sentence arm still flagged the correct program on 26.4\% of readings. Judges outside the construction accepted both
+rules on 93\% of readings. Both programs share the
+reference outside one branch, a code-level cue present in every arm, so this shows that the sentence effect is not
+peculiar to short functions, not that it holds for ordinary library code.
 
 \paragraph{Code: what the auditor is told it is reviewing.} SciCode \citep{tian2024scicode} splits research problems
 into steps with tests written by scientists. We label generated steps that pass the tests correct and those that fail defective (the tests can themselves
@@ -46,10 +54,8 @@ Adding the model raised correct localisation, scored by code against the injecti
 [0.4, 4.8], and flags on clean items by 16.0 points [3.2, 31.4]. Against a weaker validator (the card's ranges and units with
 simple checks against the reference sample), which localises 67.7\% of faults against the profile's 91.0\%, the
 model's gain is 23.3 points [13.2, 33.3]. On the 42 faulty items with a full 12{,}000-row table, adding the model
-to the profile changed localisation by 0.0; on the 112 faulty 120-row items, agentic over reading-only
-configurations, which also differ in the number of readings, changed it by +1.3 [$-$2.7, 5.8]. Earlier runs, in which one auditor searched the disk and the web and read the clean source files, were voided
+to the profile changed localisation by 0.0, and agentic over reading-only configurations did not help (Appendix~\ref{app:e3}). Earlier runs, in which one auditor searched the disk and the web and read the clean source files, were voided
 after their held-out results had been computed; Appendix~\ref{app:e3} reports them beside the sandboxed runs. In
 the reported run, 57\% of that auditor's held-out readings still attempted out-of-scope access, which returned
-nothing. An earlier study on four tables found a gain of 10.7 points [6.0, 15.9] over a card validator, on a
-different endpoint: findings that name the faulty column, matched lexically. Where a strong profile from a clean reference is available,
+nothing. Where a strong profile from a clean reference is available,
 the model adds little localisation and many false flags.

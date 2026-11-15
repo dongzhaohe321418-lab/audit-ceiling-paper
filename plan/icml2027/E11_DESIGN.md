@@ -41,3 +41,10 @@ Feasibility gate fixed before any audit: at least 20 held-out units after both j
 ## Risks
 Explicit guarded branches may make the open behaviour conspicuous to auditors (a code-level pointer); E10's pointer
 arm measures that kind of effect, and the none arm reports it. Library tasks may resist a clean class predicate.
+
+## Development pilot, first attempt (2026-11-14)
+27 development tasks with E7 proposals: 108/108 edits parsed; pre-admitted 18 (E7: 12), admitted under v4.3 11
+(E7: 2), red team passed 6 (E7: 0), both judges 4 (E7: 0). Localised edits remove E7's main failure. At this yield the
+88 held-out proposals would give about 13 units, below the gate of 20, so E11 adds E6's second, outcome-blind
+construction attempt for problems without a first-attempt unit (piloting now); a wider deterministic library list
+would add only 27 tasks.
