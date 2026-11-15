@@ -13,7 +13,7 @@ Section~\ref{sec:e6} to 121 deterministic BigCodeBench tasks using pandas, numpy
 Construction stopped: programs written from scratch kept disagreeing with the reference elsewhere; only 5
 held-out units survived a registered gate of 12. A second preregistered study (E11) changed only construction:
 each implementing vendor edited the reference to follow one rule in an explicit branch (median 3.5 changed lines).
-It yielded 18 held-out units from 18 problems; all 576 registered readings were valid (Appendix~\ref{app:e6}).
+It yielded 18 held-out units from 18 problems, with all 576 readings valid (Appendix~\ref{app:e6}).
 One sentence stating the requirement raised verified diagnosis by 58.3 points [41.7, 73.6] over the task alone
 (66.7\% versus 8.3\%) and by 48.6 [34.7, 62.5] over a pointer naming the input class.
 The pointer added 9.7 [2.8, 16.7]. Both registered hypotheses hold. No problem's effect is negative;
@@ -47,8 +47,7 @@ code, removes most of these misses.
 \paragraph{Data: what a deterministic profile already captures.} We gave each of twelve public regression tables a
 data card. Each table was either left clean or given one injected fault (mixed units, negated values, duplicated
 rows, a shuffled target, swapped columns, sentinel values, rounding). Eight tables were held out (266 faulty and 266
-clean items). We combined a profile validator, built from the card and from thresholds against a clean reference sample of the
-same table, with a model auditor (GPT or Claude, with a shell on the full table or reading 120 rows).
+clean items). We combined a profile validator, built from the card and from thresholds against a clean reference sample, with a model auditor (GPT or Claude, with a shell on the full table or reading 120 rows).
 Adding the model raised correct localisation, scored by code against the injection manifest, by 2.3 points
 [0.4, 4.8], and flags on clean items by 16.0 points [3.2, 31.4]. Against a weaker validator (the card's ranges and units with
 simple checks against the reference sample), which localises 67.7\% of faults against the profile's 91.0\%, the
