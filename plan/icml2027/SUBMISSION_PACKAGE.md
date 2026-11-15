@@ -65,4 +65,4 @@ GPT as reviewer and editor, separate Claude instances as cold reviewers). If the
 - [x] Subtitle: keep "Separating Convention Agreement from Defect Detection" (co-author's choice).
 - [ ] AI Disclosure Statement: the co-author answered "can't judge"; the first author signs it off.
 - [x] Author list: Zhaohe Dong (Independent researcher; corresponding) and Yuhao Chen (University of Wisconsin–Madison,
-      inferred from his wisc.edu address: confirm). Both need OpenReview profiles.
+      confirmed by the first author 2026-11-16). Both need OpenReview profiles.
