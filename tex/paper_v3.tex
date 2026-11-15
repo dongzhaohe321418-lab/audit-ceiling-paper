@@ -99,7 +99,7 @@ describe these roles; the released records contain every prompt and reply.
 \emph{In conducting and writing the research.} Generative AI was used
 substantively throughout the research and preparation of the manuscript.
 An AI coding agent, Claude (Anthropic), helped develop the research
-questions and hypotheses, designed the experiments, drafted the
+questions and hypotheses, chose and designed the follow-up experiments (the author delegated that choice), drafted the
 preregistrations, and wrote nearly all the experimental and analysis
 code. It also ran the experiments, analysed the results, produced the
 figures and tables, searched the literature, and drafted most of the
@@ -107,12 +107,15 @@ manuscript, including the proof of Lemma~\ref{lem:symmetric}. A model
 from a second vendor, GPT (OpenAI), accessed through the Codex
 command-line tool, provided adversarial reviews of the code,
 preregistrations and successive manuscript drafts, checked the reported
-numbers against the records, and edited the prose for readability.
+numbers against the records, and edited the prose for readability. Separate Claude instances, given none of the
+earlier reviews, reviewed the manuscript cold.
 
 \emph{Verification.} Each preregistration and its associated analysis
 code were frozen with content hashes before the held-out calls they
-governed. Deviations are disclosed as amendments. Released scripts
-regenerate every number in the paper from the stored records. The two
+governed. Deviations are disclosed as amendments. A released script
+reruns the registered analyses of E1, E6 and E8--E15 from the stored records and regenerates the numbers and figures
+of Section~\ref{sec:e6}; the earlier studies of Section~\ref{sec:transfer} are released with their own records and
+analysis code. The two
 models audited each other's code and text, and the resulting corrections
 were made before submission. Every reference was checked against its
 source through bibliographic lookup. The author set the research goal
