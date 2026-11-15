@@ -23,32 +23,32 @@ using the same prompt; neither vendor sees the reference when implementing the r
 A and B implementations, which therefore share provenance and style. The vendor alternates across units.
 
 \paragraph{Admission by execution.} Claude Opus 5.5 writes a domain predicate \texttt{valid} and 16--24 probe
-inputs; the proposer writes a class predicate \texttt{in\_class}. The checks cover the hidden suite, the proposer's
-inputs, the probes, up to 300 seeded stress mutations (unusual whitespace, combining marks and other Unicode,
-complex values equal to integers, negative indices, extreme and cancelling floating-point values, empty and
-duplicated collections) and up to 40 inputs from a red-team model. That model sees all implementations and both
-predicates and tries to break the admission conditions. Checks apply to every input in these sets whose arguments have
-the benchmark's own types and on which the reference runs, whether or not \texttt{valid} accepts it: both B
-implementations must agree with the reference; outside the class all four implementations must agree with it, and
-inside it the two A implementations must agree with each other. A and B must differ on at least two valid class
-inputs, and every implementation must pass the visible tests. Each construction stage is attempted once per problem
-(the red team may make a second call if the first yields fewer than ten usable inputs); problems without a
-first-attempt primary unit received one second, independent attempt, fixed before any held-out audit. The models
-that judge the rules (Claude Opus 5.5, GPT-6.1-sol) also implement them. GPT-6.1-sol writes the
-red-team inputs. Construction and judging thus use separate calls, not independent validators.
-These checks reject, for example, a ``correct'' B program whose integer summation silently became floating point.
+inputs; the proposer writes a class predicate \texttt{in\_class}. A red-team model (GPT-6.1-sol) sees all
+implementations and both predicates and writes up to 40 inputs meant to break the admission conditions. The checks
+run on the hidden suite, the proposer's inputs, the probes, the red-team inputs and up to 300 seeded stress mutations
+(unusual Unicode, extreme floating-point values and others; Appendix~\ref{app:e6}). They apply to every input in these
+sets whose arguments
+have the benchmark's own types and on which the reference runs, whether or not \texttt{valid} accepts it. Both B
+implementations must agree with the reference. Outside the class, all four implementations must agree with it;
+inside it, the two A implementations must agree with each other. A and B must differ on at least two valid class
+inputs, and every implementation must pass the visible tests. These checks reject, for example, a ``correct'' B
+program whose integer summation silently became floating point. Each stage is attempted once per problem;
+problems without a first-attempt unit received one second, independent attempt, fixed before any held-out audit
+(retry rules in Appendix~\ref{app:e6}). The models
+that judge the rules (Claude Opus 5.5, GPT-6.1-sol) also implement them, so construction and judging use separate
+calls, not independent validators.
 
 \paragraph{Judging admissibility.} Two models that neither proposed the rules nor serve as auditors (Claude Opus 5.5,
 GPT-6.1-sol) judge whether the inputs are valid and each rule is compatible with the task's words and visible tests.
 They are blind to which rule is the benchmark's and are instructed that a missing example is not permission.
 The primary population comprises admitted units for which both judges accept the domain and both rules:
 \emph{execution-validated, two-model-compatible contract pairs}. We make
-no claim about how common such ambiguity is. A later preregistered check (E9, Appendix~\ref{app:e6}) used the two auditor models at the high budget, outside the
-construction and blind to which rule is the benchmark's. They accepted both rules on 84\% of readings of these units
-and excluded the misreading on 96.5\% of control readings. E6-1, E6-2 and E6-5 hold on the 35 units most readings accept.
-A co-author who had not seen the units, equally blind, accepted both rules on 35 of 41 units (85\% [72, 93]; HC, Appendix~\ref{app:e6});
-all four rejections fell on the alternative rule, and on the 35 units E6-1, E6-2 and E6-5 hold (flag preference
-+15.0 [2.1, 27.9]).
+no claim about how common such ambiguity is. Two later preregistered checks (Appendix~\ref{app:e6}) repeat this
+judgement from outside the construction, both blind to which rule is the benchmark's. In the first (E9), the two
+auditor models at the high budget accepted both rules on 84\% of readings of these units and excluded the misreading
+on 96.5\% of control readings; E6-1, E6-2 and E6-5 hold on the 35 units most readings accept. In the second (HC), a
+co-author who had not seen the units accepted both rules on 35 of 41 (85\% [72, 93]). All four rejections fell on the
+alternative rule, and on these 35 units E6-1, E6-2 and E6-5 also hold (flag preference +15.0 [2.1, 27.9]).
 
 \paragraph{Positive controls.} To obtain units whose evidence distinguishes the programs, the same pipeline asks
 the proposer for a plausible \emph{misreading} that passes the visible tests but that the task's words rule out.
@@ -86,32 +86,33 @@ testing order were registered before its first held-out call; each later study, 
 
 \paragraph{Adding the requirement turns agreement into diagnosis.} One ordinary sentence stating the contract
 raises verified diagnosis by \NSixFive{} points [\NSixFiveLo, \NSixFiveHi] over the task alone (E6-5). A menu of both
-rules followed by a choice does about as well: \NSixResolveCov\%, against \NSixMenuCov\% with the undecided menu (E6-1:
-+\NSixOne{} [\NSixOneLo, \NSixOneHi]). The undecided menu itself suppresses flagging, so E6-5 measures what a stated
-requirement adds to the plain task. A later preregistered attention control (E10, Appendix~\ref{app:e6}) adds only a pointer naming the input class.
-It raises verified diagnosis by 18.9 points [12.2, 26.2] over the task alone and, in its own fresh readings,
-flags on correct programs from 14\% to 38\%. The sentence adds a further 60.4 points [51.8, 68.9], a substantial improvement beyond this pointer. Once the contract is
+rules followed by a choice does about as well: \NSixResolveCov\% against \NSixMenuCov\% with the undecided menu (E6-1:
++\NSixOne{} [\NSixOneLo, \NSixOneHi]). Because the undecided menu itself suppresses flagging, E6-5 measures what a
+stated requirement adds to the plain task. A later preregistered attention control (E10, Appendix~\ref{app:e6}) adds
+only a pointer naming the input class. It raises verified diagnosis by 18.9 points [12.2, 26.2] over the task alone
+and, in its own fresh readings, the flag rate on correct programs from 14\% to 38\%. The sentence adds a
+further 60.4 points [51.8, 68.9] beyond the pointer. Once the contract is
 stated, the flag rate on correct programs is \NSixResolveFpr\%, with a betting upper bound of \NSixResolveFprUp\%
 against the registered 10\% budget (E6-1b, \NSixOneBVerdict).
 
 \paragraph{Without the contract, auditors side with the benchmark.} In the \textsc{none} arm recall equals the
 false-flag rate (\NSixNoneFlag\%) by construction, since the same readings are scored under both contracts. The informative
 difference is which program gets flagged. The program that departs from the benchmark's behaviour is
-flagged \NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it (exploratory: the frozen
-code computes this, but the registration does not list it as a hypothesis). Verified diagnoses are also
-more likely when the contract is the benchmark's rule: the registered convention advantage, half the verified-diagnosis
-rate under the benchmark's contract minus that under the alternative, is \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] (E6-2). We cannot say whether this
-reflects memory of the benchmark or the most natural reading of the task. The preference is larger when A has more
-conditionals than B, but persists in two preregistered controls (Figure~\ref{fig:controls}). Adding a behaviour-preserving
-branch to B changed its flag rate by +0.6 points [$-$1.2, 2.5] (E13). With both programs rewritten to share
-all code outside one branch body, auditors flagged A's version 28.9 [14.5, 42.8] points more often among 38 of 41 units (19.5 [2.4, 35.4] with
-the missing units at the worst value; E14), though only +16.7 [$-$4.2, 36.1] where A has no extra conditionals.
-With branch bodies also matched in form (E15) it was +34.0 [18.8, 48.6] among 36 of 41 units, but the registered
-worst-case test is inconclusive ([$-$1.2, 36.0]).
-Solutions that two generator models (one also an auditor) wrote from the task alone follow the benchmark's rule on
-these units 89\% of the time
-(Appendix~\ref{app:e6}). A hidden-test ``detection'' here therefore credits agreement with a shared convention, and
-it would be a false accusation had the task's author meant the other rule.
+flagged \NSixFlagPref{} points [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it. This contrast
+is exploratory: the frozen code computes it, but the registration does not list it as a hypothesis. Verified diagnoses
+are also more likely when the contract is the benchmark's rule. The registered convention advantage, half the
+difference between the verified-diagnosis rates under the benchmark's contract and under the alternative, is
+\NSixTwo{} points [\NSixTwoLo, \NSixTwoHi] (E6-2). We cannot say whether this reflects memory of the benchmark or the
+most natural reading of the task. The preference is larger when A has more conditionals than B, but it persists in two preregistered controls
+(Figure~\ref{fig:controls}). Adding a behaviour-preserving branch to B changed its flag rate by +0.6 points
+[$-$1.2, 2.5] (E13). When both programs were rewritten to share all code outside one branch body (E14), auditors
+flagged A's version 28.9 points [14.5, 42.8] more often among 38 of 41 units, and 19.5 [2.4, 35.4] with the
+missing units at the worst value. Among the units where A has no extra conditionals, the complete-case difference
+is only +16.7 [$-$4.2, 36.1]. A
+stricter control that also matched the branch bodies in form (E15) gave +34.0 [18.8, 48.6] among 36 of 41 units, but
+its registered worst-case test is inconclusive ([$-$1.2, 36.0]). Two generator models (one also an auditor) follow
+the benchmark's rule in 89\% of their task-only solutions to these units (Appendix~\ref{app:e6}), so a hidden-test
+``detection'' here credits agreement with a shared convention.
 
 \paragraph{Reasoning budget.} With the contract stated, the high budget changes verified diagnosis by \NSixThree{}
 points (bootstrap [\NSixThreeLo, \NSixThreeHi]; betting [\NSixThreeBetLo, \NSixThreeBetHi]); the registered equivalence

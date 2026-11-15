@@ -23,35 +23,38 @@ does not supply the counterfactual needed to observe this distinction.
 We construct that counterfactual experimentally (Section~\ref{sec:e6}). Each unit starts with a real benchmark task
 that leaves one behaviour open; we build two programs that differ only in that behaviour. We grade the auditor against a
 contract drawn independently of what it sees, then reveal the contract in different ways. Execution validates the
-programs, oracles and boundaries of the open behaviour; two models, which also implement the rules, judge whether both are admissible.
+programs, oracles and boundaries of the open behaviour. Two models, which also implement the rules, judge whether both
+rules are admissible, and a blind human reader accepts both on 35 of 41 units.
 
 \textbf{Findings.} Across \NSixUnits{} held-out units and auditors from two vendors at two reasoning budgets:
 \begin{itemize}\itemsep1pt
-\item With the contract withheld, flags cannot track which program is wrong: we score the same readings under
+\item With the contract withheld, flags cannot track which program is wrong. We score the same readings under
   both contracts, so recall equals the false-flag rate (\NSixNoneFlag\%) by construction. What differs is which
-  program auditors flag. They flag the program that departs from the benchmark's behaviour \NSixFlagPref{} points
-  [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it (exploratory), and diagnose it more often too.
-  The registered convention advantage (half the difference between the diagnosis rates under the benchmark's contract and the other) is
+  program auditors flag: the one that departs from the benchmark's behaviour, \NSixFlagPref{} points
+  [\NSixFlagPrefLo, \NSixFlagPrefHi] more often than the one that follows it (exploratory). They also diagnose it
+  more often; the registered convention advantage, half the difference between the diagnosis rates under the
+  benchmark's contract and under the other, is
   \NSixTwo{} points [\NSixTwoLo, \NSixTwoHi].
-\item From the task alone, two generator models write solutions that follow the benchmark's behaviour on these units 89\%
-  of the time. They share the benchmark's convention; when the other rule is intended, flagging departures
-  becomes a false accusation.
-\item Stating the missing requirement in one ordinary sentence raises verified diagnosis (a flag whose executed
-  witness shows the program breaking the contract) by \NSixFive{} points
-  [\NSixFiveLo, \NSixFiveHi] over the task alone, and 60.4 [51.8, 68.9] over a pointer to the inputs concerned (E10). No correct program was flagged in that arm (Figure~\ref{fig:e6}a). On 18 reference-edited BigCodeBench data-science tasks, the
+\item Two generator models, writing from the task alone, follow the benchmark's behaviour on these units 89\% of the
+  time, so the convention the benchmark rewards is one the models share. Had the task's author meant the other rule,
+  flagging departures would be a false accusation.
+\item Stating the missing requirement in one ordinary sentence raises verified diagnosis by \NSixFive{} points
+  [\NSixFiveLo, \NSixFiveHi] over the task alone, and by 60.4 [51.8, 68.9] over a pointer to the inputs concerned (E10). A
+  verified diagnosis is a flag whose executed witness shows the program breaking the contract. No correct program
+  was flagged in that arm (Figure~\ref{fig:e6}a). On 18 reference-edited BigCodeBench data-science tasks, the
   sentence adds 58.3 points [41.7, 73.6] (Section~\ref{sec:transfer}).
-\item On positive controls, the task's words rule out one program. The same auditors separate the programs
+\item On positive controls, where the task's words rule out one program, the same auditors separate the programs
   without being told (recall minus false-flag rate \NSixFourJ{} points).
 \end{itemize}
-Among natural hidden-test failures (Section~\ref{sec:natural}), both classifiers agree that the task's words
-determine the expected value in fewer than a quarter, which does not make the rest undetermined. Three earlier preregistered studies of scientific code, results and data
-(Section~\ref{sec:transfer}) are consistent with the same distinction, although none of them varied the information
-an auditor receives in the way our experiment does.
+Among natural hidden-test failures (Section~\ref{sec:natural}), the two classifiers agree that the task's words
+determine the expected value in fewer than a quarter; that does not make the rest undetermined. Three earlier
+preregistered studies of scientific code, results and data (Section~\ref{sec:transfer}) are consistent with the same
+distinction, though none of them varied the information an auditor receives.
 
-\textbf{Contributions.} (i) A randomised-contract design that makes the information limit of an audit observable and
-separates convention agreement, unjustified accusation, requests for clarification and verified diagnosis, with
-execution-validated programs and oracles. (ii) Preregistered evidence that, on such cases, auditors side with the benchmark's convention, and that one
-added sentence stating the requirement turns that agreement into verified diagnosis. (iii) A description of
-natural hidden-test failures by whether the task's words determine the expected value, and a reading of
-scientific code, results and data audits in the same terms.
+\textbf{Contributions.} (i) An evaluation design that randomises the contract. It makes the information limit of an
+audit observable and separates agreement with a convention, unjustified accusation, requests for clarification and
+verified diagnosis, using execution-validated programs and oracles. (ii) Preregistered evidence that auditors side
+with the benchmark's convention on such cases, and that one added sentence stating the requirement turns that
+agreement into verified diagnosis. (iii) A description of natural hidden-test failures by whether the task's words
+determine the expected value, and a reading of earlier audits of scientific code, results and data in the same terms.
 Code, records and preregistrations are released.
