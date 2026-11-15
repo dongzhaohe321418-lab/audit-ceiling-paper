@@ -42,12 +42,15 @@ def rows(root: Path) -> tuple[list, list]:
     e11 = load(root, "e11/records/e11_results_test.json")
     e13 = load(root, "e13/records/e13_results_test.json")
     e14 = load(root, "e14/records/e14_results_test.json")
+    e15 = load(root, "e15/records/e15_results_test.json")
     w = e14["E14_1_ma_minus_mb"]["bootstrap_with_missing"]["worst"]
+    w15 = e15["E15_1_ma_minus_mb"]["bootstrap_with_missing"]["worst"]
     pref = [("E6: A $-$ B (exploratory)", e6["flag_pref_a_minus_b_none"], None),
             ("E13: A $-$ B, fresh", e13["flag_pref_b_fresh"], None),
             ("E13: A $-$ B with added branch", e13["E13_2_flag_pref_bprime"], None),
             ("E14: A $-$ B, fresh", e14["a_minus_b_fresh"], None),
-            ("E14: matched pair", e14["E14_1_ma_minus_mb"], w)]
+            ("E14: matched pair", e14["E14_1_ma_minus_mb"], w),
+            ("E15: matched pair, symmetric bodies", e15["E15_1_ma_minus_mb"], w15)]
     req = [("E6-5: sentence $-$ task", e6["E6_5_cov_sentence_minus_none"], None),
            ("E10-1: sentence $-$ pointer", e10["E10_1_sentence_minus_pointer"], None),
            ("E10: pointer $-$ task", e10["E10_2_pointer_minus_none"], None),
@@ -74,7 +77,7 @@ def panel(ax, items, xlabel, letter):
 
 def main(root: str, out: str) -> None:
     pref, req = rows(Path(root))
-    fig, (a, b) = plt.subplots(1, 2, figsize=(7.0, 1.9), gridspec_kw={"wspace": 1.15})
+    fig, (a, b) = plt.subplots(1, 2, figsize=(7.0, 2.2), gridspec_kw={"wspace": 1.15})
     panel(a, pref, "flag rate difference, task alone (points)", "a")
     panel(b, req, "verified diagnosis difference (points)", "b")
     a.set_xlim(-10, 50)

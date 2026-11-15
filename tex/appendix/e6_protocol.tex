@@ -234,14 +234,28 @@ M$_A$'s body is longer in 9 of 38 pairs. E14 therefore shows that the preference
 surrounding code, not that it is independent of how each rule is written. It cannot separate a convention
 from a plain reading of the task.
 
+\paragraph{Matched pairs with symmetric bodies (E15).} Registered after E14 and reviewed before the held-out run
+(\texttt{benchmarks/e15/}). E15 repeats E14 with one more constraint: with every expression replaced by a
+placeholder, the two branch bodies have identical syntax trees (statements, nesting, operators and names match), and
+their token counts differ by at most a factor of 1.5 or four tokens. A first version of this check, which compared
+statement kinds only, was replaced after review. Thirty-six of the 41 held-out units passed, and the other five had no
+valid pair after three attempts. Body token counts were equal in 29 of the 36 pairs, and M$_A$'s body was longer in
+six. All 1{,}152 readings were valid. M$_A$ was flagged more often than M$_B$: complete cases +34.0 [18.8, 48.6],
+$n=36$. With the five missing units at the worst value the estimate is +17.7 [$-$1.2, 36.0], $n=41$, so the registered
+verdict is negative (E15-1: not supported). In the same readings A was flagged 25.7 [11.8, 38.2] points more often
+than B. The preference is +47.2 [30.6, 65.3] on the 18 analysed units whose A has more conditionals and +20.8
+[$-$1.4, 43.1] on the 18 others; the development pilot's equal strata did not replicate. Read with E14, the
+preference persists among the units where a symmetric pair could be built, but E15 does not establish it for all
+registered units, and it does not test independence from how each rule is computed.
+
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{fig_controls.pdf}
 \caption{Held-out estimates across the randomised-contract studies (points; 95\% problem-level bootstrap intervals).
 (a) Flag rate of the program that departs from the benchmark's behaviour minus that of the program that follows it,
 with the task alone. E6 is shown alongside fresh interleaved readings from E13 and E14. B has a behaviour-preserving
-branch (E13), or both programs share all code outside one branch body (E14; open marker: missing units at the worst
-value, the statistic the verdict uses). (b) Verified diagnosis: the sentence against the task alone and against the
+branch (E13), or both programs share all code outside one branch body (E14), and their branch bodies also match in
+form (E15); open markers: missing units at the worst value, the statistic the verdicts use. (b) Verified diagnosis: the sentence against the task alone and against the
 pointer (E6, E10), and on the edited BigCodeBench units (E11).}
 \label{fig:controls}
 \end{figure}
@@ -339,6 +353,7 @@ E11-2 & BigCodeBench edits: sentence minus pointer naming the class & +48.6 [34.
 E13-1 & flag rate, B with an added branch minus B (task alone; margin 10) & +0.6 [$-$1.2, 2.5] & within margin \\
 E13-2 & flag preference, A minus branched B (task alone) & +20.6 [6.9, 33.8] & supported \\
 E14-1 & flag preference, matched pair (identical outside one branch body); verdict on worst-case imputation & +28.9 [14.5, 42.8] ($n$=38); +19.5 [2.4, 35.4] ($n$=41) & supported \\
+E15-1 & flag preference, matched pair with symmetric branch bodies; verdict on worst-case imputation & +34.0 [18.8, 48.6] ($n$=36); +17.7 [$-$1.2, 36.0] ($n$=41) & not supported \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -368,7 +383,9 @@ eight (266 and 266). We combined a profile validator built from the card and fro
 reference sample with a model auditor. The auditor was GPT-5.6-terra or Claude Sonnet 5.5, with a shell on the
 full table or reading 120 rows. Localisation counts only when a blocking finding names the injected fault type
 and column. Code scores the finding against the injection manifest. This study (E3) differs from the earlier
-four-table study in Appendix~\ref{app:earlier}.
+four-table study in Appendix~\ref{app:earlier}. Against a weaker validator (the card's ranges and units with simple checks against the
+reference sample), which localises 67.7\% of faults against the profile's 91.0\%, the model's gain in localisation
+is 23.3 points [13.2, 33.3].
 
 \paragraph{Voided runs.} The data study (Section~\ref{sec:transfer}) was registered with its hypotheses, validators
 and scoring before any reading. Its first agentic runs used a command filter that discarded readings in which the auditor tried to reach the

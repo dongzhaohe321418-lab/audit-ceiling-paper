@@ -48,9 +48,7 @@ data card. Each table was either left clean or given one injected fault (mixed u
 rows, a shuffled target, swapped columns, sentinel values, rounding). Eight tables were held out (266 faulty and 266
 clean items). We combined a profile validator, built from the card and from thresholds against a clean reference sample, with a model auditor (GPT or Claude, with a shell on the full table or reading 120 rows).
 Adding the model raised correct localisation, scored by code against the injection manifest, by 2.3 points
-[0.4, 4.8], and flags on clean items by 16.0 points [3.2, 31.4]. Against a weaker validator (the card's ranges and units with
-simple checks against the reference sample), which localises 67.7\% of faults against the profile's 91.0\%, the
-model's gain is 23.3 points [13.2, 33.3]. On the 42 faulty items with a full 12{,}000-row table, adding the model
+[0.4, 4.8], and flags on clean items by 16.0 points [3.2, 31.4]. On the 42 faulty items with a full 12{,}000-row table, adding the model
 to the profile changed localisation by 0.0, and agentic over reading-only configurations did not help (Appendix~\ref{app:e3}). Earlier runs, in which one auditor read the clean source files, were voided after their held-out results
 had been computed; Appendix~\ref{app:e3} reports them beside the sandboxed runs. Where a strong profile from a clean reference is available,
 the model adds little localisation and many false flags.
