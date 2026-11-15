@@ -42,3 +42,13 @@ margin; the gate protects against a population dominated by a few problems.
 3. Preregistration, GPT review, protocol freeze; held-out construction; gate; population freeze.
 4. Audits, analysis, E9-style admissibility with controls; paper (transfer paragraph and appendix).
 Deadline: ICML 2027 full paper 2027-01-22; E12 must be frozen by mid-December to leave time for writing.
+
+## Feasibility result (2026-11-15, no model calls): E12 not run on this corpus
+`benchmarks/e12/corpus12.py` + `prepare12.py` (E7's feasibility check and input recorder, unchanged): 176 eligible
+tasks (40 dev / 136 held out); 113 references pass their suites in the executor (nltk, statsmodels and other packages
+absent); 37 have at least three deterministic recorded inputs (10 dev / 27 held out). Of the rest, 37 give no
+deterministic input (31 use randomness seeded by the test rather than an argument), 22 give one or two, 17 call the
+entry point only with keywords. At E11's yield (18 units from 93 held-out tasks), 27 held-out tasks project about 5
+units, far below the gate of 20; seeding every call would change E6's frozen execution harness and still project
+about 12. Decision: E12 is not run on on-disk BigCodeBench. A second unused library benchmark (e.g. DS-1000) would
+need a new download, which requires the user's approval; otherwise the remaining time goes to the paper.
