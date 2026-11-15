@@ -47,8 +47,9 @@ human review; alternative **General**).
 **Primary area**: evaluation / benchmarks (choose the closest listed area; social and safety aspects of LLMs is a
 possible secondary).
 
-**Reciprocal reviewer**: a sole-author submission needs the author to be an eligible reciprocal reviewer, or to use
-the one allowed submission without one. Check eligibility in the Submission Quotas and Reciprocal Reviewing guide.
+**Reciprocal reviewer**: designate one of the two authors as the submission's reciprocal reviewer (each author may be
+designated for at most six submissions); if neither is eligible, this uses each author's one allowed submission
+without an eligible reviewer. Check eligibility in the Submission Quotas and Reciprocal Reviewing guide.
 
 **LLM policy / AI disclosure**: the paper includes the required AI Disclosure Statement (Claude as research agent,
 GPT as reviewer and editor, separate Claude instances as cold reviewers). If the form asks again, use that text.
@@ -63,5 +64,5 @@ GPT as reviewer and editor, separate Claude instances as cold reviewers). If the
 - [x] Human admissibility check (H1): done by a co-author 2026-11-15; in Section 4, the Limitations and the appendix.
 - [x] Subtitle: keep "Separating Convention Agreement from Defect Detection" (co-author's choice).
 - [ ] AI Disclosure Statement: the co-author answered "can't judge"; the first author signs it off.
-- [ ] Author list: the paper lists one author; add the co-author (name, affiliation) if they are to be an author,
-      which also changes the reciprocal-reviewer and quota situation.
+- [x] Author list: Zhaohe Dong (Independent researcher; corresponding) and Yuhao Chen (University of Wisconsin–Madison,
+      inferred from his wisc.edu address: confirm). Both need OpenReview profiles.
