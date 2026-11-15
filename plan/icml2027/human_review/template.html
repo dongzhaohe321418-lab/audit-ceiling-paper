@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Human Review Pack</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one column. Part 1 (blind items, one at a time) then Part 2 (paper questions, locked until Part 1 is done), then export. */
+:root{
+  --bg:#f6f7f5; --panel:#ffffff; --ink:#1d2421; --muted:#5d6a64; --line:#d9dfdb;
+  --accent:#1f6f5c; --accent-ink:#ffffff; --code-bg:#eef1ee; --yes:#1f6f5c; --no:#a3402f; --unsure:#8a6d1d;
+  --font-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-code:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#141917; --panel:#1b221f; --ink:#e4ebe7; --muted:#9aa8a1; --line:#2e3833;
+  --accent:#5fbfa4; --accent-ink:#0d1412; --code-bg:#111614; --yes:#5fbfa4; --no:#e08a77; --unsure:#d9b65a; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5}
+.wrap{max-width:900px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left,0px)) 56px max(16px,env(safe-area-inset-right,0px));display:grid;gap:20px}
+h1{font-size:1.5rem;margin:0;text-wrap:balance}
+h2{font-size:1.15rem;margin:0}
+p{margin:0;max-width:70ch}
+.muted{color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:14px;min-width:0}
+ol.steps{margin:0;padding-left:1.2rem;display:grid;gap:4px;max-width:70ch}
+.status{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:.92rem;color:var(--muted)}
+.status strong{color:var(--ink);font-variant-numeric:tabular-nums}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;flex:1 1 160px;min-width:120px}
+.bar>i{display:block;height:100%;background:var(--accent);width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 .8rem/1 var(--font-code);min-width:2.3rem;padding:7px 6px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;font-variant-numeric:tabular-nums}
+.chip.done{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.part{border-color:var(--accent);color:var(--ink)}
+.chip.cur{outline:2px solid var(--ink);outline-offset:1px}
+.eyebrow{font:700 .75rem/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+pre{margin:0;background:var(--code-bg);border-radius:8px;padding:12px 14px;overflow-x:auto;font:400 .82rem/1.55 var(--font-code);white-space:pre}
+.q{font-weight:700}
+.block{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:14px}
+.label{font:700 .8rem/1 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.opt span{display:inline-block;padding:7px 14px;border-radius:999px;border:1px solid var(--line);font-size:.92rem}
+.opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.opt input:checked+span{color:var(--panel);font-weight:700;background:var(--accent);border-color:var(--accent)}
+.opt.no input:checked+span{background:var(--no);border-color:var(--no)}
+.opt.unsure input:checked+span{background:var(--unsure);border-color:var(--unsure)}
+textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem;padding:8px 10px}
+textarea{min-height:3.2rem;resize:vertical}
+.nav{display:flex;justify-content:space-between;gap:10px}
+button{font:700 .92rem var(--font-body);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button:disabled{opacity:.5;cursor:not-allowed}
+button:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.locked{opacity:.55}
+.quote{border-left:3px solid var(--line);padding-left:12px;max-width:72ch;font-size:.95rem}
+.quote p+p{margin-top:8px}
+.note{font-size:.88rem;color:var(--muted)}
+.warn{color:var(--no)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:grid;gap:8px">
+    <h1>Human review pack</h1>
+    <p class="muted">For a co-author. About an hour. Nothing is sent anywhere: your answers stay in this browser until you export them.</p>
+  </header>
+
+  <section class="card">
+    <h2>What to do</h2>
+    <ol class="steps">
+      <li><strong>Part 1</strong>: judge 41 short programming tasks. Please do this first, before reading anything about the paper, and don't run code or look the tasks up.</li>
+      <li><strong>Part 2</strong> unlocks when every task has both answers: three short questions about the paper.</li>
+      <li>Press <strong>Export answers</strong> at the bottom and send the downloaded file back. If the download is blocked, use <strong>Copy answers</strong> and paste them into a message.</li>
+    </ol>
+    <p class="note">Answers are saved in this browser as you go, so you can close the file and continue later on the same computer and browser.</p>
+    <div class="block">
+      <label class="label" for="rater">Your name or initials</label>
+      <input type="text" id="rater" autocomplete="name">
+    </div>
+  </section>
+
+  <section class="card" id="part1">
+    <h2>Part 1: is each rule a correct way to complete the task?</h2>
+    <p class="muted">Each task leaves one behaviour unstated. Two rules for it are shown, in random order. For each rule, decide whether a careful programmer, reading only this task, would accept it as a correct way to complete it.</p>
+    <div class="status">
+      <span><strong id="ndone">0</strong> of 41 complete</span>
+      <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+    </div>
+    <nav class="chips" id="chips" aria-label="Tasks"></nav>
+    <div class="block" style="border-top:0;padding-top:0">
+      <span class="eyebrow" id="itemno">Task 1</span>
+      <pre id="task"></pre>
+      <span class="q">Would a careful programmer, reading only this task, accept each rule?</span>
+    </div>
+    <div class="block" id="r1box"></div>
+    <div class="block" id="r2box"></div>
+    <div class="block">
+      <label class="label" for="reason">Note (optional)</label>
+      <textarea id="reason" placeholder="One line on why, if a rule seems wrong or unclear"></textarea>
+    </div>
+    <div class="nav">
+      <button id="prev" type="button">Previous</button>
+      <button id="next" type="button" class="primary">Next</button>
+    </div>
+  </section>
+
+  <section class="card locked" id="part2" aria-disabled="true">
+    <h2>Part 2: questions about the paper</h2>
+    <p class="muted" id="lockmsg">Unlocks when all 41 tasks have both answers.</p>
+    <div id="p2body" hidden>
+      <div class="block" style="border-top:0;padding-top:0">
+        <span class="label">The paper's abstract (for context)</span>
+        <div class="quote"><p id="abstract"></p></div>
+      </div>
+      <div class="block">
+        <span class="q">1. Which subtitle should the paper use? The main title is "What Moves the Ceiling on Automated Code Audit".</span>
+        <div class="opts" role="radiogroup" aria-label="Subtitle" id="q_subtitle"></div>
+        <input type="text" id="subtitle_other" placeholder="Your own subtitle, if you chose Other">
+      </div>
+      <div class="block">
+        <span class="q">2. Which ICML 2027 contribution type fits best? (Authors must choose one.)</span>
+        <div class="opts" role="radiogroup" aria-label="Contribution type" id="q_type"></div>
+      </div>
+      <div class="block">
+        <span class="q">3. Is this AI Disclosure Statement accurate, as far as you know? (ICML requires it; the authors are responsible for it.)</span>
+        <div class="quote" id="disclosure"></div>
+        <div class="opts" role="radiogroup" aria-label="Disclosure accurate" id="q_disclosure"></div>
+        <textarea id="disclosure_note" placeholder="What should change, if anything"></textarea>
+      </div>
+      <div class="block">
+        <label class="q" for="general">4. Anything else the authors should know (optional)</label>
+        <textarea id="general"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Send your answers back</h2>
+    <p class="muted" id="exportmsg">You can export at any time; a partial export is fine, but the analysis needs all 41 tasks.</p>
+    <div class="opts">
+      <button type="button" class="primary" id="export">Export answers</button>
+      <button type="button" id="copy">Copy answers</button>
+    </div>
+    <textarea id="dump" readonly hidden style="min-height:8rem;font-family:var(--font-code);font-size:.8rem"></textarea>
+  </section>
+</div>
+
+<script>
+const ITEMS = __ITEMS__;
+const ABSTRACT = __ABSTRACT__;
+const DISCLOSURE = __DISCLOSURE__;
+const PACK = "h1-v1";
+const KEY = "human-review-pack-" + PACK;
+let st = {rater: "", items: {}, paper: {}};
+try { const raw = localStorage.getItem(KEY); if (raw) st = Object.assign(st, JSON.parse(raw)); } catch (e) {}
+let cur = 0;
+const $ = id => document.getElementById(id);
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+const complete = s => s && s.r1 && s.r2;
+const nDone = () => ITEMS.filter(x => complete(st.items[x.item])).length;
+
+function radios(container, name, options, value, onChange, cls) {
+  container.innerHTML = "";
+  for (const [v, label] of options) {
+    const l = document.createElement("label"); l.className = "opt " + (cls ? cls(v) : "");
+    const i = document.createElement("input"); i.type = "radio"; i.name = name; i.value = v; i.id = name + "-" + v;
+    i.checked = value === v; i.addEventListener("change", () => onChange(v));
+    const s = document.createElement("span"); s.textContent = label;
+    l.append(i, s); container.append(l);
+  }
+}
+
+function ruleBox(box, idx, text) {
+  const it = ITEMS[cur], s = st.items[it.item] || {};
+  box.innerHTML = "";
+  const lab = document.createElement("span"); lab.className = "label"; lab.textContent = "Rule " + idx;
+  const p = document.createElement("p"); p.textContent = text;
+  const opts = document.createElement("div"); opts.className = "opts"; opts.setAttribute("role", "radiogroup");
+  opts.setAttribute("aria-label", "Rule " + idx);
+  radios(opts, "r" + idx, [["yes", "Acceptable"], ["no", "Not acceptable"], ["unsure", "Unsure"]], s["r" + idx],
+    v => { st.items[it.item] = Object.assign({}, st.items[it.item] || {}, {["r" + idx]: v}); save(); progress(); },
+    v => v);
+  box.append(lab, p, opts);
+}
+
+function render() {
+  const it = ITEMS[cur];
+  $("itemno").textContent = "Task " + it.item + " of " + ITEMS.length;
+  $("task").textContent = it.task;
+  ruleBox($("r1box"), 1, it.rule_1);
+  ruleBox($("r2box"), 2, it.rule_2);
+  $("reason").value = (st.items[it.item] || {}).reason || "";
+  $("prev").disabled = cur === 0;
+  $("next").textContent = cur === ITEMS.length - 1 ? "Finish Part 1" : "Next";
+  progress();
+}
+
+function progress() {
+  const n = nDone();
+  $("ndone").textContent = n;
+  $("barfill").style.width = (100 * n / ITEMS.length) + "%";
+  const chips = $("chips"); chips.innerHTML = "";
+  ITEMS.forEach((x, i) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = x.item;
+    const s = st.items[x.item];
+    if (complete(s)) b.classList.add("done"); else if (s && (s.r1 || s.r2)) b.classList.add("part");
+    if (i === cur) { b.classList.add("cur"); b.setAttribute("aria-current", "true"); }
+    b.setAttribute("aria-label", "Task " + x.item);
+    b.addEventListener("click", () => { cur = i; render(); });
+    chips.append(b);
+  });
+  const open = n === ITEMS.length;
+  $("part2").classList.toggle("locked", !open);
+  $("part2").setAttribute("aria-disabled", String(!open));
+  $("p2body").hidden = !open;
+  $("lockmsg").textContent = open ? "Thank you. Please answer the questions below, then export." :
+    "Unlocks when all 41 tasks have both answers (" + (ITEMS.length - n) + " to go).";
+}
+
+function renderPart2() {
+  $("abstract").textContent = ABSTRACT;
+  const d = $("disclosure"); d.innerHTML = "";
+  for (const para of DISCLOSURE) { const p = document.createElement("p"); p.textContent = para; d.append(p); }
+  const P = st.paper;
+  radios($("q_subtitle"), "subtitle", [
+    ["new", "Separating Convention Agreement from Defect Detection"],
+    ["old", "from General Code to Scientific Code, Results and Data"],
+    ["other", "Other (type below)"]], P.subtitle, v => { P.subtitle = v; save(); });
+  $("subtitle_other").value = P.subtitle_other || "";
+  radios($("q_type"), "ctype", [
+    ["deb", "Datasets, Evaluations and Benchmarks"], ["general", "General"], ["other", "Another type"]],
+    P.contribution_type, v => { P.contribution_type = v; save(); });
+  radios($("q_disclosure"), "disc", [["yes", "Accurate"], ["no", "Needs changes"], ["unsure", "Can't judge"]],
+    P.disclosure, v => { P.disclosure = v; save(); }, v => v === "no" ? "no" : (v === "unsure" ? "unsure" : ""));
+  $("disclosure_note").value = P.disclosure_note || "";
+  $("general").value = P.general || "";
+}
+
+function bindText(id, setter) { $(id).addEventListener("input", e => { setter(e.target.value); save(); }); }
+bindText("rater", v => st.rater = v);
+bindText("reason", v => { const it = ITEMS[cur]; st.items[it.item] = Object.assign({}, st.items[it.item] || {}, {reason: v}); });
+bindText("subtitle_other", v => st.paper.subtitle_other = v);
+bindText("disclosure_note", v => st.paper.disclosure_note = v);
+bindText("general", v => st.paper.general = v);
+
+$("prev").addEventListener("click", () => { if (cur > 0) { cur--; render(); $("part1").scrollIntoView(); } });
+$("next").addEventListener("click", () => {
+  if (cur < ITEMS.length - 1) { cur++; render(); $("part1").scrollIntoView(); return; }
+  const missing = ITEMS.filter(x => !complete(st.items[x.item])).map(x => x.item);
+  if (missing.length) { cur = ITEMS.findIndex(x => x.item === missing[0]); render(); $("part1").scrollIntoView();
+    $("lockmsg").textContent = "Tasks still missing an answer: " + missing.join(", "); }
+  else { $("part2").scrollIntoView(); }
+});
+
+function payload() {
+  return {pack: PACK, exported: new Date().toISOString(), rater: st.rater,
+          complete: nDone() === ITEMS.length,
+          labels: ITEMS.map(x => ({item: x.item, r1: (st.items[x.item] || {}).r1 || null,
+                                   r2: (st.items[x.item] || {}).r2 || null, reason: (st.items[x.item] || {}).reason || ""})),
+          paper: st.paper};
+}
+$("export").addEventListener("click", () => {
+  const text = JSON.stringify(payload(), null, 1);
+  try {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], {type: "application/json"}));
+    a.download = "human_review_answers.json"; document.body.append(a); a.click(); a.remove();
+    $("exportmsg").textContent = "Downloaded human_review_answers.json. Please send that file back.";
+  } catch (e) { showDump(text); }
+});
+function showDump(text) {
+  const d = $("dump"); d.hidden = false; d.value = text; d.focus(); d.select();
+  $("exportmsg").textContent = "Copy the text below and send it in a message.";
+}
+$("copy").addEventListener("click", async () => {
+  const text = JSON.stringify(payload(), null, 1);
+  try { await navigator.clipboard.writeText(text); $("exportmsg").textContent = "Copied. Paste it into a message to send it back."; }
+  catch (e) { showDump(text); }
+});
+
+$("rater").value = st.rater || "";
+renderPart2();
+render();
+</script>
+</body>
+</html>

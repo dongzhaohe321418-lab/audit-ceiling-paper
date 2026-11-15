@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Human Review Pack</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one column. Part 1 (blind items, one at a time) then Part 2 (paper questions, locked until Part 1 is done), then export. */
+:root{
+  --bg:#f6f7f5; --panel:#ffffff; --ink:#1d2421; --muted:#5d6a64; --line:#d9dfdb;
+  --accent:#1f6f5c; --accent-ink:#ffffff; --code-bg:#eef1ee; --yes:#1f6f5c; --no:#a3402f; --unsure:#8a6d1d;
+  --font-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-code:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#141917; --panel:#1b221f; --ink:#e4ebe7; --muted:#9aa8a1; --line:#2e3833;
+  --accent:#5fbfa4; --accent-ink:#0d1412; --code-bg:#111614; --yes:#5fbfa4; --no:#e08a77; --unsure:#d9b65a; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5}
+.wrap{max-width:900px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left,0px)) 56px max(16px,env(safe-area-inset-right,0px));display:grid;gap:20px}
+h1{font-size:1.5rem;margin:0;text-wrap:balance}
+h2{font-size:1.15rem;margin:0}
+p{margin:0;max-width:70ch}
+.muted{color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:14px;min-width:0}
+ol.steps{margin:0;padding-left:1.2rem;display:grid;gap:4px;max-width:70ch}
+.status{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:.92rem;color:var(--muted)}
+.status strong{color:var(--ink);font-variant-numeric:tabular-nums}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;flex:1 1 160px;min-width:120px}
+.bar>i{display:block;height:100%;background:var(--accent);width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 .8rem/1 var(--font-code);min-width:2.3rem;padding:7px 6px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;font-variant-numeric:tabular-nums}
+.chip.done{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.part{border-color:var(--accent);color:var(--ink)}
+.chip.cur{outline:2px solid var(--ink);outline-offset:1px}
+.eyebrow{font:700 .75rem/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+pre{margin:0;background:var(--code-bg);border-radius:8px;padding:12px 14px;overflow-x:auto;font:400 .82rem/1.55 var(--font-code);white-space:pre}
+.q{font-weight:700}
+.block{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:14px}
+.label{font:700 .8rem/1 var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.opt span{display:inline-block;padding:7px 14px;border-radius:999px;border:1px solid var(--line);font-size:.92rem}
+.opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.opt input:checked+span{color:var(--panel);font-weight:700;background:var(--accent);border-color:var(--accent)}
+.opt.no input:checked+span{background:var(--no);border-color:var(--no)}
+.opt.unsure input:checked+span{background:var(--unsure);border-color:var(--unsure)}
+textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem;padding:8px 10px}
+textarea{min-height:3.2rem;resize:vertical}
+.nav{display:flex;justify-content:space-between;gap:10px}
+button{font:700 .92rem var(--font-body);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button:disabled{opacity:.5;cursor:not-allowed}
+button:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.locked{opacity:.55}
+.quote{border-left:3px solid var(--line);padding-left:12px;max-width:72ch;font-size:.95rem}
+.quote p+p{margin-top:8px}
+.note{font-size:.88rem;color:var(--muted)}
+.warn{color:var(--no)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:grid;gap:8px">
+    <h1>Human review pack</h1>
+    <p class="muted">For a co-author. About an hour. Nothing is sent anywhere: your answers stay in this browser until you export them.</p>
+  </header>
+
+  <section class="card">
+    <h2>What to do</h2>
+    <ol class="steps">
+      <li><strong>Part 1</strong>: judge 41 short programming tasks. Please do this first, before reading anything about the paper, and don't run code or look the tasks up.</li>
+      <li><strong>Part 2</strong> unlocks when every task has both answers: three short questions about the paper.</li>
+      <li>Press <strong>Export answers</strong> at the bottom and send the downloaded file back. If the download is blocked, use <strong>Copy answers</strong> and paste them into a message.</li>
+    </ol>
+    <p class="note">Answers are saved in this browser as you go, so you can close the file and continue later on the same computer and browser.</p>
+    <div class="block">
+      <label class="label" for="rater">Your name or initials</label>
+      <input type="text" id="rater" autocomplete="name">
+    </div>
+  </section>
+
+  <section class="card" id="part1">
+    <h2>Part 1: is each rule a correct way to complete the task?</h2>
+    <p class="muted">Each task leaves one behaviour unstated. Two rules for it are shown, in random order. For each rule, decide whether a careful programmer, reading only this task, would accept it as a correct way to complete it.</p>
+    <div class="status">
+      <span><strong id="ndone">0</strong> of 41 complete</span>
+      <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+    </div>
+    <nav class="chips" id="chips" aria-label="Tasks"></nav>
+    <div class="block" style="border-top:0;padding-top:0">
+      <span class="eyebrow" id="itemno">Task 1</span>
+      <pre id="task"></pre>
+      <span class="q">Would a careful programmer, reading only this task, accept each rule?</span>
+    </div>
+    <div class="block" id="r1box"></div>
+    <div class="block" id="r2box"></div>
+    <div class="block">
+      <label class="label" for="reason">Note (optional)</label>
+      <textarea id="reason" placeholder="One line on why, if a rule seems wrong or unclear"></textarea>
+    </div>
+    <div class="nav">
+      <button id="prev" type="button">Previous</button>
+      <button id="next" type="button" class="primary">Next</button>
+    </div>
+  </section>
+
+  <section class="card locked" id="part2" aria-disabled="true">
+    <h2>Part 2: questions about the paper</h2>
+    <p class="muted" id="lockmsg">Unlocks when all 41 tasks have both answers.</p>
+    <div id="p2body" hidden>
+      <div class="block" style="border-top:0;padding-top:0">
+        <span class="label">The paper's abstract (for context)</span>
+        <div class="quote"><p id="abstract"></p></div>
+      </div>
+      <div class="block">
+        <span class="q">1. Which subtitle should the paper use? The main title is "What Moves the Ceiling on Automated Code Audit".</span>
+        <div class="opts" role="radiogroup" aria-label="Subtitle" id="q_subtitle"></div>
+        <input type="text" id="subtitle_other" placeholder="Your own subtitle, if you chose Other">
+      </div>
+      <div class="block">
+        <span class="q">2. Which ICML 2027 contribution type fits best? (Authors must choose one.)</span>
+        <div class="opts" role="radiogroup" aria-label="Contribution type" id="q_type"></div>
+      </div>
+      <div class="block">
+        <span class="q">3. Is this AI Disclosure Statement accurate, as far as you know? (ICML requires it; the authors are responsible for it.)</span>
+        <div class="quote" id="disclosure"></div>
+        <div class="opts" role="radiogroup" aria-label="Disclosure accurate" id="q_disclosure"></div>
+        <textarea id="disclosure_note" placeholder="What should change, if anything"></textarea>
+      </div>
+      <div class="block">
+        <label class="q" for="general">4. Anything else the authors should know (optional)</label>
+        <textarea id="general"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Send your answers back</h2>
+    <p class="muted" id="exportmsg">You can export at any time; a partial export is fine, but the analysis needs all 41 tasks.</p>
+    <div class="opts">
+      <button type="button" class="primary" id="export">Export answers</button>
+      <button type="button" id="copy">Copy answers</button>
+    </div>
+    <textarea id="dump" readonly hidden style="min-height:8rem;font-family:var(--font-code);font-size:.8rem"></textarea>
+  </section>
+</div>
+
+<script>
+const ITEMS = [{"item": 1, "task": "from typing import List, Any\n\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    \"\"\" Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n    \"\"\"", "rule_1": "Retain Boolean values unchanged as integers, alongside ordinary integers.", "rule_2": "Exclude Boolean values as non-integers, while retaining ordinary integers."}, {"item": 2, "task": "Write a function to sort a list of tuples using the second value of each tuple.\n\nYour code must satisfy these tests:\nassert subject_marks([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]\nassert subject_marks([('Telugu',49),('Hindhi',54),('Social',33)])==([('Social',33),('Telugu',49),('Hindhi',54)])\nassert subject_marks([('Physics',96),('Chemistry',97),('Biology',45)])==([('Biology',45),('Physics',96),('Chemistry',97)])", "rule_1": "When tuples have equal second values, order those tuples by their first values in ascending order.", "rule_2": "When tuples have equal second values, preserve their original relative order."}, {"item": 3, "task": "Write a function to create a new tuple from the given string and list.\n\nYour code must satisfy these tests:\nassert new_tuple([\"WEB\", \"is\"], \"best\") == ('WEB', 'is', 'best')\nassert new_tuple([\"We\", \"are\"], \"Developers\") == ('We', 'are', 'Developers')\nassert new_tuple([\"Part\", \"is\"], \"Wrong\") == ('Part', 'is', 'Wrong')", "rule_1": "If the given string already occurs in the list, return the list's elements as a tuple in their original order with one additional occurrence appended.", "rule_2": "If the given string already occurs in the list, return the list's elements as a tuple in their original order without appending another occurrence."}, {"item": 4, "task": "def skjkasdkd(lst):\n    \"\"\"You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n    Examples:\n    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10\n    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25\n    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13\n    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11\n    For lst = [0,81,12,3,1,21] the output should be 3\n    For lst = [0,8,1,2,1,7] the output should be 7\n    \"\"\"", "rule_1": "If the list contains no prime values, return None.", "rule_2": "If the list contains no prime values, return 0."}, {"item": 5, "task": "Write a function that returns the list in a list of lists whose sum of elements is the highest.\n\nYour code must satisfy these tests:\nassert max_sum_list([[1,2,3], [4,5,6], [10,11,12], [7,8,9]])==[10, 11, 12]\nassert max_sum_list([[3,2,1], [6,5,4], [12,11,10]])==[12,11,10]\nassert max_sum_list([[2,3,1]])==[2,3,1]", "rule_1": "If multiple inner lists share the highest sum, return the last such list in input order.", "rule_2": "If multiple inner lists share the highest sum, return the first such list in input order."}, {"item": 6, "task": "Write a python function to find the first non-repeated character in a given string.\n\nYour code must satisfy these tests:\nassert first_non_repeating_character(\"abcabc\") == None\nassert first_non_repeating_character(\"abc\") == \"a\"\nassert first_non_repeating_character(\"ababc\") == \"c\"", "rule_1": "Treat every Unicode code point individually as one character and return the first character occurring exactly once, or None if none exists.", "rule_2": "Treat each base letter together with its following combining marks as one character, treating all remaining code points individually, and return the first character occurring exactly once, or None if none exists."}, {"item": 7, "task": "Write a function to pack consecutive duplicates of a given list elements into sublists.\n\nYour code must satisfy these tests:\nassert pack_consecutive_duplicates([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4])==[[0, 0], [1], [2], [3], [4, 4], [5], [6, 6, 6], [7], [8], [9], [4, 4]]\nassert pack_consecutive_duplicates([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10])==[[10, 10], [15], [19], [18, 18], [17], [26, 26], [17], [18], [10]]\nassert pack_consecutive_duplicates(['a', 'a', 'b', 'c', 'd', 'd'])==[['a', 'a'], ['b'], ['c'], ['d', 'd']]", "rule_1": "Consecutive elements are duplicates if they compare equal and have the same Python type.", "rule_2": "Consecutive elements are duplicates if they compare equal, regardless of their Python types."}, {"item": 8, "task": "Write a python function to convert a given string to uppercase.\n\nYour code must satisfy these tests:\nassert is_upper(\"person\") ==\"PERSON\"\nassert is_upper(\"final\") == \"FINAL\"\nassert is_upper(\"Valid\") == \"VALID\"", "rule_1": "Convert each 'ß' to 'ẞ', and uppercase all other characters normally.", "rule_2": "Convert each 'ß' to 'SS', and uppercase all other characters normally."}, {"item": 9, "task": "Write a function to replace all spaces in the given string with '%20'.\n\nYour code must satisfy these tests:\nassert replace_spaces(\"My Name is Dawood\") == 'My%20Name%20is%20Dawood'\nassert replace_spaces(\"I am a Programmer\") == 'I%20am%20a%20Programmer'\nassert replace_spaces(\"I love Coding\") == 'I%20love%20Coding'", "rule_1": "Replace only U+0020 space characters with '%20', leaving other Unicode space-separator characters unchanged.", "rule_2": "Replace every Unicode space-separator character (category Zs), including U+0020, with '%20'."}, {"item": 10, "task": "Write a function to find the list of maximum length in a list of lists.\n\nYour code must satisfy these tests:\nassert max_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]])==(3, [13, 15, 17])\nassert max_length([[1], [5, 7], [10, 12, 14,15]])==(4, [10, 12, 14,15])\nassert max_length([[5], [15,20,25]])==(3, [15,20,25])", "rule_1": "If several inner lists have the maximum length, return a tuple containing that length and the first such list in input order.", "rule_2": "If several inner lists have the maximum length, return a tuple containing that length and the last such list in input order."}, {"item": 11, "task": "Write a python function to find the first repeated character in a given string.\n\nYour code must satisfy these tests:\nassert first_repeated_char(\"abcabc\") == \"a\"\nassert first_repeated_char(\"abc\") == None\nassert first_repeated_char(\"123123\") == \"1\"", "rule_1": "If multiple characters repeat, return the character whose first occurrence is earliest in the string.", "rule_2": "If multiple characters repeat, return the character whose second occurrence is earliest in the string."}, {"item": 12, "task": "Write a function to check whether it follows the sequence given in the patterns array.\n\nYour code must satisfy these tests:\nassert is_samepatterns([\"red\",\"green\",\"green\"], [\"a\", \"b\", \"b\"])==True\nassert is_samepatterns([\"red\",\"green\",\"greenn\"], [\"a\",\"b\",\"b\"])==False\nassert is_samepatterns([\"red\",\"green\",\"greenn\"], [\"a\",\"b\"])==False", "rule_1": "For equal-length arrays, return true exactly when each pattern symbol consistently maps to one color, allowing different pattern symbols to map to the same color.", "rule_2": "For equal-length arrays, return true exactly when each pattern symbol consistently maps to one color and different pattern symbols map to different colors."}, {"item": 13, "task": "Write a function to calculate the value of 'a' to the power 'b'.\n\nYour code must satisfy these tests:\nassert power(3,4) == 81\nassert power(2,3) == 8\nassert power(5,5) == 3125", "rule_1": "If both the base and exponent are zero, raise ValueError to indicate that the power is undefined.", "rule_2": "If both the base and exponent are zero, return the numeric value 1."}, {"item": 14, "task": "Write a function to count the number of sublists containing a particular element.\n\nYour code must satisfy these tests:\nassert count_element_in_list([[1, 3], [5, 7], [1, 11], [1, 15, 7]],1)==3\nassert count_element_in_list([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'A')==3\nassert count_element_in_list([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'E')==1", "rule_1": "For an integer target of 0 or 1, Boolean False and True must count as matches, respectively.", "rule_2": "For an integer target of 0 or 1, Boolean False and True must not count as matches, respectively."}, {"item": 15, "task": "Write a function to convert a list to a tuple.\n\nYour code must satisfy these tests:\nassert list_tuple([5, 10, 7, 4, 15, 3])==(5, 10, 7, 4, 15, 3)\nassert list_tuple([2, 4, 5, 6, 2, 3, 4, 4, 7])==(2, 4, 5, 6, 2, 3, 4, 4, 7)\nassert list_tuple([58,44,56])==(58,44,56)", "rule_1": "Convert the outer list and every nested list recursively to tuples, preserving element order.", "rule_2": "Convert only the outer list to a tuple, leaving nested lists unchanged and preserving element order."}, {"item": 16, "task": "def derivative(xs: list):\n    \"\"\" xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n     Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n    \"\"\"", "rule_1": "For coefficient lists with trailing zeros and a nonzero coefficient of positive degree, remove all trailing zero coefficients from the returned derivative.", "rule_2": "For coefficient lists with trailing zeros and a nonzero coefficient of positive degree, retain all trailing zero coefficients in the returned derivative."}, {"item": 17, "task": "Write a function to round every number of a given list of numbers and print the total sum multiplied by the length of the list.\n\nYour code must satisfy these tests:\nassert round_and_sum([22.4, 4.0, -16.22, -9.10, 11.00, -12.22, 14.20, -5.20, 17.50])==243\nassert round_and_sum([5,2,9,24.3,29])==345\nassert round_and_sum([25.0,56.7,89.2])==513", "rule_1": "When a number is exactly halfway between two consecutive integers, round it to the integer farther from zero before summing and multiplying by the list length.", "rule_2": "When a number is exactly halfway between two consecutive integers, round it to the even integer before summing and multiplying by the list length."}, {"item": 18, "task": "Write a python function to convert complex numbers to polar coordinates.\n\nYour code must satisfy these tests:\nassert convert(1) == (1.0, 0.0)\nassert convert(4) == (4.0,0.0)\nassert convert(5) == (5.0,0.0)", "rule_1": "For inputs with a negative imaginary part, return the magnitude and the principal polar angle in radians in the interval (-π, 0).", "rule_2": "For inputs with a negative imaginary part, return the magnitude and the equivalent polar angle in radians in the interval (π, 2π)."}, {"item": 19, "task": "Write a function to find the depth of a dictionary.\n\nYour code must satisfy these tests:\nassert dict_depth({'a':1, 'b': {'c': {'d': {}}}})==4\nassert dict_depth({'a':1, 'b': {'c':'python'}})==2\nassert dict_depth({1: 'Sun', 2: {3: {4:'Mon'}}})==3", "rule_1": "When computing dictionary depth, treat list values as leaves and do not count dictionaries inside them as additional dictionary levels.", "rule_2": "When computing dictionary depth, traverse list values recursively and count dictionaries inside them as additional dictionary levels, without counting the lists themselves."}, {"item": 20, "task": "Write a function to convert the given tuple to a key-value dictionary using adjacent elements. https://www.geeksforgeeks.org/python-convert-tuple-to-adjacent-pair-dictionary/\n\nYour code must satisfy these tests:\nassert tuple_to_dict((1, 5, 7, 10, 13, 5)) == {1: 5, 7: 10, 13: 5}\nassert tuple_to_dict((1, 2, 3, 4, 5, 6)) == {1: 2, 3: 4, 5: 6}\nassert tuple_to_dict((7, 8, 9, 10, 11, 12)) == {7: 8, 9: 10, 11: 12}", "rule_1": "If multiple pairs have the same key, retain the value from the last such pair.", "rule_2": "If multiple pairs have the same key, retain the value from the first such pair."}, {"item": 21, "task": "Write a function to remove consecutive duplicates of a given list.\n\nYour code must satisfy these tests:\nassert consecutive_duplicates([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4 ])==[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]\nassert consecutive_duplicates([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10])==[10, 15, 19, 18, 17, 26, 17, 18, 10]\nassert consecutive_duplicates(['a', 'a', 'b', 'c', 'd', 'd'])==['a', 'b', 'c', 'd']\nassert consecutive_duplicates(['a', 'a', 'b', 'c', 'd', 'd', 'a', 'a'])==['a', 'b', 'c', 'd', 'a']", "rule_1": "Collapse consecutive numeric elements only when both their values and their types match, retaining the first element of each run.", "rule_2": "Collapse consecutive numeric elements whenever their values compare equal regardless of their types, retaining the first element of each run."}, {"item": 22, "task": "Write a python function to return the negative numbers in a list.\n\nYour code must satisfy these tests:\nassert neg_nos([-1,4,5,-6]) == [-1,-6]\nassert neg_nos([-1,-2,3,4]) == [-1,-2]\nassert neg_nos([-7,-6,8,9]) == [-7,-6]", "rule_1": "Return every occurrence of each negative number, preserving its order in the input.", "rule_2": "Return each distinct negative number only once, preserving the order of its first occurrence."}, {"item": 23, "task": "def fix_spaces(text):\n    \"\"\"\n    Given a string text, replace all spaces in it with underscores, \n    and if a string has more than 2 consecutive spaces, \n    then replace all consecutive spaces with - \n    \n    fix_spaces(\"Example\") == \"Example\"\n    fix_spaces(\"Example 1\") == \"Example_1\"\n    fix_spaces(\" Example 2\") == \"_Example_2\"\n    fix_spaces(\" Example   3\") == \"_Example-3\"\n    \"\"\"", "rule_1": "If a string contains at least three consecutive spaces, replace every maximal run of three or more spaces with one hyphen and every remaining space with an underscore.", "rule_2": "If a string contains at least three consecutive spaces, replace every maximal run of two or more spaces with one hyphen and every remaining space with an underscore."}, {"item": 24, "task": "Write a python function to find the element of a list having maximum length.\n\nYour code must satisfy these tests:\nassert Find_Max([['A'],['A','B'],['A','B','C']]) == ['A','B','C']\nassert Find_Max([[1],[1,2],[1,2,3]]) == [1,2,3]\nassert Find_Max([[1,1],[1,2,3],[1,5,6,1]]) == [1,5,6,1]", "rule_1": "If multiple elements have the maximum length, return the first of them.", "rule_2": "If multiple elements have the maximum length, return the last of them."}, {"item": 25, "task": "Write a function to extract specified size of strings from a given list of string values.\n\nYour code must satisfy these tests:\nassert extract_string(['Python', 'list', 'exercises', 'practice', 'solution'] ,8)==['practice', 'solution']\nassert extract_string(['Python', 'list', 'exercises', 'practice', 'solution'] ,6)==['Python']\nassert extract_string(['Python', 'list', 'exercises', 'practice', 'solution'] ,9)==['exercises']", "rule_1": "Return matching strings in their original order, including only the first occurrence of each distinct string.", "rule_2": "Return matching strings in their original order, including every occurrence of each string."}, {"item": 26, "task": "Write a function to remove all the words with k length in the given string.\n\nYour code must satisfy these tests:\nassert remove_length('The person is most value tet', 3) == 'person is most value'\nassert remove_length('If you told me about this ok', 4) == 'If you me about ok'\nassert remove_length('Forces of darkeness is come into the play', 4) == 'Forces of darkeness is the'", "rule_1": "If no word has length k, return the words joined by single spaces, removing leading and trailing whitespace.", "rule_2": "If no word has length k, return the original string unchanged, preserving all whitespace."}, {"item": 27, "task": "Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).\n\nYour code must satisfy these tests:\nassert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)\nassert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)\nassert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)", "rule_1": "If the element occurs more than once, return True and the zero-based index of its last occurrence.", "rule_2": "If the element occurs more than once, return True and the zero-based index of its first occurrence."}, {"item": 28, "task": "Write a function to find all possible combinations of the elements of a given list.\n\nYour code must satisfy these tests:\nassert combinations_list(['orange', 'red', 'green', 'blue'])==[[], ['orange'], ['red'], ['red', 'orange'], ['green'], ['green', 'orange'], ['green', 'red'], ['green', 'red', 'orange'], ['blue'], ['blue', 'orange'], ['blue', 'red'], ['blue', 'red', 'orange'], ['blue', 'green'], ['blue', 'green', 'orange'], ['blue', 'green', 'red'], ['blue', 'green', 'red', 'orange']]\nassert combinations_list(['red', 'green', 'blue', 'white', 'black', 'orange'])==[[], ['red'], ['green'], ['green', 'red'], ['blue'], ['blue', 'red'], ['blue', 'green'], ['blue', 'green', 'red'], ['white'], ['white', 'red'], ['white', 'green'], ['white', 'green', 'red'], ['white', 'blue'], ['white', 'blue', 'red'], ['white', 'blue', 'green'], ['white', 'blue', 'green', 'red'], ['black'], ['black', 'red'], ['black', 'green'], ['black', 'green', 'red'], ['black', 'blue'], ['black', 'blue', 'red'], ['black', 'blue', 'green'], ['black', 'blue', 'green', 'red'], ['black', 'white'], ['black', 'white', 'red'], ['black', 'white', 'green'], ['black', 'white', 'green', 'red'], ['black', 'white', 'blue'], ['black', 'white', 'blue', 'red'], ['black', 'white', 'blue', 'green'], ['black', 'white', 'blue', 'green', 'red'], ['orange'], ['orange', 'red'], ['orange', 'green'], ['orange', 'green', 'red'], ['orange', 'blue'], ['orange', 'blue', 'red'], ['orange', 'blue', 'green'], ['orange', 'blue', 'green', 'red'], ['orange', 'white'], ['orange', 'white', 'red'], ['orange', 'white', 'green'], ['orange', 'white', 'green', 'red'], ['orange', 'white', 'blue'], ['orange', 'white', 'blue', 'red'], ['orange', 'white', 'blue', 'green'], ['orange', 'white', 'blue', 'green', 'red'], ['orange', 'black'], ['orange', 'black', 'red'], ['orange', 'black', 'green'], ['orange', 'black', 'green', 'red'], ['orange', 'black', 'blue'], ['orange', 'black', 'blue', 'red'], ['orange', 'black', 'blue', 'green'], ['orange', 'black', 'blue', 'green', 'red'], ['orange', 'black', 'white'], ['orange', 'black', 'white', 'red'], ['orange', 'black', 'white', 'green'], ['orange', 'black', 'white', 'green', 'red'], ['orange', 'black', 'white', 'blue'], ['orange', 'black', 'white', 'blue', 'red'], ['orange', 'black', 'white', 'blue', 'green'], ['orange', 'black', 'white', 'blue', 'green', 'red']]\nassert combinations_list(['red', 'green', 'black', 'orange'])==[[], ['red'], ['green'], ['green', 'red'], ['black'], ['black', 'red'], ['black', 'green'], ['black', 'green', 'red'], ['orange'], ['orange', 'red'], ['orange', 'green'], ['orange', 'green', 'red'], ['orange', 'black'], ['orange', 'black', 'red'], ['orange', 'black', 'green'], ['orange', 'black', 'green', 'red']]", "rule_1": "When input elements repeat, include each identical combination list only once, preserving the order of first occurrence.", "rule_2": "When input elements repeat, include each identical combination list once per selection of input positions that produces it, preserving the enumeration order."}, {"item": 29, "task": "Write a python function to check whether the given list contains consecutive numbers or not.\n\nYour code must satisfy these tests:\nassert check_Consecutive([1,2,3,4,5]) == True\nassert check_Consecutive([1,2,3,5,6]) == False\nassert check_Consecutive([1,2,1]) == False", "rule_1": "If a list contains distinct integers forming a contiguous interval, return True regardless of their order.", "rule_2": "If a list contains distinct integers forming a contiguous interval, return True only if they appear in ascending order."}, {"item": 30, "task": "Write a function to compute the n-th power of each number in a list.\n\nYour code must satisfy these tests:\nassert nth_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],2)==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\nassert nth_nums([10,20,30],3)==([1000, 8000, 27000])\nassert nth_nums([12,15],5)==([248832, 759375])", "rule_1": "If the exponent is zero and the list contains zero, raise ValueError because zero to the zeroth power is undefined.", "rule_2": "If the exponent is zero and the list contains zero, return one for every element, defining zero to the zeroth power as one."}, {"item": 31, "task": "Write a python function to check whether a list is sublist of another or not.\n\nYour code must satisfy these tests:\nassert is_Sub_Array([1,4,3,5],[1,2]) == False\nassert is_Sub_Array([1,2,1],[1,2,1]) == True\nassert is_Sub_Array([1,0,2,2],[2,2,0]) ==False", "rule_1": "Return True if and only if the second list occurs in the first list in the same order at strictly increasing positions, with gaps permitted.", "rule_2": "Return True if and only if the second list occurs in the first list in the same order at consecutive positions."}, {"item": 32, "task": "Write a function to find tuples which have all elements divisible by k from the given list of tuples.\n\nYour code must satisfy these tests:\nassert find_tuples([(6, 24, 12), (7, 9, 6), (12, 18, 21)], 6) == [(6, 24, 12)]\nassert find_tuples([(5, 25, 30), (4, 2, 3), (7, 8, 9)], 5) == [(5, 25, 30)]\nassert find_tuples([(7, 9, 16), (8, 16, 4), (19, 17, 18)], 4) == [(8, 16, 4)]", "rule_1": "Return qualifying tuples in their original input order, retaining duplicate occurrences.", "rule_2": "Return qualifying tuples in lexicographic order, retaining duplicate occurrences."}, {"item": 33, "task": "Given a list of tuples, write a function that returns the first value of the tuple with the smallest second value.\n\nYour code must satisfy these tests:\nassert index_minimum([('Rash', 143), ('Manjeet', 200), ('Varsha', 100)]) == 'Varsha'\nassert index_minimum([('Yash', 185), ('Dawood', 125), ('Sanya', 175)]) == 'Dawood'\nassert index_minimum([('Sai', 345), ('Salman', 145), ('Ayesha', 96)]) == 'Ayesha'", "rule_1": "If several tuples share the smallest second value, return the first value of the first such tuple in the list.", "rule_2": "If several tuples share the smallest second value, return the first value of the last such tuple in the list."}, {"item": 34, "task": "Write a function to calculate the maximum aggregate from the list of tuples.\n\nYour code must satisfy these tests:\nassert max_aggregate([('Juan Whelan',90),('Sabah Colley',88),('Peter Nichols',7),('Juan Whelan',122),('Sabah Colley',84)])==('Juan Whelan', 212)\nassert max_aggregate([('Juan Whelan',50),('Sabah Colley',48),('Peter Nichols',37),('Juan Whelan',22),('Sabah Colley',14)])==('Juan Whelan', 72)\nassert max_aggregate([('Juan Whelan',10),('Sabah Colley',20),('Peter Nichols',30),('Juan Whelan',40),('Sabah Colley',50)])==('Sabah Colley', 70)", "rule_1": "If several names tie for the highest aggregate score, return the tied name that first appears in the input and its aggregate score.", "rule_2": "If several names tie for the highest aggregate score, return the lexicographically smallest tied name and its aggregate score."}, {"item": 35, "task": "Write a function to check whether a specified list is sorted or not.\n\nYour code must satisfy these tests:\nassert issort_list([1,2,4,6,8,10,12,14,16,17])==True\nassert issort_list([1, 2, 4, 6, 8, 10, 12, 14, 20, 17])==False\nassert issort_list([1, 2, 4, 6, 8, 10,15,14,20])==False", "rule_1": "If a list is in nonincreasing order and contains at least two distinct values, return True.", "rule_2": "If a list is in nonincreasing order and contains at least two distinct values, return False."}, {"item": 36, "task": "Write a function to convert a given string to a tuple of characters.\n\nYour code must satisfy these tests:\nassert string_to_tuple(\"python 3.0\")==('p', 'y', 't', 'h', 'o', 'n', '3', '.', '0')\nassert string_to_tuple(\"item1\")==('i', 't', 'e', 'm', '1')\nassert string_to_tuple(\"15.10\")==('1', '5', '.', '1', '0')", "rule_1": "Omit all whitespace characters from the resulting tuple, including ordinary spaces, tabs, and line breaks.", "rule_2": "Omit ordinary spaces (U+0020) from the resulting tuple, but retain all other whitespace characters."}, {"item": 37, "task": "Write a python function to find the sum of the per-digit difference between two integers.\n\nYour code must satisfy these tests:\nassert digit_distance_nums(1,2) == 1\nassert digit_distance_nums(23,56) == 6\nassert digit_distance_nums(123,256) == 7", "rule_1": "If two nonnegative integers have different numbers of decimal digits, align their digits from the right and sum the absolute differences of paired digits, ignoring unmatched digits.", "rule_2": "If two nonnegative integers have different numbers of decimal digits, align their digits from the left and sum the absolute differences of paired digits, ignoring unmatched digits."}, {"item": 38, "task": "Write a python function to check whether the two numbers differ at one bit position only or not.\n\nYour code must satisfy these tests:\nassert differ_At_One_Bit_Pos(13,9) == True\nassert differ_At_One_Bit_Pos(15,8) == False\nassert differ_At_One_Bit_Pos(2,4) == False\nassert differ_At_One_Bit_Pos(2, 3) == True\nassert differ_At_One_Bit_Pos(5, 1) == True\nassert differ_At_One_Bit_Pos(1, 5) == True", "rule_1": "If both numbers are negative, return True exactly when their two’s-complement representations, sign-extended to a common sufficient width, differ at exactly one bit position.", "rule_2": "If both numbers are negative, return True exactly when their absolute values, written in binary and padded with leading zeros to equal length, differ at exactly one bit position."}, {"item": 39, "task": "Write a function to sort a dictionary by value.\n\nYour code must satisfy these tests:\nassert sort_counter({'Math':81, 'Physics':83, 'Chemistry':87})==[('Chemistry', 87), ('Physics', 83), ('Math', 81)]\nassert sort_counter({'Math':400, 'Physics':300, 'Chemistry':250})==[('Math', 400), ('Physics', 300), ('Chemistry', 250)]\nassert sort_counter({'Math':900, 'Physics':1000, 'Chemistry':1250})==[('Chemistry', 1250), ('Physics', 1000), ('Math', 900)]", "rule_1": "When entries with string keys have equal values, preserve those entries' dictionary insertion order.", "rule_2": "When entries with string keys have equal values, order those entries by key in ascending lexicographic order."}, {"item": 40, "task": "Write a python function to count the number of non-empty substrings of a given string.\n\nYour code must satisfy these tests:\nassert number_of_substrings(\"abc\") == 6\nassert number_of_substrings(\"abcd\") == 10\nassert number_of_substrings(\"abcde\") == 15", "rule_1": "Count non-empty substrings by distinct string value, so equal substrings at different positions contribute only once.", "rule_2": "Count non-empty substrings by their start and end positions, so equal substrings at different positions contribute separately."}, {"item": 41, "task": "Write a python function to count the number of lists in a given number of lists.\n\nYour code must satisfy these tests:\nassert count_list([[1, 3], [5, 7], [9, 11], [13, 15, 17]]) == 4\nassert count_list([[1,2],[2,3],[4,5]]) == 3\nassert count_list([[1,0],[2,0]]) == 2", "rule_1": "Count every list occurring at any nesting depth within the supplied list, excluding the supplied list itself.", "rule_2": "Count only lists occurring as immediate elements of the supplied list, excluding the supplied list itself."}];
+const ABSTRACT = "Audit benchmarks grade automated code auditors against a hidden reference. When a task leaves a behaviour open, the evidence an auditor sees can fit the program and the reference equally well. Recall minus false-flag rate is then bounded by how well that evidence separates them. A benchmark with one fixed contract cannot show how much of its score this explains. We introduce a randomised-contract evaluation using execution-checked program pairs built from HumanEval+ and MBPP+ tasks. The programs differ only on a behaviour that two model judges deem the task leaves open, and are graded against a randomly drawn contract revealed in different ways. With the contract withheld on 41 held-out units, auditors from two vendors flag the program that departs from the benchmark's behaviour 23.8 points more often than the one that follows it (exploratory; registered convention advantage 11.6). The difference is 28.9 points among 38 of 41 units in a preregistered control with all code shared outside one branch body; a stricter symmetric-body control was inconclusive under its registered missing-unit test. Two generator models' task-only solutions follow the benchmark's behaviour 89% of the time; on these units, the benchmark therefore rewards agreement with a convention the models share. One sentence stating the missing requirement adds 76.8 points to verified diagnosis, 60.4 more than a pointer to the inputs concerned, and 58.3 on 18 reference-edited BigCodeBench data-science tasks. In only 34 of 150 natural hidden-test failures do two model classifiers agree that the task's words single out the expected value. Confirmatory analyses were preregistered; we disclose deviations.";
+const DISCLOSURE = ["As methodology. Language models were both the subjects of the experiments and components of the construction pipeline. Their roles included proposing and implementing rules, writing probes and red-team inputs, assessing admissibility, and classifying natural failures. The relevant sections and the appendix describe these roles; the released records contain every prompt and reply.", "In conducting and writing the research. Generative AI was used substantively throughout the research and preparation of the manuscript. An AI coding agent, Claude (Anthropic), helped develop the research questions and hypotheses, chose and designed the follow-up experiments (the author delegated that choice), drafted the preregistrations, and wrote nearly all the experimental and analysis code. It also ran the experiments, analysed the results, produced the figures and tables, searched the literature, and drafted most of the manuscript, including the proof of Lemma 1. A model from a second vendor, GPT (OpenAI), accessed through the Codex command-line tool, provided adversarial reviews of the code, preregistrations and successive manuscript drafts, checked the reported numbers against the records, and edited the prose for readability. Separate Claude instances, given none of the earlier reviews, reviewed the manuscript cold.", "Verification. Each preregistration and its associated analysis code were frozen with content hashes before the held-out calls they governed. Deviations are disclosed as amendments. A released script reruns the registered analyses of E1, E6, E8–E11 and E13–E15 from the stored records and regenerates the numbers and figures of the relevant sections; the earlier studies of the relevant sections are released with their own records and analysis code. The two models audited each other's code and text, and the resulting corrections were made before submission. Every reference was checked against its source through bibliographic lookup. The author set the research goal and takes full responsibility for all content, including the claims, results, code and references."];
+const PACK = "h1-v1";
+const KEY = "human-review-pack-" + PACK;
+let st = {rater: "", items: {}, paper: {}};
+try { const raw = localStorage.getItem(KEY); if (raw) st = Object.assign(st, JSON.parse(raw)); } catch (e) {}
+let cur = 0;
+const $ = id => document.getElementById(id);
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+const complete = s => s && s.r1 && s.r2;
+const nDone = () => ITEMS.filter(x => complete(st.items[x.item])).length;
+
+function radios(container, name, options, value, onChange, cls) {
+  container.innerHTML = "";
+  for (const [v, label] of options) {
+    const l = document.createElement("label"); l.className = "opt " + (cls ? cls(v) : "");
+    const i = document.createElement("input"); i.type = "radio"; i.name = name; i.value = v; i.id = name + "-" + v;
+    i.checked = value === v; i.addEventListener("change", () => onChange(v));
+    const s = document.createElement("span"); s.textContent = label;
+    l.append(i, s); container.append(l);
+  }
+}
+
+function ruleBox(box, idx, text) {
+  const it = ITEMS[cur], s = st.items[it.item] || {};
+  box.innerHTML = "";
+  const lab = document.createElement("span"); lab.className = "label"; lab.textContent = "Rule " + idx;
+  const p = document.createElement("p"); p.textContent = text;
+  const opts = document.createElement("div"); opts.className = "opts"; opts.setAttribute("role", "radiogroup");
+  opts.setAttribute("aria-label", "Rule " + idx);
+  radios(opts, "r" + idx, [["yes", "Acceptable"], ["no", "Not acceptable"], ["unsure", "Unsure"]], s["r" + idx],
+    v => { st.items[it.item] = Object.assign({}, st.items[it.item] || {}, {["r" + idx]: v}); save(); progress(); },
+    v => v);
+  box.append(lab, p, opts);
+}
+
+function render() {
+  const it = ITEMS[cur];
+  $("itemno").textContent = "Task " + it.item + " of " + ITEMS.length;
+  $("task").textContent = it.task;
+  ruleBox($("r1box"), 1, it.rule_1);
+  ruleBox($("r2box"), 2, it.rule_2);
+  $("reason").value = (st.items[it.item] || {}).reason || "";
+  $("prev").disabled = cur === 0;
+  $("next").textContent = cur === ITEMS.length - 1 ? "Finish Part 1" : "Next";
+  progress();
+}
+
+function progress() {
+  const n = nDone();
+  $("ndone").textContent = n;
+  $("barfill").style.width = (100 * n / ITEMS.length) + "%";
+  const chips = $("chips"); chips.innerHTML = "";
+  ITEMS.forEach((x, i) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = x.item;
+    const s = st.items[x.item];
+    if (complete(s)) b.classList.add("done"); else if (s && (s.r1 || s.r2)) b.classList.add("part");
+    if (i === cur) { b.classList.add("cur"); b.setAttribute("aria-current", "true"); }
+    b.setAttribute("aria-label", "Task " + x.item);
+    b.addEventListener("click", () => { cur = i; render(); });
+    chips.append(b);
+  });
+  const open = n === ITEMS.length;
+  $("part2").classList.toggle("locked", !open);
+  $("part2").setAttribute("aria-disabled", String(!open));
+  $("p2body").hidden = !open;
+  $("lockmsg").textContent = open ? "Thank you. Please answer the questions below, then export." :
+    "Unlocks when all 41 tasks have both answers (" + (ITEMS.length - n) + " to go).";
+}
+
+function renderPart2() {
+  $("abstract").textContent = ABSTRACT;
+  const d = $("disclosure"); d.innerHTML = "";
+  for (const para of DISCLOSURE) { const p = document.createElement("p"); p.textContent = para; d.append(p); }
+  const P = st.paper;
+  radios($("q_subtitle"), "subtitle", [
+    ["new", "Separating Convention Agreement from Defect Detection"],
+    ["old", "from General Code to Scientific Code, Results and Data"],
+    ["other", "Other (type below)"]], P.subtitle, v => { P.subtitle = v; save(); });
+  $("subtitle_other").value = P.subtitle_other || "";
+  radios($("q_type"), "ctype", [
+    ["deb", "Datasets, Evaluations and Benchmarks"], ["general", "General"], ["other", "Another type"]],
+    P.contribution_type, v => { P.contribution_type = v; save(); });
+  radios($("q_disclosure"), "disc", [["yes", "Accurate"], ["no", "Needs changes"], ["unsure", "Can't judge"]],
+    P.disclosure, v => { P.disclosure = v; save(); }, v => v === "no" ? "no" : (v === "unsure" ? "unsure" : ""));
+  $("disclosure_note").value = P.disclosure_note || "";
+  $("general").value = P.general || "";
+}
+
+function bindText(id, setter) { $(id).addEventListener("input", e => { setter(e.target.value); save(); }); }
+bindText("rater", v => st.rater = v);
+bindText("reason", v => { const it = ITEMS[cur]; st.items[it.item] = Object.assign({}, st.items[it.item] || {}, {reason: v}); });
+bindText("subtitle_other", v => st.paper.subtitle_other = v);
+bindText("disclosure_note", v => st.paper.disclosure_note = v);
+bindText("general", v => st.paper.general = v);
+
+$("prev").addEventListener("click", () => { if (cur > 0) { cur--; render(); $("part1").scrollIntoView(); } });
+$("next").addEventListener("click", () => {
+  if (cur < ITEMS.length - 1) { cur++; render(); $("part1").scrollIntoView(); return; }
+  const missing = ITEMS.filter(x => !complete(st.items[x.item])).map(x => x.item);
+  if (missing.length) { cur = ITEMS.findIndex(x => x.item === missing[0]); render(); $("part1").scrollIntoView();
+    $("lockmsg").textContent = "Tasks still missing an answer: " + missing.join(", "); }
+  else { $("part2").scrollIntoView(); }
+});
+
+function payload() {
+  return {pack: PACK, exported: new Date().toISOString(), rater: st.rater,
+          complete: nDone() === ITEMS.length,
+          labels: ITEMS.map(x => ({item: x.item, r1: (st.items[x.item] || {}).r1 || null,
+                                   r2: (st.items[x.item] || {}).r2 || null, reason: (st.items[x.item] || {}).reason || ""})),
+          paper: st.paper};
+}
+$("export").addEventListener("click", () => {
+  const text = JSON.stringify(payload(), null, 1);
+  try {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], {type: "application/json"}));
+    a.download = "human_review_answers.json"; document.body.append(a); a.click(); a.remove();
+    $("exportmsg").textContent = "Downloaded human_review_answers.json. Please send that file back.";
+  } catch (e) { showDump(text); }
+});
+function showDump(text) {
+  const d = $("dump"); d.hidden = false; d.value = text; d.focus(); d.select();
+  $("exportmsg").textContent = "Copy the text below and send it in a message.";
+}
+$("copy").addEventListener("click", async () => {
+  const text = JSON.stringify(payload(), null, 1);
+  try { await navigator.clipboard.writeText(text); $("exportmsg").textContent = "Copied. Paste it into a message to send it back."; }
+  catch (e) { showDump(text); }
+});
+
+$("rater").value = st.rater || "";
+renderPart2();
+render();
+</script>
+</body>
+</html>
