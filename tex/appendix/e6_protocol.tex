@@ -343,8 +343,16 @@ not consume an attempt (decided by transport metadata only), and a reference tha
 \section{The data study's voided runs}
 \label{app:e3}
 
-The data study (Section~\ref{sec:transfer}) was registered with its hypotheses, validators and scoring before any
-reading. Its first agentic runs used a command filter that discarded readings in which the auditor tried to reach the
+\paragraph{Design.} Twelve public regression tables were each delivered with a data card and either left clean or
+given one injected fault (mixed units, negated values, duplicated rows, a shuffled target, swapped columns, sentinel
+values, rounding); four tables were used for development (84 faulty and 84 clean items) and eight held out (266 and
+266). A profile validator built from the card and from thresholds against a clean reference sample was combined with
+a model auditor (GPT-5.6-terra or Claude Sonnet 5.5, with a shell on the full table or reading 120 rows). Localisation
+counts only when a blocking finding names the injected fault type and column, scored by code against the injection
+manifest. This study (E3) differs from the earlier four-table study in Appendix~\ref{app:earlier}.
+
+\paragraph{Voided runs.} The data study (Section~\ref{sec:transfer}) was registered with its hypotheses, validators
+and scoring before any reading. Its first agentic runs used a command filter that discarded readings in which the auditor tried to reach the
 clean source. After the held-out analysis under that rule (Amendment 2) had been computed, inspection showed that the
 GPT auditor had tried to obtain the clean source in 174 of 829 agentic readings (21\%), with commands such as
 \texttt{curl} to the UCI archive and searches of the home and temporary directories, and that several readings found
