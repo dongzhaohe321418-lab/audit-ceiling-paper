@@ -34,6 +34,7 @@ if [ "${REANALYSE:-0}" = 1 ]; then
     cd ../e9 && "$APY" e9.py analyse test
     cd ../e10 && "$APY" e10.py analyse test
     cd ../e13 && "$APY" -W ignore e13.py analyse --split test
+    "$APY" -W ignore e13_secondary.py test
     cd ../e11 && env -u CROSSAUDIT_BENCH_EXECUTOR "$EPY" -W ignore e11.py analyse --split test
     env -u CROSSAUDIT_BENCH_EXECUTOR "$EPY" -W ignore e11_report.py test
     env -u CROSSAUDIT_BENCH_EXECUTOR "$EPY" -W ignore e11_admissibility.py test ) > /dev/null
