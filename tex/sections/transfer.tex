@@ -12,17 +12,17 @@ distinction rather than test it.
 Section~\ref{sec:e6} to 121 deterministic BigCodeBench tasks that use pandas, numpy, scipy or scikit-learn (E7)
 stopped at construction: programs written from scratch kept disagreeing with the reference elsewhere, and only 5
 held-out units survived a registered gate of 12. A second preregistered study (E11)
-changed only how programs are built: each implementing vendor edits the reference so that an explicit branch follows
-one rule (median 4 changed lines). It yielded 18 held-out units from 18
-problems, with all 576 registered readings valid (Appendix~\ref{app:e6}). One sentence stating the requirement raised
-verified diagnosis by 58.3 points [41.7, 73.6] over the task alone (66.7\% against 8.3\%) and by 48.6 [34.7, 62.5]
-over a note naming the input class; the note alone added 9.7 [2.8, 16.7]. Both registered hypotheses hold, no
-problem's effect is negative, and leaving out any one problem keeps both lower limits above 30. With the contract
-withheld, the convention advantage was 8.3 [2.8, 13.9] (not registered here). Unlike on HumanEval+ and MBPP+, the
-sentence arm still flagged the correct program on 26.4\% of readings. Judges outside the construction accepted both
-rules on 93\% of readings. Both programs share the
-reference outside one branch, a code-level cue present in every arm, so this shows that the sentence effect is not
-peculiar to short functions, not that it holds for ordinary library code.
+changed only construction: each implementing vendor edited the reference to follow one rule in an explicit branch
+(median 3.5 changed lines). It yielded 18 held-out units from 18
+problems; all 576 registered readings were valid (Appendix~\ref{app:e6}). Stating the requirement in one
+sentence increased verified diagnosis by 58.3 points [41.7, 73.6] over the task alone (66.7\% versus 8.3\%) and by
+48.6 [34.7, 62.5] over a note naming the input class; the note added 9.7 [2.8, 16.7]. Both registered hypotheses
+hold. No problem has a negative effect, and omitting any one problem leaves both lower limits above 30. Without the
+contract, the convention advantage was 8.3 [2.8, 13.9] (not registered here). Unlike on HumanEval+ and MBPP+, the
+sentence arm had a 26.4\% false-flag rate. Judges outside the construction accepted both
+rules on 93\% of readings. The edited branches cue the
+relevant behaviour in every arm: the sentence effect extends to these constructed library tasks, and its
+applicability to ordinary library code remains untested.
 
 \paragraph{Code: what the auditor is told it is reviewing.} SciCode \citep{tian2024scicode} splits research problems
 into steps with tests written by scientists. We label generated steps that pass the tests correct and those that fail defective (the tests can themselves
