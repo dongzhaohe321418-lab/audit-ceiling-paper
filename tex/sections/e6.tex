@@ -38,14 +38,17 @@ that judge the rules (Claude Opus 5.5, GPT-6.1-sol) also implement them. GPT-6.1
 red-team inputs. Construction and judging thus use separate calls, not independent validators.
 These checks reject, for example, a ``correct'' B program whose integer summation silently became floating point.
 
-\paragraph{Judging without human raters.} Two models that neither proposed the rules nor serve as auditors (Claude Opus 5.5,
+\paragraph{Judging admissibility.} Two models that neither proposed the rules nor serve as auditors (Claude Opus 5.5,
 GPT-6.1-sol) judge whether the inputs are valid and each rule is compatible with the task's words and visible tests.
 They are blind to which rule is the benchmark's and are instructed that a missing example is not permission.
 The primary population comprises admitted units for which both judges accept the domain and both rules:
-\emph{execution-validated, two-model-compatible contract pairs}. These are not human-validated ambiguities, and we make
+\emph{execution-validated, two-model-compatible contract pairs}. We make
 no claim about how common such ambiguity is. A later preregistered check (E9, Appendix~\ref{app:e6}) used the two auditor models at the high budget, outside the
 construction and blind to which rule is the benchmark's. They accepted both rules on 84\% of readings of these units
 and excluded the misreading on 96.5\% of control readings. E6-1, E6-2 and E6-5 hold on the 35 units most readings accept.
+A co-author who had not seen the units, equally blind, accepted both rules on 35 of 41 units (85\% [72, 93]; H1);
+all four rejections fell on the alternative rule, and on the 35 units E6-1, E6-2 and E6-5 hold (flag preference
++15.0 [2.1, 27.9]).
 
 \paragraph{Positive controls.} To obtain units whose evidence distinguishes the programs, the same pipeline asks
 the proposer for a plausible \emph{misreading} that passes the visible tests but that the task's words rule out.

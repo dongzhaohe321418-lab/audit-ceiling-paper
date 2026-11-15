@@ -183,6 +183,19 @@ contract-B program of these units in the unrevealed arm. Every registered verdic
 three analyses. The frozen estimates may therefore slightly understate verified diagnosis once the contract
 is stated; the recrediting does not check the type of the exception.
 
+\paragraph{Human admissibility check (H1).} Registered before any label (\texttt{benchmarks/human/}), after the three
+unanchored reviews named model-only admissibility as the main objection. One rater, a co-author who did not construct,
+judge or inspect any unit or see results by unit, read each held-out unit's task as auditors see it and its two rules
+in a hash-fixed order, with no indication of which rule the benchmark's reference follows, and answered for each
+rule whether a careful programmer reading only the task would accept it. The 41 items came first; questions about
+the paper unlocked only afterwards. Labels were committed before the key. Both rules were accepted on 35 of 41 units
+(85.4\% [71.6, 93.1], Wilson); the alternative rule was rejected on four units and the benchmark's rule on none, and
+the benchmark's rule drew the only two ``unsure'' answers. On the 35 human-admissible units E6's registered criteria
+hold, with E6's frozen analysis code: E6-5 +79.3 [69.3, 87.9], E6-2 +7.1 [1.4, 12.9], and the exploratory flag
+preference +15.0 [2.1, 27.9], against +23.8 on all 41, so part of the preference comes from units on which the human
+reader also rejected the alternative. Unit-level agreement with E9's majority acceptance is 33 of 41 (Cohen's
+$\kappa$ 0.22, low beyond chance because nearly every unit is accepted). One rater, who is a co-author, is not a panel.
+
 \paragraph{Code shape (exploratory).} We added this analysis after an unanchored review asked whether the flag
 preference reflects how the code looks rather than a convention (\texttt{e6\_code\_shape.py}; not registered).
 Program A implements the rule the models' own solutions rarely follow. In 20 of the 41 held-out units, its code
@@ -354,6 +367,8 @@ E13-1 & flag rate, B with an added branch minus B (task alone; margin 10) & +0.6
 E13-2 & flag preference, A minus branched B (task alone) & +20.6 [6.9, 33.8] & supported \\
 E14-1 & flag preference, matched pair (identical outside one branch body); verdict on worst-case imputation & +28.9 [14.5, 42.8] ($n$=38); +19.5 [2.4, 35.4] ($n$=41) & supported \\
 E15-1 & flag preference, matched pair with symmetric branch bodies; verdict on worst-case imputation & +34.0 [18.8, 48.6] ($n$=36); +17.7 [$-$1.2, 36.0] ($n$=41) & not supported \\
+H1-1 & human admissibility (one blind co-author rater), both rules accepted & 85.4 [71.6, 93.1] (35/41) & reported \\
+H1-2 & E6-5, E6-2 on the human-admissible units & +79.3 [69.3, 87.9]; +7.1 [1.4, 12.9] & hold \\
 \bottomrule
 \end{tabular}
 \end{table}
